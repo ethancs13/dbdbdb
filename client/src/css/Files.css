@@ -1,0 +1,35 @@
+/* File: src/css/Files.css */
+.auth-form-container {
+    padding: 20px;
+  }
+  
+  .file-upload-container {
+    margin-bottom: 20px;
+  }
+  
+  .drag-drop-area {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .uploaded-files ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .uploaded-files li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .uploaded-files button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }  

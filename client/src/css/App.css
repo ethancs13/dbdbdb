@@ -1,0 +1,78 @@
+#root {
+  width: 100%;
+  height: auto;
+  align-content: center;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(100deg, #6926de, #d262c5 60%, #ee863c);
+  background-size: cover;
+  background-repeat: no-repeat;
+  bottom: 0;
+}
+.user_name {
+  color: #3498db;
+}
+
+.btn-danger, .btn-primary {
+  color: #ecf0f1;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 7rem;
+  margin: 0 1rem;
+}
+.file-area {
+  height: 20px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.button {
+  background-color: #3498db;
+  color: #ecf0f1;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.login_home {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login_home_btn {
+  background-color: #3498db;
+  color: #ecf0f1;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.welcome-message {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  font-size: x-large;
+  font-weight: 450;
+  margin: 0 5rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}

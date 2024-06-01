@@ -1,0 +1,101 @@
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 0;
+    background-color: #f5f5f5;
+  }
+  
+  .form__container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+  }
+  
+  .form-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .form-row-header {
+    width: 10rem;
+  }
+  
+  .form-header {
+    width: 9rem;
+    font-weight: bold;
+  }
+  
+  input[type="text"] {
+    flex-grow: 1;
+    margin: 0 0.5rem;
+    padding: 0.2rem;
+    width: 5rem;
+  }
+
+  input[type="date"] {
+    margin: 0 0.5rem;
+    padding: 0.2rem;
+    width: 8rem;
+  }
+
+  input[type="number"] {
+    flex-grow: 1;
+    padding: 0.2rem;
+    margin: 0 0.5rem;
+    width: 5rem;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 0;
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 2px 1px #6926de;
+  }
+  
+  .button {
+    margin-top: 2rem;
+    padding: 0.5rem 2rem;
+    background-color: #6926de;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #5c23aa;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .PorCC {
+    width: 5rem;
+    text-align: center;
+  }
+  .expense-type-header {
+    width: 9rem;
+  }
+  .Billable ,.Non-Billable, .Total {
+    width: 8rem;
+    text-align: center;
+  }
