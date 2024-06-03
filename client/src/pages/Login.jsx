@@ -20,8 +20,6 @@ export const Login = () => {
         try {
             const result = await login(email, pass);
             if (result.status === 'success') {
-                setEmail('');
-                setPass('');
                 navigate('/');
             } else {
                 setError('Incorrect username or password. Please try again.');

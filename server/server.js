@@ -59,17 +59,24 @@ const queryAsync = promisify(db.query).bind(db);
 // ----------------------------------------------------
 // logic_to_verify_jwt (json web token)
 const verifyUser = (req, res, next) => {
+  console.log("verifyUser middleware called");
+  console.log("Cookies:", req.cookies);
   const token = req.cookies.token;
+
   if (!token) {
+    console.log("No token found in cookies");
     return res.json({ Error: "You are not logged in." });
   } else {
     jwt.verify(token, "jwt-secret-key", (err, decoded) => {
+      console.log(decoded)
       if (err) {
+        console.log("JWT verification error:", err);
         return res.json({ Error: err });
       } else {
-        req.email = decoded.email;
-        req.fn = decoded.fn.charAt(0).toUpperCase() + decoded.fn.slice(1);
-        req.ln = decoded.ln.charAt(0).toUpperCase() + decoded.ln.slice(1);
+        console.log("JWT verified successfully, decoded data:", decoded);
+        req.email = decoded.EMAIL;
+        req.fn = decoded.FN.charAt(0).toUpperCase() + decoded.FN.slice(1);
+        req.ln = decoded.LN.charAt(0).toUpperCase() + decoded.LN.slice(1);
         req.user_ID = decoded.user_ID;
         next();
       }
@@ -79,6 +86,7 @@ const verifyUser = (req, res, next) => {
 
 // verify_user_route
 app.get("/", verifyUser, (req, res) => {
+  console.log("verifyUser passed control to route handler");
   const email = req.email;
   const fn = req.fn;
   const ln = req.ln;
@@ -125,8 +133,8 @@ app.get("/user-info", verifyUser, async (req, res) => {
     const fetchUserId = await queryAsync(
       "SELECT ID FROM USERS WHERE EMAIL = ?",
       email
-    )
-    const userId = fetchUserId[0].ID
+    );
+    const userId = fetchUserId[0].ID;
 
     // Query to retrieve historical data from the database
     const [expenseData] = await queryAsync(
@@ -324,7 +332,7 @@ app.post("/upload", uploads.array("files"), verifyUser, async (req, res) => {
 // ----------------------------------------------------
 app.post("/login", async (req, res) => {
   try {
-    const [user] = await queryAsync("SELECT * FROM users WHERE email =?", [
+    const [user] = await queryAsync("SELECT * FROM USERS WHERE EMAIL =?", [
       req.body.email,
     ]);
 
@@ -334,26 +342,26 @@ app.post("/login", async (req, res) => {
 
     const passwordMatch = await bcrypt.compare(
       req.body.password,
-      user.password
+      user.PASSWORD
     );
 
     if (passwordMatch) {
-      const fn = user.fn;
-      const ln = user.ln;
-      const email = user.email;
-      const user_ID = user.id;
-      const role = user.role;
+      const { FN, LN, EMAIL, ID: user_ID, ROLE } = user;
+      console.log("userData: ", user)
+      console.log(FN, LN, EMAIL, user_ID, ROLE)
       const token = jwt.sign(
-        { fn, ln, email, user_ID, role },
+        { FN, LN, EMAIL, user_ID, ROLE },
         "jwt-secret-key",
         { expiresIn: "1d" }
       );
-      res.cookie("token", token);
 
-      if (role === "admin") {
-        return res.send({ Status: "rootUser" });
+      res.cookie("token", token, { httpOnly: true });
+
+
+      if (ROLE === "admin") {
+        return res.send({ Status: "rootUser", token });
       } else {
-        return res.send({ Status: "Success" });
+        return res.send({ Status: "Success", token });
       }
     } else {
       return res.send({ Status: "Unauthorized" });
