@@ -9,6 +9,11 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
+  //   if (!isAuthenticated) {
+  //     navigate("/login"); // Redirect to login page if not authenticated
+  //     return;
+  //   }
+
     const checkAuth = async () => {
       try {
         const response = await axios.get("http://localhost:3001/check-auth", {

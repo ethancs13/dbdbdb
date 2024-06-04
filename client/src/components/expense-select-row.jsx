@@ -9,6 +9,8 @@ const ExpenseSelectRow = ({ index, data }) => {
     updateRow(index, "type", data.type || "cell");
     updateRow(index, "billable", data.billable || "No");
     updateRow(index, "porCC", data.porCC || "No");
+    updateRow(index, "amount", data.amount || 0);
+    updateRow(index, "comment", data.comment || "");
   }, [index]);
 
   const handleChange = (e) => {

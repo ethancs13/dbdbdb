@@ -105,7 +105,7 @@ app.get("/", verifyUser, (req, res) => {
     });
   }
 
-  return res.json({ status: "Success", email: email, fn: req.fn, ln: req.ln });
+  return res.json({ status: "Success", email, fn: req.fn, ln: req.ln });
 });
 // AUTH LOGIC
 // ----------------------------------------------------
@@ -118,13 +118,13 @@ app.get("/check-auth", verifyUser, (req, res) => {
 // setup_storage_config
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, __dirname + "/uploads");
+    cb(null, path.join(__dirname, 'uploads'));
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(null, Date.now() + '-' + file.originalname);
   },
 });
-// set_location_to_storage_config
+
 const uploads = multer({ storage: storage });
 
 app.get("/user-info", verifyUser, async (req, res) => {
@@ -175,28 +175,28 @@ app.get("/user-info", verifyUser, async (req, res) => {
 });
 
 app.get("/user", async (req, res) => {
-  console.log(req);
+  console.log("user info", req.body);
   try {
     // Query to retrieve historical data from the database
     const [expenseData] = await queryAsync(
-      "SELECT * FROM EXPENSES WHERE EMAIL = ?",
-      [EMAIL]
+      "SELECT * FROM EXPENSES WHERE user_id = ?",
+      [req.body.user_ID]
     );
     const [itemData] = await queryAsync(
-      "SELECT * FROM ITEMEXPENSES WHERE EMAIL = ?",
-      [req.id]
+      "SELECT * FROM ITEMEXPENSES WHERE user_id = ?",
+      [req.body.user_ID]
     );
     const [foodData] = await queryAsync(
-      "SELECT * FROM FOODEXPENSES WHERE EMAIL = ?",
-      [req.id]
+      "SELECT * FROM FOODEXPENSES WHERE user_id = ?",
+      [req.body.user_ID]
     );
     const [mileageData] = await queryAsync(
-      "SELECT * FROM MILEAGEEXPENSES WHERE EMAIL = ?",
-      [req.id]
+      "SELECT * FROM MILEAGEEXPENSES WHERE user_id = ?",
+      [req.body.user_ID]
     );
     const [filesData] = await queryAsync(
-      "SELECT * FROM FILES WHERE EMAIL = ?",
-      [req.id]
+      "SELECT * FROM FILES WHERE user_id = ?",
+      [req.body.user_ID]
     );
 
     // Combine all data and send as response
@@ -217,22 +217,23 @@ app.get("/user", async (req, res) => {
 
 // upload POST route to get files
 app.post("/upload", uploads.array("files"), verifyUser, async (req, res) => {
+  console.log("upload", res.req.email)
   if (!req.body.email) {
     res.json({ status: "log in first." });
     return;
   }
 
   const user_ID = req.user_ID;
-  const rowsData = req.body.rowsData;
+  const rowsData = JSON.parse(req.body.rowsData);
   console.log("Rows Data:", rowsData);
 
-  const foodData = req.body.foodRowsData;
+  const foodData = JSON.parse(req.body.foodRowsData);
   console.log("Food Data:", foodData);
 
-  const mileageData = req.body.mileageRowsData;
+  const mileageData = JSON.parse(req.body.mileageRowsData);
   console.log("Mileage Data:", mileageData);
 
-  const itemData = req.body.itemRowsData;
+  const itemData = JSON.parse(req.body.itemRowsData);
   console.log("Item Data:", itemData);
 
   if (req.files) {

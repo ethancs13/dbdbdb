@@ -23,6 +23,16 @@ const FormProvider = ({ children }) => {
     return savedFood ? JSON.parse(savedFood) : [];
   });
 
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+
+  const addFiles = (files) => {
+    setUploadedFiles((prevFiles) => [...prevFiles, ...files]);
+  };
+
+  const removeFile = (index) => {
+    setUploadedFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+  };
+
   const [mileageTotal, setMileageTotal] = useState(0);
 
   useEffect(() => {
@@ -115,11 +125,11 @@ const FormProvider = ({ children }) => {
 
   const addFoodRow = () => {
     const newFoodRow = {
-      purchaseDate: "",
+      date: "",
       amount: 0,
       location: "",
       persons: 0,
-      title: "",
+      type: "",
       purpose: "",
       billable: false,
       porCC: false,
@@ -129,6 +139,7 @@ const FormProvider = ({ children }) => {
 
   const deleteFoodRow = (index) => {
     setFoodRowsData((prevRows) => prevRows.filter((_, idx) => idx !== index));
+    localStorage.removeItem("foodRowsData")
   };
 
   const updateFoodRow = (index, name, value) => {
@@ -172,6 +183,7 @@ const FormProvider = ({ children }) => {
         itemRowsData,
         foodRowsData,
         mileageTotal,
+        uploadedFiles,
         clearFormContext,
         addItemRow,
         deleteItemRow,
@@ -185,6 +197,8 @@ const FormProvider = ({ children }) => {
         addRow,
         deleteRow,
         updateRow,
+        addFiles,
+        removeFile
       }}
     >
       {children}

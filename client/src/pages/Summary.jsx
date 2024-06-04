@@ -13,48 +13,77 @@ const Summary = () => {
     mileageRowsData,
     clearFormContext,
   } = useContext(FormContext);
-  const { uploadedFiles } = useContext(FileContext);
+  const { uploadedFiles, addFiles } = useContext(FormContext);
   const [userEmail, setUserEmail] = useState("");
+  const [files, setFiles] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserEmail = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/user-info", {
+        const response = await axios.get("http://localhost:3001/user", {
           withCredentials: true,
         });
         setUserEmail(response.data.email);
       } catch (error) {
-        console.error("There was an error fetching the user email!", error);
+        console.error("Error fetching user email:", error);
       }
     };
 
     fetchUserEmail();
   }, []);
 
+  const uploadData = async (formData) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/upload",
+        formData,
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+      return response;
+    } catch (error) {
+      console.error("Error uploading data:", error);
+      throw error;
+    }
+  };
+
+  const handleSuccess = (response) => {
+    console.log(response);
+    localStorage.removeItem("rowsData");
+    clearFormContext();
+    navigate("/thank-you");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = {
-      rowsData,
-      foodRowsData,
-      itemRowsData,
-      mileageRowsData,
-      files: uploadedFiles,
-      email: userEmail,
-    };
-    try {
-      const response = await axios.post("http://localhost:3001/upload", data, {
-        withCredentials: true,
+    const formData = new FormData();
+    formData.append("email", userEmail);
+    formData.append("rowsData", JSON.stringify(rowsData));
+    formData.append("foodRowsData", JSON.stringify(foodRowsData));
+    formData.append("itemRowsData", JSON.stringify(itemRowsData));
+    formData.append("mileageRowsData", JSON.stringify(mileageRowsData));
+    if (files[0]) {
+      Array.from(files).forEach((file, index) => {
+        formData.append(`files[${index}]`, file);
       });
-
-      localStorage.removeItem("rowsData"); // clear fields in localstorage and page
-      clearFormContext();
-
-      navigate("/thank-you"); // Redirect to thank you page
-
-    } catch (error) {
-      console.error("There was an error submitting the data!", error);
+    } else {
+      formData.append("files", files);
     }
+
+    try {
+      const response = await uploadData(formData);
+      handleSuccess(response);
+    } catch (error) {
+      console.error("Error submitting data:", error);
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const files = e.target.files;
+    addFiles(files);
   };
 
   return (
@@ -154,11 +183,23 @@ const Summary = () => {
         <div className="summary-section">
           <h3>Files</h3>
           <div className="summary-box">
+            <div className="summary-box-item">
+              <div className="row">
+                <div className="col-3">
+                  <input
+                    type="file"
+                    name="files"
+                    multiple
+                    onChange={handleFileChange}
+                  />
+                </div>
+              </div>
+            </div>
             {uploadedFiles.length > 0 ? (
-              uploadedFiles.map((row, index) => (
+              uploadedFiles.map((file, index) => (
                 <div className="summary-box-item" key={index}>
                   <div className="row">
-                    <div className="col-3">{row.name}</div>
+                    <div className="col-3">{file.name}</div>
                   </div>
                 </div>
               ))
