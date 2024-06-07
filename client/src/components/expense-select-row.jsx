@@ -1,23 +1,6 @@
-import React, { useContext, useEffect } from "react";
-import { FormContext } from "../context/FormContext";
+import React from "react";
 
-const ExpenseSelectRow = ({ index, data }) => {
-  const { deleteRow, updateRow } = useContext(FormContext);
-
-  useEffect(() => {
-    // Initialize form values in the context if needed
-    updateRow(index, "type", data.type || "cell");
-    updateRow(index, "billable", data.billable || "No");
-    updateRow(index, "porCC", data.porCC || "No");
-    updateRow(index, "amount", data.amount || 0);
-    updateRow(index, "comment", data.comment || "");
-  }, [index]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    updateRow(index, name, value);
-  };
-
+const ExpenseSelectRow = ({ index, data, deleteRow, handleChange }) => {
   const { type, billable, porCC, amount, comment } = data;
 
   return (

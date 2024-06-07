@@ -33,7 +33,6 @@ const FoodTable = ({ data, addFoodRow, deleteFoodRow, updateFoodRow }) => {
                 index={index}
                 handleChange={handleChange}
                 deleteTableRows={(evnt) => deleteFoodRow(evnt, index)}
-                updateFoodRow={updateFoodRow}
               />
             ))
           ) : (

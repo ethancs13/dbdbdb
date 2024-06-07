@@ -1,25 +1,25 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from "react";
 
 const FormContext = createContext();
 
 const FormProvider = ({ children }) => {
   const [rowsData, setRowsData] = useState(() => {
-    const savedRows = localStorage.getItem('rowsData');
+    const savedRows = localStorage.getItem("rowsData");
     return savedRows ? JSON.parse(savedRows) : [];
   });
 
   const [itemRowsData, setItemRowsData] = useState(() => {
-    const savedItems = localStorage.getItem('itemRowsData');
+    const savedItems = localStorage.getItem("itemRowsData");
     return savedItems ? JSON.parse(savedItems) : [];
   });
 
   const [mileageRowsData, setMileageRowsData] = useState(() => {
-    const savedMileage = localStorage.getItem('mileageRowsData');
+    const savedMileage = localStorage.getItem("mileageRowsData");
     return savedMileage ? JSON.parse(savedMileage) : [];
   });
 
   const [foodRowsData, setFoodRowsData] = useState(() => {
-    const savedFood = localStorage.getItem('foodRowsData');
+    const savedFood = localStorage.getItem("foodRowsData");
     return savedFood ? JSON.parse(savedFood) : [];
   });
 
@@ -36,23 +36,26 @@ const FormProvider = ({ children }) => {
   const [mileageTotal, setMileageTotal] = useState(0);
 
   useEffect(() => {
-    localStorage.setItem('rowsData', JSON.stringify(rowsData));
+    localStorage.setItem("rowsData", JSON.stringify(rowsData));
   }, [rowsData]);
 
   useEffect(() => {
-    localStorage.setItem('itemRowsData', JSON.stringify(itemRowsData));
+    localStorage.setItem("itemRowsData", JSON.stringify(itemRowsData));
   }, [itemRowsData]);
 
   useEffect(() => {
-    localStorage.setItem('mileageRowsData', JSON.stringify(mileageRowsData));
+    localStorage.setItem("mileageRowsData", JSON.stringify(mileageRowsData));
   }, [mileageRowsData]);
 
   useEffect(() => {
-    localStorage.setItem('foodRowsData', JSON.stringify(foodRowsData));
+    localStorage.setItem("foodRowsData", JSON.stringify(foodRowsData));
   }, [foodRowsData]);
 
   useEffect(() => {
-    const total = mileageRowsData.reduce((acc, row) => acc + parseFloat(row.amount || 0), 0);
+    const total = mileageRowsData.reduce(
+      (acc, row) => acc + parseFloat(row.amount || 0),
+      0
+    );
     setMileageTotal(total);
   }, [mileageRowsData]);
 
@@ -63,19 +66,23 @@ const FormProvider = ({ children }) => {
     setMileageRowsData([]);
     setFoodRowsData([]);
     setMileageTotal(0);
+    localStorage.removeItem("rowsData");
+    localStorage.removeItem("itemRowsData");
+    localStorage.removeItem("mileageRowsData");
+    localStorage.removeItem("foodRowsData");
   };
 
   // Item Rows
 
   const addItemRow = () => {
     const newItemRow = {
-      purchaseDate: "",
+      date: new Date().toLocaleDateString().substring(0,10),
       item: "",
       subTotal: 0,
       cityTax: 0,
       taxPercent: 0,
       total: 0,
-      retailer: "",
+      source: "",
       shippedFrom: "",
       shippedTo: "",
       billable: false,
@@ -100,7 +107,7 @@ const FormProvider = ({ children }) => {
 
   const addMileageRow = () => {
     const newItemRow = {
-      date: "",
+      date: new Date().toLocaleDateString().substring(0,10),
       purpose: "",
       miles: 0,
       billable: false,
@@ -110,7 +117,9 @@ const FormProvider = ({ children }) => {
   };
 
   const deleteMileageRow = (index) => {
-    setMileageRowsData((prevRows) => prevRows.filter((_, idx) => idx !== index));
+    setMileageRowsData((prevRows) =>
+      prevRows.filter((_, idx) => idx !== index)
+    );
   };
 
   const updateMileageRow = (index, name, value) => {
@@ -125,7 +134,7 @@ const FormProvider = ({ children }) => {
 
   const addFoodRow = () => {
     const newFoodRow = {
-      date: "",
+      date: new Date().toLocaleDateString().substring(0,10),
       amount: 0,
       location: "",
       persons: 0,
@@ -139,7 +148,6 @@ const FormProvider = ({ children }) => {
 
   const deleteFoodRow = (index) => {
     setFoodRowsData((prevRows) => prevRows.filter((_, idx) => idx !== index));
-    localStorage.removeItem("foodRowsData")
   };
 
   const updateFoodRow = (index, name, value) => {
@@ -198,7 +206,7 @@ const FormProvider = ({ children }) => {
         deleteRow,
         updateRow,
         addFiles,
-        removeFile
+        removeFile,
       }}
     >
       {children}
@@ -206,4 +214,4 @@ const FormProvider = ({ children }) => {
   );
 };
 
-export { FormContext, FormProvider }
+export { FormContext, FormProvider };

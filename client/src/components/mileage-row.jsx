@@ -1,7 +1,7 @@
 import React from "react";
 
 const MileageRow = ({ row, index, handleChange, deleteTableRows }) => {
-  const { date, miles, purpose, billable } = row;
+  const { date, purpose, miles, billable, amount } = row;
 
   return (
     <tr>
@@ -22,12 +22,7 @@ const MileageRow = ({ row, index, handleChange, deleteTableRows }) => {
         />
       </td>
       <td>
-        <input
-          type="number"
-          name="miles"
-          value={miles}
-          onChange={(e) => handleChange(index, e)}
-        />
+        <input type="number" name="miles" value={miles} />
       </td>
       <td>
         <select
@@ -38,6 +33,14 @@ const MileageRow = ({ row, index, handleChange, deleteTableRows }) => {
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>
+      </td>
+      <td>
+        <input
+          type="number"
+          name="amount"
+          value={amount}
+          onChange={(e) => handleChange(index, e)}
+        />
       </td>
       <td>
         <button onClick={(evnt) => deleteTableRows(evnt, index)}>Delete</button>

@@ -22,6 +22,7 @@ const itemsModel = require("./models/itemExpenses");
 const userModel = require("./models/expenses");
 const foodModel = require("./models/foodExpenses");
 const mileageModel = require("./models/mileageExpenses");
+const path = require("path");
 
 // ------------- app_setup -------------
 const app = express();
@@ -68,7 +69,7 @@ const verifyUser = (req, res, next) => {
     return res.json({ Error: "You are not logged in." });
   } else {
     jwt.verify(token, "jwt-secret-key", (err, decoded) => {
-      console.log(decoded)
+      console.log(decoded);
       if (err) {
         console.log("JWT verification error:", err);
         return res.json({ Error: err });
@@ -118,216 +119,225 @@ app.get("/check-auth", verifyUser, (req, res) => {
 // setup_storage_config
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'uploads'));
+    cb(null, path.join(__dirname, "uploads"));
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname);
+    cb(null, Date.now() + "-" + file.originalname);
   },
 });
 
 const uploads = multer({ storage: storage });
 
-app.get("/user-info", verifyUser, async (req, res) => {
-  const email = req.email;
-  try {
-    const fetchUserId = await queryAsync(
-      "SELECT ID FROM USERS WHERE EMAIL = ?",
-      email
-    );
-    const userId = fetchUserId[0].ID;
+app.get("/user", verifyUser, (req, res) => {
+  const userId = req.user_ID;
 
-    // Query to retrieve historical data from the database
-    const [expenseData] = await queryAsync(
-      "SELECT * FROM EXPENSES WHERE USER_ID = ?",
-      [userId]
-    );
-    const [itemData] = await queryAsync(
-      "SELECT * FROM ITEMEXPENSES WHERE USER_ID = ?",
-      [userId]
-    );
-    const [foodData] = await queryAsync(
-      "SELECT * FROM FOODEXPENSES WHERE USER_ID = ?",
-      [userId]
-    );
-    const [mileageData] = await queryAsync(
-      "SELECT * FROM MILEAGEEXPENSES WHERE USER_ID = ?",
-      [userId]
-    );
-    const [filesData] = await queryAsync(
-      "SELECT * FROM FILES WHERE USER_ID = ?",
-      [userId]
-    );
+  const queries = {
+    expenses:
+      "SELECT ID, USER_ID, TYPE, BILLABLE, PORCC, AMOUNT, COMMENT FROM EXPENSES WHERE USER_ID = ?",
+    files:
+      "SELECT ID, USER_ID, NAME, PATH, CREATED_AT FROM FILES WHERE USER_ID = ?",
+    food: "SELECT ID, USER_ID, DATE, AMOUNT, LOCATION FROM FOODEXPENSES WHERE USER_ID = ?",
+    items:
+      "SELECT ID, USER_ID, ITEM, DATE, SUBTOTAL FROM ITEMEXPENSES WHERE USER_ID = ?",
+    mileage:
+      "SELECT ID, USER_ID, DATE, PURPOSE, MILES FROM MILEAGEEXPENSES WHERE USER_ID = ?",
+  };
 
-    // Combine all data and send as response
-    const historyData = {
-      expenses: expenseData,
-      items: itemData,
-      food: foodData,
-      mileage: mileageData,
-      files: filesData,
-    };
-    console.log(historyData);
-    res.json(historyData);
-  } catch (error) {
-    console.error("Error fetching history data:", error);
-    res.status(500).json({ error: "Error fetching history data" });
-  }
+  const queryDatabase = (query, params) => {
+    return new Promise((resolve, reject) => {
+      db.query(query, params, (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results);
+        }
+      });
+    });
+  };
+
+  Promise.all([
+    queryDatabase(queries.expenses, [userId]),
+    queryDatabase(queries.files, [userId]),
+    queryDatabase(queries.food, [userId]),
+    queryDatabase(queries.items, [userId]),
+    queryDatabase(queries.mileage, [userId]),
+  ])
+    .then((results) => {
+      const [expenses, files, food, items, mileage] = results;
+      const groupedData = groupByMonth({
+        expenses,
+        files,
+        food,
+        items,
+        mileage,
+      });
+      console.log(groupedData);
+      res.json(groupedData);
+    })
+    .catch((err) => {
+      console.error("Error fetching data:", err);
+      res.status(500).send("Error fetching data");
+    });
 });
 
-app.get("/user", async (req, res) => {
-  console.log("user info", req.body);
-  try {
-    // Query to retrieve historical data from the database
-    const [expenseData] = await queryAsync(
-      "SELECT * FROM EXPENSES WHERE user_id = ?",
-      [req.body.user_ID]
-    );
-    const [itemData] = await queryAsync(
-      "SELECT * FROM ITEMEXPENSES WHERE user_id = ?",
-      [req.body.user_ID]
-    );
-    const [foodData] = await queryAsync(
-      "SELECT * FROM FOODEXPENSES WHERE user_id = ?",
-      [req.body.user_ID]
-    );
-    const [mileageData] = await queryAsync(
-      "SELECT * FROM MILEAGEEXPENSES WHERE user_id = ?",
-      [req.body.user_ID]
-    );
-    const [filesData] = await queryAsync(
-      "SELECT * FROM FILES WHERE user_id = ?",
-      [req.body.user_ID]
-    );
+const groupByMonth = (data) => {
+  const grouped = {};
 
-    // Combine all data and send as response
-    const historyData = {
-      expenses: expenseData,
-      items: itemData,
-      food: foodData,
-      mileage: mileageData,
-      files: filesData,
-    };
-    console.log(historyData);
-    res.json(historyData);
-  } catch (error) {
-    console.error("Error fetching history data:", error);
-    res.status(500).json({ error: "Error fetching history data" });
-  }
-});
+  const addToGroup = (item, month, category) => {
+    if (!grouped[month]) {
+      grouped[month] = {
+        expenses: [],
+        files: [],
+        food: [],
+        items: [],
+        mileage: [],
+      };
+    }
+    grouped[month][category].push(item);
+  };
+
+  const categorizeByMonth = (items, category, dateField) => {
+    items.forEach((item) => {
+      // Parse the date and check if it's valid
+      const date = new Date(item[dateField]);
+      if (!isNaN(date.getTime())) {
+        const month = date.toISOString().slice(0, 7);
+        addToGroup(item, month, category);
+      } else {
+        console.error(`Invalid date: ${item[dateField]}`);
+      }
+    });
+  };
+
+  categorizeByMonth(data.expenses, "expenses", "CREATED_AT");
+  categorizeByMonth(data.files, "files", "CREATED_AT");
+  categorizeByMonth(data.food, "food", "CREATED_AT");
+  categorizeByMonth(data.items, "items", "CREATED_AT"); 
+  categorizeByMonth(data.mileage, "mileage", "CREATED_AT"); 
+
+  return grouped;
+};
 
 // upload POST route to get files
-app.post("/upload", uploads.array("files"), verifyUser, async (req, res) => {
-  console.log("upload", res.req.email)
-  if (!req.body.email) {
-    res.json({ status: "log in first." });
-    return;
+app.post(
+  "/upload",
+  uploads.array("uploadedFiles"),
+  verifyUser,
+  async (req, res) => {
+    console.log("upload", res.req.email);
+    if (!req.body.email) {
+      res.json({ status: "log in first." });
+      return;
+    }
+
+    const user_ID = req.user_ID;
+    const checkUserQuery = "SELECT * FROM users WHERE ID = ?";
+    db.query(checkUserQuery, [user_ID], (err, results) => {
+      if (err) {
+        console.error("Error checking user:", err);
+        return res.status(500).send("Server error");
+      }
+    });
+
+    const rowsData = JSON.parse(req.body.rowsData);
+    console.log("Rows Data:", rowsData);
+
+    const foodData = JSON.parse(req.body.foodRowsData);
+    console.log("Food Data:", foodData);
+
+    const mileageData = JSON.parse(req.body.mileageRowsData);
+    console.log("Mileage Data:", mileageData);
+
+    const itemData = JSON.parse(req.body.itemRowsData);
+    console.log("Item Data:", itemData);
+
+    if (req.files) {
+      var filesData = req.files;
+    } else {
+      var filesData = req.body.files;
+    }
+    console.log("Files Data:", filesData);
+
+    // Insert data into MySQL
+    try {
+      // Insert data into the database
+      for (const row of rowsData) {
+        const { type, billable, porCC, amount, comment } = row;
+        const userId = req.user_ID; // Assuming user_ID is available in the request
+
+        // Sanitize and validate amount
+        const sanitizedAmount = parseFloat(amount) || 0;
+
+        await queryAsync(
+          "INSERT INTO expenses (user_ID, type, billable, porCC, amount, comment) VALUES (?, ?, ?, ?, ?, ?)",
+          [userId, type, billable, porCC, sanitizedAmount, comment]
+        );
+      }
+
+      // Insert food data
+      for (const row of foodData) {
+        const dateObj = new Date(row.date);
+        await queryAsync(
+          "INSERT INTO foodExpenses (user_ID, date, amount, location, persons, title, purpose, billable, porCC) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+          [
+            user_ID,
+            dateObj,
+            row.amount,
+            row.location,
+            row.persons,
+            row.title,
+            row.purpose,
+            row.billable,
+            row.porCC,
+          ]
+        );
+      }
+
+      // Insert mileage data
+      for (const row of mileageData) {
+        const dateObj = new Date(row.date);
+        await queryAsync(
+          "INSERT INTO mileageExpenses (user_ID, date, purpose, miles, billable, amount) VALUES (?, ?, ?, ?, ?, ?)",
+          [user_ID, dateObj, row.purpose, row.miles, row.billable, row.amount]
+        );
+      }
+
+      // Insert item data
+      for (const row of itemData) {
+        const dateObj = new Date(row.date);
+        await queryAsync(
+          "INSERT INTO itemExpenses (user_ID, item, date, subTotal, cityTax, taxPercent, total, source, shippedFrom, shippedTo, billable) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+          [
+            user_ID,
+            row.item,
+            dateObj,
+            row.subTotal,
+            row.cityTax,
+            row.taxPercent,
+            row.total,
+            row.source,
+            row.shippedFrom,
+            row.shippedTo,
+            row.billable,
+          ]
+        );
+      }
+
+      // Insert files data
+      for (const file of filesData) {
+        await queryAsync(
+          "INSERT INTO files (user_ID, name, path) VALUES (?, ?, ?)",
+          [user_ID, file.originalname, file.path]
+        );
+      }
+
+      res.json({ status: "Success" });
+    } catch (error) {
+      console.error("Error inserting data:", error);
+      res.status(500).json({ status: "Error", error: "Database error" });
+    }
   }
-
-  const user_ID = req.user_ID;
-  const rowsData = JSON.parse(req.body.rowsData);
-  console.log("Rows Data:", rowsData);
-
-  const foodData = JSON.parse(req.body.foodRowsData);
-  console.log("Food Data:", foodData);
-
-  const mileageData = JSON.parse(req.body.mileageRowsData);
-  console.log("Mileage Data:", mileageData);
-
-  const itemData = JSON.parse(req.body.itemRowsData);
-  console.log("Item Data:", itemData);
-
-  if (req.files) {
-    var filesData = req.files;
-  } else {
-    var filesData = req.body.files;
-  }
-  console.log("Files Data:", filesData);
-
-  // Insert data into MySQL
-  try {
-    // Insert data into the database
-    for (const row of rowsData) {
-      const { type, billable, porCC, amount, comment } = row;
-      const userId = req.user_ID; // Assuming user_ID is available in the request
-
-      // Sanitize and validate amount
-      const sanitizedAmount = parseFloat(amount) || 0;
-
-      await queryAsync(
-        "INSERT INTO expenses (user_ID, type, billable, porCC, amount, comment) VALUES (?, ?, ?, ?, ?, ?)",
-        [userId, type, billable, porCC, sanitizedAmount, comment]
-      );
-    }
-
-    // Insert food data
-    for (const row of foodData) {
-      await queryAsync(
-        "INSERT INTO foodExpenses (user_ID, date, amount, location, persons, title, purpose, billable, porCC) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-        [
-          user_ID,
-          row.date,
-          row.amount,
-          row.location,
-          row.persons,
-          row.title,
-          row.purpose,
-          row.billable,
-          row.porCC,
-        ]
-      );
-    }
-
-    // Insert mileage data
-    for (const row of mileageData) {
-      await queryAsync(
-        "INSERT INTO mileageExpenses (user_ID, date, miles, purpose, billable) VALUES (?, ?, ?, ?, ?)",
-        [
-          user_ID,
-          row.date,
-          row.amount,
-          row.persons,
-          row.type,
-          row.purpose,
-          row.billable,
-          row.porCC,
-        ]
-      );
-    }
-
-    // Insert item data
-    for (const row of itemData) {
-      await queryAsync(
-        "INSERT INTO itemExpenses (user_ID, item, date, subTotal, cityTax, taxPercent, total, source, shippedFrom, shippedTo, billable) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-        [
-          user_ID,
-          row.item,
-          row.date,
-          row.subTotal,
-          row.cityTax,
-          row.taxPercent,
-          row.total,
-          row.source,
-          row.shippedFrom,
-          row.shippedTo,
-          row.billable,
-        ]
-      );
-    }
-
-    // Insert files data
-    for (const file of filesData) {
-      await queryAsync(
-        "INSERT INTO files (user_ID, name, path) VALUES (?, ?, ?)",
-        [user_ID, file.originalname, file.path]
-      );
-    }
-
-    res.json({ status: "Success" });
-  } catch (error) {
-    console.error("Error inserting data:", error);
-    res.status(500).json({ status: "Error", error: "Database error" });
-  }
-});
+);
 
 // LOGIN ROUTES
 // ----------------------------------------------------
@@ -348,8 +358,8 @@ app.post("/login", async (req, res) => {
 
     if (passwordMatch) {
       const { FN, LN, EMAIL, ID: user_ID, ROLE } = user;
-      console.log("userData: ", user)
-      console.log(FN, LN, EMAIL, user_ID, ROLE)
+      console.log("userData: ", user);
+      console.log(FN, LN, EMAIL, user_ID, ROLE);
       const token = jwt.sign(
         { FN, LN, EMAIL, user_ID, ROLE },
         "jwt-secret-key",
@@ -357,7 +367,6 @@ app.post("/login", async (req, res) => {
       );
 
       res.cookie("token", token, { httpOnly: true });
-
 
       if (ROLE === "admin") {
         return res.send({ Status: "rootUser", token });

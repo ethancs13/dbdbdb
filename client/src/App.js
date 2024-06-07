@@ -14,23 +14,20 @@ import History from "./pages/History";
 import ThankYou from "./pages/ThankYou";
 import { FormProvider } from "./context/FormContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
-import { FileProvider } from "./context/FileContext";
-import HistoryProvider from "./context/HistoryContext";
+import {HistoryProvider} from "./context/HistoryContext";
 import "./css/App.css";
 
 function App() {
   return (
-    <FileProvider>
-      <FormProvider>
-        <AuthProvider>
-          <HistoryProvider>
-            <BrowserRouter>
-              <AuthConsumer />
-            </BrowserRouter>
-          </HistoryProvider>
-        </AuthProvider>
-      </FormProvider>
-    </FileProvider>
+    <FormProvider>
+      <AuthProvider>
+        <HistoryProvider>
+          <BrowserRouter>
+            <AuthConsumer />
+          </BrowserRouter>
+        </HistoryProvider>
+      </AuthProvider>
+    </FormProvider>
   );
 }
 

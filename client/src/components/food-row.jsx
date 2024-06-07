@@ -1,22 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-const FoodRow = ({ row, index, handleChange, deleteTableRows, updateFoodRow }) => {
-
-
-  useEffect(() => {
-    const today = new Date();
-    const formattedDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
-    updateFoodRow(index, "date", row.date || formattedDate)
-    updateFoodRow(index, "amount", row.amount || 0)
-    updateFoodRow(index, "location", row.location || "empty")
-    updateFoodRow(index, "persons", row.persons || 0)
-    updateFoodRow(index, "type", row.type || "Not Selected")
-    updateFoodRow(index, "purpose", row.purpose || "empty")
-    updateFoodRow(index, "billable", row.billable || "No")
-    updateFoodRow(index, "porCC", row.porCC || "No")
-  }, [])
-
-  const { date, amount, location, persons, type, purpose, billable, porCC } = row;
+const FoodRow = ({ row, index, handleChange, deleteTableRows }) => {
+  const { date, amount, location, persons, type, purpose, billable, porCC } =
+    row;
   return (
     <tr>
       <td>

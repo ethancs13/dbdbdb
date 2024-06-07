@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { FileContext } from "../context/FileContext";
+import { FormContext } from "../context/FormContext";
 import axios from "axios";
 import "../css/Files.css";
 
 const Files = () => {
-  const { uploadedFiles, addFiles, removeFile } = useContext(FileContext);
+  const { uploadedFiles, addFiles, removeFile } = useContext(FormContext);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -26,13 +26,6 @@ const Files = () => {
 
   const handleFileRemove = (index) => {
     removeFile(index);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    // Implement file upload logic here
-    setLoading(false);
   };
 
   return (
@@ -67,11 +60,6 @@ const Files = () => {
           </ul>
         </div>
       )}
-      <form onSubmit={handleSubmit}>
-        <button type="submit" disabled={loading}>
-          {loading ? "Uploading..." : "Submit"}
-        </button>
-      </form>
       {error && <div className="error-message">{error}</div>}
     </div>
   );

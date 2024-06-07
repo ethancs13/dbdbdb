@@ -3,7 +3,14 @@ import { FormContext } from "../context/FormContext";
 import ExpenseSelectRow from "./expense-select-row";
 
 const ExpenseSelect = () => {
-  const { rowsData, addRow } = useContext(FormContext);
+  const { rowsData, addRow, deleteRow, updateRow } = useContext(FormContext);
+
+  const handleChange = (index, evnt) => {
+    evnt.preventDefault();
+    const { name, value, type, checked } = evnt.target;
+    const newValue = type === "checkbox" ? checked : value;
+    updateRow(index, name, newValue);
+  };
 
   return (
     <div>
@@ -21,7 +28,13 @@ const ExpenseSelect = () => {
 
         <tbody>
           {rowsData.map((data, index) => (
-            <ExpenseSelectRow key={index} index={index} data={data} />
+            <ExpenseSelectRow
+              key={index}
+              index={index}
+              data={data}
+              deleteRow={deleteRow}
+              handleChange={handleChange}
+            />
           ))}
         </tbody>
       </table>

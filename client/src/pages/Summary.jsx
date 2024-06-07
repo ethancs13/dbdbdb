@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { FormContext } from "../context/FormContext";
-import { FileContext } from "../context/FileContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../css/Summary.css";
@@ -12,10 +11,11 @@ const Summary = () => {
     itemRowsData,
     mileageRowsData,
     clearFormContext,
+    uploadedFiles,
   } = useContext(FormContext);
-  const { uploadedFiles, addFiles } = useContext(FormContext);
+  console.log(uploadedFiles);
+
   const [userEmail, setUserEmail] = useState("");
-  const [files, setFiles] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -65,12 +65,9 @@ const Summary = () => {
     formData.append("foodRowsData", JSON.stringify(foodRowsData));
     formData.append("itemRowsData", JSON.stringify(itemRowsData));
     formData.append("mileageRowsData", JSON.stringify(mileageRowsData));
-    if (files[0]) {
-      Array.from(files).forEach((file, index) => {
-        formData.append(`files[${index}]`, file);
-      });
-    } else {
-      formData.append("files", files);
+    // Append each file to the FormData
+    for (let i = 0; i < uploadedFiles.length; i++) {
+      formData.append("uploadedFiles", uploadedFiles[i]);
     }
 
     try {
@@ -79,11 +76,6 @@ const Summary = () => {
     } catch (error) {
       console.error("Error submitting data:", error);
     }
-  };
-
-  const handleFileChange = (e) => {
-    const files = e.target.files;
-    addFiles(files);
   };
 
   return (
@@ -183,18 +175,6 @@ const Summary = () => {
         <div className="summary-section">
           <h3>Files</h3>
           <div className="summary-box">
-            <div className="summary-box-item">
-              <div className="row">
-                <div className="col-3">
-                  <input
-                    type="file"
-                    name="files"
-                    multiple
-                    onChange={handleFileChange}
-                  />
-                </div>
-              </div>
-            </div>
             {uploadedFiles.length > 0 ? (
               uploadedFiles.map((file, index) => (
                 <div className="summary-box-item" key={index}>
