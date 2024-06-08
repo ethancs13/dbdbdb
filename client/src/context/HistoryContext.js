@@ -12,6 +12,7 @@ const HistoryProvider = ({ children }) => {
       const response = await axios.get('http://localhost:3001/user', {
         withCredentials: true,
       });
+      console.log(response.data)
       const historyData = response.data;
       setHistoryData(historyData);
     } catch (error) {

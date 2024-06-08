@@ -33,6 +33,8 @@ const Summary = () => {
     fetchUserEmail();
   }, []);
 
+  const [month, setMonth] = useState();
+
   const uploadData = async (formData) => {
     try {
       const response = await axios.post(
@@ -59,7 +61,12 @@ const Summary = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(new Date(month));
     const formData = new FormData();
+    formData.append(
+      "month",
+      month
+    );
     formData.append("email", userEmail);
     formData.append("rowsData", JSON.stringify(rowsData));
     formData.append("foodRowsData", JSON.stringify(foodRowsData));
@@ -82,6 +89,17 @@ const Summary = () => {
     <form onSubmit={(e) => handleSubmit(e)} className="summary-container">
       <h1 className="summary-title">Summary</h1>
       <div className="summary-sections-container">
+        <div className="summary-section">
+          <h3>Month of Expenses</h3>
+          <div className="summary-box">
+            <input
+              type="month"
+              value={month}
+              onChange={(e) => setMonth(e.target.value)}
+              required
+            />
+          </div>
+        </div>
         <div className="summary-section">
           <h3>General</h3>
           <div className="summary-box">

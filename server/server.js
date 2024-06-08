@@ -16,12 +16,7 @@ const { promisify } = require("util");
 const multer = require("multer");
 // --------------------------------------------
 
-// models
-const userDataModel = require("./models/users");
-const itemsModel = require("./models/itemExpenses");
-const userModel = require("./models/expenses");
-const foodModel = require("./models/foodExpenses");
-const mileageModel = require("./models/mileageExpenses");
+// path
 const path = require("path");
 
 // ------------- app_setup -------------
@@ -30,7 +25,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: ["http://localhost:3000"],
-    methods: ["POST", "GET"],
+    methods: ["POST", "GET", "DELETE"],
     credentials: true,
   })
 );
@@ -133,14 +128,13 @@ app.get("/user", verifyUser, (req, res) => {
 
   const queries = {
     expenses:
-      "SELECT ID, USER_ID, TYPE, BILLABLE, PORCC, AMOUNT, COMMENT FROM EXPENSES WHERE USER_ID = ?",
-    files:
-      "SELECT ID, USER_ID, NAME, PATH, CREATED_AT FROM FILES WHERE USER_ID = ?",
-    food: "SELECT ID, USER_ID, DATE, AMOUNT, LOCATION FROM FOODEXPENSES WHERE USER_ID = ?",
+      "SELECT ID, USER_ID, TYPE, BILLABLE, PORCC, AMOUNT, COMMENT, MONTH FROM EXPENSES WHERE USER_ID = ?",
+    files: "SELECT ID, USER_ID, NAME, PATH, MONTH FROM FILES WHERE USER_ID = ?",
+    food: "SELECT ID, USER_ID, DATE, AMOUNT, LOCATION, MONTH FROM FOODEXPENSES WHERE USER_ID = ?",
     items:
-      "SELECT ID, USER_ID, ITEM, DATE, SUBTOTAL FROM ITEMEXPENSES WHERE USER_ID = ?",
+      "SELECT ID, USER_ID, ITEM, DATE, SUBTOTAL, MONTH FROM ITEMEXPENSES WHERE USER_ID = ?",
     mileage:
-      "SELECT ID, USER_ID, DATE, PURPOSE, MILES FROM MILEAGEEXPENSES WHERE USER_ID = ?",
+      "SELECT ID, USER_ID, DATE, PURPOSE, MILES, MONTH FROM MILEAGEEXPENSES WHERE USER_ID = ?",
   };
 
   const queryDatabase = (query, params) => {
@@ -164,14 +158,13 @@ app.get("/user", verifyUser, (req, res) => {
   ])
     .then((results) => {
       const [expenses, files, food, items, mileage] = results;
-      const groupedData = groupByMonth({
+      const groupedData = groupByMonthYear({
         expenses,
         files,
         food,
         items,
         mileage,
       });
-      console.log(groupedData);
       res.json(groupedData);
     })
     .catch((err) => {
@@ -180,12 +173,12 @@ app.get("/user", verifyUser, (req, res) => {
     });
 });
 
-const groupByMonth = (data) => {
+const groupByMonthYear = (data) => {
   const grouped = {};
 
-  const addToGroup = (item, month, category) => {
-    if (!grouped[month]) {
-      grouped[month] = {
+  const addToGroup = (item, monthYear, category) => {
+    if (!grouped[monthYear]) {
+      grouped[monthYear] = {
         expenses: [],
         files: [],
         food: [],
@@ -193,30 +186,84 @@ const groupByMonth = (data) => {
         mileage: [],
       };
     }
-    grouped[month][category].push(item);
+    grouped[monthYear][category].push(item);
   };
 
-  const categorizeByMonth = (items, category, dateField) => {
+  const categorizeByMonthYear = (items, category) => {
     items.forEach((item) => {
-      // Parse the date and check if it's valid
-      const date = new Date(item[dateField]);
-      if (!isNaN(date.getTime())) {
-        const month = date.toISOString().slice(0, 7);
-        addToGroup(item, month, category);
-      } else {
-        console.error(`Invalid date: ${item[dateField]}`);
-      }
+      const date = new Date(item["MONTH"]);
+      addToGroup(item, date, category);
     });
   };
 
-  categorizeByMonth(data.expenses, "expenses", "CREATED_AT");
-  categorizeByMonth(data.files, "files", "CREATED_AT");
-  categorizeByMonth(data.food, "food", "CREATED_AT");
-  categorizeByMonth(data.items, "items", "CREATED_AT"); 
-  categorizeByMonth(data.mileage, "mileage", "CREATED_AT"); 
+  categorizeByMonthYear(data.expenses, "expenses");
+  categorizeByMonthYear(data.files, "files");
+  categorizeByMonthYear(data.food, "food");
+  categorizeByMonthYear(data.items, "items");
+  categorizeByMonthYear(data.mileage, "mileage");
 
-  return grouped;
+  // Convert grouped object to array of [key, value] pairs, sort by key, and convert back to object
+  const sortedGrouped = Object.fromEntries(
+    Object.entries(grouped).sort(([a], [b]) => a.localeCompare(b))
+  );
+  console.log(sortedGrouped)
+  return sortedGrouped;
 };
+
+// delete by month
+app.delete("/delete-month/:month/:userId", (req, res) => {
+  const user_Id = req.params.userId;
+  const month = req.params.month;
+  console.log("Month:", month);
+  console.log("ID:", user_Id);
+  const queries = {
+    expenses: `DELETE FROM EXPENSES WHERE MONTH = ? AND USER_ID = ?`,
+    files: `DELETE FROM FILES WHERE MONTH = ? AND USER_ID = ?`,
+    food: `DELETE FROM FOODEXPENSES WHERE MONTH = ? AND USER_ID = ?`,
+    items: `DELETE FROM ITEMEXPENSES WHERE MONTH = ? AND USER_ID = ?`,
+    mileage: `DELETE FROM MILEAGEEXPENSES WHERE MONTH = ? AND USER_ID = ?`,
+  };
+
+  let promises = Object.keys(queries).map((category) => {
+    return new Promise((resolve, reject) => {
+      console.log(month, user_Id);
+      db.query(queries[category], [month, user_Id], (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          console.log(results);
+          resolve(results);
+        }
+      });
+    });
+  });
+
+  Promise.all(promises)
+    .then(() => {
+      res.send({ message: `Data for ${month} deleted successfully` });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send({ message: "Error deleting data" });
+    });
+});
+
+app.get("/api/user-id", verifyUser, async (req, res) => {
+  // console.log("USER ID ROUTE", res.req.email, req.body);
+  const query = await db.query(
+    "SELECT ID FROM USERS WHERE EMAIL = ?",
+    res.req.email,
+    (err, results) => {
+      if (err) {
+        console.error("Error getting user ID:", err);
+      }
+      console.log(results);
+      res.json({user_Id: results[0].ID})
+    }
+  );
+  
+
+});
 
 // upload POST route to get files
 app.post(
@@ -251,6 +298,9 @@ app.post(
     const itemData = JSON.parse(req.body.itemRowsData);
     console.log("Item Data:", itemData);
 
+    const monthData = req.body.month;
+    console.log("Month:", monthData);
+
     if (req.files) {
       var filesData = req.files;
     } else {
@@ -269,8 +319,8 @@ app.post(
         const sanitizedAmount = parseFloat(amount) || 0;
 
         await queryAsync(
-          "INSERT INTO expenses (user_ID, type, billable, porCC, amount, comment) VALUES (?, ?, ?, ?, ?, ?)",
-          [userId, type, billable, porCC, sanitizedAmount, comment]
+          "INSERT INTO expenses (user_ID, type, billable, porCC, amount, comment, month) VALUES (?, ?, ?, ?, ?, ?, ?)",
+          [userId, type, billable, porCC, sanitizedAmount, comment, monthData]
         );
       }
 
@@ -278,7 +328,7 @@ app.post(
       for (const row of foodData) {
         const dateObj = new Date(row.date);
         await queryAsync(
-          "INSERT INTO foodExpenses (user_ID, date, amount, location, persons, title, purpose, billable, porCC) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+          "INSERT INTO foodExpenses (user_ID, date, amount, location, persons, title, purpose, billable, porCC, month) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
           [
             user_ID,
             dateObj,
@@ -289,6 +339,7 @@ app.post(
             row.purpose,
             row.billable,
             row.porCC,
+            monthData,
           ]
         );
       }
@@ -297,8 +348,16 @@ app.post(
       for (const row of mileageData) {
         const dateObj = new Date(row.date);
         await queryAsync(
-          "INSERT INTO mileageExpenses (user_ID, date, purpose, miles, billable, amount) VALUES (?, ?, ?, ?, ?, ?)",
-          [user_ID, dateObj, row.purpose, row.miles, row.billable, row.amount]
+          "INSERT INTO mileageExpenses (user_ID, date, purpose, miles, billable, amount, month) VALUES (?, ?, ?, ?, ?, ?, ?)",
+          [
+            user_ID,
+            dateObj,
+            row.purpose,
+            row.miles,
+            row.billable,
+            row.amount,
+            monthData,
+          ]
         );
       }
 
@@ -306,7 +365,7 @@ app.post(
       for (const row of itemData) {
         const dateObj = new Date(row.date);
         await queryAsync(
-          "INSERT INTO itemExpenses (user_ID, item, date, subTotal, cityTax, taxPercent, total, source, shippedFrom, shippedTo, billable) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+          "INSERT INTO itemExpenses (user_ID, item, date, subTotal, cityTax, taxPercent, total, source, shippedFrom, shippedTo, billable, month) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
           [
             user_ID,
             row.item,
@@ -319,6 +378,7 @@ app.post(
             row.shippedFrom,
             row.shippedTo,
             row.billable,
+            monthData,
           ]
         );
       }
@@ -326,8 +386,8 @@ app.post(
       // Insert files data
       for (const file of filesData) {
         await queryAsync(
-          "INSERT INTO files (user_ID, name, path) VALUES (?, ?, ?)",
-          [user_ID, file.originalname, file.path]
+          "INSERT INTO files (user_ID, name, path, month) VALUES (?, ?, ?, ?)",
+          [user_ID, file.originalname, file.path, monthData]
         );
       }
 
