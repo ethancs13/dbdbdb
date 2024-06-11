@@ -68,7 +68,7 @@ const History = () => {
   };
 
   if (!historyData || Object.keys(historyData).length === 0) {
-    return <div>No history data available.</div>;
+    return null; // Do not render anything if historyData is empty
   }
 
   return (

@@ -57,7 +57,7 @@ export const Login = () => {
                     name="password"
                     required
                 />
-                <button type="submit" disabled={loading}>
+                <button className="btn btn-primary" type="submit" disabled={loading}>
                     {loading ? 'Loading...' : 'Login'}
                 </button>
             </form>

@@ -61,7 +61,7 @@ export const Register = () => {
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@gmail.com" id="email" name="email" />
                 <label className="register-label" htmlFor="password">Password</label>
                 <input value={password} onChange={(e) => setPass(e.target.value)} type="password" placeholder="* * * * * * * *" id="password" name="password" />
-                <button type="submit">Register</button>
+                <button className="btn btn-primary" type="submit">Register</button>
             </form>
             <Link to="/login" className="link-btn">Already have an account? Login.</Link>
         </div>
