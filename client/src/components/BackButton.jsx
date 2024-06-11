@@ -9,7 +9,7 @@ const BackButton = () => {
   };
 
   return (
-    <button onClick={handleBackClick}>
+    <button className="btn btn-primary" onClick={handleBackClick}>
       Back
     </button>
   );

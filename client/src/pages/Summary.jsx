@@ -33,7 +33,13 @@ const Summary = () => {
     fetchUserEmail();
   }, []);
 
-  const [month, setMonth] = useState();
+  const [expenseMonth, setExpenseMonth] = useState(() => {
+    const savedRows = localStorage.getItem("expenseMonth");
+    return savedRows ? JSON.parse(savedRows) : [];
+  });
+  useEffect(() => {
+    localStorage.setItem("expenseMonth", JSON.stringify(expenseMonth));
+  }, [expenseMonth]);
 
   const uploadData = async (formData) => {
     try {
@@ -61,12 +67,9 @@ const Summary = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(new Date(month));
+    console.log(new Date(expenseMonth));
     const formData = new FormData();
-    formData.append(
-      "month",
-      month
-    );
+    formData.append("month", expenseMonth);
     formData.append("email", userEmail);
     formData.append("rowsData", JSON.stringify(rowsData));
     formData.append("foodRowsData", JSON.stringify(foodRowsData));
@@ -80,6 +83,8 @@ const Summary = () => {
     try {
       const response = await uploadData(formData);
       handleSuccess(response);
+      localStorage.removeItem("expenseMonth");
+      setExpenseMonth("");
     } catch (error) {
       console.error("Error submitting data:", error);
     }
@@ -87,15 +92,14 @@ const Summary = () => {
 
   return (
     <form onSubmit={(e) => handleSubmit(e)} className="summary-container">
-      <h1 className="summary-title">Summary</h1>
       <div className="summary-sections-container">
         <div className="summary-section">
           <h3>Month of Expenses</h3>
           <div className="summary-box">
             <input
               type="month"
-              value={month}
-              onChange={(e) => setMonth(e.target.value)}
+              value={expenseMonth}
+              onChange={(e) => setExpenseMonth(e.target.value)}
               required
             />
           </div>
@@ -107,11 +111,11 @@ const Summary = () => {
               rowsData.map((row, index) => (
                 <div className="summary-box-item" key={index}>
                   <div className="row">
-                    <div className="col-3">{row.type}</div>
-                    <div className="col-2">{row.billable}</div>
-                    <div className="col-2">{row.porCC}</div>
-                    <div className="col-2">{row.amount}</div>
-                    <div className="col-3">{row.comment}</div>
+                    <div className="col3">{row.type}</div>
+                    <div className="col2">{row.billable}</div>
+                    <div className="col2">{row.porCC}</div>
+                    <div className="col2">{row.amount}</div>
+                    <div className="col3">{row.comment}</div>
                   </div>
                 </div>
               ))
@@ -127,13 +131,13 @@ const Summary = () => {
               foodRowsData.map((row, index) => (
                 <div className="summary-box-item" key={index}>
                   <div className="row">
-                    <div className="col-4">{row.date}</div>
-                    <div className="col-2">{row.amount}</div>
-                    <div className="col-1">{row.persons}</div>
-                    <div className="col-1">{row.type}</div>
-                    <div className="col-2">{row.purpose}</div>
-                    <div className="col-1">{row.billable}</div>
-                    <div className="col-1">{row.porCC}</div>
+                    <div className="col4">{row.date}</div>
+                    <div className="col2">{row.amount}</div>
+                    <div className="col1">{row.persons}</div>
+                    <div className="col1">{row.type}</div>
+                    <div className="col2">{row.purpose}</div>
+                    <div className="col1">{row.billable}</div>
+                    <div className="col1">{row.porCC}</div>
                   </div>
                 </div>
               ))
@@ -149,16 +153,16 @@ const Summary = () => {
               itemRowsData.map((row, index) => (
                 <div className="summary-box-item" key={index}>
                   <div className="row">
-                    <div className="col-2">{row.item}</div>
-                    <div className="col-2">{row.date}</div>
-                    <div className="col-1">{row.subTotal}</div>
-                    <div className="col-1">{row.cityTax}</div>
-                    <div className="col-1">{row.taxPercent}</div>
-                    <div className="col-1">{row.total}</div>
-                    <div className="col-1">{row.source}</div>
-                    <div className="col-1">{row.shippedFrom}</div>
-                    <div className="col-1">{row.shippedTo}</div>
-                    <div className="col-1">{row.billable}</div>
+                    <div className="col2">{row.item}</div>
+                    <div className="col2">{row.date}</div>
+                    <div className="col1">{row.subTotal}</div>
+                    <div className="col1">{row.cityTax}</div>
+                    <div className="col1">{row.taxPercent}</div>
+                    <div className="col1">{row.total}</div>
+                    <div className="col1">{row.source}</div>
+                    <div className="col1">{row.shippedFrom}</div>
+                    <div className="col1">{row.shippedTo}</div>
+                    <div className="col1">{row.billable}</div>
                   </div>
                 </div>
               ))
@@ -174,14 +178,14 @@ const Summary = () => {
               mileageRowsData.map((row, index) => (
                 <div className="summary-box-item" key={index}>
                   <div className="row">
-                    <div className="col-3">{row.date}</div>
-                    <div className="col-1">{row.amount}</div>
-                    <div className="col-1">{row.persons}</div>
-                    <div className="col-1">{row.type}</div>
-                    <div className="col-1">{row.total}</div>
-                    <div className="col-3">{row.purpose}</div>
-                    <div className="col-1">{row.billable}</div>
-                    <div className="col-1">{row.porCC}</div>
+                    <div className="col3">{row.date}</div>
+                    <div className="col1">{row.amount}</div>
+                    <div className="col1">{row.persons}</div>
+                    <div className="col1">{row.type}</div>
+                    <div className="col1">{row.total}</div>
+                    <div className="col3">{row.purpose}</div>
+                    <div className="col1">{row.billable}</div>
+                    <div className="col1">{row.porCC}</div>
                   </div>
                 </div>
               ))
@@ -197,7 +201,7 @@ const Summary = () => {
               uploadedFiles.map((file, index) => (
                 <div className="summary-box-item" key={index}>
                   <div className="row">
-                    <div className="col-3">{file.name}</div>
+                    <div className="col3">{file.name}</div>
                   </div>
                 </div>
               ))

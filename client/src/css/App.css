@@ -1,21 +1,30 @@
-#root {
-  width: 100%;
-  height: auto;
-  align-content: center;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
-  margin: 0;
-  padding: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Roboto', sans-serif;
   background: linear-gradient(100deg, #6926de, #d262c5 60%, #ee863c);
   background-size: cover;
   background-repeat: no-repeat;
-  bottom: 0;
+  min-height: 100%;
+  box-sizing: border-box;
 }
+
+#root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+}
+
 .user_name {
   color: #3498db;
 }
@@ -29,6 +38,7 @@ body {
   width: 7rem;
   margin: 0 1rem;
 }
+
 .file-area {
   height: 20px;
   width: 100%;
@@ -38,7 +48,7 @@ body {
   margin-top: 15px;
 }
 
-.button {
+/* .button {
   background-color: #3498db;
   color: #ecf0f1;
   padding: 10px 20px;
@@ -46,7 +56,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 15px;
-}
+} */
 
 .login_home {
   text-align: center;
@@ -75,4 +85,9 @@ body {
 .nav-links {
   display: flex;
   align-items: center;
+}
+
+/* Ensures that if content overflows, the page will scroll */
+body, #root {
+  overflow: auto;
 }

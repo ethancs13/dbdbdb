@@ -56,7 +56,7 @@ h2 {
   margin: 0.8rem 0;
 }
 
-button {
+/* button {
   background-color: #3498db;
   color: #fff;
   padding: 12px;
@@ -68,7 +68,7 @@ button {
 button:disabled {
   background-color: #bdc3c7;
   cursor: not-allowed;
-}
+} */
 
 .link-btn {
   color: #3498db;

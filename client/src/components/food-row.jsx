@@ -74,7 +74,7 @@ const FoodRow = ({ row, index, handleChange, deleteTableRows }) => {
         </select>
       </td>
       <td>
-        <button onClick={(evnt) => deleteTableRows(evnt, index)}>Delete</button>
+        <button className="btn btn-primary" onClick={(evnt) => deleteTableRows(evnt, index)}>Delete</button>
       </td>
     </tr>
   );

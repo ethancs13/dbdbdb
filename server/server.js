@@ -192,7 +192,8 @@ const groupByMonthYear = (data) => {
   const categorizeByMonthYear = (items, category) => {
     items.forEach((item) => {
       const date = new Date(item["MONTH"]);
-      addToGroup(item, date, category);
+      var newDate = new Date(date.setMonth(date.getMonth() + 1)).toLocaleDateString('default', {month: 'long', year: 'numeric'});
+      addToGroup(item, newDate, category);
     });
   };
 

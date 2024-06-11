@@ -1,9 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import axios from "axios";
 import { HistoryContext } from "../context/HistoryContext";
 
 const History = () => {
-  const { historyData } = useContext(HistoryContext);
+  const { historyData, setHistoryData } = useContext(HistoryContext);
+
+  const fetchHistoryData = () => {
+    axios
+      .get("http://localhost:3001/api/history", {
+        withCredentials: true,
+      })
+      .then((response) => {
+        setHistoryData(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the history data:", error);
+      });
+  };
+
+  useEffect(() => {
+    fetchHistoryData();
+  }, []); // Fetch data when the component is mounted
 
   const renderCategory = (category, items) => {
     return items.map((item, index) => (
@@ -43,13 +60,16 @@ const History = () => {
       })
       .then((response) => {
         console.log(response.data.message);
-        // Update the UI to reflect the deleted data
-        // You might want to refresh the data here
+        fetchHistoryData(); // Refresh the data after deletion
       })
       .catch((error) => {
         console.error("There was an error deleting the data:", error);
       });
   };
+
+  if (!historyData || Object.keys(historyData).length === 0) {
+    return <div>No history data available.</div>;
+  }
 
   return (
     <div>
@@ -58,7 +78,7 @@ const History = () => {
           <h3>{yyyymm}</h3>
           {Object.entries(categories).map(([category, items]) => (
             <div key={category}>
-              <h4>{category}</h4>
+              <h4>{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
               {renderCategory(category, items)}
             </div>
           ))}

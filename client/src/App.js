@@ -14,7 +14,7 @@ import History from "./pages/History";
 import ThankYou from "./pages/ThankYou";
 import { FormProvider } from "./context/FormContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
-import {HistoryProvider} from "./context/HistoryContext";
+import { HistoryProvider } from "./context/HistoryContext";
 import "./css/App.css";
 
 function App() {
@@ -37,19 +37,21 @@ function AuthConsumer() {
   return (
     <>
       {isAuthenticated && <Header />}
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/itemized-purchases" element={<Itemized />} />
-        <Route path="/general" element={<General />} />
-        <Route path="/food-beverage" element={<FoodBev />} />
-        <Route path="/mileage" element={<Mileage />} />
-        <Route path="/upload-files" element={<Files />} />
-        <Route path="/summary" element={<Summary />} />
-        <Route path="/signup" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/thank-you" element={<ThankYou />} />
-      </Routes>
+      <div className="main-content">
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/itemized-purchases" element={<Itemized />} />
+          <Route path="/general" element={<General />} />
+          <Route path="/food-beverage" element={<FoodBev />} />
+          <Route path="/mileage" element={<Mileage />} />
+          <Route path="/upload-files" element={<Files />} />
+          <Route path="/summary" element={<Summary />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/thank-you" element={<ThankYou />} />
+        </Routes>
+      </div>
     </>
   );
 }

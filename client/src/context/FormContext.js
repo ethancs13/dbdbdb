@@ -75,8 +75,9 @@ const FormProvider = ({ children }) => {
   // Item Rows
 
   const addItemRow = () => {
+    const newDate = new Date().toISOString().split("T")[0];
     const newItemRow = {
-      date: new Date().toLocaleDateString().substring(0,10),
+      date: newDate,
       item: "",
       subTotal: 0,
       cityTax: 0,
@@ -91,8 +92,9 @@ const FormProvider = ({ children }) => {
     setItemRowsData((prevRows) => [...prevRows, newItemRow]);
   };
 
-  const deleteItemRow = (index) => {
+  const deleteItemRow = (evnt, index) => {
     setItemRowsData((prevRows) => prevRows.filter((_, idx) => idx !== index));
+    localStorage.setItem("itemRowsData", JSON.stringify(itemRowsData));
   };
 
   const updateItemRow = (index, name, value) => {
@@ -106,8 +108,9 @@ const FormProvider = ({ children }) => {
   // Mileage Rows
 
   const addMileageRow = () => {
+    const newDate = new Date().toISOString().split("T")[0];
     const newItemRow = {
-      date: new Date().toLocaleDateString().substring(0,10),
+      date: newDate,
       purpose: "",
       miles: 0,
       billable: false,
@@ -116,10 +119,11 @@ const FormProvider = ({ children }) => {
     setMileageRowsData((prevRows) => [...prevRows, newItemRow]);
   };
 
-  const deleteMileageRow = (index) => {
+  const deleteMileageRow = (evnt, index) => {
     setMileageRowsData((prevRows) =>
       prevRows.filter((_, idx) => idx !== index)
     );
+    localStorage.setItem("mileageRowsData", JSON.stringify(mileageRowsData));
   };
 
   const updateMileageRow = (index, name, value) => {
@@ -133,8 +137,9 @@ const FormProvider = ({ children }) => {
   // Food Rows
 
   const addFoodRow = () => {
+    const newDate = new Date().toISOString().split("T")[0];
     const newFoodRow = {
-      date: new Date().toLocaleDateString().substring(0,10),
+      date: newDate,
       amount: 0,
       location: "",
       persons: 0,
@@ -146,8 +151,9 @@ const FormProvider = ({ children }) => {
     setFoodRowsData((prevRows) => [...prevRows, newFoodRow]);
   };
 
-  const deleteFoodRow = (index) => {
+  const deleteFoodRow = (evnt, index) => {
     setFoodRowsData((prevRows) => prevRows.filter((_, idx) => idx !== index));
+    localStorage.setItem("foodRowsData", JSON.stringify(foodRowsData));
   };
 
   const updateFoodRow = (index, name, value) => {

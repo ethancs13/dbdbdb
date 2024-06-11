@@ -49,7 +49,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <main className="main">
+      <main>
         {isAdmin ? (
           <div>
             <h1>Welcome, Admin!</h1>
@@ -61,7 +61,7 @@ const Dashboard = () => {
             </h1>
           </div>
         )}
-        <button onClick={handleLogout}>Logout</button>
+        <button className="btn btn-primary" onClick={handleLogout}>Logout</button>
       </main>
     </div>
   );

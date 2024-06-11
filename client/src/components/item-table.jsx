@@ -2,8 +2,12 @@ import React from "react";
 import TableRows from "./item-row";
 import "../css/Table.css";
 
-function AddDeleteTableRows({ data, addItemRow, deleteItemRow, updateItemRow }) {
-
+function AddDeleteTableRows({
+  data,
+  addItemRow,
+  deleteItemRow,
+  updateItemRow,
+}) {
   const handleChange = (index, evnt) => {
     evnt.preventDefault();
     const { name, value, type, checked } = evnt.target;
@@ -20,8 +24,22 @@ function AddDeleteTableRows({ data, addItemRow, deleteItemRow, updateItemRow }) 
               <h3>Itemized Purchases</h3>
             </th>
             <th className="add-row">
-              <button onClick={addItemRow}>New Row</button>
+              <button className="btn btn-primary" onClick={addItemRow}>New Row</button>
             </th>
+          </tr>
+          <tr
+          className="item-table-heading-container">
+            <th className="col w-10">Item</th>
+            <th className="col w-10">Date</th>
+            <th className="col w-10">Sub Total</th>
+            <th className="col w-10">City Tax</th>
+            <th className="col w-10">Tax Percent</th>
+            <th className="col w-10">Total</th>
+            <th className="col w-10">Source</th>
+            <th className="col w-10">Shipped From</th>
+            <th className="col w-10">Shipped To</th>
+            <th className="col w-10">Billable</th>
+            <th className="col w-10"></th>
           </tr>
         </thead>
         <tbody>

@@ -6,6 +6,7 @@ const ExpenseSelect = () => {
   const { rowsData, addRow, deleteRow, updateRow } = useContext(FormContext);
 
   const handleChange = (index, evnt) => {
+    console.log(evnt)
     evnt.preventDefault();
     const { name, value, type, checked } = evnt.target;
     const newValue = type === "checkbox" ? checked : value;
@@ -21,7 +22,7 @@ const ExpenseSelect = () => {
               <h3>Expense Select</h3>
             </th>
             <th className="add-row">
-              <button onClick={addRow}>New Row</button>
+              <button className="btn btn-primary" onClick={addRow}>New Row</button>
             </th>
           </tr>
         </thead>

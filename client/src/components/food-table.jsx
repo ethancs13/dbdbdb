@@ -20,7 +20,7 @@ const FoodTable = ({ data, addFoodRow, deleteFoodRow, updateFoodRow }) => {
               <h1>Food Expenses</h1>
             </th>
             <th className="add-row">
-              <button onClick={addFoodRow}>New Row</button>
+              <button className="btn btn-primary" onClick={addFoodRow}>New Row</button>
             </th>
           </tr>
         </thead>
@@ -32,7 +32,7 @@ const FoodTable = ({ data, addFoodRow, deleteFoodRow, updateFoodRow }) => {
                 row={row}
                 index={index}
                 handleChange={handleChange}
-                deleteTableRows={(evnt) => deleteFoodRow(evnt, index)}
+                deleteTableRows={deleteFoodRow}
               />
             ))
           ) : (

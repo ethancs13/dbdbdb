@@ -10,7 +10,7 @@ const ExpenseSelectRow = ({ index, data, deleteRow, handleChange }) => {
           className="col-3"
           name="type"
           value={type}
-          onChange={handleChange}
+          onChange={(event) => handleChange(index, event)}
         >
           <option value="cell">Cell Phone</option>
           <option value="broadband">Broadband</option>
@@ -27,13 +27,21 @@ const ExpenseSelectRow = ({ index, data, deleteRow, handleChange }) => {
         </select>
       </td>
       <td>
-        <select name="billable" value={billable} onChange={handleChange}>
+        <select
+          name="billable"
+          value={billable}
+          onChange={(event) => handleChange(index, event)}
+        >
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>
       </td>
       <td>
-        <select name="porCC" value={porCC} onChange={handleChange}>
+        <select
+          name="porCC"
+          value={porCC}
+          onChange={(event) => handleChange(index, event)}
+        >
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>
@@ -43,7 +51,7 @@ const ExpenseSelectRow = ({ index, data, deleteRow, handleChange }) => {
           type="text"
           name="amount"
           value={amount}
-          onChange={handleChange}
+          onChange={(event) => handleChange(index, event)}
         />
       </td>
       {type === "Other" && (
@@ -52,12 +60,12 @@ const ExpenseSelectRow = ({ index, data, deleteRow, handleChange }) => {
             type="text"
             name="comment"
             value={comment}
-            onChange={handleChange}
+            onChange={(event) => handleChange(index, event)}
           />
         </td>
       )}
       <td>
-        <button onClick={() => deleteRow(index)}>
+        <button className="btn btn-primary" onClick={() => deleteRow(index)}>
           Delete
         </button>
       </td>

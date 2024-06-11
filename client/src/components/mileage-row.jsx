@@ -5,45 +5,66 @@ const MileageRow = ({ row, index, handleChange, deleteTableRows }) => {
 
   return (
     <tr>
-      <td>
+      <td
+      className="col w-5">
         <input
           type="date"
           name="date"
           value={date}
+          className="iw-5"
           onChange={(e) => handleChange(index, e)}
         />
       </td>
-      <td>
+      <td
+      className="col w-5">
         <input
           type="text"
           name="purpose"
           value={purpose}
+          className="iw-5"
           onChange={(e) => handleChange(index, e)}
         />
       </td>
-      <td>
-        <input type="number" name="miles" value={miles} />
+      <td
+      className="col w-5">
+        <input
+          type="number"
+          name="miles"
+          value={miles}
+          className="iw-5"
+          onChange={(e) => handleChange(index, e)}
+        />
       </td>
-      <td>
+      <td
+      className="col w-5">
         <select
           name="billable"
           value={billable}
+          className="iw-5"
           onChange={(e) => handleChange(index, e)}
         >
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>
       </td>
-      <td>
+      <td
+      className="col w-5">
         <input
           type="number"
           name="amount"
           value={amount}
+          className="iw-5"
           onChange={(e) => handleChange(index, e)}
         />
       </td>
-      <td>
-        <button onClick={(evnt) => deleteTableRows(evnt, index)}>Delete</button>
+      <td
+      className="col w-5">
+        <button
+          className="btn btn-primary"
+          onClick={(evnt) => deleteTableRows(evnt, index)}
+        >
+          Delete
+        </button>
       </td>
     </tr>
   );
