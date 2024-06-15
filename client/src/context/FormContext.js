@@ -168,9 +168,9 @@ const FormProvider = ({ children }) => {
 
   const addRow = () => {
     const newRow = {
-      type: "",
-      billable: false,
-      porCC: "",
+      type: "Cell",
+      billable: "No",
+      porCC: "No",
       amount: 0,
       comment: "",
     };

@@ -1,0 +1,51 @@
+@import "./Common.css";
+
+
+.mileage-table-container {
+  width: 100%;
+  margin: 20px 2rem;
+  min-width: 800px; /* Ensures minimum width */
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 2px solid #007bff;
+}
+
+.table-header h3 {
+  margin: 0;
+}
+
+.table-header .add-row {
+  padding: 5px 10px;
+}
+
+.table-header-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 2px solid #ccc;
+}
+
+.table-header-cell {
+  font-weight: bold;
+}
+
+.mileage-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+}
