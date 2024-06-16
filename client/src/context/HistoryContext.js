@@ -1,32 +1,33 @@
 // context/HistoryContext.js
-import axios from 'axios';
-import { createContext, useState, useEffect } from 'react';
+import axios from "axios";
+import { createContext, useState, useEffect } from "react";
 
 const HistoryContext = createContext();
 
 const HistoryProvider = ({ children }) => {
   const [historyData, setHistoryData] = useState({});
 
-  const fetchUser = async () => {
+  const fetchHistoryData = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/user', {
+      const response = await axios.get("http://localhost:3001/user", {
         withCredentials: true,
       });
-      console.log(response.data)
-      const historyData = response.data;
-      setHistoryData(historyData);
+      console.log("Fetched History Data:", response.data); // Debugging information
+      setHistoryData(response.data);
     } catch (error) {
-      console.error('Error fetching user info:', error);
+      console.error("Error fetching user info:", error);
       setHistoryData(null);
     }
   };
 
   useEffect(() => {
-    fetchUser();
+    fetchHistoryData();
   }, []);
 
   return (
-    <HistoryContext.Provider value={{ historyData }}>
+    <HistoryContext.Provider
+      value={{ historyData, setHistoryData, fetchHistoryData }}
+    >
       {children}
     </HistoryContext.Provider>
   );
