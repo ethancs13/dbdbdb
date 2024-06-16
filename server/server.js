@@ -24,7 +24,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://sparkling-fascination-production.up.railway.app/"],
     methods: ["POST", "GET", "DELETE"],
     credentials: true,
   })
@@ -36,10 +36,10 @@ const PORT = process.env.PORT || 3001;
 
 // mysql_database_server_setup
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "por_db",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
 db.connect((err) => {
   if (err) {
