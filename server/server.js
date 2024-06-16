@@ -32,7 +32,7 @@ app.use(
 app.use(cookieParser());
 
 // PORT
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3306;
 
 // mysql_database_server_setup
 const db = mysql.createConnection({
