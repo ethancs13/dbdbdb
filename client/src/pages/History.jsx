@@ -38,7 +38,7 @@ const History = () => {
     e.preventDefault();
     const date = new Date(monthYear);
     const yyyymm = date.getFullYear() + "-";
-    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Month ranges from 0 to 11, so add 1 to get the correct month
+    const month = (date.getMonth()).toString().padStart(2, "0"); // Month ranges from 0 to 11, so add 1 to get the correct month
     const yyyymmFormatted = yyyymm + month;
 
     console.log(yyyymmFormatted);

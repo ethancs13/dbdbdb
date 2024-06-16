@@ -1,0 +1,66 @@
+/* General table styles */
+.table-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 800px; /* Ensures minimum width */
+  width: 100%; /* Ensures full width */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+.main-content {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+}
+
+.table-header-row,
+.item-row,
+.expense-row,
+.food-row,
+.mileage-row {
+  display: grid;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.table-header-cell,
+.item-input,
+.item-select,
+.item-delete,
+.expense-select,
+.expense-input,
+.food-input,
+.food-select,
+.mileage-input,
+.mileage-select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: auto;
+}
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+}
+.expense-delete {
+  cursor: pointer;
+  font-size: 1.2em;
+  background-color: transparent;
+  border: none;
+  color: red;
+  align-self: flex-end;
+  width: 3rem;
+  padding: 2px;
+}
+.btn-primary.expense-delete:hover {
+  color: darkred;
+}
+
+.amount-input-container {
+  width: 6rem;
+}

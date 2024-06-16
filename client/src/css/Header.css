@@ -1,23 +1,67 @@
-/* Header.css */
-
-.expense_navigation_container a.active button {
-    background-color: #3498db; /* Highlight color for active page */
-    color: white;
+.header-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+  .expense_navigation_name {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(118, 118, 118);
+    width: auto;
+    padding: 1px 0;
+    margin: 5px 0;
+    height: 44px;
+    background-color: white;
+    text-align: center;
   }
   
-  .expense_navigation_container a button {
-    background-color: transparent; /* Default background color */
-    color: black; /* Default text color */
+  .header-wrapper .expense_navigation_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .header-wrapper .expense_navigation_wrapper > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .header-wrapper .expense_navigation_wrapper form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .header-wrapper h3 {
+    margin: 0 1rem;
+  }
+  
+  .header-wrapper input[type="month"] {
+    margin-right: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .header-wrapper select {
+    margin-right: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .header-wrapper button {
+    padding: 0.5rem 1rem;
     border: none;
-    padding: 10px 20px;
     cursor: pointer;
   }
   
-  .expense_navigation_container a button:hover {
-    background-color: #ddd; /* Hover background color */
+  .header-wrapper button.btn.btn-primary {
+    background-color: #007bff;
+    color: white;
   }
   
-  .expense_navigation_container a.active button:hover {
-    background-color: #2980b9; /* Hover background color for active page */
+  .header-wrapper button.btn.btn-primary:hover {
+    background-color: #0056b3;
   }
   

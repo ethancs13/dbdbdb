@@ -1,13 +1,16 @@
 import React from "react";
+import "../css/GeneralTable.css";
+// import "@fortawesome/fontawesome-free/css/all.min.css"; // Import Font Awesome
 
 const ExpenseSelectRow = ({ index, data, deleteRow, handleChange }) => {
   const { type, billable, porCC, amount, comment } = data;
 
   return (
-    <tr>
-      <td>
+    <div className="expense-row" style={{}}>
+      <div className="input-container">
+        <label>Type</label>
         <select
-          className="col-3"
+          className="expense-select"
           name="type"
           value={type}
           onChange={(event) => handleChange(index, event)}
@@ -25,9 +28,11 @@ const ExpenseSelectRow = ({ index, data, deleteRow, handleChange }) => {
           <option value="Mileage">Mileage</option>
           <option value="Other">Other</option>
         </select>
-      </td>
-      <td>
+      </div>
+      <div className="input-container amount-input-container">
+        <label>Billable</label>
         <select
+          className="expense-select"
           name="billable"
           value={billable}
           onChange={(event) => handleChange(index, event)}
@@ -35,9 +40,11 @@ const ExpenseSelectRow = ({ index, data, deleteRow, handleChange }) => {
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>
-      </td>
-      <td>
+      </div>
+      <div className="input-container amount-input-container">
+        <label>PorCC</label>
         <select
+          className="expense-select"
           name="porCC"
           value={porCC}
           onChange={(event) => handleChange(index, event)}
@@ -45,31 +52,34 @@ const ExpenseSelectRow = ({ index, data, deleteRow, handleChange }) => {
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>
-      </td>
-      <td>
+      </div>
+      <div className="input-container amount-input-container">
+        <label>Amount</label>
         <input
+          className="expense-input"
           type="text"
           name="amount"
           value={amount}
           onChange={(event) => handleChange(index, event)}
         />
-      </td>
+      </div>
       {type === "Other" && (
-        <td>
+        <div className="input-container">
+          <label>Comment</label>
           <input
+            className="expense-input"
             type="text"
             name="comment"
             value={comment}
             onChange={(event) => handleChange(index, event)}
           />
-        </td>
+        </div>
       )}
-      <td>
-        <button className="btn btn-primary" onClick={() => deleteRow(index)}>
-          Delete
-        </button>
-      </td>
-    </tr>
+
+      <button className="btn expense-delete" onClick={() => deleteRow(index)}>
+        <i className="fas fa-trash"></i>
+      </button>
+    </div>
   );
 };
 

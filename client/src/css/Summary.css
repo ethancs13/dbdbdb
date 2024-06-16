@@ -1,9 +1,12 @@
 /* File: src/css/Summary.css */
+
 .summary-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  margin-top: 2rem;
+  width: 100vw;
 }
 
 .summary-sections-container {
@@ -13,10 +16,15 @@
   width: 100%;
 }
 
+.summary-box {
+  max-width: 80rem;
+  min-width: 40rem;
+}
+
 .summary-section {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
 }
 
 .summary-title {
@@ -24,19 +32,18 @@
 }
 
 .summary-box-item {
-  width: 90%;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin: 10px;
+  margin: 10px 0;
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
 
-.summary-box {
+.summary-box-item-row {
   display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
   flex-direction: row;
+  width: 100%;
 }
 
 .link-btn {
@@ -54,17 +61,47 @@
 }
 
 .col1 {
-  width: calc(100%/12);
+  width: calc(100% / 12);
 }
+
 .col2 {
-  width: calc(100%/6);
+  width: calc(100% / 6);
 }
+
 .col3 {
-  width: calc(100%/4);
+  width: calc(100% / 4);
 }
+
 .col4 {
-  width: calc(100%/3);
+  width: calc(100% / 3);
 }
+
 .col6 {
-  width: calc(100%/2);
+  width: calc(100% / 2);
+}
+
+.w20 {
+  width: 20%;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.summary-headers-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  max-width: 80rem;
+  min-width: 40rem;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.summary-header {
+  width: 20%;
+}
+
+.summary-box-item-row > div {
+  display: flex;
+  align-items: center;
 }

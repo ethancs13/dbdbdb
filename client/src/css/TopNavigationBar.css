@@ -1,0 +1,22 @@
+.expense_navigation_container a.active button {
+    background-color: #3498db; /* Highlight color for active page */
+    color: white;
+  }
+  
+  .expense_navigation_container a button {
+    background-color: transparent; /* Default background color */
+    color: black; /* Default text color */
+    border: solid rgb(49, 134, 212) 1px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px 10px;
+    cursor: pointer;
+  }
+  
+  .expense_navigation_container a button:hover {
+    background-color: #ddd; /* Hover background color */
+  }
+  
+  .expense_navigation_container a.active button:hover {
+    background-color: #2980b9; /* Hover background color for active page */
+  }
