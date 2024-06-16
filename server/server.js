@@ -125,6 +125,7 @@ const uploads = multer({ storage: storage });
 
 app.get("/user", verifyUser, (req, res) => {
   const userId = req.user_ID;
+  console.log("userID", req.user_ID)
 
   const queries = {
     expenses:
@@ -143,6 +144,7 @@ app.get("/user", verifyUser, (req, res) => {
         if (err) {
           reject(err);
         } else {
+          console.log(results)
           resolve(results);
         }
       });

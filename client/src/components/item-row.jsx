@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/Table.css";
+import "../css/Itemized.css";
 
 const TableRows = ({ row, index, handleChange, deleteTableRows }) => {
   const {
@@ -15,103 +15,113 @@ const TableRows = ({ row, index, handleChange, deleteTableRows }) => {
     billable,
   } = row;
   return (
-    <tr className="row item-row">
-      <td className="col w-10">
+    <div className="item-row">
+      <div className="input-container">
+        <label>Item</label>
         <input
           type="text"
           name="item"
           value={item}
-          className="iw-5"
+          className="input"
           onChange={(e) => handleChange(index, e)}
         />
-      </td>
-      <td className="col w-10">
+      </div>
+      <div className="input-container">
+        <label>Date</label>
         <input
           type="date"
           name="date"
           value={date}
-          className="iw-5"
+          className="input"
           onChange={(e) => handleChange(index, e)}
         />
-      </td>
-      <td className="col w-10">
+      </div>
+      <div className="input-container amount-input-container">
+        <label>Sub Total</label>
         <input
           type="number"
           name="subTotal"
           value={subTotal}
-          className="iw-5"
+          className="input"
           onChange={(e) => handleChange(index, e)}
         />
-      </td>
-      <td className="col w-10">
+      </div>
+      <div className="input-container">
+        <label>City Tax</label>
         <input
           type="number"
           name="cityTax"
           value={cityTax}
-          className="iw-5"
+          className="input"
           onChange={(e) => handleChange(index, e)}
         />
-      </td>
-      <td className="col w-10">
+      </div>
+      <div className="input-container">
+        <label>Tax Percent</label>
         <input
           type="number"
           name="taxPercent"
           value={taxPercent}
-          className="iw-5"
+          className="input"
           onChange={(e) => handleChange(index, e)}
         />
-      </td>
-      <td className="col w-10">
+      </div>
+      <div className="input-container amount-input-container">
+        <label>Total</label>
         <input
           type="number"
           name="total"
           value={total}
-          className="iw-5"
+          className="input"
           onChange={(e) => handleChange(index, e)}
         />
-      </td>
-      <td className="col w-10">
+      </div>
+      <div className="input-container">
+        <label>Source</label>
         <input
           type="text"
           name="source"
           value={source}
-          className="iw-5"
+          className="input"
           onChange={(e) => handleChange(index, e)}
         />
-      </td>
-      <td className="col w-10">
+      </div>
+      <div className="input-container">
+        <label>Shipped From</label>
         <input
           type="text"
           name="shippedFrom"
           value={shippedFrom}
-          className="iw-5"
+          className="input"
           onChange={(e) => handleChange(index, e)}
         />
-      </td>
-      <td className="col w-10">
+      </div>
+      <div className="input-container">
+        <label>Shipped To</label>
         <input
           type="text"
           name="shippedTo"
           value={shippedTo}
-          className="iw-5"
+          className="input"
           onChange={(e) => handleChange(index, e)}
         />
-      </td>
-      <td className="col w-10">
+      </div>
+      <div className="input-container amount-input-container">
+        <label>Billable</label>
         <select
           name="billable"
           value={billable}
-          className="iw-5"
+          className="select"
           onChange={(e) => handleChange(index, e)}
         >
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>
-      </td>
-      <td className="col w-10">
-        <button className="btn btn-primary" onClick={(evnt) => deleteTableRows(evnt, index)}>Delete</button>
-      </td>
-    </tr>
+      </div>
+      <button className="btn expense-delete" onClick={(e) => deleteTableRows(e,index)}>
+        <i className="fas fa-trash"></i>
+      </button>
+    </div>
   );
 };
 

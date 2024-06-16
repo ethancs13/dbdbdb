@@ -86,8 +86,8 @@ const FormProvider = ({ children }) => {
       source: "",
       shippedFrom: "",
       shippedTo: "",
-      billable: false,
-      porCC: false,
+      billable: "No",
+      porCC: "No",
     };
     setItemRowsData((prevRows) => [...prevRows, newItemRow]);
   };
@@ -113,7 +113,7 @@ const FormProvider = ({ children }) => {
       date: newDate,
       purpose: "",
       miles: 0,
-      billable: false,
+      billable: "No",
       amount: 0,
     };
     setMileageRowsData((prevRows) => [...prevRows, newItemRow]);
@@ -145,8 +145,8 @@ const FormProvider = ({ children }) => {
       persons: 0,
       type: "",
       purpose: "",
-      billable: false,
-      porCC: false,
+      billable: "No",
+      porCC: "No",
     };
     setFoodRowsData((prevRows) => [...prevRows, newFoodRow]);
   };
@@ -168,9 +168,9 @@ const FormProvider = ({ children }) => {
 
   const addRow = () => {
     const newRow = {
-      type: "",
-      billable: false,
-      porCC: "",
+      type: "Cell",
+      billable: "No",
+      porCC: "No",
       amount: 0,
       comment: "",
     };

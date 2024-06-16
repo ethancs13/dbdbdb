@@ -1,0 +1,22 @@
+@import "./Common.css";
+
+.food-table-container {
+  width: 90vw;
+  margin: 20px 2rem;
+  min-width: 800px; /* Ensures minimum width */
+}
+
+.food-row {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr) auto;
+  gap: 9px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+}

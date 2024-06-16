@@ -1,47 +1,54 @@
 import React, { useContext, useEffect } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 import { HistoryContext } from "../context/HistoryContext";
+import "../css/History.css";
 
 const History = () => {
-  const { historyData, setHistoryData } = useContext(HistoryContext);
-
-  const fetchHistoryData = () => {
-    axios
-      .get("http://localhost:3001/api/history", {
-        withCredentials: true,
-      })
-      .then((response) => {
-        setHistoryData(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the history data:", error);
-      });
-  };
+  const { historyData, setHistoryData, fetchHistoryData } = useContext(HistoryContext);
+  const location = useLocation();
 
   useEffect(() => {
     fetchHistoryData();
-  }, []); // Fetch data when the component is mounted
+  }, [location.pathname]);
+
+  console.log("History Data:", historyData);
 
   const renderCategory = (category, items) => {
     return items.map((item, index) => (
-      <div key={index}>
-        {Object.entries(item).map(([key, value]) => (
-          <div key={key}>
-            {key}: {value}
-          </div>
-        ))}
+      <div key={index} className="item-container">
+        {Object.entries(item)
+          .filter(([key, value]) => key !== 'id' && key !== 'user_id')
+          .map(([key, value]) => (
+            <div key={key} className="item">
+              <strong>{key}:</strong> {value}
+            </div>
+          ))}
       </div>
     ));
+  };
+
+  const calculateTotalAmount = (categories) => {
+    let total = 0;
+    Object.values(categories).forEach((items) => {
+      items.forEach((item) => {
+        console.log(item)
+        if (item.AMOUNT) {
+          total += parseFloat(item.AMOUNT);
+        }
+      });
+    });
+    return total.toFixed(2); // Ensure two decimal places
   };
 
   const handleDeleteMonth = (monthYear, e) => {
     e.preventDefault();
     const date = new Date(monthYear);
     const yyyymm = date.getFullYear() + "-";
-    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Month ranges from 0 to 11, so add 1 to get the correct month
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const yyyymmFormatted = yyyymm + month;
 
-    console.log(yyyymmFormatted);
+    console.log("Formatted Month-Year:", yyyymmFormatted);
 
     axios
       .get("http://localhost:3001/api/user-id", {
@@ -49,7 +56,7 @@ const History = () => {
       })
       .then((response) => {
         const user_Id = response.data.user_Id;
-        console.log("response: ", response.data);
+        console.log("User ID response: ", response.data);
 
         return axios.delete(
           `http://localhost:3001/delete-month/${yyyymmFormatted}/${user_Id}`,
@@ -59,8 +66,8 @@ const History = () => {
         );
       })
       .then((response) => {
-        console.log(response.data.message);
-        fetchHistoryData(); // Refresh the data after deletion
+        console.log("Delete response:", response.data.message);
+        fetchHistoryData();
       })
       .catch((error) => {
         console.error("There was an error deleting the data:", error);
@@ -68,27 +75,34 @@ const History = () => {
   };
 
   if (!historyData || Object.keys(historyData).length === 0) {
-    return null; // Do not render anything if historyData is empty
+    return (
+      <div className="history-empty-container">
+        <div className="history-box-item">Entries: 0</div>
+      </div>
+    );
   }
 
   return (
-    <div>
-      {Object.entries(historyData).map(([yyyymm, categories]) => (
-        <div key={yyyymm}>
-          <h3>{yyyymm}</h3>
-          {Object.entries(categories).map(([category, items]) => (
-            <div key={category}>
-              <h4>{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
-              {renderCategory(category, items)}
-            </div>
-          ))}
-          <div>
-            <button onClick={(e) => handleDeleteMonth(yyyymm, e)}>
+    <div className="history-container">
+      {Object.entries(historyData).map(([yyyymm, categories]) => {
+        const totalAmount = calculateTotalAmount(categories);
+        return (
+          <details key={yyyymm} className="history-entry">
+            <summary className="history-summary">
+              {yyyymm} - Total Amount: ${totalAmount}
+            </summary>
+            {Object.entries(categories).map(([category, items]) => (
+              <div key={category} className="category-container">
+                <h4 className="category-title">{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
+                {renderCategory(category, items)}
+              </div>
+            ))}
+            <button className="delete-button" onClick={(e) => handleDeleteMonth(yyyymm, e)}>
               Delete
             </button>
-          </div>
-        </div>
-      ))}
+          </details>
+        );
+      })}
     </div>
   );
 };

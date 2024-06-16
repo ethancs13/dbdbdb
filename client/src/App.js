@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
-import Header from "./components/TopNavigationBar";
+import Header from "./components/Header";
+import Navigation from "./components/TopNavigationBar";
 import Itemized from "./pages/Itemized";
 import General from "./pages/General";
 import Mileage from "./pages/Mileage";
@@ -36,16 +36,17 @@ function AuthConsumer() {
 
   return (
     <>
-      {isAuthenticated && <Header />}
+    {isAuthenticated && <Header />}
+      {isAuthenticated && <Navigation />}
       <div className="main-content">
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Summary />} />
           <Route path="/itemized-purchases" element={<Itemized />} />
           <Route path="/general" element={<General />} />
           <Route path="/food-beverage" element={<FoodBev />} />
           <Route path="/mileage" element={<Mileage />} />
           <Route path="/upload-files" element={<Files />} />
-          <Route path="/summary" element={<Summary />} />
+          {/* <Route path="/summary" element={<Summary />} /> */}
           <Route path="/signup" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/history" element={<History />} />
