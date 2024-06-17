@@ -3,6 +3,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
+const dotenv = require("dotenv");
 
 // bcrypt
 const bcrypt = require("bcrypt");
@@ -14,7 +15,9 @@ const { promisify } = require("util");
 
 // storage
 const multer = require("multer");
-// --------------------------------------------
+
+// Load environment variables from .env file
+dotenv.config();
 
 // path
 const path = require("path");
@@ -24,7 +27,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://sparkling-fascination-production.up.railway.app/"],
+    origin: ["http://localhost:3000"],
     methods: ["POST", "GET", "DELETE"],
     credentials: true,
   })
@@ -32,14 +35,14 @@ app.use(
 app.use(cookieParser());
 
 // PORT
-const PORT = process.env.PORT || 3306;
+const PORT = process.env.PORT || 3001;
 
 // mysql_database_server_setup
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
+  database: process.env.DB_DATABASE // Note the change from DB_NAME to DB_DATABASE
 });
 db.connect((err) => {
   if (err) {
