@@ -173,6 +173,7 @@ const FormProvider = ({ children }) => {
       porCC: "No",
       amount: 0,
       comment: "",
+      customer: ""
     };
     setRowsData((prevRows) => [...prevRows, newRow]);
   };

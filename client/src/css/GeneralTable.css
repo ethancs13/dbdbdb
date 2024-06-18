@@ -9,6 +9,10 @@
   min-width: 800px; /* Ensures minimum width */
 }
 
+.expense-select {
+  max-width: auto;
+}
+
 .table-header {
   display: flex;
   justify-content: space-between;
@@ -32,13 +36,9 @@
   width: 100%;
 }
 
-.table-header-row,
-.expense-row,
-.item-row,
-.food-row,
-.mileage-row {
+.expense-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr) auto;
+  grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr 1fr 1fr auto;
   gap: 10px;
   align-items: center;
   padding: 10px 0;

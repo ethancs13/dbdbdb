@@ -27,14 +27,19 @@
   }
   
   .category-title {
-    font-size: 1.1em;
+    font-size: 1.3em;
+    border-bottom: solid rgb(168, 168, 168) 1px;
     margin-bottom: 10px;
+    padding: 5px;
   }
   
   .item-container {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    padding: 10px 10px;
+    /* border-top: solid #ccc 1px; */
+    border-bottom: solid #ccc 1px;
   }
   
   .item {

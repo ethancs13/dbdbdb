@@ -6,7 +6,13 @@ import "../css/GeneralTable.css";
 const ExpenseSelect = () => {
   const { rowsData, addRow, deleteRow, updateRow } = useContext(FormContext);
 
-  const handleChange = (index, evnt) => {
+  const handleChange = (index, evnt, field) => {
+    console.log(field)
+    if(!evnt){
+      console.log(index)
+      updateRow(index, field, '');
+      return;
+    }
     evnt.preventDefault();
     const { name, value, type, checked } = evnt.target;
     const newValue = type === "checkbox" ? checked : value;
