@@ -95,7 +95,7 @@ const History = () => {
             {Object.entries(categories).map(([category, items]) => (
               <div key={category} className="category-container">
                 <h4 className="category-title">{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
-                {renderCategory(category, items)}
+                {Array.isArray(items) ? renderCategory(category, items) : <div>No items available</div>}
               </div>
             ))}
             <button className="delete-button" onClick={(e) => handleDeleteMonth(yyyymm, e)}>

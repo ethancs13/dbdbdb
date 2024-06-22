@@ -27,7 +27,8 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://dbdbdb-production.up.railway.app"],
+    // origin: ["http://dbdbdb-production.up.railway.app"],
+    origin: ["http://localhost:3000"],
     methods: ["POST", "GET", "DELETE"],
     credentials: true,
   })
@@ -35,7 +36,7 @@ app.use(
 app.use(cookieParser());
 
 // PORT
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3306;
 
 // mysql_database_server_setup
 const db = mysql.createConnection({

@@ -2,8 +2,11 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
-import Header from "./components/Header";
-import Navigation from "./components/TopNavigationBar";
+import AdminHeader from "./components/adminHeader";
+import UserHeader from "./components/userHeader";
+import AdminNavigation from "./components/adminNavigation";
+import UserNavigation from "./components/userNavigation";
+import LogoutButton from "./components/LogoutButton";
 import Itemized from "./pages/Itemized";
 import General from "./pages/General";
 import Mileage from "./pages/Mileage";
@@ -15,29 +18,42 @@ import ThankYou from "./pages/ThankYou";
 import { FormProvider } from "./context/FormContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { HistoryProvider } from "./context/HistoryContext";
+import AuthNavigator from "./AuthNavigator";
 import "./css/App.css";
 
 function App() {
   return (
     <FormProvider>
-      <AuthProvider>
-        <HistoryProvider>
-          <BrowserRouter>
-            <AuthConsumer />
-          </BrowserRouter>
-        </HistoryProvider>
-      </AuthProvider>
+      <HistoryProvider>
+        <BrowserRouter>
+          <AuthProvider>
+            <AuthNavigator>
+              <AuthConsumer />
+            </AuthNavigator>
+          </AuthProvider>
+        </BrowserRouter>
+      </HistoryProvider>
     </FormProvider>
   );
 }
 
 function AuthConsumer() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, userRole } = useAuth();
+
+  if (!isAuthenticated) {
+    return (
+      <Routes>
+        <Route path="/signup" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Login />} />
+      </Routes>
+    );
+  }
 
   return (
     <>
-    {isAuthenticated && <Header />}
-      {isAuthenticated && <Navigation />}
+      {userRole === 'admin' ? <AdminHeader /> : <UserHeader />}
+      {userRole === 'admin' ? <AdminNavigation /> : <UserNavigation />}
       <div className="main-content">
         <Routes>
           <Route path="/" element={<Summary />} />
@@ -46,9 +62,6 @@ function AuthConsumer() {
           <Route path="/food-beverage" element={<FoodBev />} />
           <Route path="/mileage" element={<Mileage />} />
           <Route path="/upload-files" element={<Files />} />
-          {/* <Route path="/summary" element={<Summary />} /> */}
-          <Route path="/signup" element={<Register />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/history" element={<History />} />
           <Route path="/thank-you" element={<ThankYou />} />
         </Routes>
