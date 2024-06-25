@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import BackButton from "./BackButton";
 import "../css/userNavigation.css";
 
-const Header = () => {
+const userNavigation = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -22,7 +22,6 @@ const Header = () => {
       <div
         className="expense_navigation_container"
       >
-        {/* <Link to="/" className={currentPath === '/' ? 'active' : ''}><button>Home</button></Link> */}
         <Link to="/" className={currentPath === "/" ? "active" : ""}>
           <button>Summary</button>
         </Link>
@@ -63,9 +62,9 @@ const Header = () => {
           <button>History</button>
         </Link>
       </div>
-      {/* <BackButton /> */}
+      <BackButton />
     </div>
   );
 };
 
-export default Header;
+export default userNavigation;

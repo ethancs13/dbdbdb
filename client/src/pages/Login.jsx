@@ -19,7 +19,7 @@ export const Login = () => {
 
         try {
             const result = await login(email, pass);
-            if (result.status === 'success') {
+            if (result.status === 'success' || result.status === 'rootUser') {
                 navigate('/');
             } else {
                 setError('Incorrect username or password. Please try again.');

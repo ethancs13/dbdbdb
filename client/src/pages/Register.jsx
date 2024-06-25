@@ -26,7 +26,7 @@ export const Register = () => {
             if (response.data.Status === 'Success') {
                 try {
                     const loginResponse = await login(email, password);
-                    if (loginResponse.status === 'success') {
+                    if (loginResponse.status === 'success' || loginResponse.status === 'rootUser') {
                         setFn('');
                         setLn('');
                         setEmail('');

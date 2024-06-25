@@ -6,6 +6,9 @@ import AdminHeader from "./components/adminHeader";
 import UserHeader from "./components/userHeader";
 import AdminNavigation from "./components/adminNavigation";
 import UserNavigation from "./components/userNavigation";
+import AdminUsers from "./components/adminUsers";
+import UserDetail from "./components/userDetail";
+import AdminDashboard from "./components/adminDashboard";
 import LogoutButton from "./components/LogoutButton";
 import Itemized from "./pages/Itemized";
 import General from "./pages/General";
@@ -39,6 +42,7 @@ function App() {
 
 function AuthConsumer() {
   const { isAuthenticated, userRole } = useAuth();
+  console.log(userRole);
 
   if (!isAuthenticated) {
     return (
@@ -50,12 +54,32 @@ function AuthConsumer() {
     );
   }
 
+  if (userRole === "admin") {
+    return (
+      <>
+        <AdminHeader />
+        <AdminNavigation />
+        <div className="main-content">
+          <Routes>
+            <Route path="/signup" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<AdminDashboard />} />
+            <Route path="/users" element={<AdminUsers />} />
+            <Route path="/user/:id" element={<UserDetail />} />
+          </Routes>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
-      {userRole === 'admin' ? <AdminHeader /> : <UserHeader />}
-      {userRole === 'admin' ? <AdminNavigation /> : <UserNavigation />}
+      <UserHeader />
+      <UserNavigation />
       <div className="main-content">
         <Routes>
+          <Route path="/signup" element={<Register />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Summary />} />
           <Route path="/itemized-purchases" element={<Itemized />} />
           <Route path="/general" element={<General />} />
@@ -64,6 +88,8 @@ function AuthConsumer() {
           <Route path="/upload-files" element={<Files />} />
           <Route path="/history" element={<History />} />
           <Route path="/thank-you" element={<ThankYou />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
         </Routes>
       </div>
     </>

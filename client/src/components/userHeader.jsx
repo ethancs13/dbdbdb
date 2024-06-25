@@ -5,9 +5,8 @@ import { useNavigate } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 import "../css/Header.css";
 
-const Header = () => {
+const userHeader = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
   const [email, setEmail] = useState("");
   const [fn, setFn] = useState("");
   const [ln, setLn] = useState("");
@@ -35,7 +34,6 @@ const Header = () => {
         setFn(res.data.fn);
         setLn(res.data.ln);
       } else if (res.data.status === "rootUser") {
-        setIsAdmin(true);
         setIsAuthenticated(true);
         setEmail(res.data.email);
         setFn(res.data.fn);
@@ -56,17 +54,6 @@ const Header = () => {
     }
     setYearOptions(options);
   }, []);
-
-  const handleLogout = () => {
-    axios
-      .get("http://localhost:3001/logout")
-      .then(() => {
-        setIsAuthenticated(false);
-        setIsAdmin(false);
-        navigate("/login");
-      })
-      .catch((err) => console.log(err));
-  };
 
   const {
     rowsData,
@@ -210,4 +197,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default userHeader;

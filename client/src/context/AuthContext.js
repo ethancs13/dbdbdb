@@ -9,19 +9,23 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userRole, setUserRole] = useState(null);
+  const [loading, setLoading] = useState(true); // Add a loading state
   const navigate = useNavigate();
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/check-auth", {
+        const response = await axios.get("http://localhost:3001/", {
           withCredentials: true,
         });
+        console.log("Data: ", response.data);
         setIsAuthenticated(response.data.isAuthenticated);
         setUserRole(response.data.role);
       } catch (error) {
         setIsAuthenticated(false);
         setUserRole(null);
+      } finally {
+        setLoading(false); // Set loading to false after the check is complete
       }
     };
 
@@ -37,8 +41,12 @@ export const AuthProvider = ({ children }) => {
       );
       if (response.data.Status === "Success") {
         setIsAuthenticated(true);
-        setUserRole(response.data.role);
+        setUserRole("user");
         return { status: "success" };
+      } else if (response.data.Status === "rootUser") {
+        setIsAuthenticated(true);
+        setUserRole("admin");
+        return { status: "rootUser" };
       } else {
         setIsAuthenticated(false);
         setUserRole(null);
@@ -57,8 +65,12 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
     setUserRole(null);
     console.log("Navigating to login...");
-    navigate("/login"); // Navigate to login page on logout
+    navigate("/login");
   };
+
+  if (loading) {
+    return <div>Loading...</div>; // Show a loading indicator while checking authentication
+  }
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, userRole, login, logout }}>

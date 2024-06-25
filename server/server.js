@@ -4,30 +4,21 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const dotenv = require("dotenv");
-
-// bcrypt
 const bcrypt = require("bcrypt");
-
-// utils
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const { promisify } = require("util");
-
-// storage
 const multer = require("multer");
+const path = require("path");
 
 // Load environment variables from .env file
 dotenv.config();
-
-// path
-const path = require("path");
 
 // ------------- app_setup -------------
 const app = express();
 app.use(express.json());
 app.use(
   cors({
-    // origin: ["http://dbdbdb-production.up.railway.app"],
     origin: ["http://localhost:3000"],
     methods: ["POST", "GET", "DELETE"],
     credentials: true,
@@ -43,7 +34,7 @@ const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE // Note the change from DB_NAME to DB_DATABASE
+  database: process.env.DB_DATABASE,
 });
 db.connect((err) => {
   if (err) {
@@ -57,27 +48,20 @@ const queryAsync = promisify(db.query).bind(db);
 
 // AUTH LOGIC
 // ----------------------------------------------------
-// logic_to_verify_jwt (json web token)
 const verifyUser = (req, res, next) => {
-  console.log("verifyUser middleware called");
-  console.log("Cookies:", req.cookies);
   const token = req.cookies.token;
-
   if (!token) {
-    console.log("No token found in cookies");
     return res.json({ Error: "You are not logged in." });
   } else {
     jwt.verify(token, "jwt-secret-key", (err, decoded) => {
-      console.log(decoded);
       if (err) {
-        console.log("JWT verification error:", err);
         return res.json({ Error: err });
       } else {
-        console.log("JWT verified successfully, decoded data:", decoded);
         req.email = decoded.EMAIL;
         req.fn = decoded.FN.charAt(0).toUpperCase() + decoded.FN.slice(1);
         req.ln = decoded.LN.charAt(0).toUpperCase() + decoded.LN.slice(1);
         req.user_ID = decoded.user_ID;
+        req.role = decoded.ROLE;
         next();
       }
     });
@@ -86,36 +70,87 @@ const verifyUser = (req, res, next) => {
 
 // verify_user_route
 app.get("/", verifyUser, (req, res) => {
-  console.log("verifyUser passed control to route handler");
   const email = req.email;
   const fn = req.fn;
   const ln = req.ln;
   let name = fn;
   ln ? (name += " " + ln) : (name += "");
 
-  console.log(`${name} has verified their password using ${email}.`);
-
-  if (email === "test@test.com") {
-    console.log("root user logged in");
+  if (email === "djsroka@gmail.com") {
     return res.json({
       status: "rootUser",
-      email: email,
+      isAuthenticated: true,
+      email,
       fn: req.fn,
       ln: req.ln,
+      role: req.role,
     });
   }
 
-  return res.json({ status: "Success", email, fn: req.fn, ln: req.ln });
+  return res.json({
+    status: "Success",
+    isAuthenticated: true,
+    email,
+    fn: req.fn,
+    ln: req.ln,
+    role: req.role,
+  });
 });
-// AUTH LOGIC
-// ----------------------------------------------------
+
 app.get("/check-auth", verifyUser, (req, res) => {
-  res.json({ isAuthenticated: true });
+  res.json({ isAuthenticated: true, role: "admin" });
+});
+
+app.get("/admin/users", verifyUser, async (req, res) => {
+  if (req.role !== "admin") {
+    return res.status(403).json({ Error: "Access denied" });
+  }
+
+  try {
+    const users = await queryAsync("SELECT * FROM users");
+    res.json(users);
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    res.status(500).send("Error fetching users");
+  }
+});
+
+app.get("/admin/users/:id", verifyUser, async (req, res) => {
+  if (req.role !== "admin") {
+    return res.status(403).json({ Error: "Access denied" });
+  }
+
+  const userId = req.params.id;
+  try {
+    const [user] = await queryAsync("SELECT * FROM users WHERE ID = ?", [userId]);
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).json({ Error: "User not found" });
+    }
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    res.status(500).send("Error fetching user");
+  }
+});
+
+app.delete("/admin/users/:id", verifyUser, async (req, res) => {
+  if (req.role !== "admin") {
+    return res.status(403).json({ Error: "Access denied" });
+  }
+
+  const userId = req.params.id;
+  try {
+    await queryAsync("DELETE FROM users WHERE ID = ?", [userId]);
+    res.json({ Status: "Success", message: "User deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).send("Error deleting user");
+  }
 });
 
 // MULTER STORAGE
 // ----------------------------------------------------
-// setup_storage_config
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, "uploads"));
@@ -129,17 +164,13 @@ const uploads = multer({ storage: storage });
 
 app.get("/user", verifyUser, (req, res) => {
   const userId = req.user_ID;
-  console.log("userID", req.user_ID)
 
   const queries = {
-    expenses:
-      "SELECT ID, USER_ID, TYPE, BILLABLE, PORCC, AMOUNT, COMMENT, MONTH FROM EXPENSES WHERE USER_ID = ?",
+    expenses: "SELECT ID, USER_ID, TYPE, BILLABLE, PORCC, AMOUNT, COMMENT, MONTH FROM EXPENSES WHERE USER_ID = ?",
     files: "SELECT ID, USER_ID, NAME, PATH, MONTH FROM FILES WHERE USER_ID = ?",
     food: "SELECT ID, USER_ID, DATE, AMOUNT, LOCATION, MONTH FROM FOODEXPENSES WHERE USER_ID = ?",
-    items:
-      "SELECT ID, USER_ID, ITEM, DATE, SUBTOTAL, MONTH FROM ITEMEXPENSES WHERE USER_ID = ?",
-    mileage:
-      "SELECT ID, USER_ID, DATE, PURPOSE, MILES, MONTH FROM MILEAGEEXPENSES WHERE USER_ID = ?",
+    items: "SELECT ID, USER_ID, ITEM, DATE, SUBTOTAL, MONTH FROM ITEMEXPENSES WHERE USER_ID = ?",
+    mileage: "SELECT ID, USER_ID, DATE, PURPOSE, MILES, MONTH FROM MILEAGEEXPENSES WHERE USER_ID = ?",
   };
 
   const queryDatabase = (query, params) => {
@@ -148,7 +179,6 @@ app.get("/user", verifyUser, (req, res) => {
         if (err) {
           reject(err);
         } else {
-          console.log(results)
           resolve(results);
         }
       });
@@ -164,13 +194,7 @@ app.get("/user", verifyUser, (req, res) => {
   ])
     .then((results) => {
       const [expenses, files, food, items, mileage] = results;
-      const groupedData = groupByMonthYear({
-        expenses,
-        files,
-        food,
-        items,
-        mileage,
-      });
+      const groupedData = groupByMonthYear({ expenses, files, food, items, mileage });
       res.json(groupedData);
     })
     .catch((err) => {
@@ -198,7 +222,7 @@ const groupByMonthYear = (data) => {
   const categorizeByMonthYear = (items, category) => {
     items.forEach((item) => {
       const date = new Date(item["MONTH"]);
-      var newDate = new Date(date.setMonth(date.getMonth() + 1)).toLocaleDateString('default', {month: 'long', year: 'numeric'});
+      const newDate = new Date(date.setMonth(date.getMonth() + 1)).toLocaleDateString("default", { month: "long", year: "numeric" });
       addToGroup(item, newDate, category);
     });
   };
@@ -209,11 +233,9 @@ const groupByMonthYear = (data) => {
   categorizeByMonthYear(data.items, "items");
   categorizeByMonthYear(data.mileage, "mileage");
 
-  // Convert grouped object to array of [key, value] pairs, sort by key, and convert back to object
   const sortedGrouped = Object.fromEntries(
     Object.entries(grouped).sort(([a], [b]) => a.localeCompare(b))
   );
-  console.log(sortedGrouped)
   return sortedGrouped;
 };
 
@@ -221,8 +243,6 @@ const groupByMonthYear = (data) => {
 app.delete("/delete-month/:month/:userId", (req, res) => {
   const user_Id = req.params.userId;
   const month = req.params.month;
-  console.log("Month:", month);
-  console.log("ID:", user_Id);
   const queries = {
     expenses: `DELETE FROM EXPENSES WHERE MONTH = ? AND USER_ID = ?`,
     files: `DELETE FROM FILES WHERE MONTH = ? AND USER_ID = ?`,
@@ -233,12 +253,10 @@ app.delete("/delete-month/:month/:userId", (req, res) => {
 
   let promises = Object.keys(queries).map((category) => {
     return new Promise((resolve, reject) => {
-      console.log(month, user_Id);
       db.query(queries[category], [month, user_Id], (err, results) => {
         if (err) {
           reject(err);
         } else {
-          console.log(results);
           resolve(results);
         }
       });
@@ -256,7 +274,6 @@ app.delete("/delete-month/:month/:userId", (req, res) => {
 });
 
 app.get("/api/user-id", verifyUser, async (req, res) => {
-  // console.log("USER ID ROUTE", res.req.email, req.body);
   const query = await db.query(
     "SELECT ID FROM USERS WHERE EMAIL = ?",
     res.req.email,
@@ -264,12 +281,9 @@ app.get("/api/user-id", verifyUser, async (req, res) => {
       if (err) {
         console.error("Error getting user ID:", err);
       }
-      console.log(results);
-      res.json({user_Id: results[0].ID})
+      res.json({ user_Id: results[0].ID });
     }
   );
-  
-
 });
 
 // upload POST route to get files
@@ -278,7 +292,6 @@ app.post(
   uploads.array("uploadedFiles"),
   verifyUser,
   async (req, res) => {
-    console.log("upload", res.req.email);
     if (!req.body.email) {
       res.json({ status: "log in first." });
       return;
@@ -288,41 +301,22 @@ app.post(
     const checkUserQuery = "SELECT * FROM users WHERE ID = ?";
     db.query(checkUserQuery, [user_ID], (err, results) => {
       if (err) {
-        console.error("Error checking user:", err);
         return res.status(500).send("Server error");
       }
     });
 
     const rowsData = JSON.parse(req.body.rowsData);
-    console.log("Rows Data:", rowsData);
-
     const foodData = JSON.parse(req.body.foodRowsData);
-    console.log("Food Data:", foodData);
-
     const mileageData = JSON.parse(req.body.mileageRowsData);
-    console.log("Mileage Data:", mileageData);
-
     const itemData = JSON.parse(req.body.itemRowsData);
-    console.log("Item Data:", itemData);
-
     const monthData = req.body.month;
-    console.log("Month:", monthData);
+    let filesData = req.files ? req.files : req.body.files;
 
-    if (req.files) {
-      var filesData = req.files;
-    } else {
-      var filesData = req.body.files;
-    }
-    console.log("Files Data:", filesData);
-
-    // Insert data into MySQL
     try {
-      // Insert data into the database
       for (const row of rowsData) {
         const { type, billable, porCC, amount, comment } = row;
-        const userId = req.user_ID; // Assuming user_ID is available in the request
+        const userId = req.user_ID;
 
-        // Sanitize and validate amount
         const sanitizedAmount = parseFloat(amount) || 0;
 
         await queryAsync(
@@ -331,7 +325,6 @@ app.post(
         );
       }
 
-      // Insert food data
       for (const row of foodData) {
         const dateObj = new Date(row.date);
         await queryAsync(
@@ -351,7 +344,6 @@ app.post(
         );
       }
 
-      // Insert mileage data
       for (const row of mileageData) {
         const dateObj = new Date(row.date);
         await queryAsync(
@@ -368,7 +360,6 @@ app.post(
         );
       }
 
-      // Insert item data
       for (const row of itemData) {
         const dateObj = new Date(row.date);
         await queryAsync(
@@ -390,7 +381,6 @@ app.post(
         );
       }
 
-      // Insert files data
       for (const file of filesData) {
         await queryAsync(
           "INSERT INTO files (user_ID, name, path, month) VALUES (?, ?, ?, ?)",
@@ -400,7 +390,6 @@ app.post(
 
       res.json({ status: "Success" });
     } catch (error) {
-      console.error("Error inserting data:", error);
       res.status(500).json({ status: "Error", error: "Database error" });
     }
   }
@@ -410,23 +399,16 @@ app.post(
 // ----------------------------------------------------
 app.post("/login", async (req, res) => {
   try {
-    const [user] = await queryAsync("SELECT * FROM USERS WHERE EMAIL =?", [
-      req.body.email,
-    ]);
+    const [user] = await queryAsync("SELECT * FROM USERS WHERE EMAIL =?", [req.body.email]);
 
     if (!user) {
       return res.send({ Status: "Unauthorized" });
     }
 
-    const passwordMatch = await bcrypt.compare(
-      req.body.password,
-      user.PASSWORD
-    );
+    const passwordMatch = await bcrypt.compare(req.body.password, user.PASSWORD);
 
     if (passwordMatch) {
       const { FN, LN, EMAIL, ID: user_ID, ROLE } = user;
-      console.log("userData: ", user);
-      console.log(FN, LN, EMAIL, user_ID, ROLE);
       const token = jwt.sign(
         { FN, LN, EMAIL, user_ID, ROLE },
         "jwt-secret-key",
@@ -444,11 +426,9 @@ app.post("/login", async (req, res) => {
       return res.send({ Status: "Unauthorized" });
     }
   } catch (error) {
-    console.error(error);
     return res.status(500).send({ Status: "Error", Error: "Database error" });
   }
 });
-// ----------------------------------------------------
 
 // SIGN UP ROUTES
 // ----------------------------------------------------
@@ -458,28 +438,24 @@ app.post("/signup", async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    let userRole = role || "user"; // Default to 'user' if role is not provided
+    let userRole = role || "user";
     if (email === "djsroka@gmail.com") {
       userRole = "admin";
     }
 
-    const sql =
-      "INSERT INTO users (fn, ln, email, password, role) VALUES (?,?,?,?,?)";
+    const sql = "INSERT INTO users (fn, ln, email, password, role) VALUES (?,?,?,?,?)";
     const values = [fn, ln, email, hashedPassword, userRole];
 
     db.query(sql, values, (err, result) => {
       if (err) {
-        console.error(err);
         return res.json({ Error: "Error when inserting data" });
       }
       return res.json({ Status: "Success" });
     });
   } catch (error) {
-    console.error(error);
     return res.json({ Error: "Error when hashing password" });
   }
 });
-// ----------------------------------------------------
 
 // SIGN OUT ROUTES
 // ----------------------------------------------------
