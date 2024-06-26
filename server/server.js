@@ -108,7 +108,7 @@ app.get("/admin/users", verifyUser, async (req, res) => {
 
   try {
     const users = await queryAsync("SELECT * FROM users");
-    res.json(users);
+    res.json({ users: users || [], currentUser: req.user_ID });
   } catch (error) {
     console.error("Error fetching users:", error);
     res.status(500).send("Error fetching users");
@@ -122,7 +122,9 @@ app.get("/admin/users/:id", verifyUser, async (req, res) => {
 
   const userId = req.params.id;
   try {
-    const [user] = await queryAsync("SELECT * FROM users WHERE ID = ?", [userId]);
+    const [user] = await queryAsync("SELECT * FROM users WHERE ID = ?", [
+      userId,
+    ]);
     if (user) {
       res.json(user);
     } else {
@@ -140,12 +142,65 @@ app.delete("/admin/users/:id", verifyUser, async (req, res) => {
   }
 
   const userId = req.params.id;
+
+  const queries = [
+    "DELETE FROM expenses WHERE USER_ID = ?",
+    "DELETE FROM files WHERE USER_ID = ?",
+    "DELETE FROM foodexpenses WHERE USER_ID = ?",
+    "DELETE FROM itemexpenses WHERE USER_ID = ?",
+    "DELETE FROM mileageexpenses WHERE USER_ID = ?",
+    "DELETE FROM users WHERE ID = ?",
+  ];
+
+  const connection = await db.getConnection();
+
   try {
-    await queryAsync("DELETE FROM users WHERE ID = ?", [userId]);
-    res.json({ Status: "Success", message: "User deleted successfully" });
+    await connection.beginTransaction();
+
+    for (let query of queries) {
+      await queryAsync(query, [userId], connection);
+    }
+
+    await connection.commit();
+    res.json({
+      Status: "Success",
+      message: "User and associated data deleted successfully",
+    });
   } catch (error) {
-    console.error("Error deleting user:", error);
-    res.status(500).send("Error deleting user");
+    await connection.rollback();
+    console.error("Error deleting user and associated data:", error);
+    res.status(500).send("Error deleting user and associated data");
+  } finally {
+    connection.release();
+  }
+});
+
+app.post("/admin/users", verifyUser, async (req, res) => {
+  if (req.role !== "admin") {
+    return res.status(403).json({ Error: "Access denied" });
+  }
+
+  const { fn, ln, email, password, role } = req.body;
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    let userRole = role || "user";
+
+    const sql =
+      "INSERT INTO users (fn, ln, email, password, role) VALUES (?,?,?,?,?)";
+    const values = [fn, ln, email, hashedPassword, userRole];
+
+    db.query(sql, values, (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.json({ Error: "Error when inserting data" });
+      }
+      return res.json({ Status: "Success", insertId: result.insertId });
+    });
+  } catch (error) {
+    console.error(error);
+    return res.json({ Error: "Error when hashing password" });
   }
 });
 
@@ -166,11 +221,14 @@ app.get("/user", verifyUser, (req, res) => {
   const userId = req.user_ID;
 
   const queries = {
-    expenses: "SELECT ID, USER_ID, TYPE, BILLABLE, PORCC, AMOUNT, COMMENT, MONTH FROM EXPENSES WHERE USER_ID = ?",
+    expenses:
+      "SELECT ID, USER_ID, TYPE, BILLABLE, PORCC, AMOUNT, COMMENT, MONTH FROM EXPENSES WHERE USER_ID = ?",
     files: "SELECT ID, USER_ID, NAME, PATH, MONTH FROM FILES WHERE USER_ID = ?",
     food: "SELECT ID, USER_ID, DATE, AMOUNT, LOCATION, MONTH FROM FOODEXPENSES WHERE USER_ID = ?",
-    items: "SELECT ID, USER_ID, ITEM, DATE, SUBTOTAL, MONTH FROM ITEMEXPENSES WHERE USER_ID = ?",
-    mileage: "SELECT ID, USER_ID, DATE, PURPOSE, MILES, MONTH FROM MILEAGEEXPENSES WHERE USER_ID = ?",
+    items:
+      "SELECT ID, USER_ID, ITEM, DATE, SUBTOTAL, MONTH FROM ITEMEXPENSES WHERE USER_ID = ?",
+    mileage:
+      "SELECT ID, USER_ID, DATE, PURPOSE, MILES, MONTH FROM MILEAGEEXPENSES WHERE USER_ID = ?",
   };
 
   const queryDatabase = (query, params) => {
@@ -194,7 +252,13 @@ app.get("/user", verifyUser, (req, res) => {
   ])
     .then((results) => {
       const [expenses, files, food, items, mileage] = results;
-      const groupedData = groupByMonthYear({ expenses, files, food, items, mileage });
+      const groupedData = groupByMonthYear({
+        expenses,
+        files,
+        food,
+        items,
+        mileage,
+      });
       res.json(groupedData);
     })
     .catch((err) => {
@@ -222,7 +286,9 @@ const groupByMonthYear = (data) => {
   const categorizeByMonthYear = (items, category) => {
     items.forEach((item) => {
       const date = new Date(item["MONTH"]);
-      const newDate = new Date(date.setMonth(date.getMonth() + 1)).toLocaleDateString("default", { month: "long", year: "numeric" });
+      const newDate = new Date(
+        date.setMonth(date.getMonth() + 1)
+      ).toLocaleDateString("default", { month: "long", year: "numeric" });
       addToGroup(item, newDate, category);
     });
   };
@@ -399,13 +465,18 @@ app.post(
 // ----------------------------------------------------
 app.post("/login", async (req, res) => {
   try {
-    const [user] = await queryAsync("SELECT * FROM USERS WHERE EMAIL =?", [req.body.email]);
+    const [user] = await queryAsync("SELECT * FROM USERS WHERE EMAIL =?", [
+      req.body.email,
+    ]);
 
     if (!user) {
       return res.send({ Status: "Unauthorized" });
     }
 
-    const passwordMatch = await bcrypt.compare(req.body.password, user.PASSWORD);
+    const passwordMatch = await bcrypt.compare(
+      req.body.password,
+      user.PASSWORD
+    );
 
     if (passwordMatch) {
       const { FN, LN, EMAIL, ID: user_ID, ROLE } = user;
@@ -443,7 +514,8 @@ app.post("/signup", async (req, res) => {
       userRole = "admin";
     }
 
-    const sql = "INSERT INTO users (fn, ln, email, password, role) VALUES (?,?,?,?,?)";
+    const sql =
+      "INSERT INTO users (fn, ln, email, password, role) VALUES (?,?,?,?,?)";
     const values = [fn, ln, email, hashedPassword, userRole];
 
     db.query(sql, values, (err, result) => {

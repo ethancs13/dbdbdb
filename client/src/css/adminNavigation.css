@@ -1,0 +1,56 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Navigation Wrapper */
+  .admin_navigation_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 2rem;
+  }
+  
+  /* Navigation Container */
+  .admin_navigation_container {
+    display: flex;
+  }
+  
+  /* Navigation Link */
+  .admin_navigation_container a {
+    text-decoration: none;
+  }
+  
+  /* Navigation Button */
+  .admin_navigation_container a button {
+    background-color: transparent;
+    color: black;
+    border: solid rgb(49, 134, 212) 1px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Active Button */
+  .admin_navigation_container a.active button {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  /* Button Hover */
+  .admin_navigation_container a button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Active Button Hover */
+  .admin_navigation_container a.active button:hover {
+    background-color: #2980b9;
+  }
+  

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../css/userDetail.css";
 
 const UserDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -26,6 +27,17 @@ const UserDetail = () => {
     fetchUser();
   }, [id]);
 
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:3001/admin/users/${id}`, {
+        withCredentials: true,
+      });
+      navigate('/');
+    } catch (err) {
+      setError("Error deleting user");
+    }
+  };
+
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">{error}</div>;
 
@@ -36,8 +48,7 @@ const UserDetail = () => {
           <h2>{user.FN} {user.LN}</h2>
           <p>Email: {user.EMAIL}</p>
           <p>Role: {user.ROLE}</p>
-          <button onClick={() => {/* Add remove user logic */}}>Remove User</button>
-          <button onClick={() => {/* Add user logic */}}>Add User</button>
+          <button onClick={handleDelete}>Remove User</button>
         </div>
       )}
     </div>

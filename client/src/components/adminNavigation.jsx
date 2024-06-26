@@ -1,35 +1,26 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import BackButton from "./BackButton";
-import "../css/userNavigation.css";
+import "../css/adminNavigation.css";
 
-const adminNavigation = () => {
+const AdminNavigation = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
   return (
-    <div
-      className="expense_navigation_wrapper"
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "flex-start",
-        justifyContent: "space-between",
-        width: "100%",
-        padding: "0 2rem"
-      }}
-    >
-      <div
-        className="expense_navigation_container"
-      >
+    <div className="admin_navigation_wrapper">
+      <div className="admin_navigation_container">
         <Link to="/" className={currentPath === "/" ? "active" : ""}>
           <button>Summary</button>
         </Link>
-        <Link
-          to="/users"
-          className={currentPath === "/" ? "active" : ""}
-        >
+        <Link to="/users" className={currentPath === "/users" ? "active" : ""}>
           <button>Users</button>
+        </Link>
+        <Link to="/mileage-rate" className={currentPath === "/mileage-rate" ? "active" : ""}>
+          <button>IRS Mileage Rate</button>
+        </Link>
+        <Link to="/submissions" className={currentPath === "/submissions" ? "active" : ""}>
+          <button>Submissions</button>
         </Link>
       </div>
       <BackButton />
@@ -37,4 +28,4 @@ const adminNavigation = () => {
   );
 };
 
-export default adminNavigation;
+export default AdminNavigation;
