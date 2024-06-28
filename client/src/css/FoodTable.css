@@ -1,9 +1,9 @@
 @import "./Common.css";
 
 .food-table-container {
-  width: 90vw;
+  width: 100%;
   margin: 20px 2rem;
-  min-width: 800px; /* Ensures minimum width */
+  min-width: 800px;
 }
 
 .food-row {

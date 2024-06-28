@@ -29,12 +29,12 @@ app.use(cookieParser());
 // PORT
 const PORT = process.env.PORT || 3306;
 
-// mysql_database_server_setup
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
+  port: process.env.DB_PORT,
 });
 db.connect((err) => {
   if (err) {
@@ -107,7 +107,7 @@ app.get("/admin/users", verifyUser, async (req, res) => {
   }
 
   try {
-    const users = await queryAsync("SELECT * FROM users");
+    const users = await queryAsync("SELECT * FROM USERS");
     res.json({ users: users || [], currentUser: req.user_ID });
   } catch (error) {
     console.error("Error fetching users:", error);
@@ -122,7 +122,7 @@ app.get("/admin/users/:id", verifyUser, async (req, res) => {
 
   const userId = req.params.id;
   try {
-    const [user] = await queryAsync("SELECT * FROM users WHERE ID = ?", [
+    const [user] = await queryAsync("SELECT * FROM USERS WHERE ID = ?", [
       userId,
     ]);
     if (user) {
@@ -364,7 +364,7 @@ app.post(
     }
 
     const user_ID = req.user_ID;
-    const checkUserQuery = "SELECT * FROM users WHERE ID = ?";
+    const checkUserQuery = "SELECT * FROM USERS WHERE ID = ?";
     db.query(checkUserQuery, [user_ID], (err, results) => {
       if (err) {
         return res.status(500).send("Server error");
@@ -515,7 +515,7 @@ app.post("/signup", async (req, res) => {
     }
 
     const sql =
-      "INSERT INTO users (fn, ln, email, password, role) VALUES (?,?,?,?,?)";
+      "INSERT INTO USERS (fn, ln, email, password, role) VALUES (?,?,?,?,?)";
     const values = [fn, ln, email, hashedPassword, userRole];
 
     db.query(sql, values, (err, result) => {
