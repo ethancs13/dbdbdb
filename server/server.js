@@ -19,7 +19,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["server-production-82d5.up.railway.app:3000"],
+    origin: [process.env.CLIENT_ORIGIN],
     methods: ["POST", "GET", "DELETE"],
     credentials: true,
   })
