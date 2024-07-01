@@ -19,7 +19,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "dbdbdb-production.up.railway.app"],
+    origin: ["server-production-82d5.up.railway.app:3000"],
     methods: ["POST", "GET", "DELETE"],
     credentials: true,
   })
