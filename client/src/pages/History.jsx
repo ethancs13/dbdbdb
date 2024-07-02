@@ -39,7 +39,7 @@ const History = () => {
         }
       });
     });
-    return total.toFixed(2); // Ensure two decimal places
+    return total.toFixed(2);
   };
 
   const handleDeleteMonth = (monthYear, e) => {

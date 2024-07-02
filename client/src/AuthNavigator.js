@@ -10,6 +10,8 @@ const AuthNavigator = ({ children }) => {
   useEffect(() => {
     if (!isAuthenticated && location.pathname !== "/signup") {
       navigate("/login");
+    } else if (isAuthenticated && location.pathname === "/login") {
+      navigate("/");
     }
   }, [isAuthenticated, navigate, location.pathname]);
 

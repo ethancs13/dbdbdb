@@ -32,32 +32,36 @@ const Summary = () => {
     <div className="summary-container">
       <div className="summary-sections-container">
         <div className="summary-section">
-          <div className="summary-headers-container">
-            <div className="summary-header">Type</div>
-            <div className="summary-header">Billable?</div>
-            <div className="summary-header">PoR CC used?</div>
-            <div className="summary-header">Amount</div>
-            <div className="summary-header">Comment</div>
-            {rowsData.some(row => row.billable === "Yes") && (
-              <div className="summary-header">Customer</div>
-            )}
-          </div>
           <div className="summary-box">
             {rowsData.length > 0 ? (
-              rowsData.map((row, index) => (
-                <div className="summary-box-item" key={index}>
-                  <div className="summary-box-item-row">
-                    <div className="w20">{row.type}</div>
-                    <div className="w20">{row.billable}</div>
-                    <div className="w20">{row.porCC}</div>
-                    <div className="w20">{row.amount}</div>
-                    <div className="w20" style={{textWrap: "wrap"}}>{row.comment}</div>
-                    {row.billable === "Yes" && (
-                      <div className="w20">{row.customer}</div>
-                    )}
-                  </div>
+              <div>
+                <div className="summary-headers-container">
+                  <div className="summary-header">Type</div>
+                  <div className="summary-header">Billable?</div>
+                  <div className="summary-header">PoR CC used?</div>
+                  <div className="summary-header">Amount</div>
+                  <div className="summary-header">Comment</div>
+                  {rowsData.some((row) => row.billable === "Yes") && (
+                    <div className="summary-header">Customer</div>
+                  )}
                 </div>
-              ))
+                {rowsData.map((row, index) => (
+                  <div className="summary-box-item" key={index}>
+                    <div className="summary-box-item-row">
+                      <div className="w20">{row.type}</div>
+                      <div className="w20">{row.billable}</div>
+                      <div className="w20">{row.porCC}</div>
+                      <div className="w20">{row.amount}</div>
+                      <div className="w20" style={{ textWrap: "wrap" }}>
+                        {row.comment}
+                      </div>
+                      {row.billable === "Yes" && (
+                        <div className="w20">{row.customer}</div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
             ) : (
               <p>No expenses added yet.</p>
             )}

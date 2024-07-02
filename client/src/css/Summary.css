@@ -18,7 +18,7 @@
 }
 
 .summary-box {
-  max-width: 80rem;
+  max-width: 68rem;
   min-width: 40rem;
 }
 
@@ -92,7 +92,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  max-width: 80rem;
+  max-width: 67rem;
   min-width: 40rem;
   padding: 10px;
   margin: 10px 0;

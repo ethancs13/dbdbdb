@@ -1,121 +1,187 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import "../css/adminUsers.css";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import CalendarWidget from './CalendarWidget';
+import '../css/adminUsers.css'; // Ensure this path is correct
 
-const AdminUsers = () => {
-  const navigate = useNavigate();
+const AdminPage = () => {
   const [users, setUsers] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [newUser, setNewUser] = useState({ fn: "", ln: "", email: "", password: "", role: "user" });
+  const [mileageRates, setMileageRates] = useState([]);
+  const [newUser, setNewUser] = useState({ firstName: '', lastName: '', email: '', role: 'user' });
+  const [newMileageRate, setNewMileageRate] = useState({ rate: '', startDate: '', endDate: '' });
+  const [submissions, setSubmissions] = useState([]);
+  const [selectedSubmission, setSelectedSubmission] = useState(null);
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get("http://localhost:3001/admin/users", {
-          withCredentials: true,
-        });
-        setUsers(response.data.users || []);
-        setCurrentUser(response.data.currentUser);
-      } catch (err) {
-        setError("Error fetching users");
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchUsers();
+    fetchMileageRates();
+    fetchSubmissions();
   }, []);
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/admin/users", {
-        withCredentials: true,
-      });
-      setUsers(response.data.users || []);
-      setCurrentUser(response.data.currentUser);
+      const response = await axios.get('http://localhost:3001/admin/users', { withCredentials: true });
+      setUsers(response.data.users);
     } catch (err) {
-      setError("Error fetching users");
+      console.error('Error fetching users:', err);
     }
   };
 
-  const handleUserClick = (id) => {
-    navigate(`/user/${id}`);
+  const fetchMileageRates = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/admin/mileage-rates', { withCredentials: true });
+      setMileageRates(response.data);
+    } catch (err) {
+      console.error('Error fetching mileage rates:', err);
+    }
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewUser({ ...newUser, [name]: value });
+  const fetchSubmissions = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/admin/submissions', { withCredentials: true });
+      setSubmissions(response.data);
+    } catch (err) {
+      console.error('Error fetching submissions:', err);
+    }
   };
 
   const handleAddUser = async () => {
     try {
-      await axios.post("http://localhost:3001/admin/users", newUser, {
-        withCredentials: true,
-      });
-      setNewUser({ fn: "", ln: "", email: "", password: "", role: "user" }); // Reset form
-      fetchUsers(); // Refetch users to update the list
+      await axios.post('http://localhost:3001/admin/users', newUser, { withCredentials: true });
+      setNewUser({ firstName: '', lastName: '', email: '', role: 'user' });
+      fetchUsers();
     } catch (err) {
-      setError("Error adding user");
+      console.error('Error adding user:', err);
     }
   };
 
-  if (loading) return <div className="loading">Loading...</div>;
-  if (error) return <div className="error">{error}</div>;
+  const handleDeleteUser = async (userId) => {
+    try {
+      await axios.delete(`http://localhost:3001/admin/users/${userId}`, { withCredentials: true });
+      fetchUsers();
+    } catch (err) {
+      console.error('Error deleting user:', err);
+    }
+  };
+
+  const handleAddMileageRate = async () => {
+    try {
+      await axios.post('http://localhost:3001/admin/mileage-rates', newMileageRate, { withCredentials: true });
+      setNewMileageRate({ rate: '', startDate: '', endDate: '' });
+      fetchMileageRates();
+    } catch (err) {
+      console.error('Error adding mileage rate:', err);
+    }
+  };
+
+  const handleUpdateSubmission = async (submissionId, updatedData) => {
+    try {
+      await axios.put(`http://localhost:3001/admin/submissions/${submissionId}`, updatedData, { withCredentials: true });
+      fetchSubmissions();
+    } catch (err) {
+      console.error('Error updating submission:', err);
+    }
+  };
 
   return (
     <div className="admin-dashboard">
-      <h1>Registered Users</h1>
-      <ul className="user-list">
-        {users.filter(user => user.ID !== currentUser).map((user) => (
-          <li className="user-item" key={user.ID} onClick={() => handleUserClick(user.ID)}>
-            <div className="user-info">
-              <span>{user.FN} {user.LN}</span>
-              <span>({user.EMAIL})</span>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <div className="add-user-form">
-        <h2>Add New User</h2>
-        <input
-          type="text"
-          name="fn"
-          placeholder="First Name"
-          value={newUser.fn}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          name="ln"
-          placeholder="Last Name"
-          value={newUser.ln}
-          onChange={handleInputChange}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={newUser.email}
-          onChange={handleInputChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={newUser.password}
-          onChange={handleInputChange}
-        />
-        <select name="role" value={newUser.role} onChange={handleInputChange}>
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-        <button className="btn btn-primary" onClick={handleAddUser}>Add User</button>
-      </div>
+      <h1>Admin Dashboard</h1>
+      
+      <section className="mileage-rates">
+        <h2>IRS Mileage Rate</h2>
+        <ul>
+          {mileageRates.map(rate => (
+            <li key={rate.id}>{rate.rate} $/Mile from {rate.startDate} to {rate.endDate}</li>
+          ))}
+        </ul>
+        <div className="add-mileage-rate">
+          <input
+            type="text"
+            placeholder="$/Mile"
+            value={newMileageRate.rate}
+            onChange={(e) => setNewMileageRate({ ...newMileageRate, rate: e.target.value })}
+          />
+          <CalendarWidget
+            selectedDate={newMileageRate.startDate}
+            onDateChange={(date) => setNewMileageRate({ ...newMileageRate, startDate: date })}
+          />
+          <CalendarWidget
+            selectedDate={newMileageRate.endDate}
+            onDateChange={(date) => setNewMileageRate({ ...newMileageRate, endDate: date })}
+          />
+          <button onClick={handleAddMileageRate}>Add Mileage Rate</button>
+        </div>
+      </section>
+
+      <section className="users">
+        <h2>Users</h2>
+        <ul className="user-list">
+          {users.map(user => (
+            <li className="user-item" key={user.ID}>
+              <div className="user-info">
+                <span>{user.FN} {user.LN} ({user.EMAIL})</span>
+              </div>
+              <button onClick={() => handleDeleteUser(user.ID)}>Delete</button>
+            </li>
+          ))}
+        </ul>
+        <div className="add-user-form">
+          <h2>Add User</h2>
+          <input
+            type="text"
+            placeholder="First Name"
+            value={newUser.firstName}
+            onChange={(e) => setNewUser({ ...newUser, firstName: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Last Name"
+            value={newUser.lastName}
+            onChange={(e) => setNewUser({ ...newUser, lastName: e.target.value })}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={newUser.email}
+            onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+          />
+          <select
+            value={newUser.role}
+            onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
+          >
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+          <button onClick={handleAddUser}>Add User</button>
+        </div>
+      </section>
+
+      <section className="submissions">
+        <h2>Previous Submissions</h2>
+        <ul>
+          {submissions.map(submission => (
+            <li key={submission.id}>
+              {submission.title} by {submission.userEmail} on {submission.date} <button onClick={() => setSelectedSubmission(submission)}>Edit</button>
+            </li>
+          ))}
+        </ul>
+        {selectedSubmission && (
+          <div className="edit-submission">
+            <h3>Edit Submission</h3>
+            <input
+              type="text"
+              value={selectedSubmission.title}
+              onChange={(e) => setSelectedSubmission({ ...selectedSubmission, title: e.target.value })}
+            />
+            <CalendarWidget
+              selectedDate={selectedSubmission.date}
+              onDateChange={(date) => setSelectedSubmission({ ...selectedSubmission, date })}
+            />
+            <button onClick={() => handleUpdateSubmission(selectedSubmission.id, selectedSubmission)}>Update Submission</button>
+          </div>
+        )}
+      </section>
     </div>
   );
 };
 
-export default AdminUsers;
+export default AdminPage;

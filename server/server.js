@@ -537,4 +537,4 @@ app.get("/logout", (req, res) => {
 });
 // ----------------------------------------------------
 
-app.listen(PORT, () => console.log("Now listening"));
+app.listen(PORT, () => console.log(`Now listening on port ${PORT}`));

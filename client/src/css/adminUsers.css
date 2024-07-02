@@ -1,5 +1,3 @@
-/* adminUsers.css */
-
 /* General styles */
 body {
   font-family: Arial, sans-serif;
@@ -10,7 +8,7 @@ body {
 
 /* Admin Dashboard Container */
 .admin-dashboard {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 40px auto;
   padding: 20px;
   background-color: #ffffff;
@@ -24,6 +22,13 @@ body {
   margin-bottom: 20px;
   color: #333;
   text-align: center;
+}
+
+/* Section Headers */
+.admin-dashboard h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #007bff;
 }
 
 /* User List */
@@ -65,17 +70,20 @@ body {
 }
 
 /* Add User Form */
-.add-user-form {
+.add-user-form,
+.add-mileage-rate {
   margin-top: 20px;
 }
 
-.add-user-form h2 {
+.add-user-form h2,
+.add-mileage-rate h2 {
   font-size: 1.5em;
   margin-bottom: 10px;
 }
 
 .add-user-form input,
-.add-user-form select {
+.add-user-form select,
+.add-mileage-rate input {
   display: block;
   width: calc(100% - 22px);
   margin: 10px 0;
@@ -85,7 +93,8 @@ body {
   border-radius: 4px;
 }
 
-.add-user-form button {
+.add-user-form button,
+.add-mileage-rate button {
   padding: 10px 15px;
   font-size: 1em;
   color: #fff;
@@ -96,7 +105,79 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.add-user-form button:hover {
+.add-user-form button:hover,
+.add-mileage-rate button:hover {
+  background-color: #0056b3;
+}
+
+/* Mileage Rates */
+.mileage-rates ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.mileage-rates li {
+  padding: 10px 15px;
+  margin: 5px 0;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.mileage-rates li:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+/* Submissions */
+.submissions ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.submissions li {
+  padding: 10px 15px;
+  margin: 5px 0;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.submissions li:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+/* Edit Submission */
+.edit-submission {
+  margin-top: 20px;
+}
+
+.edit-submission h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.edit-submission input {
+  display: block;
+  width: calc(100% - 22px);
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.edit-submission button {
+  padding: 10px 15px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-submission button:hover {
   background-color: #0056b3;
 }
 
