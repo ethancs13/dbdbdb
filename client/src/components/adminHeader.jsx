@@ -15,7 +15,7 @@ const adminHeader = () => {
     axios.defaults.withCredentials = true;
 
     // Check user authentication and role
-    axios.get("http://localhost:3001/").then((res) => {
+    axios.get("https://server-production-82d5.up.railway.app:3001/").then((res) => {
       if (res.data.status === "Success") {
         setIsAuthenticated(true);
         setUserEmail(res.data.email);
@@ -34,7 +34,7 @@ const adminHeader = () => {
   useEffect(() => {
     const fetchUserEmail = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/user", {
+        const response = await axios.get("https://server-production-82d5.up.railway.app:3001/user", {
           withCredentials: true,
         });
         setUserEmail(response.data.email);

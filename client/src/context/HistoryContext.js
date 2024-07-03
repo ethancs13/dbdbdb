@@ -9,7 +9,7 @@ const HistoryProvider = ({ children }) => {
 
   const fetchHistoryData = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/user", {
+      const response = await axios.get("https://server-production-82d5.up.railway.app:3001/user", {
         withCredentials: true,
       });
       console.log("Fetched History Data:", response.data); // Debugging information

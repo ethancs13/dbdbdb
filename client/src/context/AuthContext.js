@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/", {
+        const response = await axios.get("https://server-production-82d5.up.railway.app:3001/", {
           withCredentials: true,
         });
         console.log("Data: ", response.data);
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/login",
+        "https://server-production-82d5.up.railway.app:3001/login",
         { email, password },
         { withCredentials: true }
       );
@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     console.log("Logging out...");
-    await axios.get("http://localhost:3001/logout", { withCredentials: true });
+    await axios.get("https://server-production-82d5.up.railway.app:3001/logout", { withCredentials: true });
     setIsAuthenticated(false);
     setUserRole(null);
     console.log("Navigating to login...");

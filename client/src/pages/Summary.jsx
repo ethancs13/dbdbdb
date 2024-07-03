@@ -15,7 +15,7 @@ const Summary = () => {
     axios.defaults.withCredentials = true;
 
     // Check user authentication and role
-    axios.get("http://localhost:3001/").then((res) => {
+    axios.get("https://server-production-82d5.up.railway.app:3001/").then((res) => {
       if (res.data.status === "Success") {
         setIsAuthenticated(true);
       } else if (res.data.status === "rootUser") {

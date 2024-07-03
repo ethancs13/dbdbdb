@@ -13,7 +13,7 @@ const UserDetail = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/admin/users/${id}`, {
+        const response = await axios.get(`https://server-production-82d5.up.railway.app:3001/admin/users/${id}`, {
           withCredentials: true,
         });
         setUser(response.data);
@@ -29,7 +29,7 @@ const UserDetail = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3001/admin/users/${id}`, {
+      await axios.delete(`https://server-production-82d5.up.railway.app:3001/admin/users/${id}`, {
         withCredentials: true,
       });
       navigate('/');

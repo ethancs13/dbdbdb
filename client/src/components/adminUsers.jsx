@@ -19,7 +19,7 @@ const AdminPage = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/admin/users', { withCredentials: true });
+      const response = await axios.get('https://server-production-82d5.up.railway.app:3001/admin/users', { withCredentials: true });
       setUsers(response.data.users);
     } catch (err) {
       console.error('Error fetching users:', err);
@@ -28,7 +28,7 @@ const AdminPage = () => {
 
   const fetchMileageRates = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/admin/mileage-rates', { withCredentials: true });
+      const response = await axios.get('https://server-production-82d5.up.railway.app:3001/admin/mileage-rates', { withCredentials: true });
       setMileageRates(response.data);
     } catch (err) {
       console.error('Error fetching mileage rates:', err);
@@ -37,7 +37,7 @@ const AdminPage = () => {
 
   const fetchSubmissions = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/admin/submissions', { withCredentials: true });
+      const response = await axios.get('https://server-production-82d5.up.railway.app:3001/admin/submissions', { withCredentials: true });
       setSubmissions(response.data);
     } catch (err) {
       console.error('Error fetching submissions:', err);
@@ -46,7 +46,7 @@ const AdminPage = () => {
 
   const handleAddUser = async () => {
     try {
-      await axios.post('http://localhost:3001/admin/users', newUser, { withCredentials: true });
+      await axios.post('https://server-production-82d5.up.railway.app:3001/admin/users', newUser, { withCredentials: true });
       setNewUser({ firstName: '', lastName: '', email: '', role: 'user' });
       fetchUsers();
     } catch (err) {
@@ -56,7 +56,7 @@ const AdminPage = () => {
 
   const handleDeleteUser = async (userId) => {
     try {
-      await axios.delete(`http://localhost:3001/admin/users/${userId}`, { withCredentials: true });
+      await axios.delete(`https://server-production-82d5.up.railway.app:3001/admin/users/${userId}`, { withCredentials: true });
       fetchUsers();
     } catch (err) {
       console.error('Error deleting user:', err);
@@ -65,7 +65,7 @@ const AdminPage = () => {
 
   const handleAddMileageRate = async () => {
     try {
-      await axios.post('http://localhost:3001/admin/mileage-rates', newMileageRate, { withCredentials: true });
+      await axios.post('https://server-production-82d5.up.railway.app:3001/admin/mileage-rates', newMileageRate, { withCredentials: true });
       setNewMileageRate({ rate: '', startDate: '', endDate: '' });
       fetchMileageRates();
     } catch (err) {
@@ -75,7 +75,7 @@ const AdminPage = () => {
 
   const handleUpdateSubmission = async (submissionId, updatedData) => {
     try {
-      await axios.put(`http://localhost:3001/admin/submissions/${submissionId}`, updatedData, { withCredentials: true });
+      await axios.put(`https://server-production-82d5.up.railway.app:3001/admin/submissions/${submissionId}`, updatedData, { withCredentials: true });
       fetchSubmissions();
     } catch (err) {
       console.error('Error updating submission:', err);
