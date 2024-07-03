@@ -52,7 +52,7 @@ const History = () => {
     console.log("Formatted Month-Year:", yyyymmFormatted);
 
     axios
-      .get("https://server-production-82d5.up.railway.app:3001/api/user-id", {
+      .get("process.env.SERVER_END_POINT/api/user-id", {
         withCredentials: true,
       })
       .then((response) => {
@@ -60,7 +60,7 @@ const History = () => {
         console.log("User ID response: ", response.data);
 
         return axios.delete(
-          `https://server-production-82d5.up.railway.app:3001/delete-month/${yyyymmFormatted}/${user_Id}`,
+          `process.env.SERVER_END_POINT/delete-month/${yyyymmFormatted}/${user_Id}`,
           {
             withCredentials: true,
           }

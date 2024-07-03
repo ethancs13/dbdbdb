@@ -27,7 +27,7 @@ const userHeader = () => {
     axios.defaults.withCredentials = true;
 
     // Check user authentication and role
-    axios.get("https://server-production-82d5.up.railway.app:3001/").then((res) => {
+    axios.get("process.env.SERVER_END_POINT/").then((res) => {
       if (res.data.status === "Success") {
         setIsAuthenticated(true);
         setEmail(res.data.email);
@@ -68,7 +68,7 @@ const userHeader = () => {
   useEffect(() => {
     const fetchUserEmail = async () => {
       try {
-        const response = await axios.get("https://server-production-82d5.up.railway.app:3001/user", {
+        const response = await axios.get("process.env.SERVER_END_POINT/user", {
           withCredentials: true,
         });
         setUserEmail(response.data.email);
@@ -93,7 +93,7 @@ const userHeader = () => {
   const uploadData = async (formData) => {
     try {
       const response = await axios.post(
-        "https://server-production-82d5.up.railway.app:3001/upload",
+        "process.env.SERVER_END_POINT/upload",
         formData,
         {
           withCredentials: true,

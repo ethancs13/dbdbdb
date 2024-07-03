@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'; // Import AuthContext
 
 export const Register = () => {
-    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'https://server-production-82d5.up.railway.app:3001';
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'process.env.SERVER_END_POINT';
     const navigate = useNavigate();
 
     const { login } = useAuth(); // Use the login method from AuthContext
