@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 import "../css/Header.css";
 
-const userHeader = () => {
+const UserHeader = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [email, setEmail] = useState("");
   const [fn, setFn] = useState("");
@@ -15,10 +15,7 @@ const userHeader = () => {
   const [yearOptions, setYearOptions] = useState([]);
   const [userEmail, setUserEmail] = useState("");
 
-  const formattedMonth = `${selectedYear}-${String(selectedMonth).padStart(
-    2,
-    "0"
-  )}`;
+  const formattedMonth = `${selectedYear}-${String(selectedMonth).padStart(2, "0")}`;
   console.log(formattedMonth);
 
   const navigate = useNavigate();
@@ -27,7 +24,7 @@ const userHeader = () => {
     axios.defaults.withCredentials = true;
 
     // Check user authentication and role
-    axios.get("process.env.SERVER_END_POINT/").then((res) => {
+    axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/`).then((res) => {
       if (res.data.status === "Success") {
         setIsAuthenticated(true);
         setEmail(res.data.email);
@@ -63,12 +60,11 @@ const userHeader = () => {
     clearFormContext,
     uploadedFiles,
   } = useContext(FormContext);
-  console.log();
 
   useEffect(() => {
     const fetchUserEmail = async () => {
       try {
-        const response = await axios.get("process.env.SERVER_END_POINT/user", {
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/user`, {
           withCredentials: true,
         });
         setUserEmail(response.data.email);
@@ -93,7 +89,7 @@ const userHeader = () => {
   const uploadData = async (formData) => {
     try {
       const response = await axios.post(
-        "process.env.SERVER_END_POINT/upload",
+        `${process.env.REACT_APP_SERVER_END_POINT}/upload`,
         formData,
         {
           withCredentials: true,
@@ -162,18 +158,18 @@ const userHeader = () => {
             value={selectedMonth}
             onChange={(e) => setSelectedMonth(Number(e.target.value))}
           >
-            <option value="0">January</option>
-            <option value="1">February</option>
-            <option value="2">March</option>
-            <option value="3">April</option>
-            <option value="4">May</option>
-            <option value="5">June</option>
-            <option value="6">July</option>
-            <option value="7">August</option>
-            <option value="8">September</option>
-            <option value="9">October</option>
-            <option value="10">November</option>
-            <option value="11">December</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
           </select>
           <select
             value={selectedYear}
@@ -197,4 +193,4 @@ const userHeader = () => {
   );
 };
 
-export default userHeader;
+export default UserHeader;

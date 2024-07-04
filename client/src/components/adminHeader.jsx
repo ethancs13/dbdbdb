@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../css/Header.css";
 
+
 const adminHeader = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userEmail, setUserEmail] = useState("");
@@ -15,7 +16,7 @@ const adminHeader = () => {
     axios.defaults.withCredentials = true;
 
     // Check user authentication and role
-    axios.get("process.env.SERVER_END_POINT/").then((res) => {
+    axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/`).then((res) => {
       if (res.data.status === "Success") {
         setIsAuthenticated(true);
         setUserEmail(res.data.email);
@@ -34,7 +35,7 @@ const adminHeader = () => {
   useEffect(() => {
     const fetchUserEmail = async () => {
       try {
-        const response = await axios.get("process.env.SERVER_END_POINT/user", {
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/user`, {
           withCredentials: true,
         });
         setUserEmail(response.data.email);

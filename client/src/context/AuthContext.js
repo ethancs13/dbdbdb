@@ -9,13 +9,15 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userRole, setUserRole] = useState(null);
-  const [loading, setLoading] = useState(true); // Add a loading state
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log('Server Endpoint:', process.env.REACT_APP_SERVER_END_POINT);
+  
     const checkAuth = async () => {
       try {
-        const response = await axios.get("process.env.SERVER_END_POINT/", {
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/`, {
           withCredentials: true,
         });
         console.log("Data: ", response.data);
@@ -25,17 +27,18 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(false);
         setUserRole(null);
       } finally {
-        setLoading(false); // Set loading to false after the check is complete
+        setLoading(false);
       }
     };
-
+  
     checkAuth();
   }, []);
+  
 
   const login = async (email, password) => {
     try {
       const response = await axios.post(
-        "process.env.SERVER_END_POINT/login",
+        `${process.env.REACT_APP_SERVER_END_POINT}/login`,
         { email, password },
         { withCredentials: true }
       );
@@ -61,7 +64,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     console.log("Logging out...");
-    await axios.get("process.env.SERVER_END_POINT/logout", { withCredentials: true });
+    await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/logout`, { withCredentials: true });
     setIsAuthenticated(false);
     setUserRole(null);
     console.log("Navigating to login...");
@@ -69,7 +72,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   if (loading) {
-    return <div>Loading...</div>; // Show a loading indicator while checking authentication
+    return <div>Loading...</div>;
   }
 
   return (
