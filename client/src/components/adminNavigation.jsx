@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import BackButton from "./BackButton";
 import "../css/adminNavigation.css";
 
-const AdminNavigation = () => {
+const adminNavigation = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -28,4 +28,4 @@ const AdminNavigation = () => {
   );
 };
 
-export default AdminNavigation;
+export default adminNavigation;

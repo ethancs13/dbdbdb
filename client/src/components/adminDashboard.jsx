@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/userNavigation.css";
 
-const AdminDashboard = () => {
+const adminDashboard = () => {
   return (
     <div style={{display: "flex", justifyContent: "center", width: '100%'}}>
       <h4>Admin Dashboard</h4>
@@ -9,4 +9,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default adminDashboard;

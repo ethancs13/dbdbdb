@@ -9,7 +9,7 @@ const HistoryProvider = ({ children }) => {
 
   const fetchHistoryData = async () => {
     try {
-      const response = await axios.get("process.env.SERVER_END_POINT/user", {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/user`, {
         withCredentials: true,
       });
       console.log("Fetched History Data:", response.data); // Debugging information

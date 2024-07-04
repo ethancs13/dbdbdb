@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
   
     const checkAuth = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/`, {
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/user`, {
           withCredentials: true,
         });
         console.log("Data: ", response.data);

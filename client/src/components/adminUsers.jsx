@@ -3,7 +3,7 @@ import axios from 'axios';
 import CalendarWidget from './CalendarWidget';
 import '../css/adminUsers.css';
 
-const AdminPage = () => {
+const adminUsers = () => {
   const [users, setUsers] = useState([]);
   const [mileageRates, setMileageRates] = useState([]);
   const [newUser, setNewUser] = useState({ firstName: '', lastName: '', email: '', role: 'user' });
@@ -184,4 +184,4 @@ const AdminPage = () => {
   );
 };
 
-export default AdminPage;
+export default adminUsers;
