@@ -27,7 +27,7 @@ app.use(
 app.use(cookieParser());
 
 // PORT
-const PORT = process.env.PORT || 3306;
+const PORT = process.env.PORT || 3001;
 
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -461,16 +461,18 @@ app.post(
   }
 );
 
-// LOGIN ROUTES
-// ----------------------------------------------------
+// LOGIN ROUTE
 app.post("/login", async (req, res) => {
   try {
-    const [user] = await queryAsync("SELECT * FROM USERS WHERE EMAIL =?", [
+    console.log("Login request received with email:", req.body.email);
+
+    const [user] = await queryAsync("SELECT * FROM USERS WHERE EMAIL = ?", [
       req.body.email,
     ]);
 
     if (!user) {
-      return res.send({ Status: "Unauthorized" });
+      console.log("User not found");
+      return res.status(401).send({ Status: "Unauthorized" });
     }
 
     const passwordMatch = await bcrypt.compare(
@@ -482,7 +484,7 @@ app.post("/login", async (req, res) => {
       const { FN, LN, EMAIL, ID: user_ID, ROLE } = user;
       const token = jwt.sign(
         { FN, LN, EMAIL, user_ID, ROLE },
-        "jwt-secret-key",
+        process.env.JWT_SECRET,
         { expiresIn: "1d" }
       );
 
@@ -494,9 +496,11 @@ app.post("/login", async (req, res) => {
         return res.send({ Status: "Success", token });
       }
     } else {
-      return res.send({ Status: "Unauthorized" });
+      console.log("Password mismatch");
+      return res.status(401).send({ Status: "Unauthorized" });
     }
   } catch (error) {
+    console.error("Error during login:", error);
     return res.status(500).send({ Status: "Error", Error: "Database error" });
   }
 });

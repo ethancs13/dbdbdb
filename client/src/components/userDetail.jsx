@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../css/userDetail.css";
 
-const UserDetail = () => {
+const userDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -55,4 +55,4 @@ const UserDetail = () => {
   );
 };
 
-export default UserDetail;
+export default userDetail;

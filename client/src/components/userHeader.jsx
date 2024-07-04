@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 import "../css/Header.css";
 
-const UserHeader = () => {
+const userHeader = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [email, setEmail] = useState("");
   const [fn, setFn] = useState("");
@@ -193,4 +193,4 @@ const UserHeader = () => {
   );
 };
 
-export default UserHeader;
+export default userHeader;
