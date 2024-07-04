@@ -52,7 +52,7 @@ const History = () => {
     console.log("Formatted Month-Year:", yyyymmFormatted);
 
     axios
-      .get("process.env.SERVER_END_POINT/api/user-id", {
+      .get(`${process.env.REACT_APP_SERVER_END_POINT}/api/user-id`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -60,7 +60,7 @@ const History = () => {
         console.log("User ID response: ", response.data);
 
         return axios.delete(
-          `process.env.SERVER_END_POINT/delete-month/${yyyymmFormatted}/${user_Id}`,
+          `${process.env.REACT_APP_SERVER_END_POINT}/delete-month/${yyyymmFormatted}/${user_Id}`,
           {
             withCredentials: true,
           }

@@ -3,10 +3,10 @@ const mysql = require('mysql');
 // Create a connection pool
 const pool = mysql.createPool({
   connectionLimit: 10,
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'por_db'
+  host: 'mysqlinstance.cx46082i6vq9.us-east-2.rds.amazonaws.com',
+  user: 'admin',
+  password: 'tZzcPEMAO9ry!',
+  database: 'POR_DB'
 });
 
 // Wrap the pool.query function in a promise for asynchronous handling

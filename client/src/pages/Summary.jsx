@@ -15,7 +15,7 @@ const Summary = () => {
     axios.defaults.withCredentials = true;
 
     // Check user authentication and role
-    axios.get("process.env.SERVER_END_POINT/").then((res) => {
+    axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/`).then((res) => {
       if (res.data.status === "Success") {
         setIsAuthenticated(true);
       } else if (res.data.status === "rootUser") {
