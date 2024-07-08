@@ -16,6 +16,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   },
   "dependencies": {
+    "concurrently": "^8.2.2",
     "dotenv": "^16.4.5"
   }
 }
