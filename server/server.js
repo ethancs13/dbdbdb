@@ -366,6 +366,8 @@ app.post(
     const user_ID = req.user_ID;
     const checkUserQuery = "SELECT * FROM USERS WHERE ID = ?";
     db.query(checkUserQuery, [user_ID], (err, results) => {
+    console.log(results)
+
       if (err) {
         return res.status(500).send("Server error");
       }
@@ -386,7 +388,7 @@ app.post(
         const sanitizedAmount = parseFloat(amount) || 0;
 
         await queryAsync(
-          "INSERT INTO expenses (user_ID, type, billable, porCC, amount, comment, month) VALUES (?, ?, ?, ?, ?, ?, ?)",
+          "INSERT INTO EXPENSES (USER_ID, TYPE, BILLABLE, PORCC, AMOUNT, COMMENT, MONTH) VALUES (?, ?, ?, ?, ?, ?, ?)",
           [userId, type, billable, porCC, sanitizedAmount, comment, monthData]
         );
       }
@@ -394,7 +396,7 @@ app.post(
       for (const row of foodData) {
         const dateObj = new Date(row.date);
         await queryAsync(
-          "INSERT INTO foodExpenses (user_ID, date, amount, location, persons, title, purpose, billable, porCC, month) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+          "INSERT INTO FOODEXPENSES (USER_ID, DATE, AMOUNT, LOCATION, PERSONS, TITLE, PURPOSE, BILLABLE, PORCC, MONTH) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
           [
             user_ID,
             dateObj,
@@ -413,7 +415,7 @@ app.post(
       for (const row of mileageData) {
         const dateObj = new Date(row.date);
         await queryAsync(
-          "INSERT INTO mileageExpenses (user_ID, date, purpose, miles, billable, amount, month) VALUES (?, ?, ?, ?, ?, ?, ?)",
+          "INSERT INTO MILEAGEEXPENSES (USER_ID, DATE, PURPOSE, MILES, BILLABLE, AMOUNT, MONTH) VALUES (?, ?, ?, ?, ?, ?, ?)",
           [
             user_ID,
             dateObj,
@@ -429,7 +431,7 @@ app.post(
       for (const row of itemData) {
         const dateObj = new Date(row.date);
         await queryAsync(
-          "INSERT INTO itemExpenses (user_ID, item, date, subTotal, cityTax, taxPercent, total, source, shippedFrom, shippedTo, billable, month) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+          "INSERT INTO ITEMEXPENSES (USER_ID, ITEM, DATE, SUBTOTAL, CITYTAX, TAXPERCENT, TOTAL, SOURCE, SHIPPEDFROM, SHIPPEDTO, BILLABLE, MONTH) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
           [
             user_ID,
             row.item,
@@ -449,7 +451,7 @@ app.post(
 
       for (const file of filesData) {
         await queryAsync(
-          "INSERT INTO files (user_ID, name, path, month) VALUES (?, ?, ?, ?)",
+          "INSERT INTO FILES (USER_ID, NAME, PATH, MONTH) VALUES (?, ?, ?, ?)",
           [user_ID, file.originalname, file.path, monthData]
         );
       }

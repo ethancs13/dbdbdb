@@ -82,7 +82,7 @@
 }
 
 .w20 {
-  width: 210px;
+  width: calc(100%/6);
   box-sizing: border-box;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -100,6 +100,7 @@
 
 .summary-header {
   width: 20%;
+  
 }
 
 .summary-box-item-row > div {

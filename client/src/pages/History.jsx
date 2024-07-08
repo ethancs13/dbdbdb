@@ -15,6 +15,10 @@ const History = () => {
   console.log("History Data:", historyData);
 
   const renderCategory = (category, items) => {
+    if (!items || items.length === 0) {
+      return <div className="no-items">No items available</div>;
+    }
+
     return items.map((item, index) => (
       <div key={index} className="item-container">
         {Object.entries(item)
@@ -95,7 +99,7 @@ const History = () => {
             {Object.entries(categories).map(([category, items]) => (
               <div key={category} className="category-container">
                 <h4 className="category-title">{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
-                {Array.isArray(items) ? renderCategory(category, items) : <div>No items available</div>}
+                {renderCategory(category, items)}
               </div>
             ))}
             <button className="delete-button" onClick={(e) => handleDeleteMonth(yyyymm, e)}>
