@@ -28,6 +28,7 @@
     "path-browserify": "^1.0.1",
     "react": "^18.2.0",
     "react-auth-kit": "^3.0.0-alpha.44",
+    "react-beautiful-dnd": "^13.1.1",
     "react-bootstrap": "^2.10.2",
     "react-cookie": "^7.1.4",
     "react-country-state-city": "^1.1.0",

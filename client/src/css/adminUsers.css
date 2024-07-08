@@ -68,7 +68,13 @@ body {
   font-size: 1em;
   color: #555;
 }
-
+.add-user-form, .user-list, .expense-types {
+  width:50%;
+  padding: 2rem;
+}
+.expense-types {
+  border-left: #333 solid 1px;;
+}
 /* Add User Form */
 .add-user-form,
 .add-mileage-rate {
@@ -116,6 +122,11 @@ body {
   padding: 0;
 }
 
+.mileage-rates {
+  width: 50%;
+  padding: 5px;
+}
+
 .mileage-rates li {
   padding: 10px 15px;
   margin: 5px 0;
@@ -129,6 +140,11 @@ body {
 }
 
 /* Submissions */
+.submissions {
+  width: 100%;
+  padding: 2rem;
+}
+
 .submissions ul {
   list-style-type: none;
   padding: 0;
@@ -195,4 +211,92 @@ body {
 
 .error {
   color: #d9534f;
+}
+
+.add-expense-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.add-expense-type input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 65%;
+  margin-right: 10px;
+  transition: border-color 0.3s;
+}
+
+.add-expense-type input:focus {
+  border-color: #4caf50;
+}
+
+.admin-expense-types-btn-add {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  width: 16rem;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.admin-expense-types-btn-add:hover {
+  background-color: white;
+  color: black;
+  outline: 1px solid #4caf50;
+}
+
+.admin-expense-types-btn-del {
+  background-color: #f44336; /* Red */
+  border: none;
+  color: white;
+  padding: 4px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.admin-expense-types-btn-del:hover {
+  background-color: white;
+  color: black;
+  outline: 1px solid #f44336;
+}
+
+.expense-type-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 0 1px 0 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  transition-duration: 0.1s;
+
+}
+.expense-type-list-item:hover {
+  border: solid 1px #6f6f6f;
+}
+
+.expense-type-list {
+  padding: 0;
+}
+.users {
+  display: flex;
+  width: 100%;
+  border-top: #333 solid 1px;
 }

@@ -28,7 +28,7 @@
   
   .category-title {
     font-size: 1.3em;
-    border-bottom: solid rgb(168, 168, 168) 1px;
+    border-bottom: dotted rgb(22, 35, 148) 1px;
     margin-bottom: 10px;
     padding: 5px;
   }
@@ -38,8 +38,7 @@
     flex-wrap: wrap;
     gap: 10px;
     padding: 10px 10px;
-    /* border-top: solid #ccc 1px; */
-    border-bottom: solid #ccc 1px;
+    border-bottom: solid #a9a9a9 1px;
   }
   
   .item {

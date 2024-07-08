@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "../css/GeneralTable.css";
 
-const ExpenseSelectRow = ({ index, data, deleteRow, handleChange }) => {
+const ExpenseSelectRow = ({ index, data, deleteRow, handleChange, expenseTypes }) => {
   const { type, billable, porCC, amount, comment, customer } = data;
 
   useEffect(() => {
@@ -22,16 +22,11 @@ const ExpenseSelectRow = ({ index, data, deleteRow, handleChange }) => {
           value={type}
           onChange={(event) => handleChange(index, event)}
         >
-          <option value="Cell">Cell Phone</option>
-          <option value="Broadband">Broadband</option>
-          <option value="Business Landline">Business Land Line</option>
-          <option value="Long Distance">Long Distance</option>
-          <option value="Itemized Business Meals">Itemized Business Meals</option>
-          <option value="Entertainment">Entertainment</option>
-          <option value="Parking">Parking</option>
-          <option value="Tolls">Tolls</option>
-          <option value="Mileage">Mileage</option>
-          <option value="Other">Other</option>
+          {expenseTypes.map((expenseType) => (
+            <option key={expenseType.id} value={expenseType.type}>
+              {expenseType.type}
+            </option>
+          ))}
         </select>
       </div>
       <div className="input-container">

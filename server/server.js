@@ -366,7 +366,7 @@ app.post(
     const user_ID = req.user_ID;
     const checkUserQuery = "SELECT * FROM USERS WHERE ID = ?";
     db.query(checkUserQuery, [user_ID], (err, results) => {
-    console.log(results)
+      console.log(results);
 
       if (err) {
         return res.status(500).send("Server error");
@@ -534,6 +534,170 @@ app.post("/signup", async (req, res) => {
     return res.json({ Error: "Error when hashing password" });
   }
 });
+
+// New route for managing expense types
+app.get("/admin/expense-types", verifyUser, async (req, res) => {
+  try {
+    const results = await queryAsync(
+      "SELECT * FROM EXPENSE_TYPES ORDER BY ORDER_INDEX"
+    );
+    res.json(results);
+  } catch (error) {
+    res.status(500).send("Error fetching expense types");
+  }
+});
+
+app.post("/admin/expense-types", verifyUser, async (req, res) => {
+  const { type } = req.body;
+  try {
+    await queryAsync("INSERT INTO EXPENSE_TYPES (type) VALUES (?)", [type]);
+    res.json({ status: "Success" });
+  } catch (error) {
+    res.status(500).send("Error adding expense type");
+  }
+});
+
+app.delete("/admin/expense-types/:id", verifyUser, async (req, res) => {
+  const { id } = req.params;
+  try {
+    await queryAsync("DELETE FROM EXPENSE_TYPES WHERE id = ?", [id]);
+    res.json({ status: "Success" });
+  } catch (error) {
+    res.status(500).send("Error deleting expense type");
+  }
+});
+
+app.post("/admin/update-expense-types-order", verifyUser, async (req, res) => {
+  if (req.role !== "admin") {
+    return res.status(403).json({ Error: "Access denied" });
+  }
+  const expenseTypes = req.body;
+
+  try {
+    // Begin transaction
+    await queryAsync("START TRANSACTION");
+
+    // Update each expense type's order_index
+    for (let i = 0; i < expenseTypes.length; i++) {
+      const expenseType = expenseTypes[i];
+      await queryAsync(
+        "UPDATE EXPENSE_TYPES SET ORDER_INDEX = ? WHERE id = ?",
+        [i, expenseType.id]
+      );
+    }
+
+    // Commit transaction
+    await queryAsync("COMMIT");
+    res.json({ status: "Order updated successfully" });
+  } catch (error) {
+    // Rollback transaction in case of error
+    await queryAsync("ROLLBACK");
+    console.error("Error updating order:", error);
+    res.status(500).send("Error updating order");
+  }
+});
+
+// Define the /admin/mileage-rates route
+app.get("/admin/mileage-rates", verifyUser, async (req, res) => {
+  if (req.role !== "admin") {
+    return res.status(403).json({ Error: "Access denied" });
+  }
+
+  try {
+    const mileageRates = await queryAsync("SELECT * FROM MILEAGE_RATES");
+    res.json(mileageRates);
+  } catch (error) {
+    console.error("Error fetching mileage rates:", error);
+    res.status(500).send("Error fetching mileage rates");
+  }
+});
+app.get("/admin/all-submissions", verifyUser, async (req, res) => {
+  if (req.role !== "admin") {
+    return res.status(403).json({ Error: "Access denied" });
+  }
+
+  try {
+    const [expenses, files, food, items, mileage] = await Promise.all([
+      queryAsync("SELECT * FROM EXPENSES"),
+      queryAsync("SELECT * FROM FILES"),
+      queryAsync("SELECT * FROM FOODEXPENSES"),
+      queryAsync("SELECT * FROM ITEMEXPENSES"),
+      queryAsync("SELECT * FROM MILEAGEEXPENSES"),
+    ]);
+
+    const allSubmissions = {};
+
+    const groupByUserAndMonth = (data, category) => {
+      data.forEach((item) => {
+        const userId = item.USER_ID;
+        const date = new Date(item.MONTH);
+        const monthYear = date.toLocaleDateString("default", {
+          month: "long",
+          year: "numeric",
+        });
+
+        if (!allSubmissions[userId]) {
+          allSubmissions[userId] = {};
+        }
+
+        if (!allSubmissions[userId][monthYear]) {
+          allSubmissions[userId][monthYear] = {
+            expenses: [],
+            files: [],
+            food: [],
+            items: [],
+            mileage: [],
+          };
+        }
+
+        allSubmissions[userId][monthYear][category].push(item);
+      });
+    };
+
+    groupByUserAndMonth(expenses, "expenses");
+    groupByUserAndMonth(files, "files");
+    groupByUserAndMonth(food, "food");
+    groupByUserAndMonth(items, "items");
+    groupByUserAndMonth(mileage, "mileage");
+
+    res.json(allSubmissions);
+  } catch (error) {
+    console.error("Error fetching all submissions:", error);
+    res.status(500).send("Error fetching all submissions");
+  }
+});
+
+const groupByUser = (data) => {
+  const grouped = {};
+
+  const addToGroup = (item, userId, category) => {
+    if (!grouped[userId]) {
+      grouped[userId] = {
+        expenses: [],
+        files: [],
+        food: [],
+        items: [],
+        mileage: [],
+      };
+    }
+    grouped[userId][category].push(item);
+  };
+
+  const categorizeByUser = (items, category) => {
+    items.forEach((item) => {
+      const userId = item.USER_ID;
+      addToGroup(item, userId, category);
+    });
+  };
+
+  categorizeByUser(data.expenses, "expenses");
+  categorizeByUser(data.files, "files");
+  categorizeByUser(data.food, "food");
+  categorizeByUser(data.items, "items");
+  categorizeByUser(data.mileage, "mileage");
+
+  return grouped;
+};
 
 // SIGN OUT ROUTES
 // ----------------------------------------------------

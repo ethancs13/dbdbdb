@@ -9,6 +9,7 @@ import UserNavigation from "./components/userNavigation";
 import AdminUsers from "./components/adminUsers";
 import UserDetail from "./components/userDetail";
 import AdminDashboard from "./components/adminDashboard";
+import Admin from "./pages/Admin";
 import LogoutButton from "./components/LogoutButton";
 import Itemized from "./pages/Itemized";
 import General from "./pages/General";
@@ -58,12 +59,12 @@ function AuthConsumer() {
     return (
       <>
         <AdminHeader />
-        <AdminNavigation />
         <div className="main-content">
           <Routes>
             <Route path="/signup" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/" element={<AdminDashboard />} />
+            <Route path="/" element={<Admin />} />
+            {/* <Route path="/" element={<AdminDashboard />} /> */}
             <Route path="/users" element={<AdminUsers />} />
             <Route path="/user/:id" element={<UserDetail />} />
           </Routes>

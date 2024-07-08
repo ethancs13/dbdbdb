@@ -13,15 +13,6 @@ const adminNavigation = () => {
         <Link to="/" className={currentPath === "/" ? "active" : ""}>
           <button>Summary</button>
         </Link>
-        <Link to="/users" className={currentPath === "/users" ? "active" : ""}>
-          <button>Users</button>
-        </Link>
-        <Link to="/mileage-rate" className={currentPath === "/mileage-rate" ? "active" : ""}>
-          <button>IRS Mileage Rate</button>
-        </Link>
-        <Link to="/submissions" className={currentPath === "/submissions" ? "active" : ""}>
-          <button>Submissions</button>
-        </Link>
       </div>
       <BackButton />
     </div>

@@ -144,7 +144,7 @@ const userHeader = () => {
     <div className="header-wrapper">
       <div className="expense_navigation_wrapper">
         <div>
-          <h3 style={{ textAlign: "right", width: "12rem" }}>Name</h3>
+          <h3 style={{ textAlign: "right", width: "12.4rem" }}>Name</h3>
           <div className="expense_navigation_name">
             <h3>
               {fn} {ln}
