@@ -1,12 +1,14 @@
+// server/config/connection.js
 const mysql = require('mysql');
 
 // Create a connection pool
 const pool = mysql.createPool({
   connectionLimit: 10,
-  host: 'mysqlinstance.cx46082i6vq9.us-east-2.rds.amazonaws.com',
-  user: 'admin',
-  password: 'tZzcPEMAO9ry!',
-  database: 'POR_DB'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  port: process.env.DB_PORT,
 });
 
 // Wrap the pool.query function in a promise for asynchronous handling
@@ -16,7 +18,6 @@ const queryAsync = (sql, values) => {
       if (error) {
         reject(error);
       } else {
-        console.log(results)
         resolve(results);
       }
     });
