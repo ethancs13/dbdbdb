@@ -22,42 +22,42 @@ const userNavigation = () => {
       <div
         className="expense_navigation_container"
       >
-        <Link to="/" className={currentPath === "/" ? "active" : ""}>
+        <Link to="/" className={currentPath === "/" ? "user-navigation-items active" : "user-navigation-items"}>
           <button>Summary</button>
         </Link>
         <Link
           to="/general"
-          className={currentPath === "/general" ? "active" : ""}
+          className={currentPath === "/general" ? "user-navigation-items active" : "user-navigation-items"}
         >
           <button>General</button>
         </Link>
         <Link
           to="/food-beverage"
-          className={currentPath === "/food-beverage" ? "active" : ""}
+          className={currentPath === "/food-beverage" ? "user-navigation-items active" : "user-navigation-items"}
         >
           <button>Food & Beverage</button>
         </Link>
         <Link
           to="/mileage"
-          className={currentPath === "/mileage" ? "active" : ""}
+          className={currentPath === "/mileage" ? "user-navigation-items active" : "user-navigation-items"}
         >
           <button>Mileage</button>
         </Link>
         <Link
           to="/itemized-purchases"
-          className={currentPath === "/itemized-purchases" ? "active" : ""}
+          className={currentPath === "/itemized-purchases" ? "user-navigation-items active" : "user-navigation-items"}
         >
           <button>Itemized Purchases</button>
         </Link>
         <Link
           to="/upload-files"
-          className={currentPath === "/upload-files" ? "active" : ""}
+          className={currentPath === "/upload-files" ? "user-navigation-items active" : "user-navigation-items"}
         >
           <button>Upload Files</button>
         </Link>
         <Link
           to="/history"
-          className={currentPath === "/history" ? "active" : ""}
+          className={currentPath === "/history" ? "user-navigation-items active" : "user-navigation-items"}
         >
           <button>History</button>
         </Link>

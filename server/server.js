@@ -546,6 +546,16 @@ app.get("/admin/expense-types", verifyUser, async (req, res) => {
     res.status(500).send("Error fetching expense types");
   }
 });
+app.get("/user/expense-types", verifyUser, async (req, res) => {
+  try {
+    const results = await queryAsync(
+      "SELECT * FROM EXPENSE_TYPES ORDER BY ORDER_INDEX"
+    );
+    res.json(results);
+  } catch (error) {
+    res.status(500).send("Error fetching expense types");
+  }
+});
 
 app.post("/admin/expense-types", verifyUser, async (req, res) => {
   const { type } = req.body;
