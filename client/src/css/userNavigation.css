@@ -20,3 +20,10 @@
   .expense_navigation_container a.active button:hover {
     background-color: #2980b9;
   }
+
+  .expense_navigation_container {
+    width: 100%;
+  }
+  .user-navigation-items button{
+    width: 11rem;
+  }

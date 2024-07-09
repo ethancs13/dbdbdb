@@ -7,7 +7,7 @@ import "../css/Summary.css";
 const Summary = () => {
   const { rowsData } = useContext(FormContext);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false); // Added state for isAdmin
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const navigate = useNavigate();
 
@@ -52,8 +52,10 @@ const Summary = () => {
                       <div className="w20">{row.billable}</div>
                       <div className="w20">{row.porCC}</div>
                       <div className="w20">{row.amount}</div>
-                      {row.billable === "Yes" && (
+                      {row.billable === "Yes" ? (
                         <div className="w20">{row.customer}</div>
+                      ) : (
+                        <div className="w20"></div>
                       )}
                       <div className="w20" style={{ textWrap: "wrap" }}>
                         {row.comment}
