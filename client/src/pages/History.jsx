@@ -15,14 +15,14 @@ const History = () => {
   console.log("History Data:", historyData);
 
   const renderCategory = (category, items) => {
-    if (!items || items.length === 0) {
+    if (!Array.isArray(items) || items.length === 0) {
       return <div className="no-items">No items available</div>;
     }
 
     return items.map((item, index) => (
       <div key={index} className="item-container">
         {Object.entries(item)
-          .filter(([key, value]) => key.toLowerCase() !== 'id' && key.toLowerCase() !== 'user_id')
+          .filter(([key]) => key.toLowerCase() !== 'id' && key.toLowerCase() !== 'user_id')
           .map(([key, value]) => (
             <div key={key} className="item">
               <strong>{key}:</strong> {value}
@@ -35,13 +35,15 @@ const History = () => {
   const calculateTotalAmount = (categories) => {
     let total = 0;
     Object.values(categories).forEach((items) => {
-      items.forEach((item) => {
-        if (item.amount) {
-          total += parseFloat(item.amount);
-        } else if (item.AMOUNT) {
-          total += parseFloat(item.AMOUNT);
-        }
-      });
+      if (Array.isArray(items)) {
+        items.forEach((item) => {
+          if (item.amount) {
+            total += parseFloat(item.amount);
+          } else if (item.AMOUNT) {
+            total += parseFloat(item.AMOUNT);
+          }
+        });
+      }
     });
     return total.toFixed(2);
   };
