@@ -1,18 +1,26 @@
 // IMPORTS
 // -------------------------------------------
-const express = require("express");
-const mysql = require("mysql");
-const cors = require("cors");
-const dotenv = require("dotenv");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const cookieParser = require("cookie-parser");
-const { promisify } = require("util");
-const multer = require("multer");
-const path = require("path");
+import express from "express";
+import mysql from "mysql";
+import cors from "cors";
+import dotenv from "dotenv";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import cookieParser from "cookie-parser";
+import { promisify } from "util";
+import multer from "multer";
+import { S3Client } from "@aws-sdk/client-s3";
+import { Upload } from "@aws-sdk/lib-storage";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 // Load environment variables from .env file
+// Load environment variables from .env file
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // ------------- app_setup -------------
 const app = express();
@@ -206,16 +214,18 @@ app.post("/admin/users", verifyUser, async (req, res) => {
 
 // MULTER STORAGE
 // ----------------------------------------------------
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "uploads"));
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + "-" + file.originalname);
+// Configure AWS SDK
+const s3Client = new S3Client({
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
 });
 
-const uploads = multer({ storage: storage });
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
 
 app.get("/user", verifyUser, (req, res) => {
   const userId = req.user_ID;
@@ -353,115 +363,123 @@ app.get("/api/user-id", verifyUser, async (req, res) => {
 });
 
 // upload POST route to get files
-app.post(
-  "/upload",
-  uploads.array("uploadedFiles"),
-  verifyUser,
-  async (req, res) => {
-    if (!req.body.email) {
-      res.json({ status: "log in first." });
-      return;
-    }
 
-    const user_ID = req.user_ID;
-    const checkUserQuery = "SELECT * FROM USERS WHERE ID = ?";
-    db.query(checkUserQuery, [user_ID], (err, results) => {
-      console.log(results);
-
-      if (err) {
-        return res.status(500).send("Server error");
-      }
-    });
-
-    const rowsData = JSON.parse(req.body.rowsData);
-    const foodData = JSON.parse(req.body.foodRowsData);
-    const mileageData = JSON.parse(req.body.mileageRowsData);
-    const itemData = JSON.parse(req.body.itemRowsData);
-    const monthData = req.body.month;
-    let filesData = req.files ? req.files : req.body.files;
-
-    try {
-      for (const row of rowsData) {
-        const { type, billable, porCC, amount, comment } = row;
-        const userId = req.user_ID;
-
-        const sanitizedAmount = parseFloat(amount) || 0;
-
-        await queryAsync(
-          "INSERT INTO EXPENSES (USER_ID, TYPE, BILLABLE, PORCC, AMOUNT, COMMENT, MONTH) VALUES (?, ?, ?, ?, ?, ?, ?)",
-          [userId, type, billable, porCC, sanitizedAmount, comment, monthData]
-        );
-      }
-
-      for (const row of foodData) {
-        const dateObj = new Date(row.date);
-        await queryAsync(
-          "INSERT INTO FOODEXPENSES (USER_ID, DATE, AMOUNT, LOCATION, PERSONS, TITLE, PURPOSE, BILLABLE, PORCC, MONTH) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-          [
-            user_ID,
-            dateObj,
-            row.amount,
-            row.location,
-            row.persons,
-            row.title,
-            row.purpose,
-            row.billable,
-            row.porCC,
-            monthData,
-          ]
-        );
-      }
-
-      for (const row of mileageData) {
-        const dateObj = new Date(row.date);
-        await queryAsync(
-          "INSERT INTO MILEAGEEXPENSES (USER_ID, DATE, PURPOSE, MILES, BILLABLE, AMOUNT, MONTH) VALUES (?, ?, ?, ?, ?, ?, ?)",
-          [
-            user_ID,
-            dateObj,
-            row.purpose,
-            row.miles,
-            row.billable,
-            row.amount,
-            monthData,
-          ]
-        );
-      }
-
-      for (const row of itemData) {
-        const dateObj = new Date(row.date);
-        await queryAsync(
-          "INSERT INTO ITEMEXPENSES (USER_ID, ITEM, DATE, SUBTOTAL, CITYTAX, TAXPERCENT, TOTAL, SOURCE, SHIPPEDFROM, SHIPPEDTO, BILLABLE, MONTH) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-          [
-            user_ID,
-            row.item,
-            dateObj,
-            row.subTotal,
-            row.cityTax,
-            row.taxPercent,
-            row.total,
-            row.source,
-            row.shippedFrom,
-            row.shippedTo,
-            row.billable,
-            monthData,
-          ]
-        );
-      }
-
-      for (const file of filesData) {
-        await queryAsync(
-          "INSERT INTO FILES (USER_ID, NAME, PATH, MONTH) VALUES (?, ?, ?, ?)",
-          [user_ID, file.originalname, file.path, monthData]
-        );
-      }
-
-      res.json({ status: "Success" });
-    } catch (error) {
-      res.status(500).json({ status: "Error", error: "Database error" });
-    }
+app.post('/upload', upload.array('uploadedFiles'), verifyUser, async (req, res) => {
+  if (!req.body.email) {
+    res.json({ status: 'log in first.' });
+    return;
   }
-);
+
+  const user_ID = req.user_ID;
+  const checkUserQuery = 'SELECT * FROM USERS WHERE ID = ?';
+  db.query(checkUserQuery, [user_ID], (err, results) => {
+    if (err) {
+      return res.status(500).send('Server error');
+    }
+  });
+
+  const rowsData = JSON.parse(req.body.rowsData);
+  const foodData = JSON.parse(req.body.foodRowsData);
+  const mileageData = JSON.parse(req.body.mileageRowsData);
+  const itemData = JSON.parse(req.body.itemRowsData);
+  const monthData = req.body.month;
+  let filesData = req.files ? req.files : req.body.files;
+
+  try {
+    for (const row of rowsData) {
+      const { type, billable, porCC, amount, comment } = row;
+      const userId = req.user_ID;
+
+      const sanitizedAmount = parseFloat(amount) || 0;
+
+      await queryAsync(
+        'INSERT INTO EXPENSES (user_ID, type, billable, porCC, amount, comment, month) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        [userId, type, billable, porCC, sanitizedAmount, comment, monthData]
+      );
+    }
+
+    for (const row of foodData) {
+      const dateObj = new Date(row.date);
+      await queryAsync(
+        'INSERT INTO FOODEXPENSES (user_ID, date, amount, location, persons, title, purpose, billable, porCC, month) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        [
+          user_ID,
+          dateObj,
+          row.amount,
+          row.location,
+          row.persons,
+          row.title,
+          row.purpose,
+          row.billable,
+          row.porCC,
+          monthData,
+        ]
+      );
+    }
+
+    for (const row of mileageData) {
+      const dateObj = new Date(row.date);
+      await queryAsync(
+        'INSERT INTO MILEAGEEXPENSES (user_ID, date, purpose, miles, billable, amount, month) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        [
+          user_ID,
+          dateObj,
+          row.purpose,
+          row.miles,
+          row.billable,
+          row.amount,
+          monthData,
+        ]
+      );
+    }
+
+    for (const row of itemData) {
+      const dateObj = new Date(row.date);
+      await queryAsync(
+        'INSERT INTO ITEMEXPENSES (user_ID, item, date, subTotal, cityTax, taxPercent, total, source, shippedFrom, shippedTo, billable, month) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        [
+          user_ID,
+          row.item,
+          dateObj,
+          row.subTotal,
+          row.cityTax,
+          row.taxPercent,
+          row.total,
+          row.source,
+          row.shippedFrom,
+          row.shippedTo,
+          row.billable,
+          monthData,
+        ]
+      );
+    }
+
+    for (const file of filesData) {
+      const uploadParams = {
+        Bucket: process.env.AWS_S3_BUCKET,
+        Key: `files/${Date.now().toString()}-${file.originalname}`,
+        Body: file.buffer,
+        ACL: 'public-read',
+      };
+      const parallelUploads3 = new Upload({
+        client: s3Client,
+        params: uploadParams,
+      });
+
+      await parallelUploads3.done();
+
+      await queryAsync(
+        'INSERT INTO FILES (user_ID, name, path, month) VALUES (?, ?, ?, ?)',
+        [user_ID, file.originalname, `files/${Date.now().toString()}-${file.originalname}`, monthData]
+      );
+    }
+
+    res.json({ status: 'Success' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: 'Error', error: 'Database error' });
+  }
+});
 
 // LOGIN ROUTE
 app.post("/login", async (req, res) => {
