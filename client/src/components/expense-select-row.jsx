@@ -23,8 +23,8 @@ const ExpenseSelectRow = ({ index, data, deleteRow, handleChange, expenseTypes }
           onChange={(event) => handleChange(index, event)}
         >
           {expenseTypes.map((expenseType) => (
-            <option key={expenseType.id} value={expenseType.type}>
-              {expenseType.type}
+            <option key={expenseType.id} value={expenseType.TYPE}>
+              {expenseType.TYPE}
             </option>
           ))}
         </select>
