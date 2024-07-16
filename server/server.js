@@ -14,13 +14,23 @@ import { Upload } from "@aws-sdk/lib-storage";
 import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import { logger } from "./logger.js"; // Import logger
+import winston from "winston";
 
 // Load environment variables from .env file
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+// Setup logging
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.json(),
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: 'combined.log' })
+  ],
+});
 
 // ------------- app_setup -------------
 const app = express();
@@ -245,7 +255,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 
-app.get("/user", verifyUser, (req, res) => {
+app.get("/user", verifyUser, async (req, res) => {
   const userId = req.user_ID;
 
   const queries = {
@@ -259,41 +269,45 @@ app.get("/user", verifyUser, (req, res) => {
       "SELECT ID, USER_ID, DATE, PURPOSE, MILES, MONTH FROM MILEAGEEXPENSES WHERE USER_ID = ?",
   };
 
-  const queryDatabase = (query, params) => {
-    return new Promise((resolve, reject) => {
-      pool.query(query, params, (err, results) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(results);
-        }
-      });
-    });
-  };
+  try {
+    const userQuery = await queryAsync("SELECT EMAIL FROM USERS WHERE ID = ?", [userId]);
+    const email = userQuery[0]?.EMAIL;
 
-  Promise.all([
-    queryDatabase(queries.expenses, [userId]),
-    queryDatabase(queries.files, [userId]),
-    queryDatabase(queries.food, [userId]),
-    queryDatabase(queries.items, [userId]),
-    queryDatabase(queries.mileage, [userId]),
-  ])
-    .then((results) => {
-      const [expenses, files, food, items, mileage] = results;
-      const groupedData = groupByMonthYear({
-        expenses,
-        files,
-        food,
-        items,
-        mileage,
+    const queryDatabase = (query, params) => {
+      return new Promise((resolve, reject) => {
+        pool.query(query, params, (err, results) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(results);
+          }
+        });
       });
-      res.json(groupedData);
-    })
-    .catch((err) => {
-      console.error("Error fetching data:", err);
-      res.status(500).send("Error fetching data");
+    };
+
+    const [expenses, files, food, items, mileage] = await Promise.all([
+      queryDatabase(queries.expenses, [userId]),
+      queryDatabase(queries.files, [userId]),
+      queryDatabase(queries.food, [userId]),
+      queryDatabase(queries.items, [userId]),
+      queryDatabase(queries.mileage, [userId]),
+    ]);
+
+    const groupedData = groupByMonthYear({
+      expenses,
+      files,
+      food,
+      items,
+      mileage,
     });
+
+    res.json({ email, ...groupedData });
+  } catch (err) {
+    console.error("Error fetching data:", err);
+    res.status(500).send("Error fetching data");
+  }
 });
+
 
 const groupByMonthYear = (data) => {
   const grouped = {};
