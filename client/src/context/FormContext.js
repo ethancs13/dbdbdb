@@ -192,7 +192,7 @@ const FormProvider = ({ children }) => {
 
   const addRow = () => {
     const newRow = {
-      type: expenseTypes[0].type, // set to first expense type
+      type: expenseTypes[0].TYPE, // set to first expense type
       billable: "No",
       porCC: "No",
       amount: 0,
