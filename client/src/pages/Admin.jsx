@@ -47,7 +47,15 @@ const Admin = () => {
         `${process.env.REACT_APP_SERVER_END_POINT}/admin/expense-types`,
         { withCredentials: true }
       );
-      setExpenseTypes(response.data);
+
+      const normalizedData = response.data.map((item) => ({
+        id: item.ID,
+        type: item.TYPE,
+        orderIndex: item.ORDER_INDEX,
+        createdAt: item.CREATED_AT,
+      }));
+
+      setExpenseTypes(normalizedData);
     } catch (err) {
       console.error("Error fetching expense types:", err);
     }

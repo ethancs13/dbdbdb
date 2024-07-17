@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext'; // Import AuthContext
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -51,12 +52,20 @@ export const Login = () => {
                 <input
                     value={pass}
                     onChange={(e) => setPass(e.target.value)}
-                    type="password"
-                    placeholder="* * * * * * * *"
+                    type={showPassword ? 'text' : 'password'}
                     id="password"
                     name="password"
                     required
                 />
+                <div className="show-password">
+                    <input
+                        type="checkbox"
+                        id="show-password"
+                        checked={showPassword}
+                        onChange={() => setShowPassword(!showPassword)}
+                    />
+                    <label htmlFor="show-password">Show Password</label>
+                </div>
                 <button className="btn btn-primary" type="submit" disabled={loading}>
                     {loading ? 'Loading...' : 'Login'}
                 </button>

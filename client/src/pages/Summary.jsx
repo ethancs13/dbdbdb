@@ -40,9 +40,7 @@ const Summary = () => {
                   <div className="summary-header">Billable?</div>
                   <div className="summary-header">PoR CC used?</div>
                   <div className="summary-header">Amount</div>
-                  {rowsData.some((row) => row.billable === "Yes") && (
-                    <div className="summary-header">Customer</div>
-                  )}
+                  <div className="summary-header">Customer</div>
                   <div className="summary-header">Comment</div>
                 </div>
                 {rowsData.map((row, index) => (
