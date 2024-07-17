@@ -24,11 +24,11 @@ const __dirname = dirname(__filename);
 
 // Setup logging
 const logger = winston.createLogger({
-  level: 'info',
+  level: "info",
   format: winston.format.json(),
   transports: [
     new winston.transports.Console(),
-    new winston.transports.File({ filename: 'combined.log' })
+    new winston.transports.File({ filename: "combined.log" }),
   ],
 });
 
@@ -56,23 +56,27 @@ const pool = mysql.createPool({
   port: process.env.DB_PORT,
 });
 
-pool.on('connection', (connection) => {
-  logger.info(`New database connection established with ID: ${connection.threadId}`);
+pool.on("connection", (connection) => {
+  logger.info(
+    `New database connection established with ID: ${connection.threadId}`
+  );
 });
 
-pool.on('acquire', (connection) => {
+pool.on("acquire", (connection) => {
   logger.info(`Connection ${connection.threadId} acquired`);
 });
 
-pool.on('release', (connection) => {
+pool.on("release", (connection) => {
   logger.info(`Connection ${connection.threadId} released`);
 });
 
-pool.on('error', (err) => {
+pool.on("error", (err) => {
   logger.error(`Database connection error: ${err.message}`);
 });
 
 const queryAsync = promisify(pool.query).bind(pool);
+
+const getConnectionAsync = promisify(pool.getConnection).bind(pool);
 
 // AUTH LOGIC
 // ----------------------------------------------------
@@ -176,22 +180,23 @@ app.delete("/admin/users/:id", verifyUser, async (req, res) => {
   const userId = req.params.id;
 
   const queries = [
-    "DELETE FROM expenses WHERE USER_ID = ?",
-    "DELETE FROM files WHERE USER_ID = ?",
-    "DELETE FROM foodexpenses WHERE USER_ID = ?",
-    "DELETE FROM itemexpenses WHERE USER_ID = ?",
-    "DELETE FROM mileageexpenses WHERE USER_ID = ?",
-    "DELETE FROM users WHERE ID = ?",
+    "DELETE FROM EXPENSES WHERE USER_ID = ?",
+    "DELETE FROM FILES WHERE USER_ID = ?",
+    "DELETE FROM FOODEXPENSES WHERE USER_ID = ?",
+    "DELETE FROM ITEMEXPENSES WHERE USER_ID = ?",
+    "DELETE FROM MILEAGEEXPENSES WHERE USER_ID = ?",
+    "DELETE FROM USERS WHERE ID = ?",
   ];
 
-  const connection = await pool.getConnection();
+  let connection;
 
   try {
+    connection = await getConnectionAsync();
     await connection.beginTransaction();
     logger.info(`Transaction started for deleting user with ID: ${userId}`);
 
     for (let query of queries) {
-      await queryAsync(query, [userId], connection);
+      await queryAsync.call(connection, query, [userId]);
       logger.info(`Executed query: ${query}`);
     }
 
@@ -202,12 +207,19 @@ app.delete("/admin/users/:id", verifyUser, async (req, res) => {
       message: "User and associated data deleted successfully",
     });
   } catch (error) {
-    await connection.rollback();
-    logger.error(`Transaction rollback for deleting user with ID: ${userId} due to error: ${error.message}`);
+    if (connection) {
+      await connection.rollback();
+      logger.error(
+        `Transaction rollback for deleting user with ID: ${userId} due to error: ${error.message}`
+      );
+    }
+    logger.error(`Error deleting user and associated data: ${error.message}`);
     res.status(500).send("Error deleting user and associated data");
   } finally {
-    connection.release();
-    logger.info(`Connection released after deleting user with ID: ${userId}`);
+    if (connection) {
+      connection.release();
+      logger.info(`Connection released after deleting user with ID: ${userId}`);
+    }
   }
 });
 
@@ -216,7 +228,11 @@ app.post("/admin/users", verifyUser, async (req, res) => {
     return res.status(403).json({ Error: "Access denied" });
   }
 
-  const { fn, ln, email, password, role } = req.body;
+  const { firstName, lastName, email, password, role } = req.body;
+
+  if (!password) {
+    return res.status(400).json({ Error: "Password is required" });
+  }
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -224,19 +240,19 @@ app.post("/admin/users", verifyUser, async (req, res) => {
     let userRole = role || "user";
 
     const sql =
-      "INSERT INTO users (fn, ln, email, password, role) VALUES (?,?,?,?,?)";
-    const values = [fn, ln, email, hashedPassword, userRole];
+      "INSERT INTO USERS (fn, ln, email, password, role) VALUES (?,?,?,?,?)";
+    const values = [firstName, lastName, email, hashedPassword, userRole];
 
     pool.query(sql, values, (err, result) => {
       if (err) {
         console.error(err);
-        return res.json({ Error: "Error when inserting data" });
+        return res.status(500).json({ Error: "Error when inserting data" });
       }
       return res.json({ Status: "Success", insertId: result.insertId });
     });
   } catch (error) {
-    console.error(error);
-    return res.json({ Error: "Error when hashing password" });
+    console.error("Error hashing password:", error);
+    return res.status(500).json({ Error: "Error when hashing password" });
   }
 });
 
@@ -254,7 +270,6 @@ const s3Client = new S3Client({
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-
 app.get("/user", verifyUser, async (req, res) => {
   const userId = req.user_ID;
 
@@ -270,7 +285,9 @@ app.get("/user", verifyUser, async (req, res) => {
   };
 
   try {
-    const userQuery = await queryAsync("SELECT EMAIL FROM USERS WHERE ID = ?", [userId]);
+    const userQuery = await queryAsync("SELECT EMAIL FROM USERS WHERE ID = ?", [
+      userId,
+    ]);
     const email = userQuery[0]?.EMAIL;
 
     const queryDatabase = (query, params) => {
@@ -307,7 +324,6 @@ app.get("/user", verifyUser, async (req, res) => {
     res.status(500).send("Error fetching data");
   }
 });
-
 
 const groupByMonthYear = (data) => {
   const grouped = {};
@@ -396,74 +412,84 @@ app.get("/api/user-id", verifyUser, async (req, res) => {
 
 // upload POST route to get files
 
-app.post('/upload', upload.array('uploadedFiles'), verifyUser, async (req, res) => {
-  if (!req.body.email) {
-    logger.error('Upload attempt without logging in');
-    res.json({ status: 'log in first.' });
-    return;
+app.post(
+  "/upload",
+  upload.array("uploadedFiles"),
+  verifyUser,
+  async (req, res) => {
+    if (!req.body.email) {
+      logger.error("Upload attempt without logging in");
+      res.json({ status: "log in first." });
+      return;
+    }
+
+    const user_ID = req.user_ID;
+    const checkUserQuery = "SELECT * FROM USERS WHERE ID = ?";
+
+    pool.query(checkUserQuery, [user_ID], (err, results) => {
+      if (err) {
+        logger.error(`Server error during user check: ${err.message}`);
+        return res.status(500).send("Server error");
+      }
+    });
+
+    const rowsData = JSON.parse(req.body.rowsData);
+    const foodData = JSON.parse(req.body.foodRowsData);
+    const mileageData = JSON.parse(req.body.mileageRowsData);
+    const itemData = JSON.parse(req.body.itemRowsData);
+    const monthData = req.body.month;
+    let filesData = req.files ? req.files : req.body.files;
+
+    try {
+      for (const row of rowsData) {
+        const { type, billable, porCC, amount, comment } = row;
+        const userId = req.user_ID;
+
+        const sanitizedAmount = parseFloat(amount) || 0;
+
+        await queryAsync(
+          "INSERT INTO EXPENSES (user_ID, type, billable, porCC, amount, comment, month) VALUES (?, ?, ?, ?, ?, ?, ?)",
+          [userId, type, billable, porCC, sanitizedAmount, comment, monthData]
+        );
+        logger.info(`Inserted expense for user ID: ${userId}`);
+      }
+
+      // Continue for other data types...
+
+      for (const file of filesData) {
+        const uploadParams = {
+          Bucket: process.env.AWS_S3_BUCKET,
+          Key: `files/${Date.now().toString()}-${file.originalname}`,
+          Body: file.buffer,
+          ACL: "public-read",
+        };
+        const parallelUploads3 = new Upload({
+          client: s3Client,
+          params: uploadParams,
+        });
+
+        await parallelUploads3.done();
+        logger.info(`Uploaded file to S3: ${file.originalname}`);
+
+        await queryAsync(
+          "INSERT INTO FILES (user_ID, name, path, month) VALUES (?, ?, ?, ?)",
+          [
+            user_ID,
+            file.originalname,
+            `files/${Date.now().toString()}-${file.originalname}`,
+            monthData,
+          ]
+        );
+        logger.info(`Inserted file record for user ID: ${user_ID}`);
+      }
+
+      res.json({ status: "Success" });
+    } catch (error) {
+      logger.error(`Database error during upload: ${error.message}`);
+      res.status(500).json({ status: "Error", error: "Database error" });
+    }
   }
-
-  const user_ID = req.user_ID;
-  const checkUserQuery = 'SELECT * FROM USERS WHERE ID = ?';
-
-  pool.query(checkUserQuery, [user_ID], (err, results) => {
-    if (err) {
-      logger.error(`Server error during user check: ${err.message}`);
-      return res.status(500).send('Server error');
-    }
-  });
-
-  const rowsData = JSON.parse(req.body.rowsData);
-  const foodData = JSON.parse(req.body.foodRowsData);
-  const mileageData = JSON.parse(req.body.mileageRowsData);
-  const itemData = JSON.parse(req.body.itemRowsData);
-  const monthData = req.body.month;
-  let filesData = req.files ? req.files : req.body.files;
-
-  try {
-    for (const row of rowsData) {
-      const { type, billable, porCC, amount, comment } = row;
-      const userId = req.user_ID;
-
-      const sanitizedAmount = parseFloat(amount) || 0;
-
-      await queryAsync(
-        'INSERT INTO EXPENSES (user_ID, type, billable, porCC, amount, comment, month) VALUES (?, ?, ?, ?, ?, ?, ?)',
-        [userId, type, billable, porCC, sanitizedAmount, comment, monthData]
-      );
-      logger.info(`Inserted expense for user ID: ${userId}`);
-    }
-
-    // Continue for other data types...
-
-    for (const file of filesData) {
-      const uploadParams = {
-        Bucket: process.env.AWS_S3_BUCKET,
-        Key: `files/${Date.now().toString()}-${file.originalname}`,
-        Body: file.buffer,
-        ACL: 'public-read',
-      };
-      const parallelUploads3 = new Upload({
-        client: s3Client,
-        params: uploadParams,
-      });
-
-      await parallelUploads3.done();
-      logger.info(`Uploaded file to S3: ${file.originalname}`);
-
-      await queryAsync(
-        'INSERT INTO FILES (user_ID, name, path, month) VALUES (?, ?, ?, ?)',
-        [user_ID, file.originalname, `files/${Date.now().toString()}-${file.originalname}`, monthData]
-      );
-      logger.info(`Inserted file record for user ID: ${user_ID}`);
-    }
-
-    res.json({ status: 'Success' });
-  } catch (error) {
-    logger.error(`Database error during upload: ${error.message}`);
-    res.status(500).json({ status: 'Error', error: 'Database error' });
-  }
-});
+);
 
 // LOGIN ROUTE
 app.post("/login", async (req, res) => {
@@ -616,13 +642,43 @@ app.get("/admin/mileage-rates", verifyUser, async (req, res) => {
   }
 
   try {
-    const mileageRates = await queryAsync("SELECT * FROM MILEAGE_RATES");
+    const mileageRates = await queryAsync(
+      "SELECT * FROM MILEAGE_RATES ORDER BY START_DATE DESC"
+    );
     res.json(mileageRates);
   } catch (error) {
     console.error("Error fetching mileage rates:", error);
     res.status(500).send("Error fetching mileage rates");
   }
 });
+
+app.post("/admin/mileage-rates", verifyUser, async (req, res) => {
+  if (req.role !== "admin") {
+    return res.status(403).json({ Error: "Access denied" });
+  }
+
+  const { rate, startDate, endDate } = req.body;
+
+  if (!rate || !startDate || !endDate) {
+    return res
+      .status(400)
+      .json({ Error: "Rate, start date, and end date are required" });
+  }
+
+  try {
+    const sql =
+      "INSERT INTO MILEAGE_RATES (rate, start_date, end_date) VALUES (?, ?, ?)";
+    const values = [rate, startDate, endDate];
+
+    await queryAsync(sql, values);
+
+    res.json({ status: "Success", message: "Mileage rate added successfully" });
+  } catch (error) {
+    console.error("Error adding mileage rate:", error);
+    res.status(500).send("Error adding mileage rate");
+  }
+});
+
 app.get("/admin/all-submissions", verifyUser, async (req, res) => {
   if (req.role !== "admin") {
     return res.status(403).json({ Error: "Access denied" });

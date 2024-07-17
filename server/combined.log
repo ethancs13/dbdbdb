@@ -335,3 +335,521 @@
 {"level":"info","message":"Connection 7099 released"}
 {"level":"info","message":"Connection 7096 released"}
 {"level":"info","message":"Connection 7113 released"}
+{"level":"info","message":"New database connection established with ID: 7114"}
+{"level":"info","message":"Connection 7114 acquired"}
+{"level":"info","message":"New database connection established with ID: 7115"}
+{"level":"info","message":"Connection 7115 acquired"}
+{"level":"info","message":"New database connection established with ID: 7118"}
+{"level":"info","message":"Connection 7118 acquired"}
+{"level":"info","message":"New database connection established with ID: 7116"}
+{"level":"info","message":"Connection 7116 acquired"}
+{"level":"info","message":"New database connection established with ID: 7117"}
+{"level":"info","message":"Connection 7117 acquired"}
+{"level":"info","message":"New database connection established with ID: 7120"}
+{"level":"info","message":"Connection 7120 acquired"}
+{"level":"info","message":"New database connection established with ID: 7122"}
+{"level":"info","message":"Connection 7122 acquired"}
+{"level":"info","message":"New database connection established with ID: 7121"}
+{"level":"info","message":"Connection 7121 acquired"}
+{"level":"info","message":"New database connection established with ID: 7119"}
+{"level":"info","message":"Connection 7119 acquired"}
+{"level":"info","message":"Connection 7116 released"}
+{"level":"info","message":"Connection 7115 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7114 released"}
+{"level":"info","message":"Connection 7118 released"}
+{"level":"info","message":"Connection 7120 released"}
+{"level":"info","message":"Connection 7122 released"}
+{"level":"info","message":"Connection 7121 released"}
+{"level":"info","message":"Connection 7117 released"}
+{"level":"info","message":"Connection 7119 released"}
+{"level":"info","message":"Connection 7116 acquired"}
+{"level":"info","message":"Connection 7114 acquired"}
+{"level":"info","message":"Connection 7115 acquired"}
+{"level":"info","message":"Connection 7118 acquired"}
+{"level":"info","message":"Connection 7114 released"}
+{"level":"info","message":"Connection 7116 released"}
+{"level":"info","message":"Connection 7115 released"}
+{"level":"info","message":"Connection 7118 released"}
+{"level":"info","message":"New database connection established with ID: 7123"}
+{"level":"info","message":"Connection 7123 acquired"}
+{"level":"info","message":"Connection 7123 released"}
+{"level":"info","message":"Connection 7120 acquired"}
+{"level":"info","message":"Connection 7120 released"}
+{"level":"info","message":"Connection 7114 acquired"}
+{"level":"info","message":"Connection 7117 acquired"}
+{"level":"info","message":"Connection 7119 acquired"}
+{"level":"info","message":"Connection 7121 acquired"}
+{"level":"info","message":"Connection 7122 acquired"}
+{"level":"info","message":"Connection 7119 released"}
+{"level":"info","message":"Connection 7117 released"}
+{"level":"info","message":"Connection 7114 released"}
+{"level":"info","message":"Connection 7121 released"}
+{"level":"info","message":"Connection 7122 released"}
+{"level":"error","message":"Error deleting user and associated data: Cannot read properties of undefined (reading 'beginTransaction')"}
+{"level":"info","message":"New database connection established with ID: 7124"}
+{"level":"info","message":"New database connection established with ID: 7127"}
+{"level":"info","message":"Connection 7127 acquired"}
+{"level":"info","message":"New database connection established with ID: 7128"}
+{"level":"info","message":"Connection 7128 acquired"}
+{"level":"info","message":"New database connection established with ID: 7126"}
+{"level":"info","message":"Connection 7126 acquired"}
+{"level":"info","message":"New database connection established with ID: 7129"}
+{"level":"info","message":"Connection 7129 acquired"}
+{"level":"info","message":"New database connection established with ID: 7130"}
+{"level":"info","message":"Connection 7130 acquired"}
+{"level":"info","message":"New database connection established with ID: 7131"}
+{"level":"info","message":"Connection 7131 acquired"}
+{"level":"info","message":"New database connection established with ID: 7132"}
+{"level":"info","message":"Connection 7132 acquired"}
+{"level":"info","message":"New database connection established with ID: 7134"}
+{"level":"info","message":"Connection 7134 acquired"}
+{"level":"info","message":"New database connection established with ID: 7133"}
+{"level":"info","message":"Connection 7133 acquired"}
+{"level":"info","message":"Connection 7127 released"}
+{"level":"info","message":"Connection 7128 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7129 released"}
+{"level":"info","message":"Connection 7126 released"}
+{"level":"info","message":"Connection 7133 released"}
+{"level":"info","message":"Connection 7131 released"}
+{"level":"info","message":"Connection 7130 released"}
+{"level":"info","message":"Connection 7132 released"}
+{"level":"info","message":"Connection 7134 released"}
+{"level":"info","message":"Connection 7127 acquired"}
+{"level":"info","message":"Connection 7128 acquired"}
+{"level":"info","message":"Connection 7129 acquired"}
+{"level":"info","message":"Connection 7126 acquired"}
+{"level":"info","message":"Connection 7133 acquired"}
+{"level":"info","message":"Connection 7127 released"}
+{"level":"info","message":"Connection 7126 released"}
+{"level":"info","message":"Connection 7128 released"}
+{"level":"info","message":"Connection 7129 released"}
+{"level":"info","message":"Connection 7133 released"}
+{"level":"info","message":"Connection 7131 acquired"}
+{"level":"info","message":"Connection 7131 released"}
+{"level":"info","message":"Connection 7126 acquired"}
+{"level":"info","message":"Connection 7127 acquired"}
+{"level":"info","message":"Connection 7132 acquired"}
+{"level":"info","message":"Connection 7130 acquired"}
+{"level":"info","message":"Connection 7134 acquired"}
+{"level":"info","message":"Connection 7126 released"}
+{"level":"info","message":"Connection 7127 released"}
+{"level":"info","message":"Connection 7132 released"}
+{"level":"info","message":"Connection 7130 released"}
+{"level":"info","message":"Connection 7134 released"}
+{"level":"info","message":"Connection 7128 acquired"}
+{"level":"info","message":"Transaction started for deleting user with ID: 2"}
+{"level":"info","message":"Connection 7129 acquired"}
+{"level":"info","message":"Connection 7129 released"}
+{"level":"error","message":"Transaction rollback for deleting user with ID: 2 due to error: ER_NO_SUCH_TABLE: Table 'POR_DB.expenses' doesn't exist"}
+{"level":"error","message":"Error deleting user and associated data: ER_NO_SUCH_TABLE: Table 'POR_DB.expenses' doesn't exist"}
+{"level":"info","message":"Connection 7128 released"}
+{"level":"info","message":"Connection released after deleting user with ID: 2"}
+{"level":"info","message":"New database connection established with ID: 7136"}
+{"level":"info","message":"Connection 7136 acquired"}
+{"level":"info","message":"Transaction started for deleting user with ID: 2"}
+{"level":"info","message":"New database connection established with ID: 7137"}
+{"level":"info","message":"Connection 7137 acquired"}
+{"level":"info","message":"Connection 7137 released"}
+{"level":"info","message":"Executed query: DELETE FROM EXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7137 acquired"}
+{"level":"info","message":"Connection 7137 released"}
+{"level":"info","message":"Executed query: DELETE FROM FILES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7137 acquired"}
+{"level":"info","message":"Connection 7137 released"}
+{"level":"info","message":"Executed query: DELETE FROM FOODEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7137 acquired"}
+{"level":"info","message":"Connection 7137 released"}
+{"level":"info","message":"Executed query: DELETE FROM ITEMEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7137 acquired"}
+{"level":"info","message":"Connection 7137 released"}
+{"level":"info","message":"Executed query: DELETE FROM MILEAGEEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7137 acquired"}
+{"level":"info","message":"Connection 7137 released"}
+{"level":"info","message":"Executed query: DELETE FROM USERS WHERE ID = ?"}
+{"level":"info","message":"Transaction committed for deleting user with ID: 2"}
+{"level":"info","message":"Connection 7136 released"}
+{"level":"info","message":"Connection released after deleting user with ID: 2"}
+{"level":"info","message":"Connection 7137 acquired"}
+{"level":"info","message":"Connection 7137 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7137 acquired"}
+{"level":"info","message":"Connection 7136 acquired"}
+{"level":"info","message":"Connection 7137 released"}
+{"level":"info","message":"Connection 7136 released"}
+{"level":"info","message":"Connection 7137 acquired"}
+{"level":"info","message":"Connection 7136 acquired"}
+{"level":"info","message":"Connection 7137 released"}
+{"level":"info","message":"Connection 7136 released"}
+{"level":"info","message":"New database connection established with ID: 7139"}
+{"level":"info","message":"Connection 7139 acquired"}
+{"level":"info","message":"New database connection established with ID: 7140"}
+{"level":"info","message":"Connection 7140 acquired"}
+{"level":"info","message":"New database connection established with ID: 7138"}
+{"level":"info","message":"Connection 7138 acquired"}
+{"level":"info","message":"New database connection established with ID: 7141"}
+{"level":"info","message":"Connection 7141 acquired"}
+{"level":"info","message":"New database connection established with ID: 7142"}
+{"level":"info","message":"Connection 7142 acquired"}
+{"level":"info","message":"New database connection established with ID: 7143"}
+{"level":"info","message":"Connection 7143 acquired"}
+{"level":"info","message":"New database connection established with ID: 7144"}
+{"level":"info","message":"Connection 7144 acquired"}
+{"level":"info","message":"Connection 7137 acquired"}
+{"level":"info","message":"Connection 7136 acquired"}
+{"level":"info","message":"New database connection established with ID: 7145"}
+{"level":"info","message":"Connection 7145 acquired"}
+{"level":"info","message":"Connection 7139 released"}
+{"level":"info","message":"Connection 7140 released"}
+{"level":"info","message":"Connection 7142 released"}
+{"level":"info","message":"Connection 7141 released"}
+{"level":"info","message":"Connection 7138 released"}
+{"level":"info","message":"Connection 7143 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7144 released"}
+{"level":"info","message":"Connection 7137 released"}
+{"level":"info","message":"Connection 7136 released"}
+{"level":"info","message":"Connection 7145 released"}
+{"level":"info","message":"Connection 7139 acquired"}
+{"level":"info","message":"Connection 7139 released"}
+{"level":"info","message":"Connection 7138 acquired"}
+{"level":"info","message":"Connection 7142 acquired"}
+{"level":"info","message":"Connection 7141 acquired"}
+{"level":"info","message":"Connection 7143 acquired"}
+{"level":"info","message":"Connection 7140 acquired"}
+{"level":"info","message":"Connection 7142 released"}
+{"level":"info","message":"Connection 7138 released"}
+{"level":"info","message":"Connection 7141 released"}
+{"level":"info","message":"Connection 7140 released"}
+{"level":"info","message":"Connection 7143 released"}
+{"level":"info","message":"Connection 7144 acquired"}
+{"level":"info","message":"Connection 7144 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7137 acquired"}
+{"level":"info","message":"Connection 7142 acquired"}
+{"level":"info","message":"Connection 7139 acquired"}
+{"level":"info","message":"Connection 7136 acquired"}
+{"level":"info","message":"Connection 7145 acquired"}
+{"level":"info","message":"Connection 7138 acquired"}
+{"level":"info","message":"Connection 7141 acquired"}
+{"level":"info","message":"Connection 7137 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7142 released"}
+{"level":"info","message":"Connection 7136 released"}
+{"level":"info","message":"Connection 7141 released"}
+{"level":"info","message":"Connection 7145 released"}
+{"level":"info","message":"Connection 7139 released"}
+{"level":"info","message":"Connection 7138 released"}
+{"level":"info","message":"New database connection established with ID: 7148"}
+{"level":"info","message":"Connection 7148 acquired"}
+{"level":"info","message":"New database connection established with ID: 7147"}
+{"level":"info","message":"Connection 7147 acquired"}
+{"level":"info","message":"New database connection established with ID: 7149"}
+{"level":"info","message":"Connection 7149 acquired"}
+{"level":"info","message":"New database connection established with ID: 7151"}
+{"level":"info","message":"Connection 7151 acquired"}
+{"level":"info","message":"New database connection established with ID: 7153"}
+{"level":"info","message":"Connection 7153 acquired"}
+{"level":"info","message":"New database connection established with ID: 7150"}
+{"level":"info","message":"Connection 7150 acquired"}
+{"level":"info","message":"New database connection established with ID: 7154"}
+{"level":"info","message":"Connection 7154 acquired"}
+{"level":"info","message":"New database connection established with ID: 7155"}
+{"level":"info","message":"Connection 7155 acquired"}
+{"level":"info","message":"New database connection established with ID: 7152"}
+{"level":"info","message":"Connection 7152 acquired"}
+{"level":"info","message":"Connection 7147 released"}
+{"level":"info","message":"Connection 7149 released"}
+{"level":"info","message":"Connection 7148 released"}
+{"level":"info","message":"Connection 7150 released"}
+{"level":"info","message":"Connection 7151 released"}
+{"level":"info","message":"Connection 7152 released"}
+{"level":"info","message":"Connection 7153 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7154 released"}
+{"level":"info","message":"Connection 7155 released"}
+{"level":"info","message":"Connection 7148 acquired"}
+{"level":"info","message":"Connection 7149 acquired"}
+{"level":"info","message":"Connection 7147 acquired"}
+{"level":"info","message":"Connection 7150 acquired"}
+{"level":"info","message":"Connection 7148 released"}
+{"level":"info","message":"Connection 7147 released"}
+{"level":"info","message":"Connection 7150 released"}
+{"level":"info","message":"Connection 7149 released"}
+{"level":"info","message":"New database connection established with ID: 7156"}
+{"level":"info","message":"Connection 7156 acquired"}
+{"level":"info","message":"Connection 7156 released"}
+{"level":"info","message":"Connection 7151 acquired"}
+{"level":"info","message":"Connection 7151 released"}
+{"level":"info","message":"Connection 7152 acquired"}
+{"level":"info","message":"Connection 7148 acquired"}
+{"level":"info","message":"Connection 7153 acquired"}
+{"level":"info","message":"Connection 7155 acquired"}
+{"level":"info","message":"Connection 7154 acquired"}
+{"level":"info","message":"Connection 7152 released"}
+{"level":"info","message":"Connection 7148 released"}
+{"level":"info","message":"Connection 7153 released"}
+{"level":"info","message":"Connection 7155 released"}
+{"level":"info","message":"Connection 7154 released"}
+{"level":"info","message":"Connection 7147 acquired"}
+{"level":"info","message":"Connection 7147 released"}
+{"level":"info","message":"Connection 7150 acquired"}
+{"level":"info","message":"Connection 7150 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"New database connection established with ID: 7159"}
+{"level":"info","message":"Connection 7159 acquired"}
+{"level":"info","message":"New database connection established with ID: 7162"}
+{"level":"info","message":"Connection 7162 acquired"}
+{"level":"info","message":"New database connection established with ID: 7163"}
+{"level":"info","message":"Connection 7163 acquired"}
+{"level":"info","message":"New database connection established with ID: 7164"}
+{"level":"info","message":"Connection 7164 acquired"}
+{"level":"info","message":"New database connection established with ID: 7161"}
+{"level":"info","message":"Connection 7161 acquired"}
+{"level":"info","message":"New database connection established with ID: 7165"}
+{"level":"info","message":"Connection 7165 acquired"}
+{"level":"info","message":"New database connection established with ID: 7160"}
+{"level":"info","message":"Connection 7160 acquired"}
+{"level":"info","message":"Connection 7159 released"}
+{"level":"info","message":"Connection 7162 released"}
+{"level":"info","message":"Connection 7165 released"}
+{"level":"info","message":"Connection 7164 released"}
+{"level":"info","message":"Connection 7161 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7163 released"}
+{"level":"info","message":"Connection 7160 released"}
+{"level":"info","message":"Connection 7159 acquired"}
+{"level":"info","message":"Connection 7162 acquired"}
+{"level":"info","message":"Connection 7165 acquired"}
+{"level":"info","message":"Connection 7164 acquired"}
+{"level":"info","message":"Connection 7163 acquired"}
+{"level":"info","message":"Connection 7160 acquired"}
+{"level":"info","message":"Connection 7161 acquired"}
+{"level":"info","message":"Connection 7159 released"}
+{"level":"info","message":"Connection 7162 released"}
+{"level":"info","message":"Connection 7163 released"}
+{"level":"info","message":"Connection 7165 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7160 released"}
+{"level":"info","message":"Connection 7164 released"}
+{"level":"info","message":"Connection 7161 released"}
+{"level":"info","message":"Connection 7159 acquired"}
+{"level":"info","message":"Connection 7162 acquired"}
+{"level":"info","message":"Connection 7163 acquired"}
+{"level":"info","message":"Connection 7165 acquired"}
+{"level":"info","message":"New database connection established with ID: 7166"}
+{"level":"info","message":"Connection 7166 acquired"}
+{"level":"info","message":"New database connection established with ID: 7167"}
+{"level":"info","message":"Connection 7167 acquired"}
+{"level":"info","message":"Connection 7162 released"}
+{"level":"info","message":"Connection 7159 released"}
+{"level":"info","message":"Connection 7163 released"}
+{"level":"info","message":"Connection 7166 released"}
+{"level":"info","message":"Connection 7165 released"}
+{"level":"info","message":"Connection 7167 released"}
+{"level":"info","message":"New database connection established with ID: 7168"}
+{"level":"info","message":"Connection 7168 acquired"}
+{"level":"info","message":"Connection 7168 released"}
+{"level":"info","message":"Connection 7160 acquired"}
+{"level":"info","message":"Connection 7160 released"}
+{"level":"info","message":"Connection 7164 acquired"}
+{"level":"info","message":"Connection 7161 acquired"}
+{"level":"info","message":"Connection 7163 acquired"}
+{"level":"info","message":"Connection 7162 acquired"}
+{"level":"info","message":"Connection 7159 acquired"}
+{"level":"info","message":"Connection 7164 released"}
+{"level":"info","message":"Connection 7163 released"}
+{"level":"info","message":"Connection 7161 released"}
+{"level":"info","message":"Connection 7159 released"}
+{"level":"info","message":"Connection 7162 released"}
+{"level":"info","message":"Connection 7166 acquired"}
+{"level":"info","message":"Connection 7166 released"}
+{"level":"info","message":"Connection 7165 acquired"}
+{"level":"info","message":"Connection 7165 released"}
+{"level":"info","message":"New database connection established with ID: 7173"}
+{"level":"info","message":"Connection 7173 acquired"}
+{"level":"info","message":"New database connection established with ID: 7175"}
+{"level":"info","message":"Connection 7175 acquired"}
+{"level":"info","message":"New database connection established with ID: 7176"}
+{"level":"info","message":"Connection 7176 acquired"}
+{"level":"info","message":"New database connection established with ID: 7174"}
+{"level":"info","message":"Connection 7174 acquired"}
+{"level":"info","message":"New database connection established with ID: 7179"}
+{"level":"info","message":"Connection 7179 acquired"}
+{"level":"info","message":"New database connection established with ID: 7178"}
+{"level":"info","message":"Connection 7178 acquired"}
+{"level":"info","message":"New database connection established with ID: 7180"}
+{"level":"info","message":"Connection 7180 acquired"}
+{"level":"info","message":"New database connection established with ID: 7177"}
+{"level":"info","message":"Connection 7177 acquired"}
+{"level":"info","message":"New database connection established with ID: 7181"}
+{"level":"info","message":"Connection 7181 acquired"}
+{"level":"info","message":"Connection 7173 released"}
+{"level":"info","message":"Connection 7175 released"}
+{"level":"info","message":"Connection 7174 released"}
+{"level":"info","message":"Connection 7176 released"}
+{"level":"info","message":"Connection 7178 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7179 released"}
+{"level":"info","message":"Connection 7181 released"}
+{"level":"info","message":"Connection 7180 released"}
+{"level":"info","message":"Connection 7177 released"}
+{"level":"info","message":"Connection 7173 acquired"}
+{"level":"info","message":"Connection 7174 acquired"}
+{"level":"info","message":"Connection 7175 acquired"}
+{"level":"info","message":"Connection 7176 acquired"}
+{"level":"info","message":"Connection 7178 acquired"}
+{"level":"info","message":"Connection 7173 released"}
+{"level":"info","message":"Connection 7174 released"}
+{"level":"info","message":"Connection 7176 released"}
+{"level":"info","message":"Connection 7178 released"}
+{"level":"info","message":"Connection 7175 released"}
+{"level":"info","message":"Connection 7179 acquired"}
+{"level":"info","message":"Connection 7179 released"}
+{"level":"info","message":"Connection 7173 acquired"}
+{"level":"info","message":"Connection 7174 acquired"}
+{"level":"info","message":"Connection 7181 acquired"}
+{"level":"info","message":"Connection 7177 acquired"}
+{"level":"info","message":"Connection 7180 acquired"}
+{"level":"info","message":"Connection 7173 released"}
+{"level":"info","message":"Connection 7174 released"}
+{"level":"info","message":"Connection 7177 released"}
+{"level":"info","message":"Connection 7181 released"}
+{"level":"info","message":"Connection 7180 released"}
+{"level":"info","message":"Connection 7175 acquired"}
+{"level":"info","message":"Connection 7176 acquired"}
+{"level":"info","message":"Connection 7178 acquired"}
+{"level":"info","message":"Connection 7174 acquired"}
+{"level":"info","message":"Connection 7173 acquired"}
+{"level":"info","message":"Connection 7177 acquired"}
+{"level":"info","message":"Connection 7179 acquired"}
+{"level":"info","message":"Connection 7175 released"}
+{"level":"info","message":"Connection 7178 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7177 released"}
+{"level":"info","message":"Connection 7179 released"}
+{"level":"info","message":"Connection 7173 released"}
+{"level":"info","message":"Connection 7176 released"}
+{"level":"info","message":"Connection 7174 released"}
+{"level":"info","message":"Connection 7181 acquired"}
+{"level":"info","message":"Connection 7180 acquired"}
+{"level":"info","message":"Connection 7175 acquired"}
+{"level":"info","message":"Connection 7177 acquired"}
+{"level":"info","message":"Connection 7178 acquired"}
+{"level":"info","message":"Connection 7173 acquired"}
+{"level":"info","message":"Connection 7179 acquired"}
+{"level":"info","message":"Connection 7174 acquired"}
+{"level":"info","message":"Connection 7176 acquired"}
+{"level":"info","message":"Connection 7180 released"}
+{"level":"info","message":"Connection 7181 released"}
+{"level":"info","message":"Connection 7175 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7177 released"}
+{"level":"info","message":"Connection 7173 released"}
+{"level":"info","message":"Connection 7178 released"}
+{"level":"info","message":"Connection 7179 released"}
+{"level":"info","message":"Connection 7174 released"}
+{"level":"info","message":"Connection 7176 released"}
+{"level":"info","message":"Connection 7180 acquired"}
+{"level":"info","message":"Connection 7181 acquired"}
+{"level":"info","message":"Connection 7175 acquired"}
+{"level":"info","message":"Connection 7177 acquired"}
+{"level":"info","message":"Connection 7173 acquired"}
+{"level":"info","message":"Connection 7180 released"}
+{"level":"info","message":"Connection 7181 released"}
+{"level":"info","message":"Connection 7175 released"}
+{"level":"info","message":"Connection 7173 released"}
+{"level":"info","message":"Connection 7177 released"}
+{"level":"info","message":"Connection 7178 acquired"}
+{"level":"info","message":"Connection 7178 released"}
+{"level":"info","message":"New database connection established with ID: 7233"}
+{"level":"info","message":"Connection 7233 acquired"}
+{"level":"info","message":"Connection 7174 acquired"}
+{"level":"info","message":"Connection 7179 acquired"}
+{"level":"info","message":"Connection 7176 acquired"}
+{"level":"info","message":"Connection 7181 acquired"}
+{"level":"info","message":"Connection 7180 acquired"}
+{"level":"info","message":"Connection 7233 released"}
+{"level":"info","message":"Connection 7174 released"}
+{"level":"info","message":"Connection 7181 released"}
+{"level":"info","message":"Connection 7176 released"}
+{"level":"info","message":"Connection 7179 released"}
+{"level":"info","message":"Connection 7180 released"}
+{"level":"info","message":"Connection 7175 acquired"}
+{"level":"info","message":"Connection 7173 acquired"}
+{"level":"info","message":"Connection 7178 acquired"}
+{"level":"info","message":"Connection 7177 acquired"}
+{"level":"info","message":"Connection 7233 acquired"}
+{"level":"info","message":"Connection 7174 acquired"}
+{"level":"info","message":"Connection 7176 acquired"}
+{"level":"info","message":"Connection 7181 acquired"}
+{"level":"info","message":"Connection 7179 acquired"}
+{"level":"info","message":"Connection 7180 acquired"}
+{"level":"info","message":"Connection 7175 released"}
+{"level":"info","message":"Connection 7173 released"}
+{"level":"info","message":"Connection 7174 released"}
+{"level":"info","message":"Connection 7176 released"}
+{"level":"info","message":"Connection 7178 released"}
+{"level":"info","message":"Connection 7177 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7181 released"}
+{"level":"info","message":"Connection 7233 released"}
+{"level":"info","message":"Connection 7179 released"}
+{"level":"info","message":"Connection 7180 released"}
+{"level":"info","message":"Connection 7173 acquired"}
+{"level":"info","message":"Connection 7175 acquired"}
+{"level":"info","message":"Connection 7174 acquired"}
+{"level":"info","message":"Connection 7176 acquired"}
+{"level":"info","message":"Connection 7178 acquired"}
+{"level":"info","message":"Connection 7175 released"}
+{"level":"info","message":"Connection 7173 released"}
+{"level":"info","message":"Connection 7176 released"}
+{"level":"info","message":"Connection 7174 released"}
+{"level":"info","message":"Connection 7178 released"}
+{"level":"info","message":"Connection 7177 acquired"}
+{"level":"info","message":"Connection 7177 released"}
+{"level":"info","message":"Connection 7175 acquired"}
+{"level":"info","message":"Connection 7179 acquired"}
+{"level":"info","message":"Connection 7181 acquired"}
+{"level":"info","message":"Connection 7180 acquired"}
+{"level":"info","message":"Connection 7233 acquired"}
+{"level":"info","message":"Connection 7175 released"}
+{"level":"info","message":"Connection 7181 released"}
+{"level":"info","message":"Connection 7179 released"}
+{"level":"info","message":"Connection 7180 released"}
+{"level":"info","message":"Connection 7233 released"}
+{"level":"info","message":"Connection 7173 acquired"}
+{"level":"info","message":"Connection 7174 acquired"}
+{"level":"info","message":"Connection 7176 acquired"}
+{"level":"info","message":"Connection 7177 acquired"}
+{"level":"info","message":"Connection 7175 acquired"}
+{"level":"info","message":"Connection 7179 acquired"}
+{"level":"info","message":"Connection 7178 acquired"}
+{"level":"info","message":"Connection 7181 acquired"}
+{"level":"info","message":"Connection 7177 released"}
+{"level":"info","message":"Connection 7174 released"}
+{"level":"info","message":"Connection 7176 released"}
+{"level":"info","message":"Connection 7173 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7175 released"}
+{"level":"info","message":"Connection 7178 released"}
+{"level":"info","message":"Connection 7181 released"}
+{"level":"info","message":"Connection 7179 released"}
+{"level":"info","message":"Connection 7174 acquired"}
+{"level":"info","message":"Connection 7177 acquired"}
+{"level":"info","message":"Connection 7233 acquired"}
+{"level":"info","message":"Connection 7180 acquired"}
+{"level":"info","message":"Connection 7176 acquired"}
+{"level":"info","message":"Connection 7173 acquired"}
+{"level":"info","message":"Connection 7178 acquired"}
+{"level":"info","message":"Connection 7175 acquired"}
+{"level":"info","message":"Connection 7174 released"}
+{"level":"info","message":"Connection 7173 released"}
+{"level":"info","message":"Connection 7176 released"}
+{"level":"info","message":"Connection 7177 released"}
+{"level":"info","message":"Connection 7180 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7233 released"}
+{"level":"info","message":"Connection 7175 released"}
+{"level":"info","message":"Connection 7178 released"}

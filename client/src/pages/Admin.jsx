@@ -22,11 +22,13 @@ const Admin = () => {
   const [allSubmissions, setAllSubmissions] = useState({});
   const [selectedUser, setSelectedUser] = useState(null);
   const [selectedSubmission, setSelectedSubmission] = useState(null);
+  const [mileageRates, setMileageRates] = useState([]);
 
   useEffect(() => {
     fetchUsers();
     fetchExpenseTypes();
     fetchAllSubmissions();
+    fetchMileageRates();
   }, []);
 
   const fetchUsers = async () => {
@@ -73,11 +75,30 @@ const Admin = () => {
     }
   };
 
+  const fetchMileageRates = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_END_POINT}/admin/mileage-rates`,
+        { withCredentials: true }
+      );
+      setMileageRates(response.data);
+    } catch (err) {
+      console.error("Error fetching mileage rates:", err);
+    }
+  };
+
+  const generateRandomPassword = () => {
+    return Math.random().toString(36).slice(-8); // Generates a random 8-character password
+  };
+
   const handleAddUser = async () => {
+    const tempPassword = generateRandomPassword();
+    const userWithPassword = { ...newUser, password: tempPassword };
+
     try {
       await axios.post(
         `${process.env.REACT_APP_SERVER_END_POINT}/admin/users`,
-        newUser,
+        userWithPassword,
         { withCredentials: true }
       );
       setNewUser({ firstName: "", lastName: "", email: "", role: "user" });
@@ -107,7 +128,7 @@ const Admin = () => {
         { withCredentials: true }
       );
       setNewMileageRate({ rate: "", startDate: "", endDate: "" });
-      fetchExpenseTypes();
+      fetchMileageRates();
     } catch (err) {
       console.error("Error adding mileage rate:", err);
     }
@@ -237,24 +258,49 @@ const Admin = () => {
               setNewMileageRate({ ...newMileageRate, rate: e.target.value })
             }
           />
-          <CalendarWidget
-            selectedDate={newMileageRate.startDate}
-            onDateChange={(date) =>
-              setNewMileageRate({ ...newMileageRate, startDate: date })
-            }
-          />
-          <CalendarWidget
-            selectedDate={newMileageRate.endDate}
-            onDateChange={(date) =>
-              setNewMileageRate({ ...newMileageRate, endDate: date })
-            }
-          />
+          <div style={{display: "flex"}}>
+            <CalendarWidget
+              selectedDate={newMileageRate.startDate}
+              onDateChange={(date) =>
+                setNewMileageRate({ ...newMileageRate, startDate: date })
+              }
+            />
+            <CalendarWidget
+              selectedDate={newMileageRate.endDate}
+              onDateChange={(date) =>
+                setNewMileageRate({ ...newMileageRate, endDate: date })
+              }
+            />
+          </div>
           <button
             className="admin-expense-types-btn-add"
             onClick={handleAddMileageRate}
           >
             Add Mileage Rate
           </button>
+        </div>
+
+        <div className="current-mileage-rates">
+          <h3>Current Mileage Rates</h3>
+          {mileageRates.length === 0 ? (
+            <p>No mileage rates available.</p>
+          ) : (
+            <ul>
+              {mileageRates.map((rate) => (
+                <li key={rate.ID}>
+                  <strong>Rate:</strong> ${rate.RATE} /mile
+                  <br />
+                  <strong>Start Date:</strong>{" "}
+                  {new Date(rate.START_DATE).toLocaleDateString()}
+                  <br />
+                  <strong>End Date:</strong>{" "}
+                  {rate.END_DATE
+                    ? new Date(rate.END_DATE).toLocaleDateString()
+                    : "N/A"}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </section>
       <section className="expense-types">

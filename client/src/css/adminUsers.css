@@ -68,13 +68,16 @@ body {
   font-size: 1em;
   color: #555;
 }
-.add-user-form, .user-list, .expense-types {
-  width:50%;
+
+.add-user-form, .user-list, .expense-types, .mileage-rates {
+  width: 50%;
   padding: 2rem;
 }
+
 .expense-types {
-  border-left: #333 solid 1px;;
+  border-left: #333 solid 1px;
 }
+
 /* Add User Form */
 .add-user-form,
 .add-mileage-rate {
@@ -124,7 +127,6 @@ body {
 
 .mileage-rates {
   width: 50%;
-  padding: 5px;
 }
 
 .mileage-rates li {
@@ -286,8 +288,8 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   width: 100%;
   transition-duration: 0.1s;
-
 }
+
 .expense-type-list-item:hover {
   border: solid 1px #6f6f6f;
 }
@@ -295,8 +297,36 @@ body {
 .expense-type-list {
   padding: 0;
 }
+
 .users {
   display: flex;
   width: 100%;
   border-top: #333 solid 1px;
+}
+
+/* Current Mileage Rates */
+.current-mileage-rates {
+  margin-top: 20px;
+}
+
+.current-mileage-rates h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.current-mileage-rates ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.current-mileage-rates li {
+  padding: 10px 15px;
+  margin: 5px 0;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.current-mileage-rates li:nth-child(odd) {
+  background-color: #f9f9f9;
 }
