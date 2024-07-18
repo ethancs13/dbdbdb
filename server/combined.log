@@ -853,3 +853,751 @@
 {"level":"info","message":"Connection 7233 released"}
 {"level":"info","message":"Connection 7175 released"}
 {"level":"info","message":"Connection 7178 released"}
+{"level":"info","message":"New database connection established with ID: 7247"}
+{"level":"info","message":"Connection 7247 acquired"}
+{"level":"info","message":"New database connection established with ID: 7250"}
+{"level":"info","message":"Connection 7250 acquired"}
+{"level":"info","message":"New database connection established with ID: 7248"}
+{"level":"info","message":"Connection 7248 acquired"}
+{"level":"info","message":"New database connection established with ID: 7251"}
+{"level":"info","message":"Connection 7251 acquired"}
+{"level":"info","message":"New database connection established with ID: 7252"}
+{"level":"info","message":"Connection 7252 acquired"}
+{"level":"info","message":"New database connection established with ID: 7249"}
+{"level":"info","message":"Connection 7249 acquired"}
+{"level":"info","message":"New database connection established with ID: 7254"}
+{"level":"info","message":"Connection 7254 acquired"}
+{"level":"info","message":"New database connection established with ID: 7255"}
+{"level":"info","message":"Connection 7255 acquired"}
+{"level":"info","message":"New database connection established with ID: 7256"}
+{"level":"info","message":"Connection 7256 acquired"}
+{"level":"info","message":"New database connection established with ID: 7253"}
+{"level":"info","message":"Connection 7253 acquired"}
+{"level":"info","message":"Connection 7247 released"}
+{"level":"info","message":"Connection 7250 released"}
+{"level":"info","message":"Connection 7251 released"}
+{"level":"info","message":"Connection 7252 released"}
+{"level":"info","message":"Connection 7248 released"}
+{"level":"info","message":"Connection 7249 released"}
+{"level":"info","message":"Connection 7255 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7256 released"}
+{"level":"info","message":"Connection 7254 released"}
+{"level":"info","message":"Connection 7253 released"}
+{"level":"info","message":"Connection 7250 acquired"}
+{"level":"info","message":"Connection 7252 acquired"}
+{"level":"info","message":"Connection 7247 acquired"}
+{"level":"info","message":"Connection 7251 acquired"}
+{"level":"info","message":"Connection 7248 acquired"}
+{"level":"info","message":"Connection 7250 released"}
+{"level":"info","message":"Connection 7252 released"}
+{"level":"info","message":"Connection 7251 released"}
+{"level":"info","message":"Connection 7248 released"}
+{"level":"info","message":"Connection 7247 released"}
+{"level":"info","message":"Connection 7249 acquired"}
+{"level":"info","message":"Connection 7249 released"}
+{"level":"info","message":"Connection 7254 acquired"}
+{"level":"info","message":"Connection 7256 acquired"}
+{"level":"info","message":"Connection 7253 acquired"}
+{"level":"info","message":"Connection 7255 acquired"}
+{"level":"info","message":"Connection 7250 acquired"}
+{"level":"info","message":"Connection 7254 released"}
+{"level":"info","message":"Connection 7255 released"}
+{"level":"info","message":"Connection 7253 released"}
+{"level":"info","message":"Connection 7256 released"}
+{"level":"info","message":"Connection 7250 released"}
+{"level":"info","message":"Connection 7252 acquired"}
+{"level":"info","message":"Connection 7251 acquired"}
+{"level":"info","message":"Connection 7247 acquired"}
+{"level":"info","message":"Connection 7248 acquired"}
+{"level":"info","message":"Connection 7250 acquired"}
+{"level":"info","message":"Connection 7249 acquired"}
+{"level":"info","message":"Connection 7254 acquired"}
+{"level":"info","message":"Connection 7256 acquired"}
+{"level":"info","message":"Connection 7255 acquired"}
+{"level":"info","message":"Connection 7253 acquired"}
+{"level":"info","message":"Connection 7252 released"}
+{"level":"info","message":"Connection 7251 released"}
+{"level":"info","message":"Connection 7248 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7247 released"}
+{"level":"info","message":"Connection 7249 released"}
+{"level":"info","message":"Connection 7250 released"}
+{"level":"info","message":"Connection 7254 released"}
+{"level":"info","message":"Connection 7256 released"}
+{"level":"info","message":"Connection 7255 released"}
+{"level":"info","message":"Connection 7253 released"}
+{"level":"info","message":"Connection 7251 acquired"}
+{"level":"info","message":"Connection 7252 acquired"}
+{"level":"info","message":"Connection 7248 acquired"}
+{"level":"info","message":"Connection 7247 acquired"}
+{"level":"info","message":"Connection 7249 acquired"}
+{"level":"info","message":"Connection 7251 released"}
+{"level":"info","message":"Connection 7252 released"}
+{"level":"info","message":"Connection 7248 released"}
+{"level":"info","message":"Connection 7247 released"}
+{"level":"info","message":"Connection 7249 released"}
+{"level":"info","message":"Connection 7250 acquired"}
+{"level":"info","message":"Connection 7250 released"}
+{"level":"info","message":"Connection 7254 acquired"}
+{"level":"info","message":"Connection 7256 acquired"}
+{"level":"info","message":"Connection 7255 acquired"}
+{"level":"info","message":"Connection 7251 acquired"}
+{"level":"info","message":"Connection 7253 acquired"}
+{"level":"info","message":"Connection 7251 released"}
+{"level":"info","message":"Connection 7254 released"}
+{"level":"info","message":"Connection 7255 released"}
+{"level":"info","message":"Connection 7256 released"}
+{"level":"info","message":"Connection 7253 released"}
+{"level":"info","message":"New database connection established with ID: 7270"}
+{"level":"info","message":"Connection 7270 acquired"}
+{"level":"info","message":"Connection 7270 released"}
+{"level":"info","message":"Connection 7270 acquired"}
+{"level":"info","message":"Connection 7270 released"}
+{"level":"info","message":"Connection 7270 acquired"}
+{"level":"info","message":"Connection 7270 released"}
+{"level":"info","message":"New database connection established with ID: 7272"}
+{"level":"info","message":"Connection 7272 acquired"}
+{"level":"info","message":"New database connection established with ID: 7273"}
+{"level":"info","message":"Connection 7273 acquired"}
+{"level":"info","message":"New database connection established with ID: 7271"}
+{"level":"info","message":"Connection 7271 acquired"}
+{"level":"info","message":"New database connection established with ID: 7274"}
+{"level":"info","message":"Connection 7274 acquired"}
+{"level":"info","message":"Connection 7272 released"}
+{"level":"info","message":"Connection 7271 released"}
+{"level":"info","message":"Connection 7273 released"}
+{"level":"info","message":"Connection 7274 released"}
+{"level":"info","message":"Connection 7270 acquired"}
+{"level":"info","message":"Connection 7270 released"}
+{"level":"info","message":"Connection 7272 acquired"}
+{"level":"info","message":"Connection 7272 released"}
+{"level":"info","message":"Connection 7271 acquired"}
+{"level":"info","message":"Connection 7271 released"}
+{"level":"info","message":"Connection 7273 acquired"}
+{"level":"info","message":"Connection 7270 acquired"}
+{"level":"info","message":"Connection 7274 acquired"}
+{"level":"info","message":"Connection 7272 acquired"}
+{"level":"info","message":"Connection 7271 acquired"}
+{"level":"info","message":"Connection 7271 released"}
+{"level":"info","message":"Connection 7272 released"}
+{"level":"info","message":"Connection 7273 released"}
+{"level":"info","message":"Connection 7274 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7270 released"}
+{"level":"info","message":"Connection 7272 acquired"}
+{"level":"info","message":"Connection 7271 acquired"}
+{"level":"info","message":"Connection 7273 acquired"}
+{"level":"info","message":"Connection 7274 acquired"}
+{"level":"info","message":"New database connection established with ID: 7277"}
+{"level":"info","message":"Connection 7277 acquired"}
+{"level":"info","message":"New database connection established with ID: 7276"}
+{"level":"info","message":"Connection 7276 acquired"}
+{"level":"info","message":"New database connection established with ID: 7278"}
+{"level":"info","message":"Connection 7278 acquired"}
+{"level":"info","message":"New database connection established with ID: 7279"}
+{"level":"info","message":"Connection 7279 acquired"}
+{"level":"info","message":"Connection 7271 released"}
+{"level":"info","message":"Connection 7274 released"}
+{"level":"info","message":"Connection 7272 released"}
+{"level":"info","message":"Connection 7273 released"}
+{"level":"info","message":"Connection 7277 released"}
+{"level":"info","message":"Connection 7276 released"}
+{"level":"info","message":"Connection 7278 released"}
+{"level":"info","message":"Connection 7279 released"}
+{"level":"info","message":"New database connection established with ID: 7280"}
+{"level":"info","message":"Connection 7280 acquired"}
+{"level":"info","message":"Connection 7280 released"}
+{"level":"info","message":"Connection 7270 acquired"}
+{"level":"info","message":"Connection 7270 released"}
+{"level":"info","message":"New database connection established with ID: 7282"}
+{"level":"info","message":"Connection 7282 acquired"}
+{"level":"info","message":"Connection 7282 released"}
+{"level":"info","message":"New database connection established with ID: 7286"}
+{"level":"info","message":"Connection 7286 acquired"}
+{"level":"info","message":"Connection 7286 released"}
+{"level":"info","message":"New database connection established with ID: 7289"}
+{"level":"info","message":"Connection 7289 acquired"}
+{"level":"info","message":"Connection 7289 released"}
+{"level":"info","message":"Connection 7289 acquired"}
+{"level":"info","message":"Connection 7289 released"}
+{"level":"info","message":"Connection 7289 acquired"}
+{"level":"info","message":"New database connection established with ID: 7290"}
+{"level":"info","message":"Connection 7290 acquired"}
+{"level":"info","message":"New database connection established with ID: 7291"}
+{"level":"info","message":"Connection 7291 acquired"}
+{"level":"info","message":"New database connection established with ID: 7292"}
+{"level":"info","message":"Connection 7292 acquired"}
+{"level":"info","message":"New database connection established with ID: 7293"}
+{"level":"info","message":"Connection 7293 acquired"}
+{"level":"info","message":"New database connection established with ID: 7295"}
+{"level":"info","message":"Connection 7295 acquired"}
+{"level":"info","message":"New database connection established with ID: 7296"}
+{"level":"info","message":"Connection 7296 acquired"}
+{"level":"info","message":"New database connection established with ID: 7297"}
+{"level":"info","message":"Connection 7297 acquired"}
+{"level":"info","message":"New database connection established with ID: 7294"}
+{"level":"info","message":"Connection 7294 acquired"}
+{"level":"info","message":"New database connection established with ID: 7298"}
+{"level":"info","message":"Connection 7298 acquired"}
+{"level":"info","message":"Connection 7289 released"}
+{"level":"info","message":"Connection 7290 released"}
+{"level":"info","message":"Connection 7293 released"}
+{"level":"info","message":"Connection 7291 released"}
+{"level":"info","message":"Connection 7295 released"}
+{"level":"info","message":"Connection 7292 released"}
+{"level":"info","message":"Connection 7296 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7289 acquired"}
+{"level":"info","message":"Connection 7294 released"}
+{"level":"info","message":"Connection 7297 released"}
+{"level":"info","message":"Connection 7298 released"}
+{"level":"info","message":"Connection 7293 acquired"}
+{"level":"info","message":"Connection 7290 acquired"}
+{"level":"info","message":"Connection 7289 released"}
+{"level":"info","message":"Connection 7291 acquired"}
+{"level":"info","message":"Connection 7290 released"}
+{"level":"info","message":"Connection 7293 released"}
+{"level":"info","message":"Connection 7291 released"}
+{"level":"info","message":"Connection 7295 acquired"}
+{"level":"info","message":"Connection 7295 released"}
+{"level":"info","message":"Connection 7294 acquired"}
+{"level":"info","message":"Connection 7292 acquired"}
+{"level":"info","message":"Connection 7298 acquired"}
+{"level":"info","message":"Connection 7296 acquired"}
+{"level":"info","message":"Connection 7297 acquired"}
+{"level":"info","message":"Connection 7298 released"}
+{"level":"info","message":"Connection 7292 released"}
+{"level":"info","message":"Connection 7294 released"}
+{"level":"info","message":"Connection 7296 released"}
+{"level":"info","message":"Connection 7297 released"}
+{"level":"info","message":"Connection 7289 acquired"}
+{"level":"info","message":"Transaction started for deleting user with ID: 5"}
+{"level":"info","message":"Connection 7290 acquired"}
+{"level":"info","message":"Connection 7290 released"}
+{"level":"info","message":"Executed query: DELETE FROM EXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7293 acquired"}
+{"level":"info","message":"Connection 7293 released"}
+{"level":"info","message":"Executed query: DELETE FROM FILES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7291 acquired"}
+{"level":"info","message":"Connection 7291 released"}
+{"level":"info","message":"Executed query: DELETE FROM FOODEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7295 acquired"}
+{"level":"info","message":"Connection 7295 released"}
+{"level":"info","message":"Executed query: DELETE FROM ITEMEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7298 acquired"}
+{"level":"info","message":"Connection 7298 released"}
+{"level":"info","message":"Executed query: DELETE FROM MILEAGEEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7292 acquired"}
+{"level":"info","message":"Connection 7292 released"}
+{"level":"info","message":"Executed query: DELETE FROM USERS WHERE ID = ?"}
+{"level":"info","message":"Transaction committed for deleting user with ID: 5"}
+{"level":"info","message":"Connection 7289 released"}
+{"level":"info","message":"Connection released after deleting user with ID: 5"}
+{"level":"info","message":"Connection 7294 acquired"}
+{"level":"info","message":"Connection 7294 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7296 acquired"}
+{"level":"info","message":"Connection 7296 released"}
+{"level":"info","message":"Connection 7290 acquired"}
+{"level":"info","message":"Connection 7297 acquired"}
+{"level":"info","message":"Connection 7291 acquired"}
+{"level":"info","message":"Connection 7294 acquired"}
+{"level":"info","message":"Connection 7292 acquired"}
+{"level":"info","message":"Connection 7293 acquired"}
+{"level":"info","message":"Connection 7295 acquired"}
+{"level":"info","message":"Connection 7289 acquired"}
+{"level":"info","message":"Connection 7296 acquired"}
+{"level":"info","message":"Connection 7298 acquired"}
+{"level":"info","message":"Connection 7290 released"}
+{"level":"info","message":"Connection 7297 released"}
+{"level":"info","message":"Connection 7291 released"}
+{"level":"info","message":"Connection 7294 released"}
+{"level":"info","message":"Connection 7289 released"}
+{"level":"info","message":"Connection 7292 released"}
+{"level":"info","message":"Connection 7298 released"}
+{"level":"info","message":"Connection 7296 released"}
+{"level":"info","message":"Connection 7295 released"}
+{"level":"info","message":"Connection 7293 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7290 acquired"}
+{"level":"info","message":"Connection 7297 acquired"}
+{"level":"info","message":"Connection 7289 acquired"}
+{"level":"info","message":"Connection 7291 acquired"}
+{"level":"info","message":"Connection 7294 acquired"}
+{"level":"info","message":"Connection 7290 released"}
+{"level":"info","message":"Connection 7297 released"}
+{"level":"info","message":"Connection 7289 released"}
+{"level":"info","message":"Connection 7294 released"}
+{"level":"info","message":"Connection 7291 released"}
+{"level":"info","message":"Connection 7292 acquired"}
+{"level":"info","message":"Connection 7292 released"}
+{"level":"info","message":"Connection 7290 acquired"}
+{"level":"info","message":"Connection 7293 acquired"}
+{"level":"info","message":"Connection 7295 acquired"}
+{"level":"info","message":"Connection 7296 acquired"}
+{"level":"info","message":"Connection 7298 acquired"}
+{"level":"info","message":"Connection 7290 released"}
+{"level":"info","message":"Connection 7293 released"}
+{"level":"info","message":"Connection 7296 released"}
+{"level":"info","message":"Connection 7295 released"}
+{"level":"info","message":"Connection 7298 released"}
+{"level":"info","message":"New database connection established with ID: 7303"}
+{"level":"info","message":"Connection 7303 acquired"}
+{"level":"info","message":"New database connection established with ID: 7300"}
+{"level":"info","message":"Connection 7300 acquired"}
+{"level":"info","message":"New database connection established with ID: 7302"}
+{"level":"info","message":"Connection 7302 acquired"}
+{"level":"info","message":"New database connection established with ID: 7305"}
+{"level":"info","message":"Connection 7305 acquired"}
+{"level":"info","message":"New database connection established with ID: 7304"}
+{"level":"info","message":"Connection 7304 acquired"}
+{"level":"info","message":"New database connection established with ID: 7301"}
+{"level":"info","message":"Connection 7301 acquired"}
+{"level":"info","message":"New database connection established with ID: 7309"}
+{"level":"info","message":"Connection 7309 acquired"}
+{"level":"info","message":"New database connection established with ID: 7306"}
+{"level":"info","message":"Connection 7306 acquired"}
+{"level":"info","message":"New database connection established with ID: 7307"}
+{"level":"info","message":"Connection 7307 acquired"}
+{"level":"info","message":"New database connection established with ID: 7308"}
+{"level":"info","message":"Connection 7308 acquired"}
+{"level":"info","message":"Connection 7303 released"}
+{"level":"info","message":"Connection 7300 released"}
+{"level":"info","message":"Connection 7302 released"}
+{"level":"info","message":"Connection 7309 released"}
+{"level":"info","message":"Connection 7301 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7304 released"}
+{"level":"info","message":"Connection 7305 released"}
+{"level":"info","message":"Connection 7306 released"}
+{"level":"info","message":"Connection 7308 released"}
+{"level":"info","message":"Connection 7307 released"}
+{"level":"info","message":"Connection 7303 acquired"}
+{"level":"info","message":"Connection 7300 acquired"}
+{"level":"info","message":"Connection 7301 acquired"}
+{"level":"info","message":"Connection 7302 acquired"}
+{"level":"info","message":"Connection 7309 acquired"}
+{"level":"info","message":"Connection 7301 released"}
+{"level":"info","message":"Connection 7303 released"}
+{"level":"info","message":"Connection 7300 released"}
+{"level":"info","message":"Connection 7309 released"}
+{"level":"info","message":"Connection 7302 released"}
+{"level":"info","message":"Connection 7304 acquired"}
+{"level":"info","message":"Connection 7304 released"}
+{"level":"info","message":"Connection 7306 acquired"}
+{"level":"info","message":"Connection 7301 acquired"}
+{"level":"info","message":"Connection 7305 acquired"}
+{"level":"info","message":"Connection 7307 acquired"}
+{"level":"info","message":"Connection 7308 acquired"}
+{"level":"info","message":"Connection 7306 released"}
+{"level":"info","message":"Connection 7308 released"}
+{"level":"info","message":"Connection 7305 released"}
+{"level":"info","message":"Connection 7307 released"}
+{"level":"info","message":"Connection 7301 released"}
+{"level":"info","message":"Connection 7303 acquired"}
+{"level":"info","message":"Connection 7303 released"}
+{"level":"info","message":"New database connection established with ID: 7312"}
+{"level":"info","message":"Connection 7312 acquired"}
+{"level":"info","message":"Connection 7312 released"}
+{"level":"info","message":"Connection 7312 acquired"}
+{"level":"info","message":"Connection 7312 released"}
+{"level":"info","message":"Connection 7312 acquired"}
+{"level":"info","message":"Connection 7312 released"}
+{"level":"info","message":"Connection 7312 acquired"}
+{"level":"info","message":"Connection 7312 released"}
+{"level":"info","message":"New database connection established with ID: 7313"}
+{"level":"info","message":"Connection 7313 acquired"}
+{"level":"info","message":"New database connection established with ID: 7314"}
+{"level":"info","message":"Connection 7314 acquired"}
+{"level":"info","message":"New database connection established with ID: 7316"}
+{"level":"info","message":"Connection 7316 acquired"}
+{"level":"info","message":"New database connection established with ID: 7315"}
+{"level":"info","message":"Connection 7315 acquired"}
+{"level":"info","message":"Connection 7313 released"}
+{"level":"info","message":"Connection 7314 released"}
+{"level":"info","message":"Connection 7316 released"}
+{"level":"info","message":"Connection 7315 released"}
+{"level":"info","message":"Connection 7312 acquired"}
+{"level":"info","message":"Connection 7312 released"}
+{"level":"info","message":"Connection 7313 acquired"}
+{"level":"info","message":"Connection 7314 acquired"}
+{"level":"info","message":"Connection 7316 acquired"}
+{"level":"info","message":"Connection 7315 acquired"}
+{"level":"info","message":"Connection 7312 acquired"}
+{"level":"info","message":"Connection 7313 released"}
+{"level":"info","message":"Connection 7316 released"}
+{"level":"info","message":"Connection 7314 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7315 released"}
+{"level":"info","message":"Connection 7312 released"}
+{"level":"info","message":"Connection 7313 acquired"}
+{"level":"info","message":"Connection 7316 acquired"}
+{"level":"info","message":"Connection 7315 acquired"}
+{"level":"info","message":"Connection 7314 acquired"}
+{"level":"info","message":"New database connection established with ID: 7317"}
+{"level":"info","message":"Connection 7317 acquired"}
+{"level":"info","message":"New database connection established with ID: 7319"}
+{"level":"info","message":"Connection 7319 acquired"}
+{"level":"info","message":"New database connection established with ID: 7318"}
+{"level":"info","message":"Connection 7318 acquired"}
+{"level":"info","message":"Connection 7315 released"}
+{"level":"info","message":"New database connection established with ID: 7320"}
+{"level":"info","message":"Connection 7320 acquired"}
+{"level":"info","message":"Connection 7314 released"}
+{"level":"info","message":"Connection 7316 released"}
+{"level":"info","message":"Connection 7313 released"}
+{"level":"info","message":"Connection 7317 released"}
+{"level":"info","message":"Connection 7319 released"}
+{"level":"info","message":"Connection 7318 released"}
+{"level":"info","message":"New database connection established with ID: 7321"}
+{"level":"info","message":"Connection 7321 acquired"}
+{"level":"info","message":"Connection 7320 released"}
+{"level":"info","message":"Connection 7321 released"}
+{"level":"info","message":"Connection 7312 acquired"}
+{"level":"info","message":"Transaction started for deleting user with ID: 6"}
+{"level":"info","message":"Connection 7315 acquired"}
+{"level":"info","message":"Connection 7315 released"}
+{"level":"info","message":"Executed query: DELETE FROM EXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7314 acquired"}
+{"level":"info","message":"Connection 7314 released"}
+{"level":"info","message":"Executed query: DELETE FROM FILES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7316 acquired"}
+{"level":"info","message":"Connection 7316 released"}
+{"level":"info","message":"Executed query: DELETE FROM FOODEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7313 acquired"}
+{"level":"info","message":"Connection 7313 released"}
+{"level":"info","message":"Executed query: DELETE FROM ITEMEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7317 acquired"}
+{"level":"info","message":"Connection 7317 released"}
+{"level":"info","message":"Executed query: DELETE FROM MILEAGEEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7319 acquired"}
+{"level":"info","message":"Connection 7319 released"}
+{"level":"info","message":"Executed query: DELETE FROM USERS WHERE ID = ?"}
+{"level":"info","message":"Transaction committed for deleting user with ID: 6"}
+{"level":"info","message":"Connection 7312 released"}
+{"level":"info","message":"Connection released after deleting user with ID: 6"}
+{"level":"info","message":"Connection 7318 acquired"}
+{"level":"info","message":"Connection 7318 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7320 acquired"}
+{"level":"info","message":"Connection 7320 released"}
+{"level":"info","message":"New database connection established with ID: 7325"}
+{"level":"info","message":"Connection 7325 acquired"}
+{"level":"info","message":"Connection 7325 released"}
+{"level":"info","message":"Connection 7325 acquired"}
+{"level":"info","message":"Connection 7325 released"}
+{"level":"info","message":"New database connection established with ID: 7326"}
+{"level":"info","message":"Connection 7326 acquired"}
+{"level":"info","message":"New database connection established with ID: 7328"}
+{"level":"info","message":"Connection 7328 acquired"}
+{"level":"info","message":"New database connection established with ID: 7327"}
+{"level":"info","message":"Connection 7327 acquired"}
+{"level":"info","message":"New database connection established with ID: 7329"}
+{"level":"info","message":"Connection 7329 acquired"}
+{"level":"info","message":"Connection 7325 acquired"}
+{"level":"info","message":"New database connection established with ID: 7332"}
+{"level":"info","message":"Connection 7332 acquired"}
+{"level":"info","message":"New database connection established with ID: 7331"}
+{"level":"info","message":"Connection 7331 acquired"}
+{"level":"info","message":"New database connection established with ID: 7330"}
+{"level":"info","message":"Connection 7330 acquired"}
+{"level":"info","message":"New database connection established with ID: 7333"}
+{"level":"info","message":"Connection 7333 acquired"}
+{"level":"info","message":"Connection 7326 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7328 released"}
+{"level":"info","message":"Connection 7327 released"}
+{"level":"info","message":"Connection 7331 released"}
+{"level":"info","message":"Connection 7329 released"}
+{"level":"info","message":"Connection 7330 released"}
+{"level":"info","message":"Connection 7325 released"}
+{"level":"info","message":"Connection 7332 released"}
+{"level":"info","message":"Connection 7333 released"}
+{"level":"info","message":"Connection 7326 acquired"}
+{"level":"info","message":"Connection 7328 acquired"}
+{"level":"info","message":"Connection 7327 acquired"}
+{"level":"info","message":"New database connection established with ID: 7334"}
+{"level":"info","message":"Connection 7334 acquired"}
+{"level":"info","message":"Connection 7326 released"}
+{"level":"info","message":"Connection 7328 released"}
+{"level":"info","message":"Connection 7327 released"}
+{"level":"info","message":"Connection 7334 released"}
+{"level":"info","message":"Connection 7331 acquired"}
+{"level":"info","message":"Transaction started for deleting user with ID: 7"}
+{"level":"info","message":"Connection 7329 acquired"}
+{"level":"info","message":"Connection 7329 released"}
+{"level":"info","message":"Executed query: DELETE FROM EXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7330 acquired"}
+{"level":"info","message":"Connection 7330 released"}
+{"level":"info","message":"Executed query: DELETE FROM FILES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7325 acquired"}
+{"level":"info","message":"Connection 7325 released"}
+{"level":"info","message":"Executed query: DELETE FROM FOODEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7332 acquired"}
+{"level":"info","message":"Connection 7332 released"}
+{"level":"info","message":"Executed query: DELETE FROM ITEMEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7333 acquired"}
+{"level":"info","message":"Connection 7333 released"}
+{"level":"info","message":"Executed query: DELETE FROM MILEAGEEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7326 acquired"}
+{"level":"info","message":"Connection 7326 released"}
+{"level":"info","message":"Executed query: DELETE FROM USERS WHERE ID = ?"}
+{"level":"info","message":"Transaction committed for deleting user with ID: 7"}
+{"level":"info","message":"Connection 7331 released"}
+{"level":"info","message":"Connection released after deleting user with ID: 7"}
+{"level":"info","message":"Connection 7328 acquired"}
+{"level":"info","message":"Connection 7328 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7327 acquired"}
+{"level":"info","message":"Connection 7327 released"}
+{"level":"info","message":"Connection 7329 acquired"}
+{"level":"info","message":"Connection 7334 acquired"}
+{"level":"info","message":"Connection 7330 acquired"}
+{"level":"info","message":"Connection 7332 acquired"}
+{"level":"info","message":"Connection 7328 acquired"}
+{"level":"info","message":"Connection 7327 acquired"}
+{"level":"info","message":"Connection 7325 acquired"}
+{"level":"info","message":"Connection 7331 acquired"}
+{"level":"info","message":"Connection 7326 acquired"}
+{"level":"info","message":"Connection 7333 acquired"}
+{"level":"info","message":"Connection 7329 released"}
+{"level":"info","message":"Connection 7334 released"}
+{"level":"info","message":"Connection 7330 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7328 released"}
+{"level":"info","message":"Connection 7327 released"}
+{"level":"info","message":"Connection 7325 released"}
+{"level":"info","message":"Connection 7332 released"}
+{"level":"info","message":"Connection 7331 released"}
+{"level":"info","message":"Connection 7326 released"}
+{"level":"info","message":"Connection 7333 released"}
+{"level":"info","message":"Connection 7329 acquired"}
+{"level":"info","message":"Connection 7334 acquired"}
+{"level":"info","message":"Connection 7330 acquired"}
+{"level":"info","message":"Connection 7327 acquired"}
+{"level":"info","message":"Connection 7328 acquired"}
+{"level":"info","message":"Connection 7334 released"}
+{"level":"info","message":"Connection 7329 released"}
+{"level":"info","message":"Connection 7330 released"}
+{"level":"info","message":"Connection 7328 released"}
+{"level":"info","message":"Connection 7327 released"}
+{"level":"info","message":"Connection 7325 acquired"}
+{"level":"info","message":"Connection 7325 released"}
+{"level":"info","message":"Connection 7326 acquired"}
+{"level":"info","message":"Connection 7331 acquired"}
+{"level":"info","message":"Connection 7332 acquired"}
+{"level":"info","message":"Connection 7333 acquired"}
+{"level":"info","message":"Connection 7334 acquired"}
+{"level":"info","message":"Connection 7331 released"}
+{"level":"info","message":"Connection 7326 released"}
+{"level":"info","message":"Connection 7333 released"}
+{"level":"info","message":"Connection 7332 released"}
+{"level":"info","message":"Connection 7334 released"}
+{"level":"info","message":"Connection 7329 acquired"}
+{"level":"info","message":"Transaction started for deleting user with ID: 8"}
+{"level":"info","message":"Connection 7330 acquired"}
+{"level":"info","message":"Connection 7330 released"}
+{"level":"info","message":"Executed query: DELETE FROM EXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7328 acquired"}
+{"level":"info","message":"Connection 7328 released"}
+{"level":"info","message":"Executed query: DELETE FROM FILES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7327 acquired"}
+{"level":"info","message":"Connection 7327 released"}
+{"level":"info","message":"Executed query: DELETE FROM FOODEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7325 acquired"}
+{"level":"info","message":"Connection 7325 released"}
+{"level":"info","message":"Executed query: DELETE FROM ITEMEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7331 acquired"}
+{"level":"info","message":"Connection 7331 released"}
+{"level":"info","message":"Executed query: DELETE FROM MILEAGEEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7326 acquired"}
+{"level":"info","message":"Connection 7326 released"}
+{"level":"info","message":"Executed query: DELETE FROM USERS WHERE ID = ?"}
+{"level":"info","message":"Transaction committed for deleting user with ID: 8"}
+{"level":"info","message":"Connection 7329 released"}
+{"level":"info","message":"Connection released after deleting user with ID: 8"}
+{"level":"info","message":"Connection 7333 acquired"}
+{"level":"info","message":"Connection 7333 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7332 acquired"}
+{"level":"info","message":"Connection 7334 acquired"}
+{"level":"info","message":"Connection 7328 acquired"}
+{"level":"info","message":"Connection 7331 acquired"}
+{"level":"info","message":"Connection 7329 acquired"}
+{"level":"info","message":"Connection 7327 acquired"}
+{"level":"info","message":"Connection 7325 acquired"}
+{"level":"info","message":"Connection 7330 acquired"}
+{"level":"info","message":"Connection 7326 acquired"}
+{"level":"info","message":"Connection 7333 acquired"}
+{"level":"info","message":"Connection 7332 released"}
+{"level":"info","message":"Connection 7334 released"}
+{"level":"info","message":"Connection 7328 released"}
+{"level":"info","message":"Connection 7327 released"}
+{"level":"info","message":"Connection 7325 released"}
+{"level":"info","message":"Connection 7331 released"}
+{"level":"info","message":"Connection 7329 released"}
+{"level":"info","message":"Connection 7326 released"}
+{"level":"info","message":"Connection 7330 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7333 released"}
+{"level":"info","message":"Connection 7332 acquired"}
+{"level":"info","message":"Connection 7334 acquired"}
+{"level":"info","message":"Connection 7328 acquired"}
+{"level":"info","message":"Connection 7327 acquired"}
+{"level":"info","message":"Connection 7325 acquired"}
+{"level":"info","message":"Connection 7332 released"}
+{"level":"info","message":"Connection 7334 released"}
+{"level":"info","message":"Connection 7328 released"}
+{"level":"info","message":"Connection 7327 released"}
+{"level":"info","message":"Connection 7325 released"}
+{"level":"info","message":"Connection 7331 acquired"}
+{"level":"info","message":"Connection 7331 released"}
+{"level":"info","message":"Connection 7329 acquired"}
+{"level":"info","message":"Connection 7326 acquired"}
+{"level":"info","message":"Connection 7330 acquired"}
+{"level":"info","message":"Connection 7332 acquired"}
+{"level":"info","message":"Connection 7333 acquired"}
+{"level":"info","message":"Connection 7332 released"}
+{"level":"info","message":"Connection 7330 released"}
+{"level":"info","message":"Connection 7329 released"}
+{"level":"info","message":"Connection 7326 released"}
+{"level":"info","message":"Connection 7333 released"}
+{"level":"info","message":"Connection 7334 acquired"}
+{"level":"info","message":"Connection 7334 released"}
+{"level":"info","message":"New database connection established with ID: 7337"}
+{"level":"info","message":"Connection 7337 acquired"}
+{"level":"info","message":"New database connection established with ID: 7336"}
+{"level":"info","message":"Connection 7336 acquired"}
+{"level":"info","message":"New database connection established with ID: 7338"}
+{"level":"info","message":"Connection 7338 acquired"}
+{"level":"info","message":"New database connection established with ID: 7339"}
+{"level":"info","message":"Connection 7339 acquired"}
+{"level":"info","message":"New database connection established with ID: 7335"}
+{"level":"info","message":"Connection 7335 acquired"}
+{"level":"info","message":"New database connection established with ID: 7341"}
+{"level":"info","message":"Connection 7341 acquired"}
+{"level":"info","message":"New database connection established with ID: 7342"}
+{"level":"info","message":"Connection 7342 acquired"}
+{"level":"info","message":"New database connection established with ID: 7340"}
+{"level":"info","message":"Connection 7340 acquired"}
+{"level":"info","message":"New database connection established with ID: 7344"}
+{"level":"info","message":"Connection 7344 acquired"}
+{"level":"info","message":"New database connection established with ID: 7343"}
+{"level":"info","message":"Connection 7343 acquired"}
+{"level":"info","message":"Connection 7335 released"}
+{"level":"info","message":"Connection 7338 released"}
+{"level":"info","message":"Connection 7337 released"}
+{"level":"info","message":"Connection 7339 released"}
+{"level":"info","message":"Connection 7341 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7336 released"}
+{"level":"info","message":"Connection 7342 released"}
+{"level":"info","message":"Connection 7340 released"}
+{"level":"info","message":"Connection 7344 released"}
+{"level":"info","message":"Connection 7343 released"}
+{"level":"info","message":"Connection 7337 acquired"}
+{"level":"info","message":"Connection 7339 acquired"}
+{"level":"info","message":"Connection 7335 acquired"}
+{"level":"info","message":"Connection 7341 acquired"}
+{"level":"info","message":"Connection 7338 acquired"}
+{"level":"info","message":"Connection 7339 released"}
+{"level":"info","message":"Connection 7337 released"}
+{"level":"info","message":"Connection 7335 released"}
+{"level":"info","message":"Connection 7338 released"}
+{"level":"info","message":"Connection 7341 released"}
+{"level":"info","message":"Connection 7336 acquired"}
+{"level":"info","message":"Connection 7336 released"}
+{"level":"info","message":"Connection 7344 acquired"}
+{"level":"info","message":"Connection 7339 acquired"}
+{"level":"info","message":"Connection 7340 acquired"}
+{"level":"info","message":"Connection 7343 acquired"}
+{"level":"info","message":"Connection 7342 acquired"}
+{"level":"info","message":"Connection 7344 released"}
+{"level":"info","message":"Connection 7343 released"}
+{"level":"info","message":"Connection 7339 released"}
+{"level":"info","message":"Connection 7340 released"}
+{"level":"info","message":"Connection 7342 released"}
+{"level":"info","message":"New database connection established with ID: 7349"}
+{"level":"info","message":"Connection 7349 acquired"}
+{"level":"info","message":"New database connection established with ID: 7346"}
+{"level":"info","message":"Connection 7346 acquired"}
+{"level":"info","message":"New database connection established with ID: 7347"}
+{"level":"info","message":"Connection 7347 acquired"}
+{"level":"info","message":"New database connection established with ID: 7345"}
+{"level":"info","message":"Connection 7345 acquired"}
+{"level":"info","message":"New database connection established with ID: 7350"}
+{"level":"info","message":"Connection 7350 acquired"}
+{"level":"info","message":"New database connection established with ID: 7348"}
+{"level":"info","message":"Connection 7348 acquired"}
+{"level":"info","message":"New database connection established with ID: 7353"}
+{"level":"info","message":"Connection 7353 acquired"}
+{"level":"info","message":"New database connection established with ID: 7352"}
+{"level":"info","message":"Connection 7352 acquired"}
+{"level":"info","message":"New database connection established with ID: 7354"}
+{"level":"info","message":"Connection 7354 acquired"}
+{"level":"info","message":"New database connection established with ID: 7351"}
+{"level":"info","message":"Connection 7351 acquired"}
+{"level":"info","message":"Connection 7345 released"}
+{"level":"info","message":"Connection 7347 released"}
+{"level":"info","message":"Connection 7346 released"}
+{"level":"info","message":"Connection 7349 released"}
+{"level":"info","message":"Connection 7350 released"}
+{"level":"info","message":"Connection 7348 released"}
+{"level":"info","message":"Connection 7354 released"}
+{"level":"info","message":"Connection 7353 released"}
+{"level":"info","message":"Connection 7352 released"}
+{"level":"info","message":"Connection 7351 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7345 acquired"}
+{"level":"info","message":"Connection 7347 acquired"}
+{"level":"info","message":"Connection 7346 acquired"}
+{"level":"info","message":"Connection 7349 acquired"}
+{"level":"info","message":"Connection 7350 acquired"}
+{"level":"info","message":"Connection 7345 released"}
+{"level":"info","message":"Connection 7347 released"}
+{"level":"info","message":"Connection 7349 released"}
+{"level":"info","message":"Connection 7346 released"}
+{"level":"info","message":"Connection 7350 released"}
+{"level":"info","message":"Connection 7348 acquired"}
+{"level":"info","message":"Connection 7348 released"}
+{"level":"info","message":"Connection 7354 acquired"}
+{"level":"info","message":"Connection 7353 acquired"}
+{"level":"info","message":"Connection 7345 acquired"}
+{"level":"info","message":"Connection 7351 acquired"}
+{"level":"info","message":"Connection 7352 acquired"}
+{"level":"info","message":"Connection 7353 released"}
+{"level":"info","message":"Connection 7354 released"}
+{"level":"info","message":"Connection 7345 released"}
+{"level":"info","message":"Connection 7351 released"}
+{"level":"info","message":"Connection 7352 released"}
+{"level":"info","message":"Connection 7347 acquired"}
+{"level":"info","message":"Transaction started for deleting user with ID: 9"}
+{"level":"info","message":"Connection 7349 acquired"}
+{"level":"info","message":"Connection 7349 released"}
+{"level":"info","message":"Executed query: DELETE FROM EXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7346 acquired"}
+{"level":"info","message":"Connection 7346 released"}
+{"level":"info","message":"Executed query: DELETE FROM FILES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7350 acquired"}
+{"level":"info","message":"Connection 7350 released"}
+{"level":"info","message":"Executed query: DELETE FROM FOODEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7348 acquired"}
+{"level":"info","message":"Connection 7348 released"}
+{"level":"info","message":"Executed query: DELETE FROM ITEMEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7353 acquired"}
+{"level":"info","message":"Connection 7353 released"}
+{"level":"info","message":"Executed query: DELETE FROM MILEAGEEXPENSES WHERE USER_ID = ?"}
+{"level":"info","message":"Connection 7354 acquired"}
+{"level":"info","message":"Connection 7354 released"}
+{"level":"info","message":"Executed query: DELETE FROM USERS WHERE ID = ?"}
+{"level":"info","message":"Transaction committed for deleting user with ID: 9"}
+{"level":"info","message":"Connection 7347 released"}
+{"level":"info","message":"Connection released after deleting user with ID: 9"}
+{"level":"info","message":"Connection 7345 acquired"}
+{"level":"info","message":"Connection 7345 released"}
+{"level":"info","message":"Fetched users successfully"}
+{"level":"info","message":"Connection 7351 acquired"}
+{"level":"info","message":"Connection 7351 released"}
+{"level":"info","message":"Connection 7352 acquired"}
+{"level":"info","message":"Connection 7352 released"}

@@ -15,6 +15,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import winston from "winston";
+import nodemailer from "nodemailer";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -31,6 +32,24 @@ const logger = winston.createLogger({
     new winston.transports.File({ filename: "combined.log" }),
   ],
 });
+
+// Configure nodemailer
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    type: "OAuth2",
+    user: process.env.MAIL_USERNAME,
+    pass: process.env.MAIL_PASSWORD,
+    clientId: process.env.OAUTH_CLIENTID,
+    clientSecret: process.env.OAUTH_CLIENT_SECRET,
+    refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+  },
+});
+
+// Generate random password
+const generateRandomPassword = () => {
+  return Math.random().toString(36).slice(-8);
+};
 
 // ------------- app_setup -------------
 const app = express();
@@ -228,31 +247,37 @@ app.post("/admin/users", verifyUser, async (req, res) => {
     return res.status(403).json({ Error: "Access denied" });
   }
 
-  const { firstName, lastName, email, password, role } = req.body;
-
-  if (!password) {
-    return res.status(400).json({ Error: "Password is required" });
-  }
+  const { firstName, lastName, email, role } = req.body;
+  const tempPassword = generateRandomPassword();
 
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    let userRole = role || "user";
+    const hashedPassword = await bcrypt.hash(tempPassword, 10);
+    const userRole = role || "user";
 
     const sql =
-      "INSERT INTO USERS (fn, ln, email, password, role) VALUES (?,?,?,?,?)";
-    const values = [firstName, lastName, email, hashedPassword, userRole];
+      "INSERT INTO USERS (fn, ln, email, password, role, tempPassword) VALUES (?,?,?,?,?,?)";
+    const values = [firstName, lastName, email, hashedPassword, userRole, true];
 
-    pool.query(sql, values, (err, result) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).json({ Error: "Error when inserting data" });
+    await queryAsync(sql, values);
+
+    // Send email with temporary password
+    const mailOptions = {
+      from: process.env.MAIL_USERNAME,
+      to: email,
+      subject: "Your Temporary Password",
+      text: `Your temporary password is: ${tempPassword}. Please log in and change your password immediately.`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return res.status(500).json({ Error: "Error sending email" });
+      } else {
+        return res.json({ Status: "Success", info });
       }
-      return res.json({ Status: "Success", insertId: result.insertId });
     });
   } catch (error) {
-    console.error("Error hashing password:", error);
-    return res.status(500).json({ Error: "Error when hashing password" });
+    console.error(error);
+    return res.status(500).json({ Error: "Error creating user" });
   }
 });
 
@@ -494,14 +519,11 @@ app.post(
 // LOGIN ROUTE
 app.post("/login", async (req, res) => {
   try {
-    console.log("Login request received with email:", req.body.email);
-
     const [user] = await queryAsync("SELECT * FROM USERS WHERE EMAIL = ?", [
       req.body.email,
     ]);
 
     if (!user) {
-      console.log("User not found");
       return res.status(401).send({ Status: "Unauthorized" });
     }
 
@@ -511,7 +533,7 @@ app.post("/login", async (req, res) => {
     );
 
     if (passwordMatch) {
-      const { FN, LN, EMAIL, ID: user_ID, ROLE } = user;
+      const { FN, LN, EMAIL, ID: user_ID, ROLE, TEMP_PASSWORD } = user;
       const token = jwt.sign(
         { FN, LN, EMAIL, user_ID, ROLE },
         process.env.JWT_SECRET,
@@ -520,17 +542,34 @@ app.post("/login", async (req, res) => {
 
       res.cookie("token", token, { httpOnly: true });
 
-      if (ROLE === "admin") {
+      if (TEMP_PASSWORD) {
+        return res.send({ Status: "ChangePassword", token });
+      } else if (ROLE === "admin") {
         return res.send({ Status: "rootUser", token });
       } else {
         return res.send({ Status: "Success", token });
       }
     } else {
-      console.log("Password mismatch");
       return res.status(401).send({ Status: "Unauthorized" });
     }
   } catch (error) {
     console.error("Error during login:", error);
+    return res.status(500).send({ Status: "Error", Error: "Database error" });
+  }
+});
+
+app.post("/change-password", verifyUser, async (req, res) => {
+  const { newPassword } = req.body;
+
+  try {
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    await queryAsync(
+      "UPDATE USERS SET PASSWORD = ?, TEMP_PASSWORD = false WHERE ID = ?",
+      [hashedPassword, req.user_ID]
+    );
+    return res.json({ Status: "Success" });
+  } catch (error) {
+    console.error("Error changing password:", error);
     return res.status(500).send({ Status: "Error", Error: "Database error" });
   }
 });
