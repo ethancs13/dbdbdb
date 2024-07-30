@@ -42,7 +42,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 15px;
+  padding: 6px 15px;
   margin: 5px 0;
   background-color: #fafafa;
   border: 1px solid #ddd;
@@ -266,7 +266,7 @@ body {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+  margin: 8px 4px;
   transition-duration: 0.2s;
   cursor: pointer;
 }

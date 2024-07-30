@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CalendarWidget from "../components/CalendarWidget";
+import GoogleSignIn from "../components/GoogleSignIn"; // Import the GoogleSignIn component
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "../css/adminUsers.css";
 
@@ -23,6 +24,11 @@ const Admin = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [selectedSubmission, setSelectedSubmission] = useState(null);
   const [mileageRates, setMileageRates] = useState([]);
+  const [googleToken, setGoogleToken] = useState(""); // Add state to store Google token
+  const [addUserButtonText, setAddUserButtonText] = useState("Add User");
+  const [isAddingUser, setIsAddingUser] = useState(false);
+  const [addUserError, setAddUserError] = useState(null);
+  const [deletingUsers, setDeletingUsers] = useState({}); // Track deletion state for each user
 
   useEffect(() => {
     fetchUsers();
@@ -95,20 +101,61 @@ const Admin = () => {
     const tempPassword = generateRandomPassword();
     const userWithPassword = { ...newUser, password: tempPassword };
 
+    if (!googleToken || !newUser.email) {
+      setAddUserError("Error: Requires Google Authentication.");
+      setAddUserButtonText("Add User");
+      setTimeout(() => setAddUserError(null), 3000);
+      return;
+    }
+
+    setIsAddingUser(true);
     try {
-      await axios.post(
+      const response = await axios.post(
         `${process.env.REACT_APP_SERVER_END_POINT}/admin/users`,
         userWithPassword,
         { withCredentials: true }
       );
+      console.log("User added response:", response.data); // Logging
       setNewUser({ firstName: "", lastName: "", email: "", role: "user" });
       fetchUsers();
+
+      // Send email after user is added
+      console.log("sending email");
+      await sendEmail(newUser.email, googleToken, tempPassword); // Include tempPassword
+      setAddUserButtonText("Added");
+      setTimeout(() => setAddUserButtonText("Add User"), 1000);
     } catch (err) {
       console.error("Error adding user:", err);
+      setAddUserError("Error adding user.");
+      setTimeout(() => setAddUserError(null), 3000);
+    } finally {
+      setIsAddingUser(false);
     }
   };
 
+  const sendEmail = (userEmail, token, tempPassword) => {
+    return axios
+      .post(`${process.env.REACT_APP_SERVER_END_POINT}/send-email`, {
+        token: token,
+        email: userEmail,
+        tempPassword: tempPassword, // Include tempPassword
+      })
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error(response.statusText);
+        }
+        return response.data;
+      })
+      .then((data) => console.log(data))
+      .catch((error) => {
+        console.error("Error:", error);
+        setAddUserError("Error sending email.");
+        setTimeout(() => setAddUserError(null), 3000);
+      });
+  };
+
   const handleDeleteUser = async (userId) => {
+    setDeletingUsers((prevState) => ({ ...prevState, [userId]: true }));
     try {
       await axios.delete(
         `${process.env.REACT_APP_SERVER_END_POINT}/admin/users/${userId}`,
@@ -117,6 +164,8 @@ const Admin = () => {
       fetchUsers();
     } catch (err) {
       console.error("Error deleting user:", err);
+    } finally {
+      setDeletingUsers((prevState) => ({ ...prevState, [userId]: false }));
     }
   };
 
@@ -154,7 +203,6 @@ const Admin = () => {
     items.splice(result.destination.index, 0, reorderedItem);
     setExpenseTypes(items);
 
-    // Optionally, update the order in the backend
     axios
       .post(
         `${process.env.REACT_APP_SERVER_END_POINT}/admin/update-expense-types-order`,
@@ -258,7 +306,7 @@ const Admin = () => {
               setNewMileageRate({ ...newMileageRate, rate: e.target.value })
             }
           />
-          <div style={{display: "flex"}}>
+          <div style={{ display: "flex" }}>
             <CalendarWidget
               selectedDate={newMileageRate.startDate}
               onDateChange={(date) =>
@@ -360,6 +408,7 @@ const Admin = () => {
       <section className="users">
         <div className="add-user-form">
           <h2>Add User</h2>
+          {addUserError && <div className="error-message">{addUserError}</div>}
           <input
             type="text"
             placeholder="First Name"
@@ -392,8 +441,9 @@ const Admin = () => {
           <button
             className="admin-expense-types-btn-add"
             onClick={handleAddUser}
+            disabled={isAddingUser}
           >
-            Add User
+            {addUserButtonText}
           </button>
         </div>
 
@@ -410,8 +460,9 @@ const Admin = () => {
               <button
                 className="admin-expense-types-btn-del"
                 onClick={() => handleDeleteUser(user.ID)}
+                disabled={deletingUsers[user.ID]}
               >
-                Delete
+                {deletingUsers[user.ID] ? "Deleting..." : "Delete"}
               </button>
             </li>
           ))}
@@ -522,6 +573,9 @@ const Admin = () => {
           </div>
         )}
       </section>
+
+      {/* Add the GoogleSignIn component */}
+      <GoogleSignIn onSignIn={(token) => setGoogleToken(token)} />
     </div>
   );
 };

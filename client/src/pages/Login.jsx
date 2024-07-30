@@ -20,8 +20,10 @@ export const Login = () => {
 
     try {
       const result = await login(email, pass);
-      if (result.status === 'success' || result.status === 'rootUser') {
+      if (result.status === 'success') {
         navigate('/');
+      } else if (result.status === 'rootUser') {
+        navigate('/admin');
       } else if (result.status === 'ChangePassword') {
         setToken(result.token);
         navigate('/change-password');

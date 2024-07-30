@@ -16,6 +16,8 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 import winston from "winston";
 import nodemailer from "nodemailer";
+import { OAuth2Client } from "google-auth-library";
+import bodyParser from "body-parser";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -32,6 +34,14 @@ const logger = winston.createLogger({
     new winston.transports.File({ filename: "combined.log" }),
   ],
 });
+
+const CLIENT_ID = process.env.OAUTH_CLIENT_ID;
+const CLIENT_SECRET = process.env.OAUTH_CLIENT_SECRET;
+const REDIRECT_URI = process.env.REDIRECT_URI;
+const REFRESH_TOKEN = process.env.OAUTH_REFRESH_TOKEN;
+
+const oAuth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
 // Configure nodemailer
 const transporter = nodemailer.createTransport({
@@ -61,6 +71,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(bodyParser.json());
 app.use(cookieParser());
 
 // PORT
@@ -146,6 +157,97 @@ app.get("/", verifyUser, (req, res) => {
     ln: req.ln,
     role: req.role,
   });
+});
+// to get id into html nodemailer
+app.get("/client-id", (req, res) => {
+  console.log("Client ID:", CLIENT_ID); // Add logging
+  res.json({ clientId: CLIENT_ID });
+});
+
+// callback to oauth client
+app.get("/oauth2callback", async (req, res) => {
+  const code = req.query.code;
+  if (code) {
+    try {
+      const { tokens } = await oAuth2Client.getToken(code);
+      oAuth2Client.setCredentials(tokens);
+      res.send("Authentication successful! You can close this window.");
+    } catch (error) {
+      console.error("Error during OAuth2 callback:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  } else {
+    res.status(400).send("No code provided");
+  }
+});
+
+app.post("/send-email", async (req, res) => {
+  const token = req.body.token;
+  const tempPassword = req.body.tempPassword; // Get the temporary password from the request body
+  console.log("Received token:", token);
+
+  try {
+    const ticket = await oAuth2Client.verifyIdToken({
+      idToken: token,
+      audience: CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+
+    if (payload) {
+      console.log("Payload:", payload);
+
+      if (!oAuth2Client.credentials.refresh_token) {
+        oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+      }
+
+      const { credentials } = await oAuth2Client.refreshAccessToken();
+      console.log("New access token:", credentials.access_token);
+
+      oAuth2Client.setCredentials({
+        access_token: credentials.access_token,
+        refresh_token: REFRESH_TOKEN,
+      });
+
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          type: "OAuth2",
+          user: process.env.MAIL_USERNAME,
+          clientId: CLIENT_ID,
+          clientSecret: CLIENT_SECRET,
+          refreshToken: REFRESH_TOKEN,
+          accessToken: credentials.access_token,
+        },
+      });
+
+      const mailOptions = {
+        from: process.env.MAIL_USERNAME,
+        to: req.body.email, // Use the user's email from the request body
+        subject: "Your Temporary Password",
+        html: `
+          <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+            <h3>Your account has been created.</h3>
+            <div style="border: 1px solid #ccc; padding: 10px; width: fit-content; background-color: #f9f9f9;">
+              <code style="font-size: 1.2em; ">Username: <a>${req.body.email}</a></code>
+            </div>
+            <div style="border: 1px solid #ccc; padding: 10px; width: fit-content; background-color: #f9f9f9;">
+              <code style="font-size: 1.2em;">Password: ${tempPassword}</code>
+            </div>
+          </div>
+        `,
+      };
+
+      const result = await transporter.sendMail(mailOptions);
+      console.log("Email sent result:", result);
+      res.status(200).send("Email sent successfully: " + result.response);
+    } else {
+      res.status(400).send("Invalid token payload");
+    }
+  } catch (error) {
+    console.error("Error verifying token or sending email:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 app.get("/check-auth", verifyUser, (req, res) => {
@@ -243,15 +345,16 @@ app.delete("/admin/users/:id", verifyUser, async (req, res) => {
 });
 
 app.post("/admin/users", verifyUser, async (req, res) => {
+  logger.info("Received request to add user", req.body);
   if (req.role !== "admin") {
     return res.status(403).json({ Error: "Access denied" });
   }
 
-  const { firstName, lastName, email, role } = req.body;
+  const { firstName, lastName, email, role, password } = req.body;
   const tempPassword = generateRandomPassword();
 
   try {
-    const hashedPassword = await bcrypt.hash(tempPassword, 10);
+    const hashedPassword = await bcrypt.hash(password || tempPassword, 10);
     const userRole = role || "user";
 
     const sql =
@@ -259,24 +362,11 @@ app.post("/admin/users", verifyUser, async (req, res) => {
     const values = [firstName, lastName, email, hashedPassword, userRole, true];
 
     await queryAsync(sql, values);
-
-    // Send email with temporary password
-    const mailOptions = {
-      from: process.env.MAIL_USERNAME,
-      to: email,
-      subject: "Your Temporary Password",
-      text: `Your temporary password is: ${tempPassword}. Please log in and change your password immediately.`,
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        return res.status(500).json({ Error: "Error sending email" });
-      } else {
-        return res.json({ Status: "Success", info });
-      }
-    });
+    logger.info(`User ${email} added successfully`);
+    res.json({ status: "Success", message: "User added successfully" });
   } catch (error) {
     console.error(error);
+    logger.error(`Error creating user: ${error.message}`);
     return res.status(500).json({ Error: "Error creating user" });
   }
 });
@@ -516,7 +606,7 @@ app.post(
   }
 );
 
-// LOGIN ROUTE
+// login route
 app.post("/login", async (req, res) => {
   try {
     const [user] = await queryAsync("SELECT * FROM USERS WHERE EMAIL = ?", [
@@ -533,7 +623,7 @@ app.post("/login", async (req, res) => {
     );
 
     if (passwordMatch) {
-      const { FN, LN, EMAIL, ID: user_ID, ROLE, TEMP_PASSWORD } = user;
+      const { FN, LN, EMAIL, ID: user_ID, ROLE, tempPassword } = user;
       const token = jwt.sign(
         { FN, LN, EMAIL, user_ID, ROLE },
         process.env.JWT_SECRET,
@@ -541,8 +631,9 @@ app.post("/login", async (req, res) => {
       );
 
       res.cookie("token", token, { httpOnly: true });
+      console.log(tempPassword, "temp pass");
 
-      if (TEMP_PASSWORD) {
+      if (tempPassword) {
         return res.send({ Status: "ChangePassword", token });
       } else if (ROLE === "admin") {
         return res.send({ Status: "rootUser", token });
@@ -564,7 +655,7 @@ app.post("/change-password", verifyUser, async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     await queryAsync(
-      "UPDATE USERS SET PASSWORD = ?, TEMP_PASSWORD = false WHERE ID = ?",
+      "UPDATE USERS SET PASSWORD = ?, tempPassword = false WHERE ID = ?",
       [hashedPassword, req.user_ID]
     );
     return res.json({ Status: "Success" });
