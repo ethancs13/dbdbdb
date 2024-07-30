@@ -61,7 +61,6 @@ function AuthConsumer() {
             <Route path="/signup" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/user/:id" element={<UserDetail />} />
-            <Route path="/change-password" element={<ChangePassword />} />
             <Route path="*" element={<Admin />} />
           </Routes>
         </div>
