@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from '../context/AuthContext';
 import '../css/Auth.css';
 
-const ChangePassword = () => {
+const changePassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState('');
@@ -75,4 +75,4 @@ const ChangePassword = () => {
   );
 };
 
-export default ChangePassword;
+export default changePassword;
