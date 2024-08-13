@@ -4,7 +4,7 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import AdminHeader from "./components/adminHeader";
 import UserHeader from "./components/userHeader";
-import ChangePassword from "./components/changePassword";
+import ChangePassword from "./components/ChangePassword";
 import UserNavigation from "./components/userNavigation";
 import UserDetail from "./components/userDetail";
 import Admin from "./pages/Admin";

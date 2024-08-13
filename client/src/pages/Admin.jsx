@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CalendarWidget from "../components/CalendarWidget";
-import GoogleSignIn from "../components/GoogleSignIn"; // Import the GoogleSignIn component
+import GoogleSignIn from "../components/GoogleSignIn";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "../css/adminUsers.css";
 
 const Admin = () => {
+  // State management
   const [users, setUsers] = useState([]);
   const [expenseTypes, setExpenseTypes] = useState([]);
   const [newUser, setNewUser] = useState({
@@ -24,11 +25,11 @@ const Admin = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [selectedSubmission, setSelectedSubmission] = useState(null);
   const [mileageRates, setMileageRates] = useState([]);
-  const [googleToken, setGoogleToken] = useState(""); // Add state to store Google token
+  const [googleToken, setGoogleToken] = useState("");
   const [addUserButtonText, setAddUserButtonText] = useState("Add User");
   const [isAddingUser, setIsAddingUser] = useState(false);
   const [addUserError, setAddUserError] = useState(null);
-  const [deletingUsers, setDeletingUsers] = useState({}); // Track deletion state for each user
+  const [deletingUsers, setDeletingUsers] = useState({});
 
   useEffect(() => {
     fetchUsers();
@@ -37,6 +38,7 @@ const Admin = () => {
     fetchMileageRates();
   }, []);
 
+  // Data fetching functions
   const fetchUsers = async () => {
     try {
       const response = await axios.get(
@@ -55,14 +57,12 @@ const Admin = () => {
         `${process.env.REACT_APP_SERVER_END_POINT}/admin/expense-types`,
         { withCredentials: true }
       );
-
       const normalizedData = response.data.map((item) => ({
         id: item.ID,
         type: item.TYPE,
         orderIndex: item.ORDER_INDEX,
         createdAt: item.CREATED_AT,
       }));
-
       setExpenseTypes(normalizedData);
     } catch (err) {
       console.error("Error fetching expense types:", err);
@@ -93,65 +93,115 @@ const Admin = () => {
     }
   };
 
-  const generateRandomPassword = () => {
-    return Math.random().toString(36).slice(-8); // Generates a random 8-character password
+  // Utility functions
+  const generateRandomPassword = () => Math.random().toString(36).slice(-8);
+
+  const capitalizeFirstLetter = (string) =>
+    string.charAt(0).toUpperCase() + string.slice(1);
+
+  const calculateTotalAmount = (categories) => {
+    let total = 0;
+    Object.values(categories).forEach((items) => {
+      if (Array.isArray(items)) {
+        items.forEach((item) => {
+          if (item.amount) {
+            total += parseFloat(item.amount);
+          } else if (item.AMOUNT) {
+            total += parseFloat(item.AMOUNT);
+          }
+        });
+      }
+    });
+    return total.toFixed(2);
   };
 
+  // Handlers for user management
   const handleAddUser = async () => {
+    setIsAddingUser(true);
     const tempPassword = generateRandomPassword();
-    const userWithPassword = { ...newUser, password: tempPassword };
+    const userWithPassword = {
+      ...newUser,
+      password: tempPassword,
+      idToken: googleToken,
+    };
 
-    if (!googleToken || !newUser.email) {
-      setAddUserError("Error: Requires Google Authentication.");
-      setAddUserButtonText("Add User");
-      setTimeout(() => setAddUserError(null), 3000);
+    if (!googleToken) {
+      setIsAddingUser(false);
+      alert("Google token is missing. Please sign in again.");
       return;
     }
 
-    setIsAddingUser(true);
     try {
+      const userIdResponse = await axios.get(
+        `${process.env.REACT_APP_SERVER_END_POINT}/admin/user-id`
+      );
+
+      const userId = userIdResponse.data.ID;
+      await axios.post(
+        `${process.env.REACT_APP_SERVER_END_POINT}/admin/refresh-token`,
+        {
+          id: userId,
+        }
+      );
+
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_END_POINT}/admin/users`,
         userWithPassword,
         { withCredentials: true }
       );
-      console.log("User added response:", response.data); // Logging
-      setNewUser({ firstName: "", lastName: "", email: "", role: "user" });
-      fetchUsers();
 
-      // Send email after user is added
-      console.log("sending email");
-      await sendEmail(newUser.email, googleToken, tempPassword); // Include tempPassword
-      setAddUserButtonText("Added");
-      setTimeout(() => setAddUserButtonText("Add User"), 1000);
+      if (response.status === 200 && response.data.status === "Success") {
+        setNewUser({
+          firstName: "",
+          lastName: "",
+          email: "",
+          role: "user",
+        });
+        sendEmail(newUser.email, googleToken, tempPassword);
+      } else {
+        alert(response.data.Error);
+      }
     } catch (err) {
       console.error("Error adding user:", err);
-      setAddUserError("Error adding user.");
-      setTimeout(() => setAddUserError(null), 3000);
+      alert("Error adding user. Please try again.");
     } finally {
       setIsAddingUser(false);
     }
   };
 
-  const sendEmail = (userEmail, token, tempPassword) => {
-    return axios
-      .post(`${process.env.REACT_APP_SERVER_END_POINT}/send-email`, {
+  const sendEmail = async (userEmail, token, tempPassword) => {
+    console.log("Sending email with the following details:", {
+      userEmail,
+      token,
+      tempPassword,
+    });
+
+    try {
+      const userIdResponse = await axios.get(
+        `${process.env.REACT_APP_SERVER_END_POINT}/admin/user-id`
+      );
+      const userId = userIdResponse.data.ID;
+
+      const refreshTokenResponse = await axios.get(
+        `${process.env.REACT_APP_SERVER_END_POINT}/admin/refresh-token`,
+        {
+          id: userId,
+        }
+      );
+
+      const refreshToken = refreshTokenResponse.data.refresh_token;
+
+      await axios.post(`${process.env.REACT_APP_SERVER_END_POINT}/send-email`, {
         token: token,
         email: userEmail,
-        tempPassword: tempPassword, // Include tempPassword
-      })
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error(response.statusText);
-        }
-        return response.data;
-      })
-      .then((data) => console.log(data))
-      .catch((error) => {
-        console.error("Error:", error);
-        setAddUserError("Error sending email.");
-        setTimeout(() => setAddUserError(null), 3000);
+        tempPassword: tempPassword,
+        refreshToken: refreshToken,
       });
+
+      console.log("Email sent successfully.");
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
   };
 
   const handleDeleteUser = async (userId) => {
@@ -169,6 +219,7 @@ const Admin = () => {
     }
   };
 
+  // Handlers for mileage rates
   const handleAddMileageRate = async () => {
     try {
       await axios.post(
@@ -183,6 +234,7 @@ const Admin = () => {
     }
   };
 
+  // Handlers for submissions
   const handleUpdateSubmission = async (submissionId, updatedData) => {
     try {
       await axios.put(
@@ -198,6 +250,7 @@ const Admin = () => {
 
   const handleDragEnd = (result) => {
     if (!result.destination) return;
+
     const items = Array.from(expenseTypes);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
@@ -209,7 +262,7 @@ const Admin = () => {
         items,
         { withCredentials: true }
       )
-      .then((response) => {
+      .then(() => {
         console.log("Order updated successfully");
       })
       .catch((error) => {
@@ -266,26 +319,6 @@ const Admin = () => {
           ))}
       </div>
     ));
-  };
-
-  const calculateTotalAmount = (categories) => {
-    let total = 0;
-    Object.values(categories).forEach((items) => {
-      if (Array.isArray(items)) {
-        items.forEach((item) => {
-          if (item.amount) {
-            total += parseFloat(item.amount);
-          } else if (item.AMOUNT) {
-            total += parseFloat(item.AMOUNT);
-          }
-        });
-      }
-    });
-    return total.toFixed(2);
-  };
-
-  const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
   return (
@@ -351,6 +384,7 @@ const Admin = () => {
           )}
         </div>
       </section>
+
       <section className="expense-types">
         <h2>Expense Types</h2>
         <div className="add-expense-type">
@@ -405,6 +439,7 @@ const Admin = () => {
           </Droppable>
         </DragDropContext>
       </section>
+
       <section className="users">
         <div className="add-user-form">
           <h2>Add User</h2>
@@ -575,7 +610,7 @@ const Admin = () => {
       </section>
 
       {/* Add the GoogleSignIn component */}
-      <GoogleSignIn onSignIn={(token) => setGoogleToken(token)} />
+      <GoogleSignIn onSignIn={({ idToken }) => setGoogleToken(idToken)} />
     </div>
   );
 };
