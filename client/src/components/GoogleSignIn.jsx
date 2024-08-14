@@ -68,9 +68,6 @@ const GoogleSignIn = ({ onSignIn }) => {
                 const payload = tokenResponse.data.payload;
                 console.log("Payload:", payload);
 
-                // Store the refresh token in localStorage
-                localStorage.setItem("tokens", payload.refresh_token);
-
                 onSignIn({ idToken: response.credential, payload });
               } catch (error) {
                 console.error("Error verifying token:", error);

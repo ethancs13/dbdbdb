@@ -191,8 +191,9 @@ const FormProvider = ({ children }) => {
   // Row Data
 
   const addRow = () => {
+    const defaultType = "Unknown"; // Fallback value
     const newRow = {
-      type: expenseTypes[0].TYPE, // set to first expense type
+      type: expenseTypes.length > 0 && expenseTypes[0].TYPE ? expenseTypes[0].TYPE : defaultType,
       billable: "No",
       porCC: "No",
       amount: 0,
@@ -201,6 +202,7 @@ const FormProvider = ({ children }) => {
     };
     setRowsData((prevRows) => [...prevRows, newRow]);
   };
+  
 
   const deleteRow = (index) => {
     setRowsData((prevRows) => prevRows.filter((_, idx) => idx !== index));
