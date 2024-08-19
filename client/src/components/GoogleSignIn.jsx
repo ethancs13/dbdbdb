@@ -39,7 +39,7 @@ const GoogleSignIn = ({ onSignIn }) => {
     }
   };
 
-  getGmailProfile();
+  // getGmailProfile();
 
   useEffect(() => {
     const initializeGoogleSignIn = async () => {
