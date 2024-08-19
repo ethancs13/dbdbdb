@@ -4,9 +4,6 @@ import axios from "axios";
 const GoogleSignIn = ({ onSignIn }) => {
   const [initialized, setInitialized] = useState(false);
 
-  const accessToken =
-    refreshAccessToken();
-
   const refreshAccessToken = async (refreshToken) => {
     try {
       const response = await axios.post(
@@ -23,6 +20,8 @@ const GoogleSignIn = ({ onSignIn }) => {
       console.error("Error refreshing access token:", error);
     }
   };
+
+  const accessToken = refreshAccessToken(); // Now it's okay to call refreshAccessToken
 
   const getGmailProfile = async () => {
     try {
