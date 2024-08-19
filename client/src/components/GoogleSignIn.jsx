@@ -13,7 +13,7 @@ const GoogleSignIn = ({ onSignIn }) => {
         }
       );
 
-      const newAccessToken = response.data.refresh_token;
+      const newAccessToken = response.data.access_token;
       console.log("New access token:", newAccessToken);
       return newAccessToken;
     } catch (error) {
