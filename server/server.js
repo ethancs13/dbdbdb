@@ -626,9 +626,25 @@ app.post("/refresh-token", verifyUser, async (req, res) => {
       client_secret: process.env.OAUTH_CLIENT_SECRET,
       refresh_token: REFRESH_TOKEN,
       grant_type: "refresh_token",
-    });
-
-    res.json(response.data);
+    })
+    .then(response => {
+      res.json(response.data);
+    })
+    .catch(error => {
+      if (error.response) {
+        // Server responded with a status other than 2xx
+        console.error("Error response from provider:", error.response.data);
+        res.status(500).json({ error: `Provider error: ${error.response.data}` });
+      } else if (error.request) {
+        // No response was received
+        console.error("No response received from provider:", error.request);
+        res.status(500).json({ error: "No response received from provider" });
+      } else {
+        // Something else went wrong
+        console.error("Error setting up request:", error.message);
+        res.status(500).json({ error: `Request error: ${error.message}` });
+      }
+    });  
   } catch (error) {
     res.status(500).json({ error: `Failed to refresh token ${error}` });
   }
