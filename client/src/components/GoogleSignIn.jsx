@@ -3,6 +3,7 @@ import axios from "axios";
 
 const GoogleSignIn = ({ onSignIn }) => {
   const [initialized, setInitialized] = useState(false);
+  const [accessToken, setAccessToken] = useState(null);
 
   const refreshAccessToken = async (refreshToken) => {
     try {
@@ -15,15 +16,19 @@ const GoogleSignIn = ({ onSignIn }) => {
 
       const newAccessToken = response.data.access_token;
       console.log("New access token:", newAccessToken);
+      setAccessToken(newAccessToken);
       return newAccessToken;
     } catch (error) {
       console.error("Error refreshing access token:", error);
     }
   };
 
-  const accessToken = refreshAccessToken(); // Now it's okay to call refreshAccessToken
-
   const getGmailProfile = async () => {
+    if (!accessToken) {
+      console.error("Access token is not available.");
+      return;
+    }
+
     try {
       const response = await axios.get(
         "https://www.googleapis.com/gmail/v1/users/me/profile",
@@ -38,8 +43,6 @@ const GoogleSignIn = ({ onSignIn }) => {
       console.error("Error fetching Gmail profile:", error);
     }
   };
-
-  // getGmailProfile();
 
   useEffect(() => {
     const initializeGoogleSignIn = async () => {
@@ -67,7 +70,11 @@ const GoogleSignIn = ({ onSignIn }) => {
                 const payload = tokenResponse.data.payload;
                 console.log("Payload:", payload);
 
-                onSignIn({ idToken: response.credential, payload });
+                // Assuming the payload contains the refresh token
+                const newAccessToken = await refreshAccessToken(payload.refresh_token);
+
+                onSignIn({ idToken: response.credential, payload, accessToken: newAccessToken });
+                // getGmailProfile();  // Fetch Gmail profile after obtaining the access token
               } catch (error) {
                 console.error("Error verifying token:", error);
               }
