@@ -8,7 +8,7 @@ const GoogleSignIn = ({ onSignIn }) => {
   const refreshAccessToken = async (refreshToken) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_END_POINT}/admin/refresh-token`,
+        `${process.env.REACT_APP_SERVER_END_POINT}/refresh-token`,
         {
           refreshToken: refreshToken,
         }

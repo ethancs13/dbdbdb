@@ -247,32 +247,43 @@ app.get("/", verifyUser, (req, res) => {
 
 app.get("/oauth2callback", async (req, res) => {
   const code = req.query.code;
-  if (code) {
-    try {
-      const { tokens } = await oAuth2Client.getToken(code);
-      oAuth2Client.setCredentials(tokens);
 
-      if (tokens.refresh_token) {
-        await axios.post(
-          `${process.env.REACT_APP_SERVER_END_POINT}/admin/refresh-token`,
-          {
-            id: payload.sub,
-          }
-        );
-        console.log("Refresh token stored:", tokens.refresh_token);
-      } else {
-        console.error("No refresh token received");
-      }
+  if (!code) {
+    return res.status(400).send("No code provided");
+  }
 
-      res.send("Authentication successful! You can close this window.");
-    } catch (error) {
-      console.error("Error during OAuth2 callback:", error);
-      res.status(500).send("Internal Server Error");
+  try {
+    // Exchange the code for tokens
+    const { tokens } = await oAuth2Client.getToken(code);
+    oAuth2Client.setCredentials(tokens);
+
+    // Decode the ID token to extract user info
+    const ticket = await oAuth2Client.verifyIdToken({
+      idToken: tokens.id_token,
+      audience: process.env.OAUTH_CLIENT_ID, // Specify the CLIENT_ID of the app that accesses the backend
+    });
+
+    const payload = ticket.getPayload();
+    const userId = payload.sub;
+
+    // Store the refresh token in the database (only do this the first time)
+    if (tokens.refresh_token) {
+      await queryAsync(
+        `UPDATE USERS SET REFRESH_TOKEN = ? WHERE ID = ?`,
+        [tokens.refresh_token, userId]
+      );
+      console.log("Refresh token stored:", tokens.refresh_token);
+    } else {
+      console.error("No refresh token received");
     }
-  } else {
-    res.status(400).send("No code provided");
+
+    res.send("Authentication successful! You can close this window.");
+  } catch (error) {
+    console.error("Error during OAuth2 callback:", error);
+    res.status(500).send("Internal Server Error");
   }
 });
+
 
 app.get("/reauth", (req, res) => {
   const authUrl = oAuth2Client.generateAuthUrl({
