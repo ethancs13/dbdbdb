@@ -16,6 +16,7 @@ import FoodBev from "./pages/FoodBev";
 import Summary from "./pages/Summary";
 import History from "./pages/History";
 import ThankYou from "./pages/ThankYou";
+import UserProfile from "./pages/UserProfile";
 import { FormProvider } from "./context/FormContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { HistoryProvider } from "./context/HistoryContext";
@@ -61,6 +62,7 @@ function AuthConsumer() {
             <Route path="/signup" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/user/:id" element={<UserDetail />} />
+            <Route path="/profile" element={<UserProfile />} />
             <Route path="*" element={<Admin />} />
           </Routes>
         </div>

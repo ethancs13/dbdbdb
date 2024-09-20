@@ -46,8 +46,8 @@ const REDIRECT_URI = process.env.REDIRECT_URI;
 const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 
 const SCOPES = [
+  "https://www.googleapis.com/auth/userinfo.profile",
   "https://www.googleapis.com/auth/userinfo.email",
-  "https://www.googleapis.com/auth/gmail.send",
 ];
 
 const oAuth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
@@ -268,10 +268,10 @@ app.get("/oauth2callback", async (req, res) => {
 
     // Store the refresh token in the database (only do this the first time)
     if (tokens.refresh_token) {
-      await queryAsync(
-        `UPDATE USERS SET REFRESH_TOKEN = ? WHERE ID = ?`,
-        [tokens.refresh_token, userId]
-      );
+      await queryAsync(`UPDATE USERS SET REFRESH_TOKEN = ? WHERE ID = ?`, [
+        tokens.refresh_token,
+        userId,
+      ]);
       console.log("Refresh token stored:", tokens.refresh_token);
     } else {
       console.error("No refresh token received");
@@ -283,7 +283,6 @@ app.get("/oauth2callback", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
-
 
 app.get("/reauth", (req, res) => {
   const authUrl = oAuth2Client.generateAuthUrl({
@@ -500,6 +499,36 @@ app.get("/logout", (req, res) => {
   return res.json({ Status: "Success" });
 });
 
+app.get("/google-profile", async (req, res) => {
+  const accessToken = req.query.accessToken;
+  console.log("Received Access Token:", accessToken);
+
+  if (!accessToken) {
+    return res.status(400).json({ error: "Access token is required" });
+  }
+
+  try {
+    const response = await axios.get(
+      "https://www.googleapis.com/oauth2/v1/userinfo?alt=json",
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    res.json(response.data); // Send the profile data to the frontend
+  } catch (error) {
+    console.error(
+      "Error fetching Google profile:",
+      error.response ? error.response.data : error.message
+    );
+    res.status(500).json({
+      error: "Failed to fetch profile from Google",
+      details: error.message,
+    });
+  }
+});
+
 // POST Routes
 // -------------------------------------------
 // login route
@@ -632,30 +661,33 @@ app.get("/api/user-id", verifyUser, async (req, res) => {
 });
 app.post("/refresh-token", verifyUser, async (req, res) => {
   try {
-    const response = await axios.post("https://oauth2.googleapis.com/token", {
-      client_id: process.env.OAUTH_CLIENT_ID,
-      client_secret: process.env.OAUTH_CLIENT_SECRET,
-      refresh_token: REFRESH_TOKEN,
-      grant_type: "refresh_token",
-    })
-    .then(response => {
-      res.json(response.data);
-    })
-    .catch(error => {
-      if (error.response) {
-        // Server responded with a status other than 2xx
-        console.error("Error response from provider:", error.response.data);
-        res.status(500).json({ error: `Provider error: ${error.response.data}` });
-      } else if (error.request) {
-        // No response was received
-        console.error("No response received from provider:", error.request);
-        res.status(500).json({ error: "No response received from provider" });
-      } else {
-        // Something else went wrong
-        console.error("Error setting up request:", error.message);
-        res.status(500).json({ error: `Request error: ${error.message}` });
-      }
-    });  
+    const response = await axios
+      .post("https://oauth2.googleapis.com/token", {
+        client_id: process.env.OAUTH_CLIENT_ID,
+        client_secret: process.env.OAUTH_CLIENT_SECRET,
+        refresh_token: REFRESH_TOKEN,
+        grant_type: "refresh_token",
+      })
+      .then((response) => {
+        res.json(response.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          // Server responded with a status other than 2xx
+          console.error("Error response from provider:", error.response.data);
+          res
+            .status(500)
+            .json({ error: `Provider error: ${error.response.data}` });
+        } else if (error.request) {
+          // No response was received
+          console.error("No response received from provider:", error.request);
+          res.status(500).json({ error: "No response received from provider" });
+        } else {
+          // Something else went wrong
+          console.error("Error setting up request:", error.message);
+          res.status(500).json({ error: `Request error: ${error.message}` });
+        }
+      });
   } catch (error) {
     res.status(500).json({ error: `Failed to refresh token ${error}` });
   }
@@ -930,6 +962,36 @@ app.post(
     }
   }
 );
+
+app.post("/verify-token", async (req, res) => {
+  const { idToken } = req.body;
+
+  try {
+    const ticket = await oAuth2Client.verifyIdToken({
+      idToken,
+      audience: CLIENT_ID, // Specify the CLIENT_ID of the app that accesses the backend
+    });
+    const payload = ticket.getPayload();
+
+    // If token is valid, send back the payload
+    res.json({ message: "Token verified successfully", payload });
+  } catch (error) {
+    console.error("Error verifying token:", error);
+    res.status(500).send("Error verifying token");
+  }
+});
+
+app.post("/upload-profile-image", upload.single("profileImage"), (req, res) => {
+  // Handle saving the image and return the new image URL
+  const imageUrl = `/uploads/${req.file.filename}`;
+  res.json({ imageUrl });
+});
+
+app.post("/update-profile", (req, res) => {
+  const { firstName, lastName, email } = req.body;
+  // Update user details in the database
+  res.json({ message: "Profile updated successfully" });
+});
 
 // DELETE Routes
 // -------------------------------------------

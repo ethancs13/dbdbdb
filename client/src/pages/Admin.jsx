@@ -15,6 +15,9 @@ const Admin = () => {
     email: "",
     role: "user",
   });
+  const [profileImage, setProfileImage] = useState(
+    localStorage.getItem("googleProfileImage") || null
+  );
   const [newMileageRate, setNewMileageRate] = useState({
     rate: "",
     startDate: "",
@@ -326,8 +329,6 @@ const Admin = () => {
       className="admin-dashboard"
       style={{ display: "flex", flexWrap: "wrap" }}
     >
-      <h1 style={{ width: "100%", padding: "1rem" }}>Admin Dashboard</h1>
-
       <section className="mileage-rates">
         <h2>IRS Mileage Rate</h2>
         <div className="add-mileage-rate">
@@ -610,7 +611,10 @@ const Admin = () => {
       </section>
 
       {/* Add the GoogleSignIn component */}
-      <GoogleSignIn onSignIn={({ idToken }) => setGoogleToken(idToken)} />
+      <GoogleSignIn
+        profileImage={(imageURL) => setProfileImage(imageURL)}
+        onSignIn={({ idToken }) => setGoogleToken(idToken)}
+      />
     </div>
   );
 };
