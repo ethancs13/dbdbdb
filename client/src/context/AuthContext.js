@@ -66,6 +66,8 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     console.log("Logging out...");
     await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/logout`, { withCredentials: true });
+    localStorage.clear("googleProfileImage");
+    localStorage.clear("idToken");
     setIsAuthenticated(false);
     setUserRole(null);
     console.log("Navigating to login...");

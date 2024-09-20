@@ -12,6 +12,20 @@ const AdminHeader = () => {
     localStorage.getItem("googleProfileImage") || null
   );
 
+  // Listen for updates to localStorage
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setProfileImage(localStorage.getItem("googleProfileImage"));
+    };
+
+    // Listen for the custom event "storageChanged"
+    window.addEventListener("storageChanged", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storageChanged", handleStorageChange);
+    };
+  }, []);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,7 +71,7 @@ const AdminHeader = () => {
             </Link>
           </div>
         ) : (
-          <p>No profile image</p>
+          <></>
         )}
       </div>
     </div>

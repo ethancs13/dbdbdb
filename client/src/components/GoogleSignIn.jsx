@@ -14,8 +14,7 @@ const GoogleSignIn = ({ onSignIn, profileImage }) => {
         `${process.env.REACT_APP_SERVER_END_POINT}/verify-token`,
         { idToken }
       );
-      
-      // If the token is valid, log in the user
+
       if (response.data && response.data.payload) {
         console.log("Token is valid:", response.data.payload);
         onSignIn({ idToken, payload: response.data.payload });
@@ -27,7 +26,6 @@ const GoogleSignIn = ({ onSignIn, profileImage }) => {
       }
     } catch (error) {
       console.error("Error verifying token:", error);
-      // Clear token and prompt login again
       localStorage.removeItem("idToken");
       localStorage.removeItem("googleAccessToken");
       window.google.accounts.id.prompt();
@@ -37,7 +35,6 @@ const GoogleSignIn = ({ onSignIn, profileImage }) => {
   const handleGoogleSignIn = async (response) => {
     console.log("Encoded JWT ID token:", response.credential);
 
-    // Exchange the ID token for an access token (or directly use the ID token for verification)
     try {
       const tokenResponse = await axios.post(
         `${process.env.REACT_APP_SERVER_END_POINT}/exchange-token`,
@@ -54,10 +51,12 @@ const GoogleSignIn = ({ onSignIn, profileImage }) => {
         idToken: response.credential,
         payload,
       });
-      localStorage.setItem("googleProfileImage", tokenResponse.data.payload.picture);
-      profileImage(tokenResponse.data.payload.picture);
 
-      // Optionally, verify the token with the server
+      // Store profile image in localStorage and emit a custom event to notify listeners
+      localStorage.setItem("googleProfileImage", payload.picture);
+      window.dispatchEvent(new Event("storageChanged"));
+
+      profileImage(payload.picture);
       verifyTokenWithServer(response.credential);
     } catch (error) {
       console.error("Error exchanging token:", error);
@@ -76,16 +75,15 @@ const GoogleSignIn = ({ onSignIn, profileImage }) => {
           window.google.accounts.id.initialize({
             client_id: clientId,
             callback: handleGoogleSignIn,
-            auto_select: true, // Automatically select user if possible
+            auto_select: true,
             cancel_on_tap_outside: false,
           });
 
-          // Check if a valid ID token is available before showing the login screen
           if (idToken) {
             console.log("Using stored ID token:", idToken);
             verifyTokenWithServer(idToken);
           } else {
-            window.google.accounts.id.prompt(); // Show prompt if no valid token is found
+            window.google.accounts.id.prompt();
           }
 
           setInitialized(true);
