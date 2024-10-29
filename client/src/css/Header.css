@@ -72,3 +72,10 @@
   .user-profile-icon {
     margin-left: 20px;
   }
+
+  .header-left:hover {
+    cursor: pointer;
+  }
+  .header-left-link {
+    text-decoration: none;
+  }

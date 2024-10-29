@@ -69,7 +69,10 @@ body {
   color: #555;
 }
 
-.add-user-form, .user-list, .expense-types, .mileage-rates {
+.add-user-form,
+.user-list,
+.expense-types,
+.mileage-rates {
   width: 50%;
   padding: 2rem;
 }
@@ -329,4 +332,43 @@ body {
 
 .current-mileage-rates li:nth-child(odd) {
   background-color: #f9f9f9;
+}
+
+.export-data-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.export-data-section h3 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.export-data-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.date-picker-input {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.export-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.export-button:hover {
+  background-color: #45a049;
 }

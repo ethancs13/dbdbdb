@@ -2,11 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CalendarWidget from "../components/CalendarWidget";
 import GoogleSignIn from "../components/GoogleSignIn";
+import DatePicker from "react-datepicker"; // Import DatePicker for date selection
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "../css/adminUsers.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Admin = () => {
   // State management
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
   const [users, setUsers] = useState([]);
   const [expenseTypes, setExpenseTypes] = useState([]);
   const [newUser, setNewUser] = useState({
@@ -40,6 +44,38 @@ const Admin = () => {
     fetchAllSubmissions();
     fetchMileageRates();
   }, []);
+
+  // Function to handle export data request
+  const handleExport = async () => {
+    if (!startDate || !endDate) {
+      alert("Please select both start and end dates.");
+      return;
+    }
+
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_END_POINT}/download-excel`,
+        {
+          params: {
+            startDate: startDate.toISOString(),
+            endDate: endDate.toISOString(),
+          },
+          responseType: "blob", // Important for file download
+        }
+      );
+
+      // Trigger file download
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "export.xlsx"); // Updated file extension
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (error) {
+      console.error("Error exporting data:", error);
+    }
+  };
 
   // Data fetching functions
   const fetchUsers = async () => {
@@ -329,6 +365,37 @@ const Admin = () => {
       className="admin-dashboard"
       style={{ display: "flex", flexWrap: "wrap" }}
     >
+      {/* Export Data Section */}
+      <section
+        className="export-data-section"
+        style={{ width: "100%", marginBottom: "20px" }}
+      >
+        <h3>Export Data</h3>
+        <div className="export-data-controls">
+          <label>Start Month</label>
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            dateFormat="yyyy-MM" // Set the desired format for display
+            showMonthYearPicker // Enables only month and year selection
+            placeholderText="Select start month"
+            className="date-picker-input"
+          />
+          <label>End Month</label>
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            dateFormat="yyyy-MM" // Set the desired format for display
+            showMonthYearPicker // Enables only month and year selection
+            placeholderText="Select end month"
+            className="date-picker-input"
+          />
+          <button className="export-button" onClick={handleExport}>
+            Run
+          </button>
+        </div>
+      </section>
+
       <section className="mileage-rates">
         <h2>IRS Mileage Rate</h2>
         <div className="add-mileage-rate">

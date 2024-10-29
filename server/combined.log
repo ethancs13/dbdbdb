@@ -13117,3 +13117,2171 @@
 {"level":"info","message":"Connection 32444 released"}
 {"level":"info","message":"Connection 32441 released"}
 {"level":"info","message":"Connection 32440 released"}
+{"level":"info","message":"New database connection established with ID: 37000"}
+{"level":"info","message":"Connection 37000 acquired"}
+{"level":"info","message":"Connection 37000 released"}
+{"level":"info","message":"Connection 37000 acquired"}
+{"level":"info","message":"Connection 37000 released"}
+{"level":"info","message":"New database connection established with ID: 37002"}
+{"level":"info","message":"Connection 37002 acquired"}
+{"level":"info","message":"New database connection established with ID: 37001"}
+{"level":"info","message":"Connection 37001 acquired"}
+{"level":"info","message":"New database connection established with ID: 37006"}
+{"level":"info","message":"Connection 37006 acquired"}
+{"level":"info","message":"New database connection established with ID: 37005"}
+{"level":"info","message":"Connection 37005 acquired"}
+{"level":"info","message":"New database connection established with ID: 37007"}
+{"level":"info","message":"Connection 37007 acquired"}
+{"level":"info","message":"New database connection established with ID: 37004"}
+{"level":"info","message":"Connection 37004 acquired"}
+{"level":"info","message":"New database connection established with ID: 37003"}
+{"level":"info","message":"Connection 37003 acquired"}
+{"level":"info","message":"Connection 37002 released"}
+{"level":"info","message":"Connection 37001 released"}
+{"level":"info","message":"Connection 37006 released"}
+{"level":"info","message":"Connection 37005 released"}
+{"level":"info","message":"Connection 37007 released"}
+{"level":"info","message":"Connection 37004 released"}
+{"level":"info","message":"Connection 37003 released"}
+{"level":"info","message":"Connection 37002 acquired"}
+{"level":"info","message":"Connection 37000 acquired"}
+{"level":"info","message":"Connection 37002 released"}
+{"level":"info","message":"Connection 37000 released"}
+{"level":"info","message":"Connection 37005 acquired"}
+{"level":"info","message":"Connection 37007 acquired"}
+{"level":"info","message":"Connection 37006 acquired"}
+{"level":"info","message":"Connection 37004 acquired"}
+{"level":"info","message":"Connection 37001 acquired"}
+{"level":"info","message":"Connection 37006 released"}
+{"level":"info","message":"Connection 37005 released"}
+{"level":"info","message":"Connection 37007 released"}
+{"level":"info","message":"Connection 37004 released"}
+{"level":"info","message":"Connection 37001 released"}
+{"level":"info","message":"Connection 37002 acquired"}
+{"level":"info","message":"Connection 37003 acquired"}
+{"level":"info","message":"Connection 37002 released"}
+{"level":"info","message":"Connection 37003 released"}
+{"level":"info","message":"Connection 37006 acquired"}
+{"level":"info","message":"Connection 37000 acquired"}
+{"level":"info","message":"Connection 37005 acquired"}
+{"level":"info","message":"Connection 37007 acquired"}
+{"level":"info","message":"Connection 37004 acquired"}
+{"level":"info","message":"Connection 37006 released"}
+{"level":"info","message":"Connection 37007 released"}
+{"level":"info","message":"Connection 37005 released"}
+{"level":"info","message":"Connection 37004 released"}
+{"level":"info","message":"Connection 37000 released"}
+{"level":"info","message":"Connection 37002 acquired"}
+{"level":"info","message":"Connection 37006 acquired"}
+{"level":"info","message":"Connection 37001 acquired"}
+{"level":"info","message":"Connection 37003 acquired"}
+{"level":"info","message":"Connection 37007 acquired"}
+{"level":"info","message":"Connection 37005 acquired"}
+{"level":"info","message":"Connection 37004 acquired"}
+{"level":"info","message":"Connection 37000 acquired"}
+{"level":"info","message":"Connection 37002 released"}
+{"level":"info","message":"Connection 37006 released"}
+{"level":"info","message":"Connection 37005 released"}
+{"level":"info","message":"Connection 37003 released"}
+{"level":"info","message":"Connection 37007 released"}
+{"level":"info","message":"Connection 37001 released"}
+{"level":"info","message":"Connection 37004 released"}
+{"level":"info","message":"Connection 37000 released"}
+{"level":"info","message":"Connection 37006 acquired"}
+{"level":"info","message":"Connection 37002 acquired"}
+{"level":"info","message":"Connection 37006 released"}
+{"level":"info","message":"Connection 37002 released"}
+{"level":"info","message":"Connection 37001 acquired"}
+{"level":"info","message":"Connection 37004 acquired"}
+{"level":"info","message":"Connection 37007 acquired"}
+{"level":"info","message":"Connection 37005 acquired"}
+{"level":"info","message":"Connection 37003 acquired"}
+{"level":"info","message":"Connection 37007 released"}
+{"level":"info","message":"Connection 37004 released"}
+{"level":"info","message":"Connection 37001 released"}
+{"level":"info","message":"Connection 37005 released"}
+{"level":"info","message":"Connection 37003 released"}
+{"level":"info","message":"Connection 37000 acquired"}
+{"level":"info","message":"Connection 37000 released"}
+{"level":"info","message":"Connection 37004 acquired"}
+{"level":"info","message":"Connection 37001 acquired"}
+{"level":"info","message":"Connection 37006 acquired"}
+{"level":"info","message":"Connection 37007 acquired"}
+{"level":"info","message":"Connection 37003 acquired"}
+{"level":"info","message":"Connection 37002 acquired"}
+{"level":"info","message":"Connection 37005 acquired"}
+{"level":"info","message":"Connection 37000 acquired"}
+{"level":"info","message":"Connection 37001 released"}
+{"level":"info","message":"Connection 37004 released"}
+{"level":"info","message":"Connection 37006 released"}
+{"level":"info","message":"Connection 37003 released"}
+{"level":"info","message":"Connection 37005 released"}
+{"level":"info","message":"Connection 37002 released"}
+{"level":"info","message":"Connection 37007 released"}
+{"level":"info","message":"Connection 37000 released"}
+{"level":"info","message":"New database connection established with ID: 37017"}
+{"level":"info","message":"Connection 37017 acquired"}
+{"level":"info","message":"New database connection established with ID: 37016"}
+{"level":"info","message":"Connection 37016 acquired"}
+{"level":"info","message":"New database connection established with ID: 37018"}
+{"level":"info","message":"Connection 37018 acquired"}
+{"level":"info","message":"New database connection established with ID: 37021"}
+{"level":"info","message":"Connection 37021 acquired"}
+{"level":"info","message":"New database connection established with ID: 37020"}
+{"level":"info","message":"Connection 37020 acquired"}
+{"level":"info","message":"New database connection established with ID: 37019"}
+{"level":"info","message":"Connection 37019 acquired"}
+{"level":"info","message":"New database connection established with ID: 37022"}
+{"level":"info","message":"Connection 37022 acquired"}
+{"level":"info","message":"New database connection established with ID: 37023"}
+{"level":"info","message":"Connection 37023 acquired"}
+{"level":"info","message":"New database connection established with ID: 37024"}
+{"level":"info","message":"Connection 37024 acquired"}
+{"level":"info","message":"New database connection established with ID: 37025"}
+{"level":"info","message":"Connection 37025 acquired"}
+{"level":"info","message":"Connection 37016 released"}
+{"level":"info","message":"Connection 37017 released"}
+{"level":"info","message":"Connection 37018 released"}
+{"level":"info","message":"Connection 37020 released"}
+{"level":"info","message":"Connection 37022 released"}
+{"level":"info","message":"Connection 37017 acquired"}
+{"level":"info","message":"Connection 37016 acquired"}
+{"level":"info","message":"Connection 37018 acquired"}
+{"level":"info","message":"Connection 37023 released"}
+{"level":"info","message":"Connection 37019 released"}
+{"level":"info","message":"Connection 37025 released"}
+{"level":"info","message":"Connection 37021 released"}
+{"level":"info","message":"Connection 37024 released"}
+{"level":"info","message":"Connection 37020 acquired"}
+{"level":"info","message":"Connection 37022 acquired"}
+{"level":"info","message":"Connection 37016 released"}
+{"level":"info","message":"Connection 37017 released"}
+{"level":"info","message":"Connection 37018 released"}
+{"level":"info","message":"Connection 37020 released"}
+{"level":"info","message":"Connection 37022 released"}
+{"level":"info","message":"New database connection established with ID: 37026"}
+{"level":"info","message":"Connection 37026 acquired"}
+{"level":"info","message":"New database connection established with ID: 37030"}
+{"level":"info","message":"Connection 37030 acquired"}
+{"level":"info","message":"New database connection established with ID: 37031"}
+{"level":"info","message":"Connection 37031 acquired"}
+{"level":"info","message":"New database connection established with ID: 37029"}
+{"level":"info","message":"Connection 37029 acquired"}
+{"level":"info","message":"New database connection established with ID: 37032"}
+{"level":"info","message":"Connection 37032 acquired"}
+{"level":"info","message":"New database connection established with ID: 37028"}
+{"level":"info","message":"Connection 37028 acquired"}
+{"level":"info","message":"New database connection established with ID: 37027"}
+{"level":"info","message":"Connection 37027 acquired"}
+{"level":"info","message":"New database connection established with ID: 37033"}
+{"level":"info","message":"Connection 37033 acquired"}
+{"level":"info","message":"New database connection established with ID: 37035"}
+{"level":"info","message":"Connection 37035 acquired"}
+{"level":"info","message":"New database connection established with ID: 37034"}
+{"level":"info","message":"Connection 37034 acquired"}
+{"level":"info","message":"Connection 37030 released"}
+{"level":"info","message":"Connection 37026 released"}
+{"level":"info","message":"Connection 37029 released"}
+{"level":"info","message":"Connection 37031 released"}
+{"level":"info","message":"Connection 37032 released"}
+{"level":"info","message":"Connection 37028 released"}
+{"level":"info","message":"Connection 37033 released"}
+{"level":"info","message":"Connection 37027 released"}
+{"level":"info","message":"Connection 37035 released"}
+{"level":"info","message":"Connection 37034 released"}
+{"level":"info","message":"Connection 37026 acquired"}
+{"level":"info","message":"Connection 37030 acquired"}
+{"level":"info","message":"Connection 37031 acquired"}
+{"level":"info","message":"Connection 37029 acquired"}
+{"level":"info","message":"Connection 37032 acquired"}
+{"level":"info","message":"Connection 37026 released"}
+{"level":"info","message":"Connection 37031 released"}
+{"level":"info","message":"Connection 37030 released"}
+{"level":"info","message":"Connection 37029 released"}
+{"level":"info","message":"Connection 37032 released"}
+{"level":"info","message":"Connection 37028 acquired"}
+{"level":"info","message":"Connection 37033 acquired"}
+{"level":"info","message":"Connection 37027 acquired"}
+{"level":"info","message":"Connection 37026 acquired"}
+{"level":"info","message":"Connection 37029 acquired"}
+{"level":"info","message":"Connection 37030 acquired"}
+{"level":"info","message":"Connection 37032 acquired"}
+{"level":"info","message":"Connection 37031 acquired"}
+{"level":"info","message":"Connection 37035 acquired"}
+{"level":"info","message":"Connection 37034 acquired"}
+{"level":"info","message":"Connection 37033 released"}
+{"level":"info","message":"Connection 37028 released"}
+{"level":"info","message":"Connection 37027 released"}
+{"level":"info","message":"Connection 37032 released"}
+{"level":"info","message":"Connection 37031 released"}
+{"level":"info","message":"Connection 37029 released"}
+{"level":"info","message":"Connection 37030 released"}
+{"level":"info","message":"Connection 37026 released"}
+{"level":"info","message":"Connection 37034 released"}
+{"level":"info","message":"Connection 37035 released"}
+{"level":"info","message":"Connection 37033 acquired"}
+{"level":"info","message":"Connection 37028 acquired"}
+{"level":"info","message":"Connection 37027 acquired"}
+{"level":"info","message":"Connection 37032 acquired"}
+{"level":"info","message":"Connection 37031 acquired"}
+{"level":"info","message":"Connection 37028 released"}
+{"level":"info","message":"Connection 37033 released"}
+{"level":"info","message":"Connection 37027 released"}
+{"level":"info","message":"Connection 37032 released"}
+{"level":"info","message":"Connection 37031 released"}
+{"level":"info","message":"Connection 37029 acquired"}
+{"level":"info","message":"Connection 37029 released"}
+{"level":"info","message":"Connection 37030 acquired"}
+{"level":"info","message":"Connection 37026 acquired"}
+{"level":"info","message":"Connection 37028 acquired"}
+{"level":"info","message":"Connection 37035 acquired"}
+{"level":"info","message":"Connection 37034 acquired"}
+{"level":"info","message":"Connection 37032 acquired"}
+{"level":"info","message":"Connection 37027 acquired"}
+{"level":"info","message":"Connection 37033 acquired"}
+{"level":"info","message":"Connection 37030 released"}
+{"level":"info","message":"Connection 37026 released"}
+{"level":"info","message":"Connection 37028 released"}
+{"level":"info","message":"Connection 37035 released"}
+{"level":"info","message":"Connection 37034 released"}
+{"level":"info","message":"Connection 37032 released"}
+{"level":"info","message":"Connection 37027 released"}
+{"level":"info","message":"Connection 37033 released"}
+{"level":"info","message":"Connection 37031 acquired"}
+{"level":"info","message":"Connection 37031 released"}
+{"level":"info","message":"Connection 37026 acquired"}
+{"level":"info","message":"Connection 37032 acquired"}
+{"level":"info","message":"Connection 37030 acquired"}
+{"level":"info","message":"Connection 37029 acquired"}
+{"level":"info","message":"Connection 37035 acquired"}
+{"level":"info","message":"Connection 37028 acquired"}
+{"level":"info","message":"Connection 37034 acquired"}
+{"level":"info","message":"Connection 37027 acquired"}
+{"level":"info","message":"Connection 37026 released"}
+{"level":"info","message":"Connection 37029 released"}
+{"level":"info","message":"Connection 37030 released"}
+{"level":"info","message":"Connection 37032 released"}
+{"level":"info","message":"Connection 37035 released"}
+{"level":"info","message":"Connection 37027 released"}
+{"level":"info","message":"Connection 37034 released"}
+{"level":"info","message":"Connection 37028 released"}
+{"level":"info","message":"Connection 37031 acquired"}
+{"level":"info","message":"Connection 37033 acquired"}
+{"level":"info","message":"Connection 37032 acquired"}
+{"level":"info","message":"Connection 37026 acquired"}
+{"level":"info","message":"Connection 37030 acquired"}
+{"level":"info","message":"Connection 37029 acquired"}
+{"level":"info","message":"Connection 37027 acquired"}
+{"level":"info","message":"Connection 37028 acquired"}
+{"level":"info","message":"Connection 37035 acquired"}
+{"level":"info","message":"Connection 37034 acquired"}
+{"level":"info","message":"Connection 37031 released"}
+{"level":"info","message":"Connection 37033 released"}
+{"level":"info","message":"Connection 37032 released"}
+{"level":"info","message":"Connection 37026 released"}
+{"level":"info","message":"Connection 37030 released"}
+{"level":"info","message":"Connection 37029 released"}
+{"level":"info","message":"Connection 37028 released"}
+{"level":"info","message":"Connection 37027 released"}
+{"level":"info","message":"Connection 37035 released"}
+{"level":"info","message":"Connection 37034 released"}
+{"level":"info","message":"Connection 37031 acquired"}
+{"level":"info","message":"Connection 37033 acquired"}
+{"level":"info","message":"Connection 37032 acquired"}
+{"level":"info","message":"Connection 37026 acquired"}
+{"level":"info","message":"Connection 37030 acquired"}
+{"level":"info","message":"Connection 37031 released"}
+{"level":"info","message":"Connection 37033 released"}
+{"level":"info","message":"Connection 37032 released"}
+{"level":"info","message":"Connection 37026 released"}
+{"level":"info","message":"Connection 37030 released"}
+{"level":"info","message":"Connection 37029 acquired"}
+{"level":"info","message":"Connection 37029 released"}
+{"level":"info","message":"Connection 37028 acquired"}
+{"level":"info","message":"Connection 37027 acquired"}
+{"level":"info","message":"Connection 37035 acquired"}
+{"level":"info","message":"Connection 37034 acquired"}
+{"level":"info","message":"Connection 37032 acquired"}
+{"level":"info","message":"Connection 37026 acquired"}
+{"level":"info","message":"Connection 37031 acquired"}
+{"level":"info","message":"Connection 37033 acquired"}
+{"level":"info","message":"Connection 37026 released"}
+{"level":"info","message":"Connection 37034 released"}
+{"level":"info","message":"Connection 37032 released"}
+{"level":"info","message":"Connection 37031 released"}
+{"level":"info","message":"Connection 37028 released"}
+{"level":"info","message":"Connection 37033 released"}
+{"level":"info","message":"Connection 37027 released"}
+{"level":"info","message":"Connection 37035 released"}
+{"level":"info","message":"Connection 37030 acquired"}
+{"level":"info","message":"Connection 37029 acquired"}
+{"level":"info","message":"Connection 37026 acquired"}
+{"level":"info","message":"Connection 37032 acquired"}
+{"level":"info","message":"Connection 37031 acquired"}
+{"level":"info","message":"Connection 37028 acquired"}
+{"level":"info","message":"Connection 37027 acquired"}
+{"level":"info","message":"Connection 37033 acquired"}
+{"level":"info","message":"Connection 37035 acquired"}
+{"level":"info","message":"Connection 37034 acquired"}
+{"level":"info","message":"Connection 37030 released"}
+{"level":"info","message":"Connection 37029 released"}
+{"level":"info","message":"Connection 37026 released"}
+{"level":"info","message":"Connection 37031 released"}
+{"level":"info","message":"Connection 37032 released"}
+{"level":"info","message":"Connection 37027 released"}
+{"level":"info","message":"Connection 37028 released"}
+{"level":"info","message":"Connection 37033 released"}
+{"level":"info","message":"Connection 37030 acquired"}
+{"level":"info","message":"Connection 37029 acquired"}
+{"level":"info","message":"Connection 37035 released"}
+{"level":"info","message":"Connection 37034 released"}
+{"level":"info","message":"Connection 37026 acquired"}
+{"level":"info","message":"Connection 37032 acquired"}
+{"level":"info","message":"Connection 37031 acquired"}
+{"level":"info","message":"Connection 37030 released"}
+{"level":"info","message":"Connection 37029 released"}
+{"level":"info","message":"Connection 37026 released"}
+{"level":"info","message":"Connection 37031 released"}
+{"level":"info","message":"Connection 37032 released"}
+{"level":"info","message":"Connection 37027 acquired"}
+{"level":"info","message":"Connection 37028 acquired"}
+{"level":"info","message":"Connection 37030 acquired"}
+{"level":"info","message":"Connection 37035 acquired"}
+{"level":"info","message":"Connection 37033 acquired"}
+{"level":"info","message":"Connection 37034 acquired"}
+{"level":"info","message":"Connection 37026 acquired"}
+{"level":"info","message":"Connection 37032 acquired"}
+{"level":"info","message":"Connection 37031 acquired"}
+{"level":"info","message":"Connection 37029 acquired"}
+{"level":"info","message":"Connection 37027 released"}
+{"level":"info","message":"Connection 37028 released"}
+{"level":"info","message":"Connection 37026 released"}
+{"level":"info","message":"Connection 37031 released"}
+{"level":"info","message":"Connection 37029 released"}
+{"level":"info","message":"Connection 37032 released"}
+{"level":"info","message":"Connection 37030 released"}
+{"level":"info","message":"Connection 37035 released"}
+{"level":"info","message":"Connection 37034 released"}
+{"level":"info","message":"Connection 37033 released"}
+{"level":"info","message":"Connection 37028 acquired"}
+{"level":"info","message":"Connection 37027 acquired"}
+{"level":"info","message":"Connection 37026 acquired"}
+{"level":"info","message":"Connection 37029 acquired"}
+{"level":"info","message":"Connection 37031 acquired"}
+{"level":"info","message":"Connection 37027 released"}
+{"level":"info","message":"Connection 37028 released"}
+{"level":"info","message":"Connection 37026 released"}
+{"level":"info","message":"Connection 37031 released"}
+{"level":"info","message":"Connection 37029 released"}
+{"level":"info","message":"Connection 37032 acquired"}
+{"level":"info","message":"Connection 37032 released"}
+{"level":"info","message":"New database connection established with ID: 37038"}
+{"level":"info","message":"Connection 37038 acquired"}
+{"level":"info","message":"Connection 37038 released"}
+{"level":"info","message":"New database connection established with ID: 37039"}
+{"level":"info","message":"Connection 37039 acquired"}
+{"level":"info","message":"Connection 37039 released"}
+{"level":"info","message":"New database connection established with ID: 37040"}
+{"level":"info","message":"Connection 37040 acquired"}
+{"level":"info","message":"Connection 37040 released"}
+{"level":"info","message":"Connection 37040 acquired"}
+{"level":"info","message":"Connection 37040 released"}
+{"level":"info","message":"New database connection established with ID: 37042"}
+{"level":"info","message":"Connection 37042 acquired"}
+{"level":"info","message":"New database connection established with ID: 37044"}
+{"level":"info","message":"Connection 37044 acquired"}
+{"level":"info","message":"New database connection established with ID: 37043"}
+{"level":"info","message":"Connection 37043 acquired"}
+{"level":"info","message":"New database connection established with ID: 37041"}
+{"level":"info","message":"Connection 37041 acquired"}
+{"level":"info","message":"New database connection established with ID: 37047"}
+{"level":"info","message":"Connection 37047 acquired"}
+{"level":"info","message":"New database connection established with ID: 37045"}
+{"level":"info","message":"Connection 37045 acquired"}
+{"level":"info","message":"New database connection established with ID: 37046"}
+{"level":"info","message":"Connection 37046 acquired"}
+{"level":"info","message":"Connection 37042 released"}
+{"level":"info","message":"Connection 37044 released"}
+{"level":"info","message":"Connection 37041 released"}
+{"level":"info","message":"Connection 37047 released"}
+{"level":"info","message":"Connection 37045 released"}
+{"level":"info","message":"Connection 37043 released"}
+{"level":"info","message":"Connection 37046 released"}
+{"level":"info","message":"Connection 37040 acquired"}
+{"level":"info","message":"Connection 37042 acquired"}
+{"level":"info","message":"Connection 37044 acquired"}
+{"level":"info","message":"Connection 37043 acquired"}
+{"level":"info","message":"Connection 37047 acquired"}
+{"level":"info","message":"Connection 37041 acquired"}
+{"level":"info","message":"Connection 37045 acquired"}
+{"level":"info","message":"Connection 37046 acquired"}
+{"level":"info","message":"Connection 37040 released"}
+{"level":"info","message":"Connection 37042 released"}
+{"level":"info","message":"Connection 37044 released"}
+{"level":"info","message":"Connection 37043 released"}
+{"level":"info","message":"Connection 37047 released"}
+{"level":"info","message":"Connection 37045 released"}
+{"level":"info","message":"Connection 37041 released"}
+{"level":"info","message":"Connection 37046 released"}
+{"level":"info","message":"Connection 37042 acquired"}
+{"level":"info","message":"Connection 37040 acquired"}
+{"level":"info","message":"Connection 37044 acquired"}
+{"level":"info","message":"Connection 37043 acquired"}
+{"level":"info","message":"Connection 37047 acquired"}
+{"level":"info","message":"Connection 37040 released"}
+{"level":"info","message":"Connection 37042 released"}
+{"level":"info","message":"Connection 37044 released"}
+{"level":"info","message":"New database connection established with ID: 37048"}
+{"level":"info","message":"Connection 37048 acquired"}
+{"level":"info","message":"New database connection established with ID: 37049"}
+{"level":"info","message":"Connection 37049 acquired"}
+{"level":"info","message":"Connection 37043 released"}
+{"level":"info","message":"Connection 37047 released"}
+{"level":"info","message":"Connection 37049 released"}
+{"level":"info","message":"Connection 37048 released"}
+{"level":"info","message":"New database connection established with ID: 37051"}
+{"level":"info","message":"Connection 37051 acquired"}
+{"level":"info","message":"New database connection established with ID: 37055"}
+{"level":"info","message":"Connection 37055 acquired"}
+{"level":"info","message":"New database connection established with ID: 37052"}
+{"level":"info","message":"Connection 37052 acquired"}
+{"level":"info","message":"New database connection established with ID: 37054"}
+{"level":"info","message":"Connection 37054 acquired"}
+{"level":"info","message":"New database connection established with ID: 37053"}
+{"level":"info","message":"Connection 37053 acquired"}
+{"level":"info","message":"New database connection established with ID: 37056"}
+{"level":"info","message":"Connection 37056 acquired"}
+{"level":"info","message":"New database connection established with ID: 37057"}
+{"level":"info","message":"Connection 37057 acquired"}
+{"level":"info","message":"New database connection established with ID: 37050"}
+{"level":"info","message":"Connection 37050 acquired"}
+{"level":"info","message":"New database connection established with ID: 37059"}
+{"level":"info","message":"Connection 37059 acquired"}
+{"level":"info","message":"New database connection established with ID: 37058"}
+{"level":"info","message":"Connection 37058 acquired"}
+{"level":"info","message":"Connection 37054 released"}
+{"level":"info","message":"Connection 37055 released"}
+{"level":"info","message":"Connection 37052 released"}
+{"level":"info","message":"Connection 37051 released"}
+{"level":"info","message":"Connection 37053 released"}
+{"level":"info","message":"Connection 37050 released"}
+{"level":"info","message":"Connection 37056 released"}
+{"level":"info","message":"Connection 37057 released"}
+{"level":"info","message":"Connection 37058 released"}
+{"level":"info","message":"Connection 37059 released"}
+{"level":"info","message":"Connection 37054 acquired"}
+{"level":"info","message":"Connection 37055 acquired"}
+{"level":"info","message":"Connection 37052 acquired"}
+{"level":"info","message":"Connection 37051 acquired"}
+{"level":"info","message":"Connection 37053 acquired"}
+{"level":"info","message":"Connection 37054 released"}
+{"level":"info","message":"Connection 37055 released"}
+{"level":"info","message":"Connection 37052 released"}
+{"level":"info","message":"Connection 37051 released"}
+{"level":"info","message":"Connection 37053 released"}
+{"level":"info","message":"Connection 37056 acquired"}
+{"level":"info","message":"Connection 37050 acquired"}
+{"level":"info","message":"Connection 37054 acquired"}
+{"level":"info","message":"Connection 37058 acquired"}
+{"level":"info","message":"Connection 37057 acquired"}
+{"level":"info","message":"Connection 37059 acquired"}
+{"level":"info","message":"Connection 37051 acquired"}
+{"level":"info","message":"Connection 37055 acquired"}
+{"level":"info","message":"Connection 37052 acquired"}
+{"level":"info","message":"Connection 37053 acquired"}
+{"level":"info","message":"Connection 37056 released"}
+{"level":"info","message":"Connection 37050 released"}
+{"level":"info","message":"Connection 37051 released"}
+{"level":"info","message":"Connection 37055 released"}
+{"level":"info","message":"Connection 37054 released"}
+{"level":"info","message":"Connection 37057 released"}
+{"level":"info","message":"Connection 37058 released"}
+{"level":"info","message":"Connection 37059 released"}
+{"level":"info","message":"Connection 37052 released"}
+{"level":"info","message":"Connection 37053 released"}
+{"level":"info","message":"Connection 37056 acquired"}
+{"level":"info","message":"Connection 37050 acquired"}
+{"level":"info","message":"Connection 37054 acquired"}
+{"level":"info","message":"Connection 37051 acquired"}
+{"level":"info","message":"Connection 37055 acquired"}
+{"level":"info","message":"Connection 37056 released"}
+{"level":"info","message":"Connection 37050 released"}
+{"level":"info","message":"Connection 37051 released"}
+{"level":"info","message":"Connection 37055 released"}
+{"level":"info","message":"Connection 37054 released"}
+{"level":"info","message":"Connection 37057 acquired"}
+{"level":"info","message":"Connection 37057 released"}
+{"level":"info","message":"Connection 37055 acquired"}
+{"level":"info","message":"Connection 37051 acquired"}
+{"level":"info","message":"Connection 37052 acquired"}
+{"level":"info","message":"Connection 37056 acquired"}
+{"level":"info","message":"Connection 37050 acquired"}
+{"level":"info","message":"Connection 37053 acquired"}
+{"level":"info","message":"Connection 37059 acquired"}
+{"level":"info","message":"Connection 37058 acquired"}
+{"level":"info","message":"Connection 37051 released"}
+{"level":"info","message":"Connection 37055 released"}
+{"level":"info","message":"Connection 37053 released"}
+{"level":"info","message":"Connection 37050 released"}
+{"level":"info","message":"Connection 37058 released"}
+{"level":"info","message":"Connection 37059 released"}
+{"level":"info","message":"Connection 37052 released"}
+{"level":"info","message":"Connection 37056 released"}
+{"level":"info","message":"Connection 37054 acquired"}
+{"level":"info","message":"Connection 37057 acquired"}
+{"level":"info","message":"Connection 37054 released"}
+{"level":"info","message":"Connection 37057 released"}
+{"level":"info","message":"Connection 37051 acquired"}
+{"level":"info","message":"Connection 37055 acquired"}
+{"level":"info","message":"Connection 37058 acquired"}
+{"level":"info","message":"Connection 37053 acquired"}
+{"level":"info","message":"Connection 37050 acquired"}
+{"level":"info","message":"Connection 37055 released"}
+{"level":"info","message":"Connection 37051 released"}
+{"level":"info","message":"Connection 37053 released"}
+{"level":"info","message":"Connection 37050 released"}
+{"level":"info","message":"Connection 37058 released"}
+{"level":"info","message":"Connection 37059 acquired"}
+{"level":"info","message":"Connection 37052 acquired"}
+{"level":"info","message":"Connection 37059 released"}
+{"level":"info","message":"Connection 37052 released"}
+{"level":"info","message":"Connection 37054 acquired"}
+{"level":"info","message":"Connection 37056 acquired"}
+{"level":"info","message":"Connection 37051 acquired"}
+{"level":"info","message":"Connection 37055 acquired"}
+{"level":"info","message":"Connection 37057 acquired"}
+{"level":"info","message":"Connection 37051 released"}
+{"level":"info","message":"Connection 37055 released"}
+{"level":"info","message":"Connection 37054 released"}
+{"level":"info","message":"Connection 37056 released"}
+{"level":"info","message":"Connection 37057 released"}
+{"level":"info","message":"Connection 37054 acquired"}
+{"level":"info","message":"Connection 37051 acquired"}
+{"level":"info","message":"Connection 37055 acquired"}
+{"level":"info","message":"Connection 37053 acquired"}
+{"level":"info","message":"Connection 37050 acquired"}
+{"level":"info","message":"Connection 37058 acquired"}
+{"level":"info","message":"Connection 37059 acquired"}
+{"level":"info","message":"Connection 37052 acquired"}
+{"level":"info","message":"Connection 37054 released"}
+{"level":"info","message":"Connection 37051 released"}
+{"level":"info","message":"Connection 37055 released"}
+{"level":"info","message":"Connection 37053 released"}
+{"level":"info","message":"Connection 37050 released"}
+{"level":"info","message":"Connection 37058 released"}
+{"level":"info","message":"Connection 37052 released"}
+{"level":"info","message":"Connection 37059 released"}
+{"level":"info","message":"Connection 37056 acquired"}
+{"level":"info","message":"Connection 37057 acquired"}
+{"level":"info","message":"Connection 37056 released"}
+{"level":"info","message":"Connection 37057 released"}
+{"level":"info","message":"Connection 37054 acquired"}
+{"level":"info","message":"Connection 37053 acquired"}
+{"level":"info","message":"Connection 37050 acquired"}
+{"level":"info","message":"Connection 37051 acquired"}
+{"level":"info","message":"Connection 37055 acquired"}
+{"level":"info","message":"Connection 37054 released"}
+{"level":"info","message":"Connection 37050 released"}
+{"level":"info","message":"Connection 37051 released"}
+{"level":"info","message":"Connection 37053 released"}
+{"level":"info","message":"Connection 37055 released"}
+{"level":"info","message":"Connection 37058 acquired"}
+{"level":"info","message":"Connection 37052 acquired"}
+{"level":"info","message":"Connection 37054 acquired"}
+{"level":"info","message":"Connection 37056 acquired"}
+{"level":"info","message":"Connection 37051 acquired"}
+{"level":"info","message":"Connection 37057 acquired"}
+{"level":"info","message":"Connection 37059 acquired"}
+{"level":"info","message":"Connection 37050 acquired"}
+{"level":"info","message":"Connection 37054 released"}
+{"level":"info","message":"Connection 37056 released"}
+{"level":"info","message":"Connection 37051 released"}
+{"level":"info","message":"Connection 37057 released"}
+{"level":"info","message":"Connection 37052 released"}
+{"level":"info","message":"Connection 37058 released"}
+{"level":"info","message":"Connection 37059 released"}
+{"level":"info","message":"Connection 37050 released"}
+{"level":"info","message":"Connection 37053 acquired"}
+{"level":"info","message":"Connection 37053 released"}
+{"level":"info","message":"Connection 37054 acquired"}
+{"level":"info","message":"Connection 37056 acquired"}
+{"level":"info","message":"Connection 37051 acquired"}
+{"level":"info","message":"Connection 37055 acquired"}
+{"level":"info","message":"Connection 37058 acquired"}
+{"level":"info","message":"Connection 37057 acquired"}
+{"level":"info","message":"Connection 37059 acquired"}
+{"level":"info","message":"Connection 37052 acquired"}
+{"level":"info","message":"Connection 37054 released"}
+{"level":"info","message":"Connection 37056 released"}
+{"level":"info","message":"Connection 37058 released"}
+{"level":"info","message":"Connection 37055 released"}
+{"level":"info","message":"Connection 37057 released"}
+{"level":"info","message":"Connection 37051 released"}
+{"level":"info","message":"Connection 37059 released"}
+{"level":"info","message":"Connection 37052 released"}
+{"level":"info","message":"Connection 37053 acquired"}
+{"level":"info","message":"Connection 37050 acquired"}
+{"level":"info","message":"Connection 37054 acquired"}
+{"level":"info","message":"Connection 37059 acquired"}
+{"level":"info","message":"Connection 37056 acquired"}
+{"level":"info","message":"Connection 37058 acquired"}
+{"level":"info","message":"Connection 37057 acquired"}
+{"level":"info","message":"Connection 37055 acquired"}
+{"level":"info","message":"Connection 37051 acquired"}
+{"level":"info","message":"Connection 37052 acquired"}
+{"level":"info","message":"Connection 37053 released"}
+{"level":"info","message":"Connection 37050 released"}
+{"level":"info","message":"Connection 37054 released"}
+{"level":"info","message":"Connection 37059 released"}
+{"level":"info","message":"Connection 37051 released"}
+{"level":"info","message":"Connection 37056 released"}
+{"level":"info","message":"Connection 37057 released"}
+{"level":"info","message":"Connection 37055 released"}
+{"level":"info","message":"Connection 37058 released"}
+{"level":"info","message":"Connection 37052 released"}
+{"level":"info","message":"Connection 37053 acquired"}
+{"level":"info","message":"Connection 37050 acquired"}
+{"level":"info","message":"Connection 37054 acquired"}
+{"level":"info","message":"Connection 37059 acquired"}
+{"level":"info","message":"Connection 37051 acquired"}
+{"level":"info","message":"Connection 37050 released"}
+{"level":"info","message":"Connection 37053 released"}
+{"level":"info","message":"Connection 37054 released"}
+{"level":"info","message":"Connection 37059 released"}
+{"level":"info","message":"Connection 37051 released"}
+{"level":"info","message":"Connection 37056 acquired"}
+{"level":"info","message":"Connection 37056 released"}
+{"level":"info","message":"Connection 37058 acquired"}
+{"level":"info","message":"Connection 37055 acquired"}
+{"level":"info","message":"Connection 37057 acquired"}
+{"level":"info","message":"Connection 37052 acquired"}
+{"level":"info","message":"Connection 37054 acquired"}
+{"level":"info","message":"Connection 37053 acquired"}
+{"level":"info","message":"Connection 37050 acquired"}
+{"level":"info","message":"Connection 37059 acquired"}
+{"level":"info","message":"Connection 37054 released"}
+{"level":"info","message":"Connection 37052 released"}
+{"level":"info","message":"Connection 37053 released"}
+{"level":"info","message":"Connection 37050 released"}
+{"level":"info","message":"Connection 37057 released"}
+{"level":"info","message":"Connection 37059 released"}
+{"level":"info","message":"Connection 37055 released"}
+{"level":"info","message":"Connection 37058 released"}
+{"level":"info","message":"Connection 37056 acquired"}
+{"level":"info","message":"Connection 37051 acquired"}
+{"level":"info","message":"Connection 37054 acquired"}
+{"level":"info","message":"Connection 37053 acquired"}
+{"level":"info","message":"Connection 37050 acquired"}
+{"level":"info","message":"Connection 37057 acquired"}
+{"level":"info","message":"Connection 37052 acquired"}
+{"level":"info","message":"Connection 37059 acquired"}
+{"level":"info","message":"Connection 37058 acquired"}
+{"level":"info","message":"Connection 37055 acquired"}
+{"level":"info","message":"Connection 37056 released"}
+{"level":"info","message":"Connection 37051 released"}
+{"level":"info","message":"Connection 37054 released"}
+{"level":"info","message":"Connection 37053 released"}
+{"level":"info","message":"Connection 37050 released"}
+{"level":"info","message":"Connection 37057 released"}
+{"level":"info","message":"Connection 37052 released"}
+{"level":"info","message":"Connection 37059 released"}
+{"level":"info","message":"Connection 37058 released"}
+{"level":"info","message":"Connection 37055 released"}
+{"level":"info","message":"Connection 37056 acquired"}
+{"level":"info","message":"Connection 37051 acquired"}
+{"level":"info","message":"Connection 37054 acquired"}
+{"level":"info","message":"Connection 37053 acquired"}
+{"level":"info","message":"Connection 37050 acquired"}
+{"level":"info","message":"Connection 37056 released"}
+{"level":"info","message":"Connection 37051 released"}
+{"level":"info","message":"Connection 37054 released"}
+{"level":"info","message":"Connection 37053 released"}
+{"level":"info","message":"Connection 37050 released"}
+{"level":"info","message":"New database connection established with ID: 47110"}
+{"level":"info","message":"Connection 47110 acquired"}
+{"level":"info","message":"Connection 47110 released"}
+{"level":"info","message":"Connection 47110 acquired"}
+{"level":"info","message":"Connection 47110 released"}
+{"level":"info","message":"Connection 47110 acquired"}
+{"level":"info","message":"Connection 47110 released"}
+{"level":"info","message":"New database connection established with ID: 47112"}
+{"level":"info","message":"Connection 47112 acquired"}
+{"level":"info","message":"New database connection established with ID: 47111"}
+{"level":"info","message":"Connection 47111 acquired"}
+{"level":"info","message":"New database connection established with ID: 47113"}
+{"level":"info","message":"Connection 47113 acquired"}
+{"level":"info","message":"New database connection established with ID: 47114"}
+{"level":"info","message":"Connection 47114 acquired"}
+{"level":"info","message":"Connection 47111 released"}
+{"level":"info","message":"Connection 47112 released"}
+{"level":"info","message":"Connection 47114 released"}
+{"level":"info","message":"Connection 47113 released"}
+{"level":"info","message":"Connection 47110 acquired"}
+{"level":"info","message":"Connection 47110 released"}
+{"level":"info","message":"Connection 47112 acquired"}
+{"level":"info","message":"Connection 47111 acquired"}
+{"level":"info","message":"Connection 47110 acquired"}
+{"level":"info","message":"Connection 47114 acquired"}
+{"level":"info","message":"Connection 47113 acquired"}
+{"level":"info","message":"Connection 47110 released"}
+{"level":"info","message":"Connection 47114 released"}
+{"level":"info","message":"Connection 47112 released"}
+{"level":"info","message":"Connection 47111 released"}
+{"level":"info","message":"Connection 47113 released"}
+{"level":"info","message":"New database connection established with ID: 47116"}
+{"level":"info","message":"Connection 47116 acquired"}
+{"level":"info","message":"New database connection established with ID: 47117"}
+{"level":"info","message":"Connection 47117 acquired"}
+{"level":"info","message":"New database connection established with ID: 47118"}
+{"level":"info","message":"Connection 47118 acquired"}
+{"level":"info","message":"Connection 47116 released"}
+{"level":"info","message":"Connection 47117 released"}
+{"level":"info","message":"Connection 47118 released"}
+{"level":"info","message":"New database connection established with ID: 47121"}
+{"level":"info","message":"Connection 47121 acquired"}
+{"level":"info","message":"New database connection established with ID: 47120"}
+{"level":"info","message":"Connection 47120 acquired"}
+{"level":"info","message":"Connection 47121 released"}
+{"level":"info","message":"Connection 47120 released"}
+{"level":"info","message":"Connection 47121 acquired"}
+{"level":"info","message":"Connection 47121 released"}
+{"level":"info","message":"New database connection established with ID: 47122"}
+{"level":"info","message":"Connection 47122 acquired"}
+{"level":"info","message":"New database connection established with ID: 47123"}
+{"level":"info","message":"Connection 47123 acquired"}
+{"level":"info","message":"New database connection established with ID: 47124"}
+{"level":"info","message":"Connection 47124 acquired"}
+{"level":"info","message":"New database connection established with ID: 47125"}
+{"level":"info","message":"Connection 47125 acquired"}
+{"level":"info","message":"Connection 47122 released"}
+{"level":"info","message":"Connection 47124 released"}
+{"level":"info","message":"Connection 47123 released"}
+{"level":"info","message":"Connection 47125 released"}
+{"level":"info","message":"Connection 47121 acquired"}
+{"level":"info","message":"Connection 47120 acquired"}
+{"level":"info","message":"Connection 47120 released"}
+{"level":"info","message":"Connection 47121 released"}
+{"level":"info","message":"Connection 47124 acquired"}
+{"level":"info","message":"Connection 47122 acquired"}
+{"level":"info","message":"Connection 47125 acquired"}
+{"level":"info","message":"Connection 47120 acquired"}
+{"level":"info","message":"Connection 47123 acquired"}
+{"level":"info","message":"Connection 47124 released"}
+{"level":"info","message":"Connection 47122 released"}
+{"level":"info","message":"Connection 47120 released"}
+{"level":"info","message":"Connection 47125 released"}
+{"level":"info","message":"Connection 47123 released"}
+{"level":"info","message":"Connection 47121 acquired"}
+{"level":"info","message":"Connection 47124 acquired"}
+{"level":"info","message":"Connection 47121 released"}
+{"level":"info","message":"Connection 47124 released"}
+{"level":"info","message":"Connection 47121 acquired"}
+{"level":"info","message":"Connection 47122 acquired"}
+{"level":"info","message":"Connection 47125 acquired"}
+{"level":"info","message":"Connection 47120 acquired"}
+{"level":"info","message":"Connection 47123 acquired"}
+{"level":"info","message":"Connection 47121 released"}
+{"level":"info","message":"Connection 47122 released"}
+{"level":"info","message":"Connection 47125 released"}
+{"level":"info","message":"Connection 47120 released"}
+{"level":"info","message":"Connection 47123 released"}
+{"level":"info","message":"Connection 47124 acquired"}
+{"level":"info","message":"Connection 47121 acquired"}
+{"level":"info","message":"Connection 47121 released"}
+{"level":"info","message":"Connection 47124 released"}
+{"level":"info","message":"Connection 47121 acquired"}
+{"level":"info","message":"Connection 47122 acquired"}
+{"level":"info","message":"Connection 47125 acquired"}
+{"level":"info","message":"Connection 47120 acquired"}
+{"level":"info","message":"Connection 47123 acquired"}
+{"level":"info","message":"Connection 47121 released"}
+{"level":"info","message":"Connection 47125 released"}
+{"level":"info","message":"Connection 47122 released"}
+{"level":"info","message":"Connection 47120 released"}
+{"level":"info","message":"Connection 47123 released"}
+{"level":"info","message":"Connection 47124 acquired"}
+{"level":"info","message":"Connection 47121 acquired"}
+{"level":"info","message":"Connection 47125 acquired"}
+{"level":"info","message":"Connection 47122 acquired"}
+{"level":"info","message":"Connection 47120 acquired"}
+{"level":"info","message":"Connection 47123 acquired"}
+{"level":"info","message":"Connection 47121 released"}
+{"level":"info","message":"Connection 47124 released"}
+{"level":"info","message":"Connection 47122 released"}
+{"level":"info","message":"Connection 47125 released"}
+{"level":"info","message":"Connection 47120 released"}
+{"level":"info","message":"Connection 47123 released"}
+{"level":"info","message":"Connection 47121 acquired"}
+{"level":"info","message":"Connection 47124 acquired"}
+{"level":"info","message":"Connection 47125 acquired"}
+{"level":"info","message":"Connection 47122 acquired"}
+{"level":"info","message":"Connection 47120 acquired"}
+{"level":"info","message":"Connection 47121 released"}
+{"level":"info","message":"Connection 47124 released"}
+{"level":"info","message":"New database connection established with ID: 47126"}
+{"level":"info","message":"Connection 47126 acquired"}
+{"level":"info","message":"New database connection established with ID: 47127"}
+{"level":"info","message":"Connection 47127 acquired"}
+{"level":"info","message":"New database connection established with ID: 47128"}
+{"level":"info","message":"Connection 47128 acquired"}
+{"level":"info","message":"New database connection established with ID: 47129"}
+{"level":"info","message":"Connection 47129 acquired"}
+{"level":"info","message":"Connection 47120 released"}
+{"level":"info","message":"Connection 47125 released"}
+{"level":"info","message":"Connection 47122 released"}
+{"level":"info","message":"Connection 47126 released"}
+{"level":"info","message":"Connection 47127 released"}
+{"level":"info","message":"Connection 47128 released"}
+{"level":"info","message":"Connection 47129 released"}
+{"level":"info","message":"New database connection established with ID: 47131"}
+{"level":"info","message":"Connection 47131 acquired"}
+{"level":"info","message":"New database connection established with ID: 47133"}
+{"level":"info","message":"Connection 47133 acquired"}
+{"level":"info","message":"New database connection established with ID: 47135"}
+{"level":"info","message":"Connection 47135 acquired"}
+{"level":"info","message":"New database connection established with ID: 47134"}
+{"level":"info","message":"Connection 47134 acquired"}
+{"level":"info","message":"New database connection established with ID: 47139"}
+{"level":"info","message":"Connection 47139 acquired"}
+{"level":"info","message":"New database connection established with ID: 47136"}
+{"level":"info","message":"Connection 47136 acquired"}
+{"level":"info","message":"New database connection established with ID: 47132"}
+{"level":"info","message":"Connection 47132 acquired"}
+{"level":"info","message":"New database connection established with ID: 47138"}
+{"level":"info","message":"Connection 47138 acquired"}
+{"level":"info","message":"New database connection established with ID: 47137"}
+{"level":"info","message":"Connection 47137 acquired"}
+{"level":"info","message":"New database connection established with ID: 47140"}
+{"level":"info","message":"Connection 47140 acquired"}
+{"level":"info","message":"Connection 47131 released"}
+{"level":"info","message":"Connection 47135 released"}
+{"level":"info","message":"Connection 47133 released"}
+{"level":"info","message":"Connection 47139 released"}
+{"level":"info","message":"Connection 47132 released"}
+{"level":"info","message":"Connection 47138 released"}
+{"level":"info","message":"Connection 47137 released"}
+{"level":"info","message":"Connection 47140 released"}
+{"level":"info","message":"Connection 47136 released"}
+{"level":"info","message":"Connection 47134 released"}
+{"level":"info","message":"Connection 47131 acquired"}
+{"level":"info","message":"Connection 47133 acquired"}
+{"level":"info","message":"Connection 47135 acquired"}
+{"level":"info","message":"Connection 47139 acquired"}
+{"level":"info","message":"Connection 47132 acquired"}
+{"level":"info","message":"Connection 47131 released"}
+{"level":"info","message":"Connection 47133 released"}
+{"level":"info","message":"Connection 47135 released"}
+{"level":"info","message":"Connection 47139 released"}
+{"level":"info","message":"Connection 47132 released"}
+{"level":"info","message":"New database connection established with ID: 47144"}
+{"level":"info","message":"Connection 47144 acquired"}
+{"level":"info","message":"New database connection established with ID: 47142"}
+{"level":"info","message":"Connection 47142 acquired"}
+{"level":"info","message":"New database connection established with ID: 47145"}
+{"level":"info","message":"Connection 47145 acquired"}
+{"level":"info","message":"New database connection established with ID: 47147"}
+{"level":"info","message":"Connection 47147 acquired"}
+{"level":"info","message":"New database connection established with ID: 47146"}
+{"level":"info","message":"Connection 47146 acquired"}
+{"level":"info","message":"New database connection established with ID: 47141"}
+{"level":"info","message":"Connection 47141 acquired"}
+{"level":"info","message":"New database connection established with ID: 47143"}
+{"level":"info","message":"Connection 47143 acquired"}
+{"level":"info","message":"New database connection established with ID: 47148"}
+{"level":"info","message":"Connection 47148 acquired"}
+{"level":"info","message":"New database connection established with ID: 47149"}
+{"level":"info","message":"Connection 47149 acquired"}
+{"level":"info","message":"New database connection established with ID: 47150"}
+{"level":"info","message":"Connection 47150 acquired"}
+{"level":"info","message":"Connection 47144 released"}
+{"level":"info","message":"Connection 47142 released"}
+{"level":"info","message":"Connection 47145 released"}
+{"level":"info","message":"Connection 47141 released"}
+{"level":"info","message":"Connection 47143 released"}
+{"level":"info","message":"Connection 47149 released"}
+{"level":"info","message":"Connection 47148 released"}
+{"level":"info","message":"Connection 47146 released"}
+{"level":"info","message":"Connection 47147 released"}
+{"level":"info","message":"Connection 47150 released"}
+{"level":"info","message":"Connection 47144 acquired"}
+{"level":"info","message":"Connection 47142 acquired"}
+{"level":"info","message":"Connection 47145 acquired"}
+{"level":"info","message":"Connection 47141 acquired"}
+{"level":"info","message":"Connection 47143 acquired"}
+{"level":"info","message":"Connection 47144 released"}
+{"level":"info","message":"Connection 47142 released"}
+{"level":"info","message":"Connection 47145 released"}
+{"level":"info","message":"Connection 47141 released"}
+{"level":"info","message":"Connection 47143 released"}
+{"level":"info","message":"New database connection established with ID: 47152"}
+{"level":"info","message":"Connection 47152 acquired"}
+{"level":"info","message":"New database connection established with ID: 47155"}
+{"level":"info","message":"Connection 47155 acquired"}
+{"level":"info","message":"New database connection established with ID: 47158"}
+{"level":"info","message":"Connection 47158 acquired"}
+{"level":"info","message":"New database connection established with ID: 47154"}
+{"level":"info","message":"Connection 47154 acquired"}
+{"level":"info","message":"New database connection established with ID: 47156"}
+{"level":"info","message":"Connection 47156 acquired"}
+{"level":"info","message":"New database connection established with ID: 47153"}
+{"level":"info","message":"Connection 47153 acquired"}
+{"level":"info","message":"New database connection established with ID: 47159"}
+{"level":"info","message":"Connection 47159 acquired"}
+{"level":"info","message":"New database connection established with ID: 47157"}
+{"level":"info","message":"Connection 47157 acquired"}
+{"level":"info","message":"New database connection established with ID: 47160"}
+{"level":"info","message":"Connection 47160 acquired"}
+{"level":"info","message":"New database connection established with ID: 47161"}
+{"level":"info","message":"Connection 47161 acquired"}
+{"level":"info","message":"Connection 47152 released"}
+{"level":"info","message":"Connection 47155 released"}
+{"level":"info","message":"Connection 47158 released"}
+{"level":"info","message":"Connection 47154 released"}
+{"level":"info","message":"Connection 47153 released"}
+{"level":"info","message":"Connection 47156 released"}
+{"level":"info","message":"Connection 47159 released"}
+{"level":"info","message":"Connection 47160 released"}
+{"level":"info","message":"Connection 47157 released"}
+{"level":"info","message":"Connection 47161 released"}
+{"level":"info","message":"Connection 47152 acquired"}
+{"level":"info","message":"Connection 47155 acquired"}
+{"level":"info","message":"Connection 47158 acquired"}
+{"level":"info","message":"Connection 47154 acquired"}
+{"level":"info","message":"Connection 47153 acquired"}
+{"level":"info","message":"Connection 47152 released"}
+{"level":"info","message":"Connection 47155 released"}
+{"level":"info","message":"Connection 47158 released"}
+{"level":"info","message":"Connection 47154 released"}
+{"level":"info","message":"Connection 47153 released"}
+{"level":"info","message":"New database connection established with ID: 47163"}
+{"level":"info","message":"Connection 47163 acquired"}
+{"level":"info","message":"New database connection established with ID: 47164"}
+{"level":"info","message":"Connection 47164 acquired"}
+{"level":"info","message":"New database connection established with ID: 47165"}
+{"level":"info","message":"Connection 47165 acquired"}
+{"level":"info","message":"New database connection established with ID: 47166"}
+{"level":"info","message":"Connection 47166 acquired"}
+{"level":"info","message":"New database connection established with ID: 47170"}
+{"level":"info","message":"Connection 47170 acquired"}
+{"level":"info","message":"New database connection established with ID: 47167"}
+{"level":"info","message":"Connection 47167 acquired"}
+{"level":"info","message":"New database connection established with ID: 47168"}
+{"level":"info","message":"Connection 47168 acquired"}
+{"level":"info","message":"New database connection established with ID: 47162"}
+{"level":"info","message":"Connection 47162 acquired"}
+{"level":"info","message":"New database connection established with ID: 47169"}
+{"level":"info","message":"Connection 47169 acquired"}
+{"level":"info","message":"New database connection established with ID: 47171"}
+{"level":"info","message":"Connection 47171 acquired"}
+{"level":"info","message":"Connection 47163 released"}
+{"level":"info","message":"Connection 47165 released"}
+{"level":"info","message":"Connection 47166 released"}
+{"level":"info","message":"Connection 47164 released"}
+{"level":"info","message":"Connection 47170 released"}
+{"level":"info","message":"Connection 47171 released"}
+{"level":"info","message":"Connection 47167 released"}
+{"level":"info","message":"Connection 47168 released"}
+{"level":"info","message":"Connection 47169 released"}
+{"level":"info","message":"Connection 47162 released"}
+{"level":"info","message":"Connection 47164 acquired"}
+{"level":"info","message":"Connection 47163 acquired"}
+{"level":"info","message":"Connection 47166 acquired"}
+{"level":"info","message":"Connection 47165 acquired"}
+{"level":"info","message":"Connection 47170 acquired"}
+{"level":"info","message":"Connection 47163 released"}
+{"level":"info","message":"Connection 47164 released"}
+{"level":"info","message":"Connection 47170 released"}
+{"level":"info","message":"Connection 47165 released"}
+{"level":"info","message":"Connection 47166 released"}
+{"level":"info","message":"Connection 47171 acquired"}
+{"level":"info","message":"Connection 47171 released"}
+{"level":"info","message":"New database connection established with ID: 47187"}
+{"level":"info","message":"Connection 47187 acquired"}
+{"level":"info","message":"New database connection established with ID: 47188"}
+{"level":"info","message":"Connection 47188 acquired"}
+{"level":"info","message":"New database connection established with ID: 47189"}
+{"level":"info","message":"Connection 47189 acquired"}
+{"level":"info","message":"New database connection established with ID: 47192"}
+{"level":"info","message":"Connection 47192 acquired"}
+{"level":"info","message":"New database connection established with ID: 47191"}
+{"level":"info","message":"Connection 47191 acquired"}
+{"level":"info","message":"New database connection established with ID: 47195"}
+{"level":"info","message":"Connection 47195 acquired"}
+{"level":"info","message":"New database connection established with ID: 47190"}
+{"level":"info","message":"Connection 47190 acquired"}
+{"level":"info","message":"New database connection established with ID: 47193"}
+{"level":"info","message":"Connection 47193 acquired"}
+{"level":"info","message":"New database connection established with ID: 47194"}
+{"level":"info","message":"Connection 47194 acquired"}
+{"level":"info","message":"New database connection established with ID: 47196"}
+{"level":"info","message":"Connection 47196 acquired"}
+{"level":"info","message":"Connection 47187 released"}
+{"level":"info","message":"Connection 47189 released"}
+{"level":"info","message":"Connection 47192 released"}
+{"level":"info","message":"Connection 47191 released"}
+{"level":"info","message":"Connection 47195 released"}
+{"level":"info","message":"Connection 47188 released"}
+{"level":"info","message":"Connection 47190 released"}
+{"level":"info","message":"Connection 47194 released"}
+{"level":"info","message":"Connection 47196 released"}
+{"level":"info","message":"Connection 47193 released"}
+{"level":"info","message":"Connection 47187 acquired"}
+{"level":"info","message":"Connection 47191 acquired"}
+{"level":"info","message":"Connection 47192 acquired"}
+{"level":"info","message":"Connection 47189 acquired"}
+{"level":"info","message":"Connection 47195 acquired"}
+{"level":"info","message":"Connection 47189 released"}
+{"level":"info","message":"Connection 47191 released"}
+{"level":"info","message":"Connection 47195 released"}
+{"level":"info","message":"Connection 47187 released"}
+{"level":"info","message":"Connection 47192 released"}
+{"level":"info","message":"New database connection established with ID: 47197"}
+{"level":"info","message":"Connection 47197 acquired"}
+{"level":"info","message":"New database connection established with ID: 47199"}
+{"level":"info","message":"Connection 47199 acquired"}
+{"level":"info","message":"New database connection established with ID: 47200"}
+{"level":"info","message":"Connection 47200 acquired"}
+{"level":"info","message":"New database connection established with ID: 47198"}
+{"level":"info","message":"Connection 47198 acquired"}
+{"level":"info","message":"New database connection established with ID: 47201"}
+{"level":"info","message":"Connection 47201 acquired"}
+{"level":"info","message":"New database connection established with ID: 47203"}
+{"level":"info","message":"Connection 47203 acquired"}
+{"level":"info","message":"New database connection established with ID: 47204"}
+{"level":"info","message":"Connection 47204 acquired"}
+{"level":"info","message":"New database connection established with ID: 47202"}
+{"level":"info","message":"Connection 47202 acquired"}
+{"level":"info","message":"New database connection established with ID: 47206"}
+{"level":"info","message":"Connection 47206 acquired"}
+{"level":"info","message":"New database connection established with ID: 47205"}
+{"level":"info","message":"Connection 47205 acquired"}
+{"level":"info","message":"Connection 47197 released"}
+{"level":"info","message":"Connection 47199 released"}
+{"level":"info","message":"Connection 47200 released"}
+{"level":"info","message":"Connection 47198 released"}
+{"level":"info","message":"Connection 47201 released"}
+{"level":"info","message":"Connection 47203 released"}
+{"level":"info","message":"Connection 47205 released"}
+{"level":"info","message":"Connection 47204 released"}
+{"level":"info","message":"Connection 47202 released"}
+{"level":"info","message":"Connection 47206 released"}
+{"level":"info","message":"Connection 47197 acquired"}
+{"level":"info","message":"Connection 47199 acquired"}
+{"level":"info","message":"Connection 47200 acquired"}
+{"level":"info","message":"Connection 47198 acquired"}
+{"level":"info","message":"Connection 47201 acquired"}
+{"level":"info","message":"Connection 47200 released"}
+{"level":"info","message":"Connection 47197 released"}
+{"level":"info","message":"Connection 47199 released"}
+{"level":"info","message":"Connection 47198 released"}
+{"level":"info","message":"Connection 47201 released"}
+{"level":"info","message":"Connection 47203 acquired"}
+{"level":"info","message":"Connection 47203 released"}
+{"level":"info","message":"Connection 47205 acquired"}
+{"level":"info","message":"Connection 47205 released"}
+{"level":"info","message":"Connection 47204 acquired"}
+{"level":"info","message":"Connection 47204 released"}
+{"level":"info","message":"Connection 47202 acquired"}
+{"level":"info","message":"Connection 47202 released"}
+{"level":"info","message":"Connection 47206 acquired"}
+{"level":"info","message":"Connection 47206 released"}
+{"level":"info","message":"Connection 47200 acquired"}
+{"level":"info","message":"Connection 47200 released"}
+{"level":"info","message":"Connection 47197 acquired"}
+{"level":"info","message":"Connection 47197 released"}
+{"level":"info","message":"Connection 47199 acquired"}
+{"level":"info","message":"Connection 47199 released"}
+{"level":"info","message":"New database connection established with ID: 47207"}
+{"level":"info","message":"Connection 47207 acquired"}
+{"level":"info","message":"Connection 47207 released"}
+{"level":"info","message":"Connection 47207 acquired"}
+{"level":"info","message":"Connection 47207 released"}
+{"level":"info","message":"Connection 47207 acquired"}
+{"level":"info","message":"Connection 47207 released"}
+{"level":"info","message":"Connection 47207 acquired"}
+{"level":"info","message":"Connection 47207 released"}
+{"level":"info","message":"Connection 47207 acquired"}
+{"level":"info","message":"Connection 47207 released"}
+{"level":"info","message":"Connection 47207 acquired"}
+{"level":"info","message":"Connection 47207 released"}
+{"level":"info","message":"Connection 47207 acquired"}
+{"level":"info","message":"Connection 47207 released"}
+{"level":"info","message":"Connection 47207 acquired"}
+{"level":"info","message":"Connection 47207 released"}
+{"level":"info","message":"New database connection established with ID: 47209"}
+{"level":"info","message":"Connection 47209 acquired"}
+{"level":"info","message":"New database connection established with ID: 47208"}
+{"level":"info","message":"Connection 47208 acquired"}
+{"level":"info","message":"New database connection established with ID: 47212"}
+{"level":"info","message":"Connection 47212 acquired"}
+{"level":"info","message":"New database connection established with ID: 47210"}
+{"level":"info","message":"Connection 47210 acquired"}
+{"level":"info","message":"New database connection established with ID: 47214"}
+{"level":"info","message":"Connection 47214 acquired"}
+{"level":"info","message":"New database connection established with ID: 47213"}
+{"level":"info","message":"Connection 47213 acquired"}
+{"level":"info","message":"New database connection established with ID: 47211"}
+{"level":"info","message":"Connection 47211 acquired"}
+{"level":"info","message":"New database connection established with ID: 47216"}
+{"level":"info","message":"Connection 47216 acquired"}
+{"level":"info","message":"New database connection established with ID: 47215"}
+{"level":"info","message":"Connection 47215 acquired"}
+{"level":"info","message":"New database connection established with ID: 47217"}
+{"level":"info","message":"Connection 47217 acquired"}
+{"level":"info","message":"Connection 47209 released"}
+{"level":"info","message":"Connection 47210 released"}
+{"level":"info","message":"Connection 47212 released"}
+{"level":"info","message":"Connection 47213 released"}
+{"level":"info","message":"Connection 47214 released"}
+{"level":"info","message":"Connection 47208 released"}
+{"level":"info","message":"Connection 47211 released"}
+{"level":"info","message":"Connection 47215 released"}
+{"level":"info","message":"Connection 47216 released"}
+{"level":"info","message":"Connection 47217 released"}
+{"level":"info","message":"Connection 47212 acquired"}
+{"level":"info","message":"Connection 47209 acquired"}
+{"level":"info","message":"Connection 47210 acquired"}
+{"level":"info","message":"Connection 47213 acquired"}
+{"level":"info","message":"Connection 47214 acquired"}
+{"level":"info","message":"Connection 47209 released"}
+{"level":"info","message":"Connection 47213 released"}
+{"level":"info","message":"Connection 47210 released"}
+{"level":"info","message":"Connection 47212 released"}
+{"level":"info","message":"Connection 47214 released"}
+{"level":"info","message":"New database connection established with ID: 47221"}
+{"level":"info","message":"Connection 47221 acquired"}
+{"level":"info","message":"New database connection established with ID: 47223"}
+{"level":"info","message":"Connection 47223 acquired"}
+{"level":"info","message":"New database connection established with ID: 47224"}
+{"level":"info","message":"Connection 47224 acquired"}
+{"level":"info","message":"New database connection established with ID: 47225"}
+{"level":"info","message":"Connection 47225 acquired"}
+{"level":"info","message":"New database connection established with ID: 47226"}
+{"level":"info","message":"Connection 47226 acquired"}
+{"level":"info","message":"New database connection established with ID: 47220"}
+{"level":"info","message":"Connection 47220 acquired"}
+{"level":"info","message":"New database connection established with ID: 47222"}
+{"level":"info","message":"Connection 47222 acquired"}
+{"level":"info","message":"New database connection established with ID: 47219"}
+{"level":"info","message":"Connection 47219 acquired"}
+{"level":"info","message":"New database connection established with ID: 47227"}
+{"level":"info","message":"Connection 47227 acquired"}
+{"level":"info","message":"New database connection established with ID: 47228"}
+{"level":"info","message":"Connection 47228 acquired"}
+{"level":"info","message":"Connection 47221 released"}
+{"level":"info","message":"Connection 47226 released"}
+{"level":"info","message":"Connection 47225 released"}
+{"level":"info","message":"Connection 47223 released"}
+{"level":"info","message":"Connection 47222 released"}
+{"level":"info","message":"Connection 47220 released"}
+{"level":"info","message":"Connection 47224 released"}
+{"level":"info","message":"Connection 47219 released"}
+{"level":"info","message":"Connection 47227 released"}
+{"level":"info","message":"Connection 47228 released"}
+{"level":"info","message":"Connection 47221 acquired"}
+{"level":"info","message":"Connection 47225 acquired"}
+{"level":"info","message":"Connection 47226 acquired"}
+{"level":"info","message":"Connection 47223 acquired"}
+{"level":"info","message":"Connection 47222 acquired"}
+{"level":"info","message":"Connection 47223 released"}
+{"level":"info","message":"Connection 47226 released"}
+{"level":"info","message":"Connection 47225 released"}
+{"level":"info","message":"Connection 47221 released"}
+{"level":"info","message":"Connection 47222 released"}
+{"level":"info","message":"New database connection established with ID: 47230"}
+{"level":"info","message":"Connection 47230 acquired"}
+{"level":"info","message":"New database connection established with ID: 47231"}
+{"level":"info","message":"Connection 47231 acquired"}
+{"level":"info","message":"New database connection established with ID: 47229"}
+{"level":"info","message":"Connection 47229 acquired"}
+{"level":"info","message":"New database connection established with ID: 47234"}
+{"level":"info","message":"Connection 47234 acquired"}
+{"level":"info","message":"New database connection established with ID: 47236"}
+{"level":"info","message":"Connection 47236 acquired"}
+{"level":"info","message":"New database connection established with ID: 47235"}
+{"level":"info","message":"Connection 47235 acquired"}
+{"level":"info","message":"New database connection established with ID: 47232"}
+{"level":"info","message":"Connection 47232 acquired"}
+{"level":"info","message":"New database connection established with ID: 47233"}
+{"level":"info","message":"Connection 47233 acquired"}
+{"level":"info","message":"New database connection established with ID: 47237"}
+{"level":"info","message":"Connection 47237 acquired"}
+{"level":"info","message":"New database connection established with ID: 47238"}
+{"level":"info","message":"Connection 47238 acquired"}
+{"level":"info","message":"Connection 47229 released"}
+{"level":"info","message":"Connection 47230 released"}
+{"level":"info","message":"Connection 47234 released"}
+{"level":"info","message":"Connection 47231 released"}
+{"level":"info","message":"Connection 47236 released"}
+{"level":"info","message":"Connection 47232 released"}
+{"level":"info","message":"Connection 47233 released"}
+{"level":"info","message":"Connection 47235 released"}
+{"level":"info","message":"Connection 47237 released"}
+{"level":"info","message":"Connection 47238 released"}
+{"level":"info","message":"Connection 47229 acquired"}
+{"level":"info","message":"Connection 47230 acquired"}
+{"level":"info","message":"Connection 47231 acquired"}
+{"level":"info","message":"Connection 47234 acquired"}
+{"level":"info","message":"Connection 47236 acquired"}
+{"level":"info","message":"Connection 47231 released"}
+{"level":"info","message":"Connection 47230 released"}
+{"level":"info","message":"Connection 47234 released"}
+{"level":"info","message":"Connection 47229 released"}
+{"level":"info","message":"Connection 47236 released"}
+{"level":"info","message":"Connection 47232 acquired"}
+{"level":"info","message":"Connection 47232 released"}
+{"level":"info","message":"Connection 47233 acquired"}
+{"level":"info","message":"Connection 47233 released"}
+{"level":"info","message":"Connection 47235 acquired"}
+{"level":"info","message":"Connection 47235 released"}
+{"level":"info","message":"Connection 47237 acquired"}
+{"level":"info","message":"Connection 47237 released"}
+{"level":"info","message":"Connection 47238 acquired"}
+{"level":"info","message":"Connection 47238 released"}
+{"level":"info","message":"New database connection established with ID: 47245"}
+{"level":"info","message":"Connection 47245 acquired"}
+{"level":"info","message":"New database connection established with ID: 47241"}
+{"level":"info","message":"Connection 47241 acquired"}
+{"level":"info","message":"New database connection established with ID: 47240"}
+{"level":"info","message":"Connection 47240 acquired"}
+{"level":"info","message":"New database connection established with ID: 47243"}
+{"level":"info","message":"Connection 47243 acquired"}
+{"level":"info","message":"New database connection established with ID: 47242"}
+{"level":"info","message":"Connection 47242 acquired"}
+{"level":"info","message":"New database connection established with ID: 47246"}
+{"level":"info","message":"Connection 47246 acquired"}
+{"level":"info","message":"Connection 47242 released"}
+{"level":"info","message":"Connection 47240 released"}
+{"level":"info","message":"Connection 47241 released"}
+{"level":"info","message":"New database connection established with ID: 47247"}
+{"level":"info","message":"Connection 47247 acquired"}
+{"level":"info","message":"Connection 47247 released"}
+{"level":"info","message":"Connection 47247 acquired"}
+{"level":"info","message":"Connection 47247 released"}
+{"level":"info","message":"Connection 47247 acquired"}
+{"level":"info","message":"Connection 47247 released"}
+{"level":"info","message":"Connection 47247 acquired"}
+{"level":"info","message":"Connection 47247 released"}
+{"level":"info","message":"Connection 47247 acquired"}
+{"level":"info","message":"Connection 47247 released"}
+{"level":"info","message":"New database connection established with ID: 47249"}
+{"level":"info","message":"Connection 47249 acquired"}
+{"level":"info","message":"New database connection established with ID: 47248"}
+{"level":"info","message":"Connection 47248 acquired"}
+{"level":"info","message":"New database connection established with ID: 47250"}
+{"level":"info","message":"Connection 47250 acquired"}
+{"level":"info","message":"New database connection established with ID: 47255"}
+{"level":"info","message":"Connection 47255 acquired"}
+{"level":"info","message":"New database connection established with ID: 47256"}
+{"level":"info","message":"Connection 47256 acquired"}
+{"level":"info","message":"New database connection established with ID: 47257"}
+{"level":"info","message":"Connection 47257 acquired"}
+{"level":"info","message":"New database connection established with ID: 47251"}
+{"level":"info","message":"Connection 47251 acquired"}
+{"level":"info","message":"New database connection established with ID: 47252"}
+{"level":"info","message":"Connection 47252 acquired"}
+{"level":"info","message":"New database connection established with ID: 47253"}
+{"level":"info","message":"Connection 47253 acquired"}
+{"level":"info","message":"New database connection established with ID: 47254"}
+{"level":"info","message":"Connection 47254 acquired"}
+{"level":"info","message":"Connection 47248 released"}
+{"level":"info","message":"Connection 47255 released"}
+{"level":"info","message":"Connection 47249 released"}
+{"level":"info","message":"Connection 47256 released"}
+{"level":"info","message":"Connection 47257 released"}
+{"level":"info","message":"Connection 47250 released"}
+{"level":"info","message":"Connection 47252 released"}
+{"level":"info","message":"Connection 47253 released"}
+{"level":"info","message":"Connection 47251 released"}
+{"level":"info","message":"Connection 47254 released"}
+{"level":"info","message":"Connection 47249 acquired"}
+{"level":"info","message":"Connection 47248 acquired"}
+{"level":"info","message":"Connection 47255 acquired"}
+{"level":"info","message":"Connection 47257 acquired"}
+{"level":"info","message":"Connection 47256 acquired"}
+{"level":"info","message":"Connection 47248 released"}
+{"level":"info","message":"Connection 47255 released"}
+{"level":"info","message":"Connection 47249 released"}
+{"level":"info","message":"Connection 47257 released"}
+{"level":"info","message":"Connection 47256 released"}
+{"level":"info","message":"Connection 47250 acquired"}
+{"level":"info","message":"Connection 47250 released"}
+{"level":"info","message":"Connection 47252 acquired"}
+{"level":"info","message":"Connection 47252 released"}
+{"level":"info","message":"Connection 47253 acquired"}
+{"level":"info","message":"Connection 47253 released"}
+{"level":"info","message":"Connection 47251 acquired"}
+{"level":"info","message":"Connection 47251 released"}
+{"level":"info","message":"Connection 47254 acquired"}
+{"level":"info","message":"Connection 47254 released"}
+{"level":"info","message":"Connection 47248 acquired"}
+{"level":"info","message":"Connection 47248 released"}
+{"level":"info","message":"Connection 47255 acquired"}
+{"level":"info","message":"Connection 47255 released"}
+{"level":"info","message":"Connection 47249 acquired"}
+{"level":"info","message":"Connection 47249 released"}
+{"level":"info","message":"Connection 47257 acquired"}
+{"level":"info","message":"Connection 47257 released"}
+{"level":"info","message":"Connection 47256 acquired"}
+{"level":"info","message":"Connection 47256 released"}
+{"level":"info","message":"Connection 47250 acquired"}
+{"level":"info","message":"Connection 47250 released"}
+{"level":"info","message":"Connection 47252 acquired"}
+{"level":"info","message":"Connection 47252 released"}
+{"level":"info","message":"Connection 47253 acquired"}
+{"level":"info","message":"Connection 47253 released"}
+{"level":"info","message":"Connection 47251 acquired"}
+{"level":"info","message":"Connection 47251 released"}
+{"level":"info","message":"Connection 47254 acquired"}
+{"level":"info","message":"Connection 47254 released"}
+{"level":"info","message":"Connection 47248 acquired"}
+{"level":"info","message":"Connection 47248 released"}
+{"level":"info","message":"Connection 47255 acquired"}
+{"level":"info","message":"Connection 47255 released"}
+{"level":"info","message":"Connection 47249 acquired"}
+{"level":"info","message":"Connection 47249 released"}
+{"level":"info","message":"Connection 47257 acquired"}
+{"level":"info","message":"Connection 47257 released"}
+{"level":"info","message":"Connection 47256 acquired"}
+{"level":"info","message":"Connection 47256 released"}
+{"level":"info","message":"Connection 47250 acquired"}
+{"level":"info","message":"Connection 47250 released"}
+{"level":"info","message":"Connection 47252 acquired"}
+{"level":"info","message":"Connection 47252 released"}
+{"level":"info","message":"Connection 47253 acquired"}
+{"level":"info","message":"Connection 47248 acquired"}
+{"level":"info","message":"Connection 47255 acquired"}
+{"level":"info","message":"Connection 47254 acquired"}
+{"level":"info","message":"Connection 47251 acquired"}
+{"level":"info","message":"Connection 47248 released"}
+{"level":"info","message":"Connection 47253 released"}
+{"level":"info","message":"Connection 47255 released"}
+{"level":"info","message":"Connection 47251 released"}
+{"level":"info","message":"Connection 47254 released"}
+{"level":"info","message":"Connection 47249 acquired"}
+{"level":"info","message":"Connection 47249 released"}
+{"level":"info","message":"Connection 47257 acquired"}
+{"level":"info","message":"Connection 47257 released"}
+{"level":"info","message":"Connection 47248 acquired"}
+{"level":"info","message":"Connection 47250 acquired"}
+{"level":"info","message":"Connection 47256 acquired"}
+{"level":"info","message":"Connection 47252 acquired"}
+{"level":"info","message":"Connection 47253 acquired"}
+{"level":"info","message":"Connection 47248 released"}
+{"level":"info","message":"Connection 47250 released"}
+{"level":"info","message":"Connection 47256 released"}
+{"level":"info","message":"Connection 47252 released"}
+{"level":"info","message":"Connection 47253 released"}
+{"level":"info","message":"Connection 47255 acquired"}
+{"level":"info","message":"Connection 47255 released"}
+{"level":"info","message":"Connection 47251 acquired"}
+{"level":"info","message":"Connection 47251 released"}
+{"level":"info","message":"Connection 47254 acquired"}
+{"level":"info","message":"Connection 47254 released"}
+{"level":"info","message":"Connection 47249 acquired"}
+{"level":"info","message":"Connection 47249 released"}
+{"level":"info","message":"Connection 47257 acquired"}
+{"level":"info","message":"Connection 47257 released"}
+{"level":"info","message":"Connection 47248 acquired"}
+{"level":"info","message":"Connection 47248 released"}
+{"level":"info","message":"Connection 47250 acquired"}
+{"level":"info","message":"Connection 47256 acquired"}
+{"level":"info","message":"Connection 47252 acquired"}
+{"level":"info","message":"Connection 47255 acquired"}
+{"level":"info","message":"Connection 47253 acquired"}
+{"level":"info","message":"Connection 47255 released"}
+{"level":"info","message":"Connection 47250 released"}
+{"level":"info","message":"Connection 47256 released"}
+{"level":"info","message":"Connection 47252 released"}
+{"level":"info","message":"Connection 47253 released"}
+{"level":"info","message":"Connection 47251 acquired"}
+{"level":"info","message":"Connection 47251 released"}
+{"level":"info","message":"Connection 47248 acquired"}
+{"level":"info","message":"Connection 47255 acquired"}
+{"level":"info","message":"Connection 47250 acquired"}
+{"level":"info","message":"Connection 47257 acquired"}
+{"level":"info","message":"Connection 47249 acquired"}
+{"level":"info","message":"Connection 47256 acquired"}
+{"level":"info","message":"Connection 47252 acquired"}
+{"level":"info","message":"Connection 47254 acquired"}
+{"level":"info","message":"Connection 47248 released"}
+{"level":"info","message":"Connection 47249 released"}
+{"level":"info","message":"Connection 47257 released"}
+{"level":"info","message":"Connection 47255 released"}
+{"level":"info","message":"Connection 47256 released"}
+{"level":"info","message":"Connection 47250 released"}
+{"level":"info","message":"Connection 47252 released"}
+{"level":"info","message":"Connection 47254 released"}
+{"level":"info","message":"Connection 47253 acquired"}
+{"level":"info","message":"Connection 47251 acquired"}
+{"level":"info","message":"Connection 47249 acquired"}
+{"level":"info","message":"Connection 47248 acquired"}
+{"level":"info","message":"Connection 47250 acquired"}
+{"level":"info","message":"Connection 47255 acquired"}
+{"level":"info","message":"Connection 47256 acquired"}
+{"level":"info","message":"Connection 47257 acquired"}
+{"level":"info","message":"Connection 47252 acquired"}
+{"level":"info","message":"Connection 47254 acquired"}
+{"level":"info","message":"Connection 47251 released"}
+{"level":"info","message":"Connection 47253 released"}
+{"level":"info","message":"Connection 47250 released"}
+{"level":"info","message":"Connection 47248 released"}
+{"level":"info","message":"Connection 47256 released"}
+{"level":"info","message":"Connection 47255 released"}
+{"level":"info","message":"Connection 47249 released"}
+{"level":"info","message":"Connection 47257 released"}
+{"level":"info","message":"Connection 47252 released"}
+{"level":"info","message":"Connection 47254 released"}
+{"level":"info","message":"Connection 47251 acquired"}
+{"level":"info","message":"Connection 47253 acquired"}
+{"level":"info","message":"Connection 47250 acquired"}
+{"level":"info","message":"Connection 47248 acquired"}
+{"level":"info","message":"Connection 47256 acquired"}
+{"level":"info","message":"Connection 47251 released"}
+{"level":"info","message":"Connection 47253 released"}
+{"level":"info","message":"Connection 47250 released"}
+{"level":"info","message":"Connection 47248 released"}
+{"level":"info","message":"Connection 47256 released"}
+{"level":"info","message":"Connection 47255 acquired"}
+{"level":"info","message":"Connection 47255 released"}
+{"level":"info","message":"Connection 47249 acquired"}
+{"level":"info","message":"Connection 47249 released"}
+{"level":"info","message":"Connection 47257 acquired"}
+{"level":"info","message":"Connection 47257 released"}
+{"level":"info","message":"Connection 47252 acquired"}
+{"level":"info","message":"Connection 47252 released"}
+{"level":"info","message":"Connection 47254 acquired"}
+{"level":"info","message":"Connection 47254 released"}
+{"level":"info","message":"Connection 47251 acquired"}
+{"level":"info","message":"Connection 47253 acquired"}
+{"level":"info","message":"Connection 47248 acquired"}
+{"level":"info","message":"Connection 47250 acquired"}
+{"level":"info","message":"Connection 47256 acquired"}
+{"level":"info","message":"Connection 47249 acquired"}
+{"level":"info","message":"Connection 47255 acquired"}
+{"level":"info","message":"Connection 47257 acquired"}
+{"level":"info","message":"Connection 47252 acquired"}
+{"level":"info","message":"Connection 47254 acquired"}
+{"level":"info","message":"Connection 47251 released"}
+{"level":"info","message":"Connection 47253 released"}
+{"level":"info","message":"Connection 47249 released"}
+{"level":"info","message":"Connection 47248 released"}
+{"level":"info","message":"Connection 47250 released"}
+{"level":"info","message":"Connection 47255 released"}
+{"level":"info","message":"Connection 47257 released"}
+{"level":"info","message":"Connection 47256 released"}
+{"level":"info","message":"Connection 47252 released"}
+{"level":"info","message":"Connection 47254 released"}
+{"level":"info","message":"Connection 47251 acquired"}
+{"level":"info","message":"Connection 47253 acquired"}
+{"level":"info","message":"Connection 47249 acquired"}
+{"level":"info","message":"Connection 47248 acquired"}
+{"level":"info","message":"Connection 47250 acquired"}
+{"level":"info","message":"Connection 47251 released"}
+{"level":"info","message":"Connection 47253 released"}
+{"level":"info","message":"Connection 47249 released"}
+{"level":"info","message":"Connection 47248 released"}
+{"level":"info","message":"Connection 47250 released"}
+{"level":"info","message":"Connection 47255 acquired"}
+{"level":"info","message":"Connection 47255 released"}
+{"level":"info","message":"Connection 47257 acquired"}
+{"level":"info","message":"Connection 47257 released"}
+{"level":"info","message":"Connection 47256 acquired"}
+{"level":"info","message":"Connection 47256 released"}
+{"level":"info","message":"Connection 47252 acquired"}
+{"level":"info","message":"Connection 47252 released"}
+{"level":"info","message":"Connection 47254 acquired"}
+{"level":"info","message":"Connection 47254 released"}
+{"level":"info","message":"New database connection established with ID: 47261"}
+{"level":"info","message":"Connection 47261 acquired"}
+{"level":"info","message":"New database connection established with ID: 47262"}
+{"level":"info","message":"Connection 47262 acquired"}
+{"level":"info","message":"New database connection established with ID: 47264"}
+{"level":"info","message":"Connection 47264 acquired"}
+{"level":"info","message":"New database connection established with ID: 47269"}
+{"level":"info","message":"Connection 47269 acquired"}
+{"level":"info","message":"New database connection established with ID: 47270"}
+{"level":"info","message":"Connection 47270 acquired"}
+{"level":"info","message":"New database connection established with ID: 47263"}
+{"level":"info","message":"Connection 47263 acquired"}
+{"level":"info","message":"New database connection established with ID: 47266"}
+{"level":"info","message":"Connection 47266 acquired"}
+{"level":"info","message":"New database connection established with ID: 47267"}
+{"level":"info","message":"Connection 47267 acquired"}
+{"level":"info","message":"New database connection established with ID: 47265"}
+{"level":"info","message":"Connection 47265 acquired"}
+{"level":"info","message":"New database connection established with ID: 47268"}
+{"level":"info","message":"Connection 47268 acquired"}
+{"level":"info","message":"Connection 47261 released"}
+{"level":"info","message":"Connection 47262 released"}
+{"level":"info","message":"Connection 47264 released"}
+{"level":"info","message":"Connection 47270 released"}
+{"level":"info","message":"Connection 47263 released"}
+{"level":"info","message":"Connection 47266 released"}
+{"level":"info","message":"Connection 47269 released"}
+{"level":"info","message":"Connection 47268 released"}
+{"level":"info","message":"Connection 47267 released"}
+{"level":"info","message":"Connection 47265 released"}
+{"level":"info","message":"Connection 47261 acquired"}
+{"level":"info","message":"Connection 47262 acquired"}
+{"level":"info","message":"Connection 47270 acquired"}
+{"level":"info","message":"Connection 47264 acquired"}
+{"level":"info","message":"Connection 47263 acquired"}
+{"level":"info","message":"Connection 47262 released"}
+{"level":"info","message":"Connection 47261 released"}
+{"level":"info","message":"Connection 47264 released"}
+{"level":"info","message":"Connection 47270 released"}
+{"level":"info","message":"Connection 47263 released"}
+{"level":"info","message":"New database connection established with ID: 47274"}
+{"level":"info","message":"Connection 47274 acquired"}
+{"level":"info","message":"New database connection established with ID: 47275"}
+{"level":"info","message":"Connection 47275 acquired"}
+{"level":"info","message":"New database connection established with ID: 47272"}
+{"level":"info","message":"Connection 47272 acquired"}
+{"level":"info","message":"New database connection established with ID: 47276"}
+{"level":"info","message":"Connection 47276 acquired"}
+{"level":"info","message":"New database connection established with ID: 47271"}
+{"level":"info","message":"Connection 47271 acquired"}
+{"level":"info","message":"New database connection established with ID: 47277"}
+{"level":"info","message":"Connection 47277 acquired"}
+{"level":"info","message":"New database connection established with ID: 47273"}
+{"level":"info","message":"Connection 47273 acquired"}
+{"level":"info","message":"New database connection established with ID: 47278"}
+{"level":"info","message":"Connection 47278 acquired"}
+{"level":"info","message":"New database connection established with ID: 47279"}
+{"level":"info","message":"Connection 47279 acquired"}
+{"level":"info","message":"New database connection established with ID: 47280"}
+{"level":"info","message":"Connection 47280 acquired"}
+{"level":"info","message":"Connection 47272 released"}
+{"level":"info","message":"Connection 47275 released"}
+{"level":"info","message":"Connection 47276 released"}
+{"level":"info","message":"Connection 47274 released"}
+{"level":"info","message":"Connection 47271 released"}
+{"level":"info","message":"Connection 47277 released"}
+{"level":"info","message":"Connection 47278 released"}
+{"level":"info","message":"Connection 47273 released"}
+{"level":"info","message":"Connection 47279 released"}
+{"level":"info","message":"Connection 47280 released"}
+{"level":"info","message":"Connection 47272 acquired"}
+{"level":"info","message":"Connection 47274 acquired"}
+{"level":"info","message":"Connection 47275 acquired"}
+{"level":"info","message":"Connection 47276 acquired"}
+{"level":"info","message":"Connection 47271 acquired"}
+{"level":"info","message":"Connection 47274 released"}
+{"level":"info","message":"Connection 47272 released"}
+{"level":"info","message":"Connection 47275 released"}
+{"level":"info","message":"Connection 47276 released"}
+{"level":"info","message":"Connection 47271 released"}
+{"level":"info","message":"Connection 47277 acquired"}
+{"level":"info","message":"Connection 47277 released"}
+{"level":"info","message":"Connection 47278 acquired"}
+{"level":"info","message":"Connection 47278 released"}
+{"level":"info","message":"Connection 47273 acquired"}
+{"level":"info","message":"Connection 47273 released"}
+{"level":"info","message":"Connection 47279 acquired"}
+{"level":"info","message":"Connection 47279 released"}
+{"level":"info","message":"Connection 47280 acquired"}
+{"level":"info","message":"Connection 47280 released"}
+{"level":"info","message":"New database connection established with ID: 47281"}
+{"level":"info","message":"Connection 47281 acquired"}
+{"level":"info","message":"New database connection established with ID: 47285"}
+{"level":"info","message":"Connection 47285 acquired"}
+{"level":"info","message":"New database connection established with ID: 47287"}
+{"level":"info","message":"Connection 47287 acquired"}
+{"level":"info","message":"New database connection established with ID: 47288"}
+{"level":"info","message":"Connection 47288 acquired"}
+{"level":"info","message":"New database connection established with ID: 47282"}
+{"level":"info","message":"Connection 47282 acquired"}
+{"level":"info","message":"New database connection established with ID: 47284"}
+{"level":"info","message":"Connection 47284 acquired"}
+{"level":"info","message":"New database connection established with ID: 47283"}
+{"level":"info","message":"Connection 47283 acquired"}
+{"level":"info","message":"New database connection established with ID: 47286"}
+{"level":"info","message":"Connection 47286 acquired"}
+{"level":"info","message":"New database connection established with ID: 47290"}
+{"level":"info","message":"Connection 47290 acquired"}
+{"level":"info","message":"New database connection established with ID: 47289"}
+{"level":"info","message":"Connection 47289 acquired"}
+{"level":"info","message":"Connection 47281 released"}
+{"level":"info","message":"Connection 47287 released"}
+{"level":"info","message":"Connection 47285 released"}
+{"level":"info","message":"Connection 47288 released"}
+{"level":"info","message":"Connection 47283 released"}
+{"level":"info","message":"Connection 47282 released"}
+{"level":"info","message":"Connection 47290 released"}
+{"level":"info","message":"Connection 47284 released"}
+{"level":"info","message":"Connection 47286 released"}
+{"level":"info","message":"Connection 47289 released"}
+{"level":"info","message":"Connection 47281 acquired"}
+{"level":"info","message":"Connection 47285 acquired"}
+{"level":"info","message":"Connection 47288 acquired"}
+{"level":"info","message":"Connection 47287 acquired"}
+{"level":"info","message":"Connection 47283 acquired"}
+{"level":"info","message":"Connection 47281 released"}
+{"level":"info","message":"Connection 47285 released"}
+{"level":"info","message":"Connection 47287 released"}
+{"level":"info","message":"Connection 47288 released"}
+{"level":"info","message":"Connection 47283 released"}
+{"level":"info","message":"Connection 47282 acquired"}
+{"level":"info","message":"Connection 47282 released"}
+{"level":"info","message":"Connection 47290 acquired"}
+{"level":"info","message":"Connection 47290 released"}
+{"level":"info","message":"Connection 47284 acquired"}
+{"level":"info","message":"Connection 47284 released"}
+{"level":"info","message":"Connection 47286 acquired"}
+{"level":"info","message":"Connection 47286 released"}
+{"level":"info","message":"Connection 47289 acquired"}
+{"level":"info","message":"Connection 47289 released"}
+{"level":"info","message":"Connection 47281 acquired"}
+{"level":"info","message":"Connection 47281 released"}
+{"level":"info","message":"Connection 47285 acquired"}
+{"level":"info","message":"Connection 47285 released"}
+{"level":"info","message":"Connection 47287 acquired"}
+{"level":"info","message":"Connection 47287 released"}
+{"level":"info","message":"Connection 47288 acquired"}
+{"level":"info","message":"Connection 47288 released"}
+{"level":"info","message":"Connection 47283 acquired"}
+{"level":"info","message":"Connection 47283 released"}
+{"level":"info","message":"Connection 47290 acquired"}
+{"level":"info","message":"Connection 47282 acquired"}
+{"level":"info","message":"Connection 47281 acquired"}
+{"level":"info","message":"Connection 47285 acquired"}
+{"level":"info","message":"Connection 47288 acquired"}
+{"level":"info","message":"Connection 47287 acquired"}
+{"level":"info","message":"Connection 47284 acquired"}
+{"level":"info","message":"Connection 47289 acquired"}
+{"level":"info","message":"Connection 47283 acquired"}
+{"level":"info","message":"Connection 47286 acquired"}
+{"level":"info","message":"Connection 47290 released"}
+{"level":"info","message":"Connection 47282 released"}
+{"level":"info","message":"Connection 47281 released"}
+{"level":"info","message":"Connection 47285 released"}
+{"level":"info","message":"Connection 47287 released"}
+{"level":"info","message":"Connection 47288 released"}
+{"level":"info","message":"Connection 47284 released"}
+{"level":"info","message":"Connection 47283 released"}
+{"level":"info","message":"Connection 47286 released"}
+{"level":"info","message":"Connection 47289 released"}
+{"level":"info","message":"Connection 47290 acquired"}
+{"level":"info","message":"Connection 47282 acquired"}
+{"level":"info","message":"Connection 47281 acquired"}
+{"level":"info","message":"Connection 47285 acquired"}
+{"level":"info","message":"Connection 47287 acquired"}
+{"level":"info","message":"Connection 47290 released"}
+{"level":"info","message":"Connection 47282 released"}
+{"level":"info","message":"Connection 47281 released"}
+{"level":"info","message":"Connection 47285 released"}
+{"level":"info","message":"Connection 47287 released"}
+{"level":"info","message":"Connection 47288 acquired"}
+{"level":"info","message":"Connection 47288 released"}
+{"level":"info","message":"Connection 47284 acquired"}
+{"level":"info","message":"Connection 47284 released"}
+{"level":"info","message":"Connection 47283 acquired"}
+{"level":"info","message":"Connection 47283 released"}
+{"level":"info","message":"Connection 47286 acquired"}
+{"level":"info","message":"Connection 47286 released"}
+{"level":"info","message":"Connection 47289 acquired"}
+{"level":"info","message":"Connection 47289 released"}
+{"level":"info","message":"New database connection established with ID: 47756"}
+{"level":"info","message":"Connection 47756 acquired"}
+{"level":"info","message":"New database connection established with ID: 47757"}
+{"level":"info","message":"Connection 47757 acquired"}
+{"level":"info","message":"New database connection established with ID: 47763"}
+{"level":"info","message":"Connection 47763 acquired"}
+{"level":"info","message":"New database connection established with ID: 47761"}
+{"level":"info","message":"Connection 47761 acquired"}
+{"level":"info","message":"New database connection established with ID: 47759"}
+{"level":"info","message":"Connection 47759 acquired"}
+{"level":"info","message":"New database connection established with ID: 47760"}
+{"level":"info","message":"Connection 47760 acquired"}
+{"level":"info","message":"New database connection established with ID: 47758"}
+{"level":"info","message":"Connection 47758 acquired"}
+{"level":"info","message":"New database connection established with ID: 47762"}
+{"level":"info","message":"Connection 47762 acquired"}
+{"level":"info","message":"New database connection established with ID: 47764"}
+{"level":"info","message":"Connection 47764 acquired"}
+{"level":"info","message":"New database connection established with ID: 47765"}
+{"level":"info","message":"Connection 47765 acquired"}
+{"level":"info","message":"Connection 47763 released"}
+{"level":"info","message":"Connection 47757 released"}
+{"level":"info","message":"Connection 47756 released"}
+{"level":"info","message":"Connection 47761 released"}
+{"level":"info","message":"Connection 47759 released"}
+{"level":"info","message":"Connection 47762 released"}
+{"level":"info","message":"Connection 47758 released"}
+{"level":"info","message":"Connection 47760 released"}
+{"level":"info","message":"Connection 47764 released"}
+{"level":"info","message":"Connection 47765 released"}
+{"level":"info","message":"Connection 47763 acquired"}
+{"level":"info","message":"Connection 47756 acquired"}
+{"level":"info","message":"Connection 47757 acquired"}
+{"level":"info","message":"Connection 47761 acquired"}
+{"level":"info","message":"Connection 47759 acquired"}
+{"level":"info","message":"Connection 47757 released"}
+{"level":"info","message":"Connection 47756 released"}
+{"level":"info","message":"Connection 47763 released"}
+{"level":"info","message":"Connection 47761 released"}
+{"level":"info","message":"Connection 47759 released"}
+{"level":"info","message":"Connection 47762 acquired"}
+{"level":"info","message":"Connection 47762 released"}
+{"level":"info","message":"Connection 47758 acquired"}
+{"level":"info","message":"Connection 47758 released"}
+{"level":"info","message":"Connection 47760 acquired"}
+{"level":"info","message":"Connection 47760 released"}
+{"level":"info","message":"Connection 47764 acquired"}
+{"level":"info","message":"Connection 47764 released"}
+{"level":"info","message":"Connection 47765 acquired"}
+{"level":"info","message":"Connection 47765 released"}
+{"level":"info","message":"Connection 47757 acquired"}
+{"level":"info","message":"Connection 47756 acquired"}
+{"level":"info","message":"Connection 47763 acquired"}
+{"level":"info","message":"Connection 47761 acquired"}
+{"level":"info","message":"Connection 47759 acquired"}
+{"level":"info","message":"Connection 47758 acquired"}
+{"level":"info","message":"Connection 47762 acquired"}
+{"level":"info","message":"Connection 47764 acquired"}
+{"level":"info","message":"Connection 47760 acquired"}
+{"level":"info","message":"Connection 47765 acquired"}
+{"level":"info","message":"Connection 47757 released"}
+{"level":"info","message":"Connection 47756 released"}
+{"level":"info","message":"Connection 47763 released"}
+{"level":"info","message":"Connection 47761 released"}
+{"level":"info","message":"Connection 47759 released"}
+{"level":"info","message":"Connection 47758 released"}
+{"level":"info","message":"Connection 47762 released"}
+{"level":"info","message":"Connection 47764 released"}
+{"level":"info","message":"Connection 47760 released"}
+{"level":"info","message":"Connection 47765 released"}
+{"level":"info","message":"Connection 47757 acquired"}
+{"level":"info","message":"Connection 47756 acquired"}
+{"level":"info","message":"Connection 47763 acquired"}
+{"level":"info","message":"Connection 47761 acquired"}
+{"level":"info","message":"Connection 47759 acquired"}
+{"level":"info","message":"Connection 47757 released"}
+{"level":"info","message":"Connection 47756 released"}
+{"level":"info","message":"Connection 47763 released"}
+{"level":"info","message":"Connection 47761 released"}
+{"level":"info","message":"Connection 47759 released"}
+{"level":"info","message":"Connection 47758 acquired"}
+{"level":"info","message":"Connection 47758 released"}
+{"level":"info","message":"Connection 47762 acquired"}
+{"level":"info","message":"Connection 47762 released"}
+{"level":"info","message":"Connection 47764 acquired"}
+{"level":"info","message":"Connection 47764 released"}
+{"level":"info","message":"Connection 47760 acquired"}
+{"level":"info","message":"Connection 47760 released"}
+{"level":"info","message":"Connection 47765 acquired"}
+{"level":"info","message":"Connection 47765 released"}
+{"level":"info","message":"Connection 47756 acquired"}
+{"level":"info","message":"Connection 47763 acquired"}
+{"level":"info","message":"Connection 47761 acquired"}
+{"level":"info","message":"Connection 47757 acquired"}
+{"level":"info","message":"Connection 47759 acquired"}
+{"level":"info","message":"Connection 47758 acquired"}
+{"level":"info","message":"Connection 47764 acquired"}
+{"level":"info","message":"Connection 47762 acquired"}
+{"level":"info","message":"Connection 47756 released"}
+{"level":"info","message":"Connection 47761 released"}
+{"level":"info","message":"Connection 47763 released"}
+{"level":"info","message":"Connection 47757 released"}
+{"level":"info","message":"Connection 47759 released"}
+{"level":"info","message":"Connection 47758 released"}
+{"level":"info","message":"Connection 47764 released"}
+{"level":"info","message":"Connection 47762 released"}
+{"level":"info","message":"Connection 47760 acquired"}
+{"level":"info","message":"Connection 47760 released"}
+{"level":"info","message":"Connection 47765 acquired"}
+{"level":"info","message":"Connection 47765 released"}
+{"level":"info","message":"Connection 47756 acquired"}
+{"level":"info","message":"Connection 47756 released"}
+{"level":"info","message":"Connection 47761 acquired"}
+{"level":"info","message":"Connection 47761 released"}
+{"level":"info","message":"Connection 47763 acquired"}
+{"level":"info","message":"Connection 47763 released"}
+{"level":"info","message":"New database connection established with ID: 47770"}
+{"level":"info","message":"Connection 47770 acquired"}
+{"level":"info","message":"New database connection established with ID: 47777"}
+{"level":"info","message":"Connection 47777 acquired"}
+{"level":"info","message":"New database connection established with ID: 47772"}
+{"level":"info","message":"Connection 47772 acquired"}
+{"level":"info","message":"New database connection established with ID: 47771"}
+{"level":"info","message":"Connection 47771 acquired"}
+{"level":"info","message":"New database connection established with ID: 47779"}
+{"level":"info","message":"Connection 47779 acquired"}
+{"level":"info","message":"New database connection established with ID: 47774"}
+{"level":"info","message":"Connection 47774 acquired"}
+{"level":"info","message":"New database connection established with ID: 47773"}
+{"level":"info","message":"Connection 47773 acquired"}
+{"level":"info","message":"New database connection established with ID: 47776"}
+{"level":"info","message":"Connection 47776 acquired"}
+{"level":"info","message":"New database connection established with ID: 47775"}
+{"level":"info","message":"Connection 47775 acquired"}
+{"level":"info","message":"New database connection established with ID: 47778"}
+{"level":"info","message":"Connection 47778 acquired"}
+{"level":"info","message":"Connection 47770 released"}
+{"level":"info","message":"Connection 47772 released"}
+{"level":"info","message":"Connection 47771 released"}
+{"level":"info","message":"Connection 47777 released"}
+{"level":"info","message":"Connection 47779 released"}
+{"level":"info","message":"Connection 47774 released"}
+{"level":"info","message":"Connection 47776 released"}
+{"level":"info","message":"Connection 47773 released"}
+{"level":"info","message":"Connection 47775 released"}
+{"level":"info","message":"Connection 47778 released"}
+{"level":"info","message":"Connection 47771 acquired"}
+{"level":"info","message":"Connection 47772 acquired"}
+{"level":"info","message":"Connection 47777 acquired"}
+{"level":"info","message":"Connection 47770 acquired"}
+{"level":"info","message":"Connection 47779 acquired"}
+{"level":"info","message":"Connection 47771 released"}
+{"level":"info","message":"Connection 47772 released"}
+{"level":"info","message":"Connection 47777 released"}
+{"level":"info","message":"Connection 47770 released"}
+{"level":"info","message":"Connection 47779 released"}
+{"level":"info","message":"Connection 47774 acquired"}
+{"level":"info","message":"Connection 47774 released"}
+{"level":"info","message":"Connection 47776 acquired"}
+{"level":"info","message":"Connection 47776 released"}
+{"level":"info","message":"Connection 47773 acquired"}
+{"level":"info","message":"Connection 47773 released"}
+{"level":"info","message":"Connection 47775 acquired"}
+{"level":"info","message":"Connection 47775 released"}
+{"level":"info","message":"Connection 47778 acquired"}
+{"level":"info","message":"Connection 47778 released"}
+{"level":"info","message":"Connection 47771 acquired"}
+{"level":"info","message":"Connection 47771 released"}
+{"level":"info","message":"Connection 47772 acquired"}
+{"level":"info","message":"Connection 47772 released"}
+{"level":"info","message":"Connection 47777 acquired"}
+{"level":"info","message":"Connection 47777 released"}
+{"level":"info","message":"Connection 47770 acquired"}
+{"level":"info","message":"Connection 47770 released"}
+{"level":"info","message":"Connection 47779 acquired"}
+{"level":"info","message":"Connection 47779 released"}
+{"level":"info","message":"New database connection established with ID: 47780"}
+{"level":"info","message":"Connection 47780 acquired"}
+{"level":"info","message":"New database connection established with ID: 47784"}
+{"level":"info","message":"Connection 47784 acquired"}
+{"level":"info","message":"New database connection established with ID: 47785"}
+{"level":"info","message":"Connection 47785 acquired"}
+{"level":"info","message":"New database connection established with ID: 47787"}
+{"level":"info","message":"Connection 47787 acquired"}
+{"level":"info","message":"New database connection established with ID: 47782"}
+{"level":"info","message":"Connection 47782 acquired"}
+{"level":"info","message":"New database connection established with ID: 47781"}
+{"level":"info","message":"Connection 47781 acquired"}
+{"level":"info","message":"New database connection established with ID: 47786"}
+{"level":"info","message":"Connection 47786 acquired"}
+{"level":"info","message":"New database connection established with ID: 47783"}
+{"level":"info","message":"Connection 47783 acquired"}
+{"level":"info","message":"New database connection established with ID: 47788"}
+{"level":"info","message":"Connection 47788 acquired"}
+{"level":"info","message":"New database connection established with ID: 47789"}
+{"level":"info","message":"Connection 47789 acquired"}
+{"level":"info","message":"Connection 47780 released"}
+{"level":"info","message":"Connection 47785 released"}
+{"level":"info","message":"Connection 47784 released"}
+{"level":"info","message":"Connection 47787 released"}
+{"level":"info","message":"Connection 47782 released"}
+{"level":"info","message":"Connection 47783 released"}
+{"level":"info","message":"Connection 47781 released"}
+{"level":"info","message":"Connection 47788 released"}
+{"level":"info","message":"Connection 47786 released"}
+{"level":"info","message":"Connection 47789 released"}
+{"level":"info","message":"Connection 47780 acquired"}
+{"level":"info","message":"Connection 47785 acquired"}
+{"level":"info","message":"Connection 47787 acquired"}
+{"level":"info","message":"Connection 47782 acquired"}
+{"level":"info","message":"Connection 47784 acquired"}
+{"level":"info","message":"Connection 47780 released"}
+{"level":"info","message":"Connection 47785 released"}
+{"level":"info","message":"Connection 47784 released"}
+{"level":"info","message":"Connection 47787 released"}
+{"level":"info","message":"Connection 47782 released"}
+{"level":"info","message":"Connection 47783 acquired"}
+{"level":"info","message":"Connection 47783 released"}
+{"level":"info","message":"Connection 47781 acquired"}
+{"level":"info","message":"Connection 47781 released"}
+{"level":"info","message":"Connection 47788 acquired"}
+{"level":"info","message":"Connection 47788 released"}
+{"level":"info","message":"Connection 47786 acquired"}
+{"level":"info","message":"Connection 47786 released"}
+{"level":"info","message":"Connection 47789 acquired"}
+{"level":"info","message":"Connection 47789 released"}
+{"level":"info","message":"New database connection established with ID: 47790"}
+{"level":"info","message":"Connection 47790 acquired"}
+{"level":"info","message":"New database connection established with ID: 47793"}
+{"level":"info","message":"Connection 47793 acquired"}
+{"level":"info","message":"New database connection established with ID: 47791"}
+{"level":"info","message":"Connection 47791 acquired"}
+{"level":"info","message":"New database connection established with ID: 47792"}
+{"level":"info","message":"Connection 47792 acquired"}
+{"level":"info","message":"New database connection established with ID: 47794"}
+{"level":"info","message":"Connection 47794 acquired"}
+{"level":"info","message":"New database connection established with ID: 47795"}
+{"level":"info","message":"Connection 47795 acquired"}
+{"level":"info","message":"New database connection established with ID: 47797"}
+{"level":"info","message":"Connection 47797 acquired"}
+{"level":"info","message":"New database connection established with ID: 47796"}
+{"level":"info","message":"Connection 47796 acquired"}
+{"level":"info","message":"New database connection established with ID: 47799"}
+{"level":"info","message":"Connection 47799 acquired"}
+{"level":"info","message":"New database connection established with ID: 47798"}
+{"level":"info","message":"Connection 47798 acquired"}
+{"level":"info","message":"Connection 47791 released"}
+{"level":"info","message":"Connection 47792 released"}
+{"level":"info","message":"Connection 47793 released"}
+{"level":"info","message":"Connection 47790 released"}
+{"level":"info","message":"Connection 47795 released"}
+{"level":"info","message":"Connection 47794 released"}
+{"level":"info","message":"Connection 47796 released"}
+{"level":"info","message":"Connection 47797 released"}
+{"level":"info","message":"Connection 47798 released"}
+{"level":"info","message":"Connection 47799 released"}
+{"level":"info","message":"Connection 47791 acquired"}
+{"level":"info","message":"Connection 47790 acquired"}
+{"level":"info","message":"Connection 47793 acquired"}
+{"level":"info","message":"Connection 47795 acquired"}
+{"level":"info","message":"Connection 47792 acquired"}
+{"level":"info","message":"Connection 47791 released"}
+{"level":"info","message":"Connection 47790 released"}
+{"level":"info","message":"Connection 47793 released"}
+{"level":"info","message":"Connection 47792 released"}
+{"level":"info","message":"Connection 47795 released"}
+{"level":"info","message":"Connection 47794 acquired"}
+{"level":"info","message":"Connection 47794 released"}
+{"level":"info","message":"Connection 47796 acquired"}
+{"level":"info","message":"Connection 47796 released"}
+{"level":"info","message":"Connection 47797 acquired"}
+{"level":"info","message":"Connection 47797 released"}
+{"level":"info","message":"Connection 47798 acquired"}
+{"level":"info","message":"Connection 47798 released"}
+{"level":"info","message":"Connection 47799 acquired"}
+{"level":"info","message":"Connection 47799 released"}
+{"level":"info","message":"Connection 47790 acquired"}
+{"level":"info","message":"Connection 47791 acquired"}
+{"level":"info","message":"Connection 47792 acquired"}
+{"level":"info","message":"Connection 47793 acquired"}
+{"level":"info","message":"Connection 47795 acquired"}
+{"level":"info","message":"Connection 47794 acquired"}
+{"level":"info","message":"Connection 47796 acquired"}
+{"level":"info","message":"Connection 47797 acquired"}
+{"level":"info","message":"Connection 47798 acquired"}
+{"level":"info","message":"Connection 47799 acquired"}
+{"level":"info","message":"Connection 47791 released"}
+{"level":"info","message":"Connection 47790 released"}
+{"level":"info","message":"Connection 47792 released"}
+{"level":"info","message":"Connection 47793 released"}
+{"level":"info","message":"Connection 47794 released"}
+{"level":"info","message":"Connection 47797 released"}
+{"level":"info","message":"Connection 47795 released"}
+{"level":"info","message":"Connection 47796 released"}
+{"level":"info","message":"Connection 47798 released"}
+{"level":"info","message":"Connection 47799 released"}
+{"level":"info","message":"Connection 47790 acquired"}
+{"level":"info","message":"Connection 47791 acquired"}
+{"level":"info","message":"Connection 47792 acquired"}
+{"level":"info","message":"Connection 47793 acquired"}
+{"level":"info","message":"Connection 47794 acquired"}
+{"level":"info","message":"Connection 47791 released"}
+{"level":"info","message":"Connection 47790 released"}
+{"level":"info","message":"Connection 47792 released"}
+{"level":"info","message":"Connection 47793 released"}
+{"level":"info","message":"Connection 47794 released"}
+{"level":"info","message":"Connection 47797 acquired"}
+{"level":"info","message":"Connection 47797 released"}
+{"level":"info","message":"Connection 47795 acquired"}
+{"level":"info","message":"Connection 47795 released"}
+{"level":"info","message":"Connection 47796 acquired"}
+{"level":"info","message":"Connection 47796 released"}
+{"level":"info","message":"Connection 47798 acquired"}
+{"level":"info","message":"Connection 47798 released"}
+{"level":"info","message":"Connection 47799 acquired"}
+{"level":"info","message":"Connection 47799 released"}
+{"level":"info","message":"Connection 47791 acquired"}
+{"level":"info","message":"Connection 47791 released"}
+{"level":"info","message":"Connection 47790 acquired"}
+{"level":"info","message":"Connection 47790 released"}
+{"level":"info","message":"Connection 47792 acquired"}
+{"level":"info","message":"Connection 47792 released"}
+{"level":"info","message":"Connection 47793 acquired"}
+{"level":"info","message":"Connection 47793 released"}
+{"level":"info","message":"Connection 47794 acquired"}
+{"level":"info","message":"Connection 47794 released"}
+{"level":"info","message":"Connection 47791 acquired"}
+{"level":"info","message":"Connection 47796 acquired"}
+{"level":"info","message":"Connection 47797 acquired"}
+{"level":"info","message":"Connection 47795 acquired"}
+{"level":"info","message":"Connection 47799 acquired"}
+{"level":"info","message":"Connection 47798 acquired"}
+{"level":"info","message":"Connection 47790 acquired"}
+{"level":"info","message":"Connection 47792 acquired"}
+{"level":"info","message":"Connection 47790 released"}
+{"level":"info","message":"Connection 47791 released"}
+{"level":"info","message":"Connection 47792 released"}
+{"level":"info","message":"Connection 47795 released"}
+{"level":"info","message":"Connection 47796 released"}
+{"level":"info","message":"Connection 47798 released"}
+{"level":"info","message":"Connection 47799 released"}
+{"level":"info","message":"Connection 47797 released"}
+{"level":"info","message":"Connection 47791 acquired"}
+{"level":"info","message":"Connection 47790 acquired"}
+{"level":"info","message":"Connection 47792 acquired"}
+{"level":"info","message":"Connection 47794 acquired"}
+{"level":"info","message":"Connection 47793 acquired"}
+{"level":"info","message":"Connection 47795 acquired"}
+{"level":"info","message":"Connection 47796 acquired"}
+{"level":"info","message":"Connection 47798 acquired"}
+{"level":"info","message":"Connection 47790 released"}
+{"level":"info","message":"Connection 47791 released"}
+{"level":"info","message":"Connection 47792 released"}
+{"level":"info","message":"Connection 47794 released"}
+{"level":"info","message":"Connection 47793 released"}
+{"level":"info","message":"Connection 47798 released"}
+{"level":"info","message":"Connection 47796 released"}
+{"level":"info","message":"Connection 47795 released"}
+{"level":"info","message":"Connection 47790 acquired"}
+{"level":"info","message":"Connection 47790 released"}
+{"level":"info","message":"Connection 47791 acquired"}
+{"level":"info","message":"Connection 47791 released"}
+{"level":"info","message":"Connection 47792 acquired"}
+{"level":"info","message":"Connection 47792 released"}
+{"level":"info","message":"Connection 47790 acquired"}
+{"level":"info","message":"Connection 47790 released"}
+{"level":"info","message":"Connection 47791 acquired"}
+{"level":"info","message":"Connection 47791 released"}
+{"level":"info","message":"Connection 47791 acquired"}
+{"level":"info","message":"Connection 47790 acquired"}
+{"level":"info","message":"Connection 47792 acquired"}
+{"level":"info","message":"Connection 47790 released"}
+{"level":"info","message":"Connection 47791 released"}
+{"level":"info","message":"Connection 47792 released"}
+{"level":"info","message":"New database connection established with ID: 47803"}
+{"level":"info","message":"Connection 47803 acquired"}
+{"level":"info","message":"New database connection established with ID: 47804"}
+{"level":"info","message":"Connection 47804 acquired"}
+{"level":"info","message":"New database connection established with ID: 47805"}
+{"level":"info","message":"Connection 47805 acquired"}
+{"level":"info","message":"New database connection established with ID: 47806"}
+{"level":"info","message":"Connection 47806 acquired"}
+{"level":"info","message":"New database connection established with ID: 47807"}
+{"level":"info","message":"Connection 47807 acquired"}
+{"level":"info","message":"Connection 47803 released"}
+{"level":"info","message":"Connection 47804 released"}
+{"level":"info","message":"Connection 47805 released"}
+{"level":"info","message":"Connection 47806 released"}
+{"level":"info","message":"Connection 47807 released"}
+{"level":"info","message":"New database connection established with ID: 47809"}
+{"level":"info","message":"Connection 47809 acquired"}
+{"level":"info","message":"New database connection established with ID: 47810"}
+{"level":"info","message":"Connection 47810 acquired"}
+{"level":"info","message":"New database connection established with ID: 47811"}
+{"level":"info","message":"Connection 47811 acquired"}
+{"level":"info","message":"New database connection established with ID: 47808"}
+{"level":"info","message":"Connection 47808 acquired"}
+{"level":"info","message":"New database connection established with ID: 47814"}
+{"level":"info","message":"Connection 47814 acquired"}
+{"level":"info","message":"New database connection established with ID: 47812"}
+{"level":"info","message":"Connection 47812 acquired"}
+{"level":"info","message":"New database connection established with ID: 47813"}
+{"level":"info","message":"Connection 47813 acquired"}
+{"level":"info","message":"New database connection established with ID: 47815"}
+{"level":"info","message":"Connection 47815 acquired"}
+{"level":"info","message":"New database connection established with ID: 47817"}
+{"level":"info","message":"Connection 47817 acquired"}
+{"level":"info","message":"New database connection established with ID: 47816"}
+{"level":"info","message":"Connection 47816 acquired"}
+{"level":"info","message":"Connection 47808 released"}
+{"level":"info","message":"Connection 47810 released"}
+{"level":"info","message":"Connection 47809 released"}
+{"level":"info","message":"Connection 47811 released"}
+{"level":"info","message":"Connection 47817 released"}
+{"level":"info","message":"Connection 47812 released"}
+{"level":"info","message":"Connection 47813 released"}
+{"level":"info","message":"Connection 47814 released"}
+{"level":"info","message":"Connection 47815 released"}
+{"level":"info","message":"Connection 47816 released"}
+{"level":"info","message":"Connection 47809 acquired"}
+{"level":"info","message":"Connection 47808 acquired"}
+{"level":"info","message":"Connection 47810 acquired"}
+{"level":"info","message":"Connection 47817 acquired"}
+{"level":"info","message":"Connection 47811 acquired"}
+{"level":"info","message":"Connection 47810 released"}
+{"level":"info","message":"Connection 47809 released"}
+{"level":"info","message":"Connection 47811 released"}
+{"level":"info","message":"Connection 47817 released"}
+{"level":"info","message":"Connection 47808 released"}
+{"level":"info","message":"Connection 47812 acquired"}
+{"level":"info","message":"Connection 47812 released"}
+{"level":"info","message":"New database connection established with ID: 47819"}
+{"level":"info","message":"Connection 47819 acquired"}
+{"level":"info","message":"Connection 47819 released"}
+{"level":"info","message":"Connection 47819 acquired"}
+{"level":"info","message":"Connection 47819 released"}
+{"level":"info","message":"Connection 47819 acquired"}
+{"level":"info","message":"Connection 47819 released"}
+{"level":"info","message":"Connection 47819 acquired"}
+{"level":"info","message":"Connection 47819 released"}
+{"level":"info","message":"Connection 47819 acquired"}
+{"level":"info","message":"Connection 47819 released"}
+{"level":"info","message":"New database connection established with ID: 47824"}
+{"level":"info","message":"Connection 47824 acquired"}
+{"level":"info","message":"New database connection established with ID: 47825"}
+{"level":"info","message":"Connection 47825 acquired"}
+{"level":"info","message":"New database connection established with ID: 47820"}
+{"level":"info","message":"Connection 47820 acquired"}
+{"level":"info","message":"New database connection established with ID: 47826"}
+{"level":"info","message":"Connection 47826 acquired"}
+{"level":"info","message":"New database connection established with ID: 47821"}
+{"level":"info","message":"Connection 47821 acquired"}
+{"level":"info","message":"New database connection established with ID: 47822"}
+{"level":"info","message":"Connection 47822 acquired"}
+{"level":"info","message":"New database connection established with ID: 47829"}
+{"level":"info","message":"Connection 47829 acquired"}
+{"level":"info","message":"New database connection established with ID: 47823"}
+{"level":"info","message":"Connection 47823 acquired"}
+{"level":"info","message":"New database connection established with ID: 47828"}
+{"level":"info","message":"Connection 47828 acquired"}
+{"level":"info","message":"New database connection established with ID: 47827"}
+{"level":"info","message":"Connection 47827 acquired"}
+{"level":"info","message":"Connection 47825 released"}
+{"level":"info","message":"Connection 47829 released"}
+{"level":"info","message":"Connection 47824 released"}
+{"level":"info","message":"Connection 47826 released"}
+{"level":"info","message":"Connection 47821 released"}
+{"level":"info","message":"Connection 47822 released"}
+{"level":"info","message":"Connection 47820 released"}
+{"level":"info","message":"Connection 47823 released"}
+{"level":"info","message":"Connection 47828 released"}
+{"level":"info","message":"Connection 47827 released"}
+{"level":"info","message":"Connection 47825 acquired"}
+{"level":"info","message":"Connection 47829 acquired"}
+{"level":"info","message":"Connection 47824 acquired"}
+{"level":"info","message":"Connection 47826 acquired"}
+{"level":"info","message":"Connection 47821 acquired"}
+{"level":"info","message":"Connection 47829 released"}
+{"level":"info","message":"Connection 47824 released"}
+{"level":"info","message":"Connection 47825 released"}
+{"level":"info","message":"Connection 47826 released"}
+{"level":"info","message":"Connection 47821 released"}
+{"level":"info","message":"Connection 47822 acquired"}
+{"level":"info","message":"Connection 47822 released"}
+{"level":"info","message":"Connection 47820 acquired"}
+{"level":"info","message":"Connection 47820 released"}
+{"level":"info","message":"Connection 47823 acquired"}
+{"level":"info","message":"Connection 47823 released"}
+{"level":"info","message":"Connection 47828 acquired"}
+{"level":"info","message":"Connection 47828 released"}
+{"level":"info","message":"Connection 47827 acquired"}
+{"level":"info","message":"Connection 47827 released"}
+{"level":"info","message":"New database connection established with ID: 47831"}
+{"level":"info","message":"Connection 47831 acquired"}
+{"level":"info","message":"Connection 47831 released"}
+{"level":"info","message":"Connection 47831 acquired"}
+{"level":"info","message":"Connection 47831 released"}
+{"level":"info","message":"Connection 47831 acquired"}
+{"level":"info","message":"Connection 47831 released"}
+{"level":"info","message":"Connection 47831 acquired"}
+{"level":"info","message":"Connection 47831 released"}
+{"level":"info","message":"Connection 47831 acquired"}
+{"level":"info","message":"Connection 47831 released"}

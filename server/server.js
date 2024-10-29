@@ -1,7 +1,9 @@
 // IMPORTS
 // -------------------------------------------
 import express from "express";
+import fs from "fs";
 import mysql from "mysql";
+import ExcelJS from "exceljs";
 import cors from "cors";
 import axios from "axios";
 import dotenv from "dotenv";
@@ -21,6 +23,7 @@ import { OAuth2Client } from "google-auth-library";
 import bodyParser from "body-parser";
 import session from "express-session";
 import { google } from "googleapis";
+import { parse } from "json2csv";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -202,6 +205,19 @@ const groupByMonthYear = (data) => {
 
 // GET Routes
 // -------------------------------------------
+
+app.get("/api/user-id", verifyUser, async (req, res) => {
+  const query = await pool.query(
+    "SELECT ID FROM USERS WHERE EMAIL = ?",
+    res.req.email,
+    (err, results) => {
+      if (err) {
+        console.error("Error getting user ID:", err);
+      }
+      res.json({ user_Id: results[0].ID });
+    }
+  );
+});
 
 app.get("/auth-url", (req, res) => {
   const state = Math.random().toString(36).substring(7);
@@ -529,6 +545,153 @@ app.get("/google-profile", async (req, res) => {
   }
 });
 
+app.get("/user-profile", async (req, res) => {
+  const userId = req.query.userId; // Assuming userId is sent in the query params
+
+  try {
+    const result = await queryAsync(
+      "SELECT PROFILE_IMG_URL FROM USERS WHERE ID = ?",
+      [userId]
+    );
+
+    if (result.length > 0) {
+      const profileImageUrl = result[0].profile_image_url;
+      res.json({ profileImageUrl });
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.error("Error fetching user profile:", error);
+    res.status(500).json({ error: "Failed to fetch user profile" });
+  }
+});
+
+app.get("/download-excel", async (req, res) => {
+  const { startDate, endDate } = req.query;
+
+  if (!startDate || !endDate) {
+    return res
+      .status(400)
+      .json({ error: "Please provide both start and end dates." });
+  }
+
+  try {
+    // Format dates to match the database's date format
+    const formattedStartDate = new Date(startDate).toISOString().slice(0, 7); // Format: YYYY-MM
+    const formattedEndDate = new Date(endDate).toISOString().slice(0, 7); // Format: YYYY-MM
+
+    // Queries for each table with a JOIN to get the expense type name and user's full name
+    const tables = {
+      expenses: `
+        SELECT e.*, et.TYPE AS EXPENSE_TYPE, CONCAT(u.FN, ' ', u.LN) AS USER_NAME
+        FROM EXPENSES e
+        LEFT JOIN EXPENSE_TYPES et ON e.TYPE = et.ID
+        LEFT JOIN USERS u ON e.USER_ID = u.ID
+        WHERE e.MONTH BETWEEN ? AND ?
+      `,
+      files: `
+        SELECT f.*, CONCAT(u.FN, ' ', u.LN) AS USER_NAME
+        FROM FILES f
+        LEFT JOIN USERS u ON f.USER_ID = u.ID
+        WHERE f.MONTH BETWEEN ? AND ?
+      `,
+      food_expenses: `
+        SELECT fe.*, CONCAT(u.FN, ' ', u.LN) AS USER_NAME
+        FROM FOODEXPENSES fe
+        LEFT JOIN USERS u ON fe.USER_ID = u.ID
+        WHERE fe.MONTH BETWEEN ? AND ?
+      `,
+      item_expenses: `
+        SELECT ie.*, CONCAT(u.FN, ' ', u.LN) AS USER_NAME
+        FROM ITEMEXPENSES ie
+        LEFT JOIN USERS u ON ie.USER_ID = u.ID
+        WHERE ie.MONTH BETWEEN ? AND ?
+      `,
+      mileage_expenses: `
+        SELECT me.*, CONCAT(u.FN, ' ', u.LN) AS USER_NAME
+        FROM MILEAGEEXPENSES me
+        LEFT JOIN USERS u ON me.USER_ID = u.ID
+        WHERE me.MONTH BETWEEN ? AND ?
+      `,
+    };
+
+    // Initialize a new workbook
+    const workbook = new ExcelJS.Workbook();
+
+    // Retrieve data for each table and add it to a separate sheet
+    for (const [sheetName, query] of Object.entries(tables)) {
+      const rows = await queryAsync(query, [
+        formattedStartDate,
+        formattedEndDate,
+      ]);
+
+      // If there’s data, add a new sheet for this table
+      if (rows && rows.length > 0) {
+        const worksheet = workbook.addWorksheet(
+          sheetName.charAt(0).toUpperCase() + sheetName.slice(1)
+        );
+
+        // Ensure there are no undefined or problematic values in the rows
+        const cleanRows = rows.map((row) => {
+          return Object.fromEntries(
+            Object.entries(row).map(([key, value]) => [key, value ?? ""])
+          );
+        });
+
+        // Filter out unwanted columns: 'ID', 'USER_ID', and 'TYPE'
+        const filteredKeys = Object.keys(cleanRows[0]).filter(
+          (key) => key !== "ID" && key !== "USER_ID" && key !== "TYPE"
+        );
+
+        // Reorder columns to have 'USER_NAME' first, 'EXPENSE_TYPE' second, then the rest
+        const orderedKeys = [
+          "USER_NAME",
+          "EXPENSE_TYPE",
+          ...filteredKeys.filter(
+            (key) => key !== "USER_NAME" && key !== "EXPENSE_TYPE"
+          ),
+        ];
+
+        // Define columns based on the ordered keys
+        worksheet.columns = orderedKeys.map((key) => ({ header: key, key }));
+
+        // Add all rows to the sheet with only filtered data in the correct order
+        cleanRows.forEach((row) => {
+          const orderedRow = orderedKeys.reduce((acc, key) => {
+            acc[key] = row[key];
+            return acc;
+          }, {});
+          worksheet.addRow(orderedRow);
+        });
+      }
+    }
+
+    // Define Excel file name
+    const fileName = "export.xlsx";
+
+    // Set headers to ensure it's treated as an Excel file
+    res.setHeader(
+      "Content-Type",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    );
+    res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);
+
+    // Send the workbook to the response directly (ensure proper streaming)
+    await workbook.xlsx
+      .write(res)
+      .then(() => {
+        res.end();
+      })
+      .catch((error) => {
+        console.error("Error writing workbook to response:", error);
+        res.status(500).json({ error: "Failed to write Excel file." });
+      });
+  } catch (error) {
+    console.error("Error generating Excel file:", error);
+    res.status(500).json({ error: "Failed to export data to Excel." });
+  }
+});
+
 // POST Routes
 // -------------------------------------------
 // login route
@@ -647,18 +810,7 @@ app.post("/exchange-token", async (req, res) => {
     res.status(500).json({ error: "Token exchange failed" });
   }
 });
-app.get("/api/user-id", verifyUser, async (req, res) => {
-  const query = await pool.query(
-    "SELECT ID FROM USERS WHERE EMAIL = ?",
-    res.req.email,
-    (err, results) => {
-      if (err) {
-        console.error("Error getting user ID:", err);
-      }
-      res.json({ user_Id: results[0].ID });
-    }
-  );
-});
+
 app.post("/refresh-token", verifyUser, async (req, res) => {
   try {
     const response = await axios
@@ -981,11 +1133,89 @@ app.post("/verify-token", async (req, res) => {
   }
 });
 
-app.post("/upload-profile-image", upload.single("profileImage"), (req, res) => {
-  // Handle saving the image and return the new image URL
-  const imageUrl = `/uploads/${req.file.filename}`;
-  res.json({ imageUrl });
-});
+// Route to handle profile image upload
+app.post(
+  "/upload-profile-image",
+  upload.single("profileImage"),
+  async (req, res) => {
+    const userId = req.body.userId; // Assuming userId is sent with the request
+
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    const file = req.file;
+    const uniqueFileName = `${file.originalname}-${Date.now().toString()}`;
+    const uploadParams = {
+      Bucket: process.env.AWS_S3_BUCKET,
+      Key: `profile-images/${uniqueFileName}`, // Store in a 'profile-images' folder in the bucket
+      Body: file.buffer,
+      ACL: "public-read", // You can adjust the permissions as needed
+    };
+
+    try {
+      const parallelUploads3 = new Upload({
+        client: s3Client,
+        params: uploadParams,
+      });
+
+      await parallelUploads3.done();
+      const imageUrl = `https://${process.env.AWS_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/profile-images/${uniqueFileName}`;
+
+      // Store imageUrl in the database
+      await queryAsync("UPDATE USERS SET PROFILE_IMG_URL = ? WHERE id = ?", [
+        imageUrl,
+        userId,
+      ]);
+
+      res.json({ imageUrl });
+    } catch (error) {
+      console.error(`Error uploading file ${uniqueFileName}:`, error);
+      res.status(500).json({ error: "Failed to upload image" });
+    }
+  }
+);
+app.post(
+  "/upload-profile-image",
+  upload.single("profileImage"),
+  async (req, res) => {
+    const userId = req.body.userId; // Assuming userId is sent with the request
+
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    const file = req.file;
+    const uniqueFileName = `${file.originalname}-${Date.now().toString()}`;
+    const uploadParams = {
+      Bucket: process.env.AWS_S3_BUCKET,
+      Key: `profile-images/${uniqueFileName}`, // Store in a 'profile-images' folder in the bucket
+      Body: file.buffer,
+      ACL: "public-read", // You can adjust the permissions as needed
+    };
+
+    try {
+      const parallelUploads3 = new Upload({
+        client: s3Client,
+        params: uploadParams,
+      });
+
+      await parallelUploads3.done();
+      const imageUrl = `https://${process.env.AWS_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/profile-images/${uniqueFileName}`;
+
+      // Store imageUrl in the database
+      await queryAsync("UPDATE USERS SET PROFILE_IMG_URL = ? WHERE ID = ?", [
+        imageUrl,
+        userId,
+      ]);
+
+      res.json({ imageUrl });
+    } catch (error) {
+      console.error(`Error uploading file ${uniqueFileName}:`, error);
+      res.status(500).json({ error: "Failed to upload image" });
+    }
+  }
+);
 
 app.post("/update-profile", (req, res) => {
   const { firstName, lastName, email } = req.body;
