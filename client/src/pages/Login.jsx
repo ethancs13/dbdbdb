@@ -75,7 +75,7 @@ export const Login = () => {
           {loading ? 'Loading...' : 'Login'}
         </button>
       </form>
-      <Link to="/signup" className="link-btn">Don't have an account? Signup.</Link>
+      {/* <Link to="/signup" className="link-btn">Don't have an account? Signup.</Link> */}
     </div>
-  );
+  );  
 };

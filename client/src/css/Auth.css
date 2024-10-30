@@ -1,101 +1,112 @@
-/* General styles */
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: #f0f0f0; /* Light gray background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-/* Auth Form Container */
+/* General Styles for Login Screen */
 .auth-form-container {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  min-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-width: 400px;
-  width: 100%;
-  margin: 3rem auto;
 }
 
-h2 {
-  margin-bottom: 1.5rem;
-  color: #1d1d1d;
+.auth-form-container h2 {
+  margin-bottom: 20px;
+  color: #333;
 }
 
-.error-message {
-  color: #d9534f;
-  margin-bottom: 1rem;
-}
-
-.login-form, .register-form {
+.login-form {
   display: flex;
   flex-direction: column;
-  color: black;
-  width: 100%;
-  margin: 0 auto;
+  gap: 15px;
 }
 
-.login-label, .register-label {
+.login-label {
   text-align: left;
-  margin-top: 1rem;
   font-weight: bold;
-  color: #555;
+  margin-bottom: 5px;
 }
 
-.login-form input, .register-form input {
-  padding: 0.8rem;
-  border: 1px solid rgb(177, 177, 177);
-  border-radius: 0.5rem;
-  margin-top: 0.5rem;
-  font-size: 1rem;
-}
-
-.login-form button, .register-form button {
-  padding: 0.8rem;
-  border: none;
-  border-radius: 0.5rem;
-  background-color: #007bff;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 1rem;
-  align-self: flex-start;
-  transition: background-color 0.3s ease;
-}
-
-.login-form button:hover, .register-form button:hover {
-  background-color: #0056b3;
-}
-
-.link-btn {
-  color: #3498db;
-  margin-top: 1rem;
-  display: block;
-  text-decoration: none;
-}
-
-.link-btn:hover {
-  text-decoration: underline;
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 1em;
 }
 
 .show-password {
   display: flex;
   align-items: center;
-  margin-top: 1rem;
-  text-align: left;
+  justify-content: center;
+  gap: 10px;
+  white-space: nowrap;
+  margin-top: 10px;
 }
 
-.login-form button {
+.show-password input[type="checkbox"] {
+  margin: 0;
+  width: auto;
+}
+.show-password input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+
+/* Password input fix for consistent styling when style=text/password */
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   width: 100%;
+  font-size: 1em;
+  box-sizing: border-box; /* Ensures padding is included in the width */
+  outline: none; /* Removes the default focus outline */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for focus changes */
 }
 
-.show-password input {
-  margin-right: 0.5rem;
+/* Adding consistent focus styles */
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #007bff; /* Ensures consistent border color when focused */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.25); /* Adds a subtle shadow to indicate focus */
+  outline: none; /* Removes default outline */
+}
+
+.login-form .btn {
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+  margin-top: 15px;
+}
+
+.login-form .btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.login-form .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.login-form .link-btn {
+  display: inline-block;
+  margin-top: 20px;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.login-form .link-btn:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: #d9534f;
+  font-size: 0.9em;
+  margin-bottom: 15px;
 }
