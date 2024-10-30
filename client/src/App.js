@@ -4,12 +4,10 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import AdminHeader from "./components/adminHeader";
 import UserHeader from "./components/userHeader";
-import AdminNavigation from "./components/adminNavigation";
+import ChangePassword from "./components/changePassword";
 import UserNavigation from "./components/userNavigation";
-import AdminUsers from "./components/adminUsers";
 import UserDetail from "./components/userDetail";
-import AdminDashboard from "./components/adminDashboard";
-import LogoutButton from "./components/LogoutButton";
+import Admin from "./pages/Admin";
 import Itemized from "./pages/Itemized";
 import General from "./pages/General";
 import Mileage from "./pages/Mileage";
@@ -18,6 +16,7 @@ import FoodBev from "./pages/FoodBev";
 import Summary from "./pages/Summary";
 import History from "./pages/History";
 import ThankYou from "./pages/ThankYou";
+import UserProfile from "./pages/UserProfile";
 import { FormProvider } from "./context/FormContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { HistoryProvider } from "./context/HistoryContext";
@@ -58,14 +57,13 @@ function AuthConsumer() {
     return (
       <>
         <AdminHeader />
-        <AdminNavigation />
         <div className="main-content">
           <Routes>
             <Route path="/signup" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/" element={<AdminDashboard />} />
-            <Route path="/users" element={<AdminUsers />} />
             <Route path="/user/:id" element={<UserDetail />} />
+            <Route path="/profile" element={<UserProfile />} />
+            <Route path="*" element={<Admin />} />
           </Routes>
         </div>
       </>
@@ -80,6 +78,7 @@ function AuthConsumer() {
         <Routes>
           <Route path="/signup" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/" element={<Summary />} />
           <Route path="/itemized-purchases" element={<Itemized />} />
           <Route path="/general" element={<General />} />
@@ -88,8 +87,7 @@ function AuthConsumer() {
           <Route path="/upload-files" element={<Files />} />
           <Route path="/history" element={<History />} />
           <Route path="/thank-you" element={<ThankYou />} />
-          <Route path="/admin/users" element={<AdminUsers />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="*" element={<Summary />} />
         </Routes>
       </div>
     </>

@@ -36,7 +36,6 @@ body {
   border-radius: 5px;
   cursor: pointer;
   width: 7rem;
-  margin: 0 1rem;
 }
 
 .file-area {
@@ -47,16 +46,6 @@ body {
   border-radius: 5px;
   margin-top: 15px;
 }
-
-/* .button {
-  background-color: #3498db;
-  color: #ecf0f1;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 15px;
-} */
 
 .login_home {
   text-align: center;

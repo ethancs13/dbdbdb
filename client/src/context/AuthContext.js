@@ -13,14 +13,11 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('Server Endpoint:', process.env.REACT_APP_SERVER_END_POINT);
-  
     const checkAuth = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/user`, {
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/`, {
           withCredentials: true,
         });
-        console.log("Data: ", response.data);
         setIsAuthenticated(response.data.isAuthenticated);
         setUserRole(response.data.role);
       } catch (error) {
@@ -30,10 +27,9 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
       }
     };
-  
+
     checkAuth();
   }, []);
-  
 
   const login = async (email, password) => {
     try {
@@ -50,6 +46,11 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(true);
         setUserRole("admin");
         return { status: "rootUser" };
+      } else if (response.data.Status === "ChangePassword") {
+        setIsAuthenticated(true);
+        setUserRole("user");
+        navigate('/change-password'); // Redirect to change-password
+        return { status: "ChangePassword", token: response.data.token };
       } else {
         setIsAuthenticated(false);
         setUserRole(null);
@@ -65,6 +66,8 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     console.log("Logging out...");
     await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/logout`, { withCredentials: true });
+    localStorage.clear("googleProfileImage");
+    localStorage.clear("idToken");
     setIsAuthenticated(false);
     setUserRole(null);
     console.log("Navigating to login...");

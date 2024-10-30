@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { createContext, useState, useEffect } from "react";
+
 
 const FormContext = createContext();
 
@@ -24,6 +26,9 @@ const FormProvider = ({ children }) => {
   });
 
   const [uploadedFiles, setUploadedFiles] = useState([]);
+
+  const [expenseTypes, setExpenseTypes] = useState([]);
+
 
   const addFiles = (files) => {
     setUploadedFiles((prevFiles) => [...prevFiles, ...files]);
@@ -58,6 +63,25 @@ const FormProvider = ({ children }) => {
     );
     setMileageTotal(total);
   }, [mileageRowsData]);
+
+  useEffect(() => {
+    const fetchExpenseTypes = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_END_POINT}/user/expense-types`,
+          {
+            withCredentials: true,
+          }
+        );
+        setExpenseTypes(response.data);
+        console.log("epense types,", expenseTypes)
+      } catch (error) {
+        console.error("Error fetching expense types:", error);
+      }
+    };
+
+    fetchExpenseTypes();
+  }, []);
 
   // clear form data on submit
   const clearFormContext = () => {
@@ -167,16 +191,18 @@ const FormProvider = ({ children }) => {
   // Row Data
 
   const addRow = () => {
+    const defaultType = "Unknown"; // Fallback value
     const newRow = {
-      type: "Cell",
+      type: expenseTypes.length > 0 && expenseTypes[0].TYPE ? expenseTypes[0].TYPE : defaultType,
       billable: "No",
       porCC: "No",
       amount: 0,
       comment: "",
-      customer: ""
+      customer: "",
     };
     setRowsData((prevRows) => [...prevRows, newRow]);
   };
+  
 
   const deleteRow = (index) => {
     setRowsData((prevRows) => prevRows.filter((_, idx) => idx !== index));

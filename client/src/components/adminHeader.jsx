@@ -1,14 +1,40 @@
 import React, { useState, useEffect } from "react";
 import LogoutButton from "./LogoutButton";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import "../css/Header.css";
+import { useNavigate, Link } from "react-router-dom";
+import "../css/Header.css"; // Ensure your CSS handles alignment, including floating the profile image to the top right
 
-
-const adminHeader = () => {
+const AdminHeader = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
+  const [profileImage, setProfileImage] = useState(
+    localStorage.getItem("customProfileImage") || // Check for custom image first
+    localStorage.getItem("googleProfileImage") || // Fallback to Google image
+    null
+  );
+
+  // Listen for updates to localStorage to reflect profile image changes immediately
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const customImage = localStorage.getItem("customProfileImage");
+      const googleImage = localStorage.getItem("googleProfileImage");
+
+      // Prioritize custom profile image
+      if (customImage) {
+        setProfileImage(customImage);
+      } else if (googleImage) {
+        setProfileImage(googleImage);
+      }
+    };
+
+    // Listen for changes in localStorage
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   const navigate = useNavigate();
 
@@ -32,28 +58,34 @@ const adminHeader = () => {
     });
   }, [navigate]);
 
-  useEffect(() => {
-    const fetchUserEmail = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/user`, {
-          withCredentials: true,
-        });
-        setUserEmail(response.data.email);
-      } catch (error) {
-        console.error("Error fetching user email:", error);
-      }
-    };
-
-    fetchUserEmail();
-  }, []);
-
   return (
     <div className="header-wrapper">
-      <div>
+      <div className="header-left">
+        <Link to="/" className="header-left-link">
+          <h3 style={{ color: "#333" }}>Admin Panel</h3>
+        </Link>
+      </div>
+      <div className="header-right">
         <LogoutButton />
+        {isAuthenticated && profileImage ? (
+          <div className="user-profile-icon">
+            <Link to="/profile">
+              <img
+                src={profileImage}
+                alt="Profile"
+                style={{
+                  borderRadius: "50%",
+                  width: "40px",
+                  height: "40px",
+                  cursor: "pointer",
+                }}
+              />
+            </Link>
+          </div>
+        ) : null}
       </div>
     </div>
   );
 };
 
-export default adminHeader;
+export default AdminHeader;

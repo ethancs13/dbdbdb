@@ -64,4 +64,18 @@
   .header-wrapper button.btn.btn-primary:hover {
     background-color: #0056b3;
   }
-  
+  .header-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .user-profile-icon {
+    margin-left: 20px;
+  }
+
+  .header-left:hover {
+    cursor: pointer;
+  }
+  .header-left-link {
+    text-decoration: none;
+  }

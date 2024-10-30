@@ -7,7 +7,7 @@ import "../css/Summary.css";
 const Summary = () => {
   const { rowsData } = useContext(FormContext);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false); // Added state for isAdmin
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const navigate = useNavigate();
 
@@ -40,10 +40,8 @@ const Summary = () => {
                   <div className="summary-header">Billable?</div>
                   <div className="summary-header">PoR CC used?</div>
                   <div className="summary-header">Amount</div>
+                  <div className="summary-header">Customer</div>
                   <div className="summary-header">Comment</div>
-                  {rowsData.some((row) => row.billable === "Yes") && (
-                    <div className="summary-header">Customer</div>
-                  )}
                 </div>
                 {rowsData.map((row, index) => (
                   <div className="summary-box-item" key={index}>
@@ -52,12 +50,14 @@ const Summary = () => {
                       <div className="w20">{row.billable}</div>
                       <div className="w20">{row.porCC}</div>
                       <div className="w20">{row.amount}</div>
+                      {row.billable === "Yes" ? (
+                        <div className="w20">{row.customer}</div>
+                      ) : (
+                        <div className="w20"></div>
+                      )}
                       <div className="w20" style={{ textWrap: "wrap" }}>
                         {row.comment}
                       </div>
-                      {row.billable === "Yes" && (
-                        <div className="w20">{row.customer}</div>
-                      )}
                     </div>
                   </div>
                 ))}

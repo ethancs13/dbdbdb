@@ -1,10 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { FormContext } from "../context/FormContext";
 import ExpenseSelectRow from "./expense-select-row";
+import axios from "axios";
 import "../css/GeneralTable.css";
 
 const ExpenseSelect = () => {
   const { rowsData, addRow, deleteRow, updateRow } = useContext(FormContext);
+  const [expenseTypes, setExpenseTypes] = useState([]);
+
+  useEffect(() => {
+    const fetchExpenseTypes = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/admin/expense-types`, {
+          withCredentials: true,
+        });
+        setExpenseTypes(response.data);
+      } catch (error) {
+        console.error("Error fetching expense types:", error);
+      }
+    };
+
+    fetchExpenseTypes();
+  }, []);
 
   const handleChange = (index, evnt, field) => {
     console.log(field)
@@ -36,6 +53,7 @@ const ExpenseSelect = () => {
               data={data}
               deleteRow={deleteRow}
               handleChange={handleChange}
+              expenseTypes={expenseTypes}
             />
           ))
         ) : (
