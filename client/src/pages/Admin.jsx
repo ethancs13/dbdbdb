@@ -366,14 +366,12 @@ const Admin = () => {
       style={{ display: "flex", flexWrap: "wrap" }}
     >
       {/* Export Data Section */}
-      <section
-        className="export-data-section"
-        style={{ width: "100%", marginBottom: "20px" }}
-      >
+      <section className="export-data-section">
         <h3>Export Data</h3>
         <div className="export-data-controls">
-          <label>Start Month</label>
+          <label htmlFor="startDate">Start Month</label>
           <DatePicker
+            id="startDate"
             selected={startDate}
             onChange={(date) => setStartDate(date)}
             dateFormat="yyyy-MM" // Set the desired format for display
@@ -381,8 +379,9 @@ const Admin = () => {
             placeholderText="Select start month"
             className="date-picker-input"
           />
-          <label>End Month</label>
+          <label htmlFor="endDate">End Month</label>
           <DatePicker
+            id="endDate"
             selected={endDate}
             onChange={(date) => setEndDate(date)}
             dateFormat="yyyy-MM" // Set the desired format for display
@@ -551,7 +550,7 @@ const Admin = () => {
         </div>
 
         <ul className="user-list">
-          <h2>Users</h2>
+          <h2>Registered Users</h2>
           {users.map((user) => (
             <li className="user-item" key={user.ID}>
               <div className="user-info">

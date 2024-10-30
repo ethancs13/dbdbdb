@@ -21,7 +21,8 @@ import { FormProvider } from "./context/FormContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { HistoryProvider } from "./context/HistoryContext";
 import AuthNavigator from "./AuthNavigator";
-import "./css/App.css";
+import './css/Global.css';
+import './css/App.css';
 
 function App() {
   return (

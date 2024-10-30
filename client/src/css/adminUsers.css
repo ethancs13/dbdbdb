@@ -1,40 +1,278 @@
-/* General styles */
+/* General Styles for Admin Dashboard */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #f7f7f7;
+  /* Reduced contrast */
   margin: 0;
   padding: 0;
 }
 
 /* Admin Dashboard Container */
 .admin-dashboard {
-  max-width: 1000px;
-  margin: 40px auto;
+  max-width: 1200px;
+  margin: 20px auto;
   padding: 20px;
   background-color: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 /* Header */
 .admin-dashboard h1 {
-  font-size: 2em;
-  margin-bottom: 20px;
+  font-size: 1.6em;
+  margin-bottom: 1.6rem;
   color: #333;
   text-align: center;
 }
 
 /* Section Headers */
 .admin-dashboard h2 {
-  font-size: 1.5em;
-  margin-bottom: 15px;
-  color: #007bff;
+  font-size: 1.4em;
+  margin-bottom: 1.6rem;
+  color: #0073e6;
 }
 
-/* User List */
-.user-list {
+/* Export Data Section */
+.export-data-section {
+  display: flex;
+  align-items: center;
+  /* Ensures all items are vertically centered */
+  gap: 20px;
+  /* Adds space between the elements */
+  width: 100%;
+  /* Adds padding inside the container */
+  margin-bottom: 20px;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.export-data-section h3 {
+  margin-bottom: 0;
+  margin-top: 0.5rem;
+}
+
+.export-data-controls {
+  display: flex;
+  align-items: center; /* Keeps labels, inputs, and buttons vertically aligned */
+  gap: 15px;
+}
+.export-data-controls label {
+  margin: 0; /* Removes any default margin for better alignment */
+  font-weight: bold; /* Makes the labels stand out */
+}
+
+.date-picker-input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 150px;
+  font-size: 0.9em;
+}
+
+.export-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px; /* Ensures the button height matches the inputs */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.export-button:hover {
+  background-color: #0056b3;
+}
+
+/* Mileage Rates and Expense Types Parent Container */
+.mileage-expense-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+/* IRS Mileage Rate and Expense Types Containers */
+.mileage-rates,
+.expense-types {
+  width: 50%;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.submissions {
+  width: 100%;
+}
+
+/* Mileage Rates and Expense Types Headers */
+.mileage-rates h2,
+.expense-types h2 {
+  font-size: 1.4em;
+  margin-bottom: 15px;
+  color: #0073e6;
+}
+
+/* Add Mileage Rate */
+.add-mileage-rate {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.add-mileage-rate input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-mileage-rate button {
+  padding: 8px 12px;
+  font-size: 0.9em;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-mileage-rate button:hover {
+  background-color: #0056b3;
+}
+
+/* Current Mileage Rates */
+.current-mileage-rates ul {
   list-style-type: none;
   padding: 0;
+}
+
+.current-mileage-rates li {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Add Expense Type */
+.add-expense-type {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.add-expense-type input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-expense-type button {
+  padding: 8px 12px;
+  font-size: 0.9em;
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 4px;
+  height: 3rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-expense-type button:hover {
+  background-color: #218838;
+}
+
+/* Expense Type List */
+.expense-type-list {
+  padding-left: 0;
+}
+.expense-type-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Delete Button */
+.admin-expense-types-btn-del {
+  background-color: #d9534f;
+  /* Red */
+  color: white;
+  padding: 4px 12px;
+  font-size: 0.9em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-expense-types-btn-del:hover {
+  background-color: #c9302c;
+}
+
+/* User List Section */
+.users {
+  width: 100%;
+  padding: 1.5rem;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.add-user-form {
+  margin-bottom: 20px;
+}
+
+.add-user-form input,
+.add-user-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.add-user-form button {
+  padding: 8px 12px;
+  font-size: 0.9em;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-user-form button:hover {
+  background-color: #0056b3;
+}
+
+.users {
+  display: flex;
+}
+
+.add-user-form,
+.user-list {
+  width: 50%;
+  padding: 20px;
+  list-style-type: none;
   margin: 0;
 }
 
@@ -42,16 +280,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 15px;
-  margin: 5px 0;
-  background-color: #fafafa;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 4px;
   cursor: pointer;
-}
-
-.user-item:nth-child(odd) {
-  background-color: #f9f9f9;
+  transition: background-color 0.2s ease;
 }
 
 .user-item:hover {
@@ -64,149 +299,15 @@ body {
 }
 
 .user-info span {
-  display: block;
-  font-size: 1em;
+  font-size: 0.9em;
   color: #555;
-}
-
-.add-user-form,
-.user-list,
-.expense-types,
-.mileage-rates {
-  width: 50%;
-  padding: 2rem;
-}
-
-.expense-types {
-  border-left: #333 solid 1px;
-}
-
-/* Add User Form */
-.add-user-form,
-.add-mileage-rate {
-  margin-top: 20px;
-}
-
-.add-user-form h2,
-.add-mileage-rate h2 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-}
-
-.add-user-form input,
-.add-user-form select,
-.add-mileage-rate input {
-  display: block;
-  width: calc(100% - 22px);
-  margin: 10px 0;
-  padding: 10px;
-  font-size: 1em;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.add-user-form button,
-.add-mileage-rate button {
-  padding: 10px 15px;
-  font-size: 1em;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.add-user-form button:hover,
-.add-mileage-rate button:hover {
-  background-color: #0056b3;
-}
-
-/* Mileage Rates */
-.mileage-rates ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.mileage-rates {
-  width: 50%;
-}
-
-.mileage-rates li {
-  padding: 10px 15px;
-  margin: 5px 0;
-  background-color: #fafafa;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.mileage-rates li:nth-child(odd) {
-  background-color: #f9f9f9;
-}
-
-/* Submissions */
-.submissions {
-  width: 100%;
-  padding: 2rem;
-}
-
-.submissions ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.submissions li {
-  padding: 10px 15px;
-  margin: 5px 0;
-  background-color: #fafafa;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.submissions li:nth-child(odd) {
-  background-color: #f9f9f9;
-}
-
-/* Edit Submission */
-.edit-submission {
-  margin-top: 20px;
-}
-
-.edit-submission h3 {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-}
-
-.edit-submission input {
-  display: block;
-  width: calc(100% - 22px);
-  margin: 10px 0;
-  padding: 10px;
-  font-size: 1em;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.edit-submission button {
-  padding: 10px 15px;
-  font-size: 1em;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.edit-submission button:hover {
-  background-color: #0056b3;
 }
 
 /* Loading and Error Messages */
 .loading,
 .error {
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1em;
   margin-top: 20px;
 }
 
@@ -218,157 +319,30 @@ body {
   color: #d9534f;
 }
 
-.add-expense-type {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px 0;
-}
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .mileage-expense-container {
+    flex-direction: column;
+    gap: 20px;
+  }
 
-.add-expense-type input {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 65%;
-  margin-right: 10px;
-  transition: border-color 0.3s;
-}
+  .add-mileage-rate,
+  .add-expense-type {
+    flex-direction: column;
+  }
 
-.add-expense-type input:focus {
-  border-color: #4caf50;
-}
+  .export-data-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-.admin-expense-types-btn-add {
-  background-color: #4caf50; /* Green */
-  border: none;
-  color: white;
-  padding: 10px 12px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  width: 16rem;
-  transition-duration: 0.2s;
-  cursor: pointer;
-}
+  .export-data-section {
+    align-items: stretch;
+  }
 
-.admin-expense-types-btn-add:hover {
-  background-color: white;
-  color: black;
-  outline: 1px solid #4caf50;
-}
-
-.admin-expense-types-btn-del {
-  background-color: #f44336; /* Red */
-  border: none;
-  color: white;
-  padding: 4px 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 8px 4px;
-  transition-duration: 0.2s;
-  cursor: pointer;
-}
-
-.admin-expense-types-btn-del:hover {
-  background-color: white;
-  color: black;
-  outline: 1px solid #f44336;
-}
-
-.expense-type-list-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin: 10px 0;
-  padding: 0 1px 0 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  transition-duration: 0.1s;
-}
-
-.expense-type-list-item:hover {
-  border: solid 1px #6f6f6f;
-}
-
-.expense-type-list {
-  padding: 0;
-}
-
-.users {
-  display: flex;
-  width: 100%;
-  border-top: #333 solid 1px;
-}
-
-/* Current Mileage Rates */
-.current-mileage-rates {
-  margin-top: 20px;
-}
-
-.current-mileage-rates h3 {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-}
-
-.current-mileage-rates ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.current-mileage-rates li {
-  padding: 10px 15px;
-  margin: 5px 0;
-  background-color: #fafafa;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.current-mileage-rates li:nth-child(odd) {
-  background-color: #f9f9f9;
-}
-
-.export-data-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-.export-data-section h3 {
-  margin: 0;
-  font-weight: bold;
-}
-
-.export-data-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.date-picker-input {
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.export-button {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.export-button:hover {
-  background-color: #45a049;
+  .users,
+  .mileage-rates,
+  .expense-types {
+    width: 100%;
+  }
 }
