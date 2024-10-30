@@ -1175,47 +1175,6 @@ app.post(
     }
   }
 );
-app.post(
-  "/upload-profile-image",
-  upload.single("profileImage"),
-  async (req, res) => {
-    const userId = req.body.userId; // Assuming userId is sent with the request
-
-    if (!req.file) {
-      return res.status(400).json({ error: "No file uploaded" });
-    }
-
-    const file = req.file;
-    const uniqueFileName = `${file.originalname}-${Date.now().toString()}`;
-    const uploadParams = {
-      Bucket: process.env.AWS_S3_BUCKET,
-      Key: `profile-images/${uniqueFileName}`, // Store in a 'profile-images' folder in the bucket
-      Body: file.buffer,
-      ACL: "public-read", // You can adjust the permissions as needed
-    };
-
-    try {
-      const parallelUploads3 = new Upload({
-        client: s3Client,
-        params: uploadParams,
-      });
-
-      await parallelUploads3.done();
-      const imageUrl = `https://${process.env.AWS_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/profile-images/${uniqueFileName}`;
-
-      // Store imageUrl in the database
-      await queryAsync("UPDATE USERS SET PROFILE_IMG_URL = ? WHERE ID = ?", [
-        imageUrl,
-        userId,
-      ]);
-
-      res.json({ imageUrl });
-    } catch (error) {
-      console.error(`Error uploading file ${uniqueFileName}:`, error);
-      res.status(500).json({ error: "Failed to upload image" });
-    }
-  }
-);
 
 app.post("/update-profile", (req, res) => {
   const { firstName, lastName, email } = req.body;
