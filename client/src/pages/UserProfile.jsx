@@ -9,17 +9,38 @@ const UserProfile = () => {
   const [profileImage, setProfileImage] = useState(
     localStorage.getItem("customProfileImage") ||
       localStorage.getItem("googleProfileImage") ||
-      ""
+      "/default-profile.png"
   );
 
   const [firstName, setFirstName] = useState("First Name");
   const [lastName, setLastName] = useState("Last Name");
   const [email, setEmail] = useState("user@example.com");
   const [newImage, setNewImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
+
+  useEffect(() => {
+    // Update profile image based on any changes in local storage
+    const updateProfileImage = () => {
+      const storedCustomImage = localStorage.getItem("customProfileImage");
+      setProfileImage(
+        storedCustomImage ||
+          localStorage.getItem("googleProfileImage") ||
+          "/default-profile.png"
+      );
+    };
+
+    window.addEventListener("storage", updateProfileImage);
+    return () => {
+      window.removeEventListener("storage", updateProfileImage);
+    };
+  }, []);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    setNewImage(file);
+    if (file) {
+      setNewImage(file);
+      setPreviewImage(URL.createObjectURL(file));
+    }
   };
 
   const handleSaveProfile = async () => {
@@ -42,11 +63,6 @@ const UserProfile = () => {
         const newImageUrl = response.data.imageUrl;
         setProfileImage(newImageUrl);
         localStorage.setItem("customProfileImage", newImageUrl); // Store the custom uploaded image
-        
-        // Trigger the "storage" event manually to update profile in other components
-        const event = new Event("storage");
-        window.dispatchEvent(event);
-        
       } catch (error) {
         console.error("Error uploading image:", error);
       }
@@ -64,23 +80,12 @@ const UserProfile = () => {
     }
   };
 
-  useEffect(() => {
-    // Update profile image when localStorage changes (e.g., user uploads a new image)
-    const storedCustomImage = localStorage.getItem("customProfileImage");
-    if (storedCustomImage) {
-      setProfileImage(storedCustomImage);
-    } else {
-      // Fall back to Google profile image
-      setProfileImage(localStorage.getItem("googleProfileImage"));
-    }
-  }, []);
-
   return (
     <div className="user-profile">
       <h1>User Profile</h1>
       <div className="profile-image-section">
         <img
-          src={profileImage} // Use either custom or Google image
+          src={previewImage || profileImage} // Use preview if available, else use saved profile image
           alt="Profile"
           style={{ borderRadius: "50%", width: "150px", height: "150px" }}
         />
