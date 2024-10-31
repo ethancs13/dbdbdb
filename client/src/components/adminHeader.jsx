@@ -2,54 +2,58 @@ import React, { useState, useEffect } from "react";
 import LogoutButton from "./LogoutButton";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import "../css/Header.css"; // Ensure your CSS handles alignment, including floating the profile image to the top right
+import "../css/Header.css";
 
-const AdminHeader = () => {
+const adminHeader = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const [profileImage, setProfileImage] = useState(
-    localStorage.getItem("customProfileImage") || // Check for custom image first
-    localStorage.getItem("googleProfileImage") || // Fallback to Google image
-    null
+    localStorage.getItem("customProfileImage") ||
+    localStorage.getItem("googleProfileImage") ||
+    "/default-profile.png"
   );
 
-  // Listen for updates to localStorage to reflect profile image changes immediately
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const customImage = localStorage.getItem("customProfileImage");
-      const googleImage = localStorage.getItem("googleProfileImage");
+  const navigate = useNavigate();
 
-      // Prioritize custom profile image
-      if (customImage) {
-        setProfileImage(customImage);
-      } else if (googleImage) {
-        setProfileImage(googleImage);
+  useEffect(() => {
+    const fetchProfileImage = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_END_POINT}/user-profile`
+        );
+
+        if (response.data.profileImageUrl) {
+          setProfileImage(response.data.profileImageUrl);
+          localStorage.setItem("customProfileImage", response.data.profileImageUrl);
+        }
+      } catch (error) {
+        console.error("Error fetching profile image:", error);
       }
     };
 
-    // Listen for changes in localStorage
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
-
-  const navigate = useNavigate();
+    if (!localStorage.getItem("customProfileImage")) {
+      fetchProfileImage();
+    }
+  }, [profileImage]);
 
   useEffect(() => {
     axios.defaults.withCredentials = true;
 
     // Check user authentication and role
     axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/`).then((res) => {
-      if (res.data.status === "Success") {
+      if (res.data.status === "Success" || res.data.status === "rootUser") {
         setIsAuthenticated(true);
         setUserEmail(res.data.email);
-      } else if (res.data.status === "rootUser") {
-        setIsAdmin(true);
-        setIsAuthenticated(true);
-        setUserEmail(res.data.email);
+        setIsAdmin(res.data.status === "rootUser");
+
+        // Prioritize custom profile image if available
+        const customImage = localStorage.getItem("customProfileImage");
+        if (customImage) {
+          setProfileImage(customImage);
+        } else {
+          setProfileImage(localStorage.getItem("googleProfileImage") || "/default-profile.png");
+        }
       } else {
         setIsAuthenticated(false);
         setIsAdmin(false);
@@ -57,6 +61,21 @@ const AdminHeader = () => {
       }
     });
   }, [navigate]);
+
+  useEffect(() => {
+    // Listen for changes to local storage for profile image updates
+    const handleStorageChange = (event) => {
+      if (event.key === "customProfileImage") {
+        setProfileImage(event.newValue || localStorage.getItem("googleProfileImage") || "/default-profile.png");
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   return (
     <div className="header-wrapper">
@@ -67,7 +86,7 @@ const AdminHeader = () => {
       </div>
       <div className="header-right">
         <LogoutButton />
-        {isAuthenticated && profileImage ? (
+        {isAuthenticated && profileImage && (
           <div className="user-profile-icon">
             <Link to="/profile">
               <img
@@ -82,10 +101,10 @@ const AdminHeader = () => {
               />
             </Link>
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );
 };
 
-export default AdminHeader;
+export default adminHeader;
