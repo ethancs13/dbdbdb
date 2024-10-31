@@ -2,51 +2,143 @@
 
 @import "./Common.css";
 
+/* Container styles for all tables */
+.table-container,
 .general-table-container,
+.food-table-container,
+.itemized-table-container {
+  width: 100%;
+  min-width: 800px; /* Ensures minimum width */
+  display: flex;
+  flex-direction: column;
+}
 .expense-select-container {
   width: 100%;
   margin: 20px 2rem;
   min-width: 800px; /* Ensures minimum width */
+  display: flex;
+  flex-direction: column;
 }
 
-.expense-select {
-  max-width: auto;
-}
-
-.table-header {
+/* Table header styles */
+.table-header,
+.expense-table-header,
+.food-table-header,
+.itemized-table-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
   border-bottom: 2px solid #007bff;
+  padding: 10px 0;
+  font-weight: bold;
+  text-align: left;
 }
 
-.table-header h3 {
-  margin: 0;
-}
-
-.table-header .add-row {
-  padding: 5px 10px;
-}
-
-.table-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-}
-
+/* Expense Select Page Specific Styles */
+.expense-table-header,
 .expense-row {
   display: grid;
-  grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr 1fr 1fr auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr auto; /* Adjust columns for better spacing */
   gap: 10px;
   align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
 }
 
+/* Food Table Page Specific Styles */
+.food-table-header,
+.food-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr auto; /* Adjusted for food-specific data fields */
+  gap: 15px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Itemized Table Page Specific Styles */
+.itemized-table-header,
+.item-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr auto; /* Adjusted for item-specific data fields */
+  gap: 10px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Input and select styles for all tables */
+.input-container,
+.input,
+.select,
+.food-input,
+.food-select {
+  width: 100%;
+}
+
+/* Add row button styles */
+.add-row {
+  margin-top: 20px;
+  align-self: flex-start;
+  padding: 5px 10px;
+}
+
+/* No data message styles */
 .no-data {
-  text-align: center;
   padding: 20px;
-  color: #888;
+  color: #666;
+  text-align: center;
+}
+
+/* Specific Spacing Adjustments */
+
+/* Expense Select Page: Ensure better alignment */
+.expense-select-container .input-container {
+  margin-right: 10px;
+}
+
+/* Food Table Page: Specific input spacing adjustments */
+.food-table-container .input-container {
+  margin-right: 15px; /* Slightly larger margin for more spacing */
+}
+
+/* Itemized Table Page: Specific input spacing adjustments */
+.itemized-table-container .input-container {
+  margin-right: 10px;
+}
+
+/* Header spacing for readability */
+.table-header h4 {
+  margin: 0;
+}
+
+/* Additional Specific Adjustments */
+.food-table-header span,
+.expense-table-header span,
+.itemized-table-header span {
+  margin-right: 10px;
+  font-weight: bold;
+}
+/* Mileage Table Specific Styles */
+.mileage-table-container {
+  width: 100%;
+  min-width: 800px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 2rem;
+}
+
+.mileage-table-header,
+.mileage-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr auto; /* Adjusted columns to align headers */
+  gap: 15px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.mileage-input,
+.mileage-select {
+  width: 100%;
 }

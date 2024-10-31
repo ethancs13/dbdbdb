@@ -11,9 +11,12 @@ const ExpenseSelect = () => {
   useEffect(() => {
     const fetchExpenseTypes = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/admin/expense-types`, {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_END_POINT}/admin/expense-types`,
+          {
+            withCredentials: true,
+          }
+        );
         setExpenseTypes(response.data);
       } catch (error) {
         console.error("Error fetching expense types:", error);
@@ -24,10 +27,8 @@ const ExpenseSelect = () => {
   }, []);
 
   const handleChange = (index, evnt, field) => {
-    console.log(field)
-    if(!evnt){
-      console.log(index)
-      updateRow(index, field, '');
+    if (!evnt) {
+      updateRow(index, field, "");
       return;
     }
     evnt.preventDefault();
@@ -39,27 +40,35 @@ const ExpenseSelect = () => {
   return (
     <div className="expense-select-container">
       <div className="table-header">
-        <h4>Expense Select</h4>
-        <button className="btn btn-primary add-row" onClick={addRow}>
-          New Row
-        </button>
+        <h4>Expenses</h4>
       </div>
-      <div className="table-container">
-        {rowsData.length > 0 ? (
-          rowsData.map((data, index) => (
-            <ExpenseSelectRow
-              key={index}
-              index={index}
-              data={data}
-              deleteRow={deleteRow}
-              handleChange={handleChange}
-              expenseTypes={expenseTypes}
-            />
-          ))
-        ) : (
-          <div className="no-data">No data available</div>
-        )}
+      <div className="expense-table">
+        <div className="expense-table-header">
+          <span>Type</span>
+          <span>Billable</span>
+          <span>PorCC</span>
+          <span>Amount</span>
+        </div>
+        <div className="table-container">
+          {rowsData.length > 0 ? (
+            rowsData.map((data, index) => (
+              <ExpenseSelectRow
+                key={index}
+                index={index}
+                data={data}
+                deleteRow={deleteRow}
+                handleChange={handleChange}
+                expenseTypes={expenseTypes}
+              />
+            ))
+          ) : (
+            <div className="no-data">No data available</div>
+          )}
+        </div>
       </div>
+      <button className="btn btn-primary add-row" onClick={addRow}>
+        New Row
+      </button>
     </div>
   );
 };
