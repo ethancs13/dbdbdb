@@ -13,26 +13,38 @@ const FoodTable = ({ data, addFoodRow, deleteFoodRow, updateFoodRow }) => {
   return (
     <div className="food-table-container">
       <div className="table-header">
-        <h4>Food Expenses</h4>
-        <button className="btn btn-primary add-row" onClick={addFoodRow}>
-          New Row
-        </button>
+        <h4>Food & Beverage</h4>
       </div>
-      <div className="table-container">
-        {data.length > 0 ? (
-          data.map((row, index) => (
-            <FoodRow
-              key={index}
-              row={row}
-              index={index}
-              handleChange={handleChange}
-              deleteTableRows={deleteFoodRow}
-            />
-          ))
-        ) : (
-          <div className="no-data">No data available</div>
-        )}
+      <div className="food-table">
+        <div className="food-table-header">
+          <span>Date</span>
+          <span>Amount</span>
+          <span>Location</span>
+          <span>Persons</span>
+          <span>Type</span>
+          <span>Purpose</span>
+          <span>Billable</span>
+          <span>PorCC</span>
+        </div>
+        <div className="table-container">
+          {data.length > 0 ? (
+            data.map((row, index) => (
+              <FoodRow
+                key={index}
+                row={row}
+                index={index}
+                handleChange={handleChange}
+                deleteTableRows={deleteFoodRow}
+              />
+            ))
+          ) : (
+            <div className="no-data">No data available</div>
+          )}
+        </div>
       </div>
+      <button className="btn btn-primary add-row" onClick={addFoodRow}>
+        New Row
+      </button>
     </div>
   );
 };

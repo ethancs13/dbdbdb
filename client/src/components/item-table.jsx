@@ -2,12 +2,7 @@ import React from "react";
 import TableRows from "./item-row";
 import "../css/Itemized.css";
 
-function AddDeleteTableRows({
-  data,
-  addItemRow,
-  deleteItemRow,
-  updateItemRow,
-}) {
+function AddDeleteTableRows({ data, addItemRow, deleteItemRow, updateItemRow }) {
   const handleChange = (index, evnt) => {
     evnt.preventDefault();
     const { name, value, type, checked } = evnt.target;
@@ -18,26 +13,41 @@ function AddDeleteTableRows({
   return (
     <div className="itemized-table-container">
       <div className="table-header">
-        <h4>Itemized Purchases</h4>
-        <button className="btn btn-primary add-row" onClick={addItemRow}>
-          New Row
-        </button>
+        <h4>Itemized</h4>
       </div>
-      <div className="table-container">
-        {data.length > 0 ? (
-          data.map((row, index) => (
-            <TableRows
-              key={index}
-              row={row}
-              index={index}
-              handleChange={handleChange}
-              deleteTableRows={(evnt) => deleteItemRow(evnt, index)}
-            />
-          ))
-        ) : (
-          <div className="no-data">No data available</div>
-        )}
+      <div className="itemized-table">
+        <div className="itemized-table-header">
+          <span>Item</span>
+          <span>Date</span>
+          <span>Sub Total</span>
+          <span>City Tax</span>
+          <span>Tax Percent</span>
+          <span>Total</span>
+          <span>Source</span>
+          <span>Shipped From</span>
+          <span>Shipped To</span>
+          <span>Billable</span>
+          <span></span>
+        </div>
+        <div className="table-container">
+          {data.length > 0 ? (
+            data.map((row, index) => (
+              <TableRows
+                key={index}
+                row={row}
+                index={index}
+                handleChange={handleChange}
+                deleteTableRows={(evnt) => deleteItemRow(evnt, index)}
+              />
+            ))
+          ) : (
+            <div className="no-data">No data available</div>
+          )}
+        </div>
       </div>
+      <button className="btn btn-primary add-row" onClick={addItemRow}>
+        New Row
+      </button>
     </div>
   );
 }

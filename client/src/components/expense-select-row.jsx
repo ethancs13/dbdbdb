@@ -5,89 +5,77 @@ const ExpenseSelectRow = ({ index, data, deleteRow, handleChange, expenseTypes }
   const { type, billable, porCC, amount, comment, customer } = data;
 
   useEffect(() => {
-    if(billable === "No") {
-      handleChange(index, null, 'customer')
-    } else if (type !== 'Other') {
-      handleChange(index, null, 'comment')
+    if (billable === "No") {
+      handleChange(index, null, "customer");
+    } else if (type !== "Other") {
+      handleChange(index, null, "comment");
     }
-  }, [billable, type])
+  }, [billable, type, index, handleChange]);
 
   return (
     <div className="expense-row">
-      <div className="input-container">
-        <label>Type</label>
-        <select
-          className="expense-select"
-          name="type"
-          value={type}
-          onChange={(event) => handleChange(index, event)}
-        >
-          {expenseTypes.map((expenseType) => (
-            <option key={expenseType.ID} value={expenseType.TYPE}>
-              {expenseType.TYPE}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="input-container">
-        <label>Billable</label>
-        <select
-          className="expense-select"
-          name="billable"
-          value={billable}
-          onChange={(event) => handleChange(index, event)}
-        >
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
-      <div className="input-container">
-        <label>PorCC</label>
-        <select
-          className="expense-select"
-          name="porCC"
-          value={porCC}
-          onChange={(event) => handleChange(index, event)}
-        >
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
-      <div className="input-container">
-        <label>Amount</label>
+      <select
+        className="expense-select"
+        name="type"
+        value={type}
+        onChange={(event) => handleChange(index, event)}
+      >
+        {expenseTypes.map((expenseType) => (
+          <option key={expenseType.ID} value={expenseType.TYPE}>
+            {expenseType.TYPE}
+          </option>
+        ))}
+      </select>
+
+      <select
+        className="expense-select"
+        name="billable"
+        value={billable}
+        onChange={(event) => handleChange(index, event)}
+      >
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <select
+        className="expense-select"
+        name="porCC"
+        value={porCC}
+        onChange={(event) => handleChange(index, event)}
+      >
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <input
+        className="expense-input"
+        type="text"
+        name="amount"
+        value={amount}
+        onChange={(event) => handleChange(index, event)}
+      />
+
+      {billable === "Yes" && (
         <input
           className="expense-input"
           type="text"
-          name="amount"
-          value={amount}
+          name="customer"
+          value={customer}
+          maxLength="30"
           onChange={(event) => handleChange(index, event)}
         />
-      </div>
-      {billable === "Yes" && (
-        <div className="input-container">
-          <label>Customer</label>
-          <input
-            className="expense-input"
-            type="text"
-            name="customer"
-            value={customer}
-            maxLength="30"
-            onChange={(event) => handleChange(index, event)}
-          />
-        </div>
       )}
+
       {type === "Other" && (
-        <div className="input-container">
-          <label>Comment</label>
-          <input
-            className="expense-input"
-            type="text"
-            name="comment"
-            value={comment}
-            onChange={(event) => handleChange(index, event)}
-          />
-        </div>
+        <input
+          className="expense-input"
+          type="text"
+          name="comment"
+          value={comment}
+          onChange={(event) => handleChange(index, event)}
+        />
       )}
+
       <button className="btn expense-delete" onClick={() => deleteRow(index)}>
         <i className="fas fa-trash"></i>
       </button>

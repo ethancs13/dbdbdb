@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/MileageTable.css";
+import "../css/GeneralTable.css";
 import MileageRow from "./mileage-row";
 
 const MileageTable = ({
@@ -18,10 +18,24 @@ const MileageTable = ({
   return (
     <div className="mileage-table-container">
       <div className="table-header">
-        <h4>Mileage Expenses</h4>
-        <button className="btn btn-primary add-row" onClick={addMileageRow}>
-          New Row
-        </button>
+        <h4>Mileage</h4>
+      </div>
+      <div className="itemized-table-header">
+        <div className="input-container">
+          <span>Date</span>
+        </div>
+        <div className="input-container">
+          <span>Purpose</span>
+        </div>
+        <div className="input-container">
+          <span>Miles</span>
+        </div>
+        <div className="input-container">
+          <span>Billable</span>
+        </div>
+        <div className="input-container">
+          <span>Amount</span>
+        </div>
       </div>
       <div className="table-container">
         {data.length > 0 ? (
@@ -38,6 +52,9 @@ const MileageTable = ({
           <div className="no-data">No data available</div>
         )}
       </div>
+      <button className="btn btn-primary add-row" onClick={addMileageRow}>
+        New Row
+      </button>
     </div>
   );
 };
