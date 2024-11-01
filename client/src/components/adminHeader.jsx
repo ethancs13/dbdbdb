@@ -4,14 +4,14 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import "../css/Header.css";
 
-const adminHeader = () => {
+const AdminHeader = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const [profileImage, setProfileImage] = useState(
     localStorage.getItem("customProfileImage") ||
     localStorage.getItem("googleProfileImage") ||
-    "/default-profile.png"
+    ""
   );
 
   const navigate = useNavigate();
@@ -20,12 +20,19 @@ const adminHeader = () => {
     const fetchProfileImage = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_SERVER_END_POINT}/user-profile`
+          `${process.env.REACT_APP_SERVER_END_POINT}/user-profile`,
+          { withCredentials: true }
         );
 
         if (response.data.profileImageUrl) {
           setProfileImage(response.data.profileImageUrl);
           localStorage.setItem("customProfileImage", response.data.profileImageUrl);
+        } else {
+          // If no custom profile image found, fallback to Google profile picture
+          const googleImage = localStorage.getItem("googleProfileImage");
+          if (googleImage) {
+            setProfileImage(googleImage);
+          }
         }
       } catch (error) {
         console.error("Error fetching profile image:", error);
@@ -35,7 +42,7 @@ const adminHeader = () => {
     if (!localStorage.getItem("customProfileImage")) {
       fetchProfileImage();
     }
-  }, [profileImage]);
+  }, []);
 
   useEffect(() => {
     axios.defaults.withCredentials = true;
@@ -47,7 +54,7 @@ const adminHeader = () => {
         setUserEmail(res.data.email);
         setIsAdmin(res.data.status === "rootUser");
 
-        // Prioritize custom profile image if available
+        // Prioritize custom profile image if available, otherwise use Google profile image
         const customImage = localStorage.getItem("customProfileImage");
         if (customImage) {
           setProfileImage(customImage);
@@ -65,8 +72,11 @@ const adminHeader = () => {
   useEffect(() => {
     // Listen for changes to local storage for profile image updates
     const handleStorageChange = (event) => {
-      if (event.key === "customProfileImage") {
-        setProfileImage(event.newValue || localStorage.getItem("googleProfileImage") || "/default-profile.png");
+      if (event.key === "customProfileImage" || event.key === "googleProfileImage") {
+        const customImage = localStorage.getItem("customProfileImage");
+        const googleImage = localStorage.getItem("googleProfileImage");
+
+        setProfileImage(customImage || googleImage || "/default-profile.png");
       }
     };
 
@@ -107,4 +117,4 @@ const adminHeader = () => {
   );
 };
 
-export default adminHeader;
+export default AdminHeader;

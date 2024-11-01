@@ -1,29 +1,80 @@
-.expense_navigation_container a.active button {
-    background-color: #3498db;
-    color: white;
-  }
-  
-  .expense_navigation_container a button {
-    background-color: transparent;
-    color: black;
-    border: solid rgb(49, 134, 212) 1px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding: 10px 10px;
-    cursor: pointer;
-  }
-  
-  .expense_navigation_container a button:hover {
-    background-color: #ddd;
-  }
-  
-  .expense_navigation_container a.active button:hover {
-    background-color: #2980b9;
-  }
+/* Styles for navigation container */
+.expense_navigation_container {
+  display: flex;
+  align-items: center;
+  /* gap: 1.5rem; */
+  /* Adds spacing between each tab */
+  /* padding-bottom: 10px; */
+  position: relative;
+}
 
-  .expense_navigation_container {
-    width: 100%;
-  }
-  .user-navigation-items button{
-    width: 11rem;
-  }
+/* Active tab styling with darker blue underline */
+.expense_navigation_container a.active button {
+  color: #0056a3;
+  /* Darker blue color for the active tab */
+  font-weight: bold;
+  border: none;
+  border-bottom: 1px solid #333;
+  /* Dark gray underline to indicate active */
+  background-color: transparent;
+  white-space: nowrap;
+  border-radius: 0;
+  /* Prevent text from breaking or expanding */
+}
+
+/* Default tab styling */
+.expense_navigation_container a button {
+  background-color: transparent;
+  color: #333;
+  /* Dark grey text for default state */
+  border: none;
+  /* padding: 0.5rem 0; */
+  font-size: 0.9rem;
+  /* Reduced font size */
+  cursor: pointer;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.user-navigation-items {
+  position: relative;
+}
+
+.user-navigation-items::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 30%; /* Adjust this to change how high the line starts */
+  bottom: 30%; /* Adjust this to change how low the line ends */
+  width: 1px;
+  background-color: #ccc; /* Light gray color for the vertical line */
+}
+
+
+/* Remove border from the last tab */
+.expense_navigation_container a:last-child button {
+  border-right: none;
+}
+
+/* Hover effect for non-active tabs */
+.expense_navigation_container a button:hover {
+  color: #0056a3;
+  /* Change text color on hover */
+  /* border-bottom: 1px solid #ddd; */
+  border-radius: 0;
+  /* Light underline on hover */
+}
+
+.user-navigation-items button {
+  /* Remove bottom border if you already have one */
+  box-shadow: none;
+}
+
+.user-navigation-items.active button {
+  box-shadow: inset 0 -2px 0 0 #1f4f82; /* Darker blue shadow under the button */
+}
+
+
+/* Align BackButton to be at the end */
+.expense_navigation_wrapper>.BackButton {
+  align-self: flex-start;
+}
