@@ -7,13 +7,12 @@ const FoodRow = ({ row, index, handleChange, deleteTableRows }) => {
   return (
     <div className="food-row">
       <input
-        type="date"
+        type="text"
         name="date"
-        value={date}
+        value={row.date}
         onChange={(e) => handleChange(index, e)}
         className="food-input"
       />
-
       <input
         type="text"
         name="amount"
