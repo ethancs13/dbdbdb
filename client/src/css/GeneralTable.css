@@ -24,7 +24,8 @@
 .table-header,
 .expense-table-header,
 .food-table-header,
-.itemized-table-header {
+.itemized-table-header,
+.mileage-table-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
