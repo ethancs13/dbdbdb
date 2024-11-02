@@ -3,7 +3,6 @@ import axios from "axios";
 import CalendarWidget from "../components/CalendarWidget";
 import GoogleSignIn from "../components/GoogleSignIn";
 import DatePicker from "react-datepicker"; // Import DatePicker for date selection
-import AdminHeader from "../components/adminHeader";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "../css/adminUsers.css";
 import "react-datepicker/dist/react-datepicker.css";

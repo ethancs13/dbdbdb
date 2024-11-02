@@ -6,7 +6,8 @@
 .table-container,
 .general-table-container,
 .food-table-container,
-.itemized-table-container {
+.itemized-table-container,
+.mielage-table-container {
   width: 100%;
   min-width: 800px; /* Ensures minimum width */
   display: flex;
@@ -24,7 +25,8 @@
 .table-header,
 .expense-table-header,
 .food-table-header,
-.itemized-table-header {
+.itemized-table-header,
+.mileage-table-header {
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -217,6 +217,31 @@ const groupByMonthYear = (data) => {
 // GET Routes
 // -------------------------------------------
 
+app.get("/get-all-expenses", verifyUser, async (req, res) => {
+  try {
+    const [expenses, files, food, items, mileage] = await Promise.all([
+      queryAsync("SELECT * FROM EXPENSES"),
+      queryAsync("SELECT * FROM FILES"),
+      queryAsync("SELECT * FROM FOODEXPENSES"),
+      queryAsync("SELECT * FROM ITEMEXPENSES"),
+      queryAsync("SELECT * FROM MILEAGEEXPENSES"),
+    ]);
+
+    const allExpenses = {
+      expenses,
+      files,
+      food,
+      items,
+      mileage,
+    };
+
+    res.json(allExpenses);
+  } catch (error) {
+    console.error("Error fetching all expenses:", error);
+    res.status(500).send("Error fetching all expenses");
+  }
+});
+
 app.get("/api/user-id", verifyUser, async (req, res) => {
   const query = await pool.query(
     "SELECT ID FROM USERS WHERE EMAIL = ?",
@@ -965,7 +990,18 @@ app.post("/admin/users", async (req, res) => {
 app.post("/admin/expense-types", verifyUser, async (req, res) => {
   const { type } = req.body;
   try {
-    await queryAsync("INSERT INTO EXPENSE_TYPES (type) VALUES (?)", [type]);
+    // Get the highest current order_index
+    const results = await queryAsync(
+      "SELECT MAX(order_index) AS maxIndex FROM EXPENSE_TYPES"
+    );
+    const maxIndex = results[0].maxIndex || 0;
+    const newOrderIndex = maxIndex + 1;
+
+    // Insert the new expense type with the new order_index
+    await queryAsync(
+      "INSERT INTO EXPENSE_TYPES (type, order_index) VALUES (?, ?)",
+      [type, newOrderIndex]
+    );
     res.json({ status: "Success" });
   } catch (error) {
     res.status(500).send("Error adding expense type");

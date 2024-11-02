@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { createContext, useState, useEffect } from "react";
 
-
 const FormContext = createContext();
 
 const FormProvider = ({ children }) => {
@@ -29,6 +28,25 @@ const FormProvider = ({ children }) => {
 
   const [expenseTypes, setExpenseTypes] = useState([]);
 
+  const [allExpenses, setAllExpenses] = useState(null);
+
+  useEffect(() => {
+    const fetchAllExpenses = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_END_POINT}/get-all-expenses`,
+          {
+            withCredentials: true,
+          }
+        );
+        setAllExpenses(response.data);
+      } catch (error) {
+        console.error("Error fetching all expenses:", error);
+      }
+    };
+
+    fetchAllExpenses();
+  }, []);
 
   const addFiles = (files) => {
     setUploadedFiles((prevFiles) => [...prevFiles, ...files]);
@@ -74,7 +92,6 @@ const FormProvider = ({ children }) => {
           }
         );
         setExpenseTypes(response.data);
-        console.log("epense types,", expenseTypes)
       } catch (error) {
         console.error("Error fetching expense types:", error);
       }
@@ -202,7 +219,6 @@ const FormProvider = ({ children }) => {
     };
     setRowsData((prevRows) => [...prevRows, newRow]);
   };
-  
 
   const deleteRow = (index) => {
     setRowsData((prevRows) => prevRows.filter((_, idx) => idx !== index));
@@ -225,6 +241,7 @@ const FormProvider = ({ children }) => {
         foodRowsData,
         mileageTotal,
         uploadedFiles,
+        allExpenses,
         clearFormContext,
         addItemRow,
         deleteItemRow,

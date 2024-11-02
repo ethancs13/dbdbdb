@@ -20,7 +20,7 @@ const MileageTable = ({
       <div className="table-header">
         <h4>Mileage</h4>
       </div>
-      <div className="itemized-table-header">
+      <div className="mileage-table-header">
         <div className="input-container">
           <span>Date</span>
         </div>
