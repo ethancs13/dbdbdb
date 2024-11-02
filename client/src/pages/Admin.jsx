@@ -45,6 +45,21 @@ const Admin = () => {
     fetchMileageRates();
   }, []);
 
+  useEffect(() => {
+    // Listen to localStorage change event to update profile image dynamically
+    const handleStorageChange = () => {
+      const newProfileImage = localStorage.getItem("googleProfileImage");
+      if (newProfileImage) {
+        setProfileImage(newProfileImage);
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
   // Function to handle export data request
   const handleExport = async () => {
     if (!startDate || !endDate) {

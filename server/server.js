@@ -24,9 +24,6 @@ import bodyParser from "body-parser";
 import session from "express-session";
 import { google } from "googleapis";
 import { parse } from "json2csv";
-import { pipeline } from "stream";
-
-const pipelineAsync = promisify(pipeline);
 
 // Load environment variables from .env file
 dotenv.config();
@@ -44,14 +41,6 @@ const logger = winston.createLogger({
     new winston.transports.Console(),
     new winston.transports.File({ filename: "combined.log" }),
   ],
-});
-
-const s3Client = new S3Client({
-  region: process.env.AWS_REGION,
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  },
 });
 
 const CLIENT_ID = process.env.OAUTH_CLIENT_ID;
@@ -581,8 +570,8 @@ app.get("/google-profile", async (req, res) => {
   }
 });
 
-app.get("/user-profile", verifyUser, async (req, res) => {
-  const userId = req.user_ID; // Use the userId from the verified token
+app.get("/user-profile", async (req, res) => {
+  const userId = req.query.userId; // Assuming userId is sent in the query params
 
   try {
     const result = await queryAsync(
@@ -591,7 +580,7 @@ app.get("/user-profile", verifyUser, async (req, res) => {
     );
 
     if (result.length > 0) {
-      const profileImageUrl = result[0].PROFILE_IMG_URL;
+      const profileImageUrl = result[0].profile_image_url;
       res.json({ profileImageUrl });
     } else {
       res.status(404).json({ error: "User not found" });
@@ -1061,6 +1050,14 @@ app.post("/admin/mileage-rates", verifyUser, async (req, res) => {
 
 // File Upload Routes
 // -------------------------------------------
+
+const s3Client = new S3Client({
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
+});
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });

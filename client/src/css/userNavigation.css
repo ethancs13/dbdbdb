@@ -9,6 +9,17 @@
 }
 
 /* Active tab styling with darker blue underline */
+/* Styles for navigation container */
+.expense_navigation_container {
+  display: flex;
+  align-items: center;
+  /* gap: 1.5rem; */
+  /* Adds spacing between each tab */
+  /* padding-bottom: 10px; */
+  position: relative;
+}
+
+/* Active tab styling with darker blue underline */
 .expense_navigation_container a.active button {
   color: #0056a3;
   /* Darker blue color for the active tab */

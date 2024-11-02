@@ -20,37 +20,30 @@ const MileageTable = ({
       <div className="table-header">
         <h4>Mileage</h4>
       </div>
-      <div className="mileage-table-header">
-        <div className="input-container">
+      <div className="mileage-table">
+        <div className="mileage-table-header">
           <span>Date</span>
-        </div>
-        <div className="input-container">
           <span>Purpose</span>
-        </div>
-        <div className="input-container">
           <span>Miles</span>
-        </div>
-        <div className="input-container">
           <span>Billable</span>
-        </div>
-        <div className="input-container">
           <span>Amount</span>
+          <span></span>
         </div>
-      </div>
-      <div className="table-container">
-        {data.length > 0 ? (
-          data.map((row, index) => (
-            <MileageRow
-              key={index}
-              row={row}
-              index={index}
-              handleChange={handleChange}
-              deleteTableRows={(evnt) => deleteMileageRow(evnt, index)}
-            />
-          ))
-        ) : (
-          <div className="no-data">No data available</div>
-        )}
+        <div className="table-container">
+          {data.length > 0 ? (
+            data.map((row, index) => (
+              <MileageRow
+                key={index}
+                row={row}
+                index={index}
+                handleChange={handleChange}
+                deleteTableRows={(evnt) => deleteMileageRow(evnt, index)}
+              />
+            ))
+          ) : (
+            <div className="no-data">No data available</div>
+          )}
+        </div>
       </div>
       <button className="btn btn-primary add-row" onClick={addMileageRow}>
         New Row

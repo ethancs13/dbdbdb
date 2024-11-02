@@ -5,12 +5,13 @@ const ExpenseSelectRow = ({ index, data, deleteRow, handleChange, expenseTypes }
   const { type, billable, porCC, amount, comment, customer } = data;
 
   useEffect(() => {
-    if (billable === "No") {
+    // Only make changes if needed to prevent unnecessary updates
+    if (billable === "No" && customer !== "") {
       handleChange(index, null, "customer");
-    } else if (type !== "Other") {
+    } else if (type !== "Other" && comment !== "") {
       handleChange(index, null, "comment");
     }
-  }, [billable, type, index, handleChange]);
+  }, [billable, type, customer, comment, index, handleChange]);
 
   return (
     <div className="expense-row">
