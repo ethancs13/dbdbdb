@@ -1,0 +1,79 @@
+/* Wrapper for the header component */
+.user-header-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 2rem 2rem;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+  }
+  
+  /* Container for main content in header */
+  .user-header-content {
+    display: flex;
+    align-items: left;
+    gap: 2rem;
+    flex-direction: column;
+  }
+  
+  /* Name section */
+  .user-header-name-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .user-header-label {
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+    text-wrap: nowrap;
+    margin-right: 1rem;
+  }
+  
+  .user-header-name h3 {
+    margin: 0;
+    border: 1px solid #ccc;
+    background-color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 4px;
+  }
+  
+  /* Form styling */
+  .user-header-form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .user-header-month-select,
+  .user-header-year-select {
+    padding: 0.5rem 1.5rem;
+    text-align: left;
+    background-color: #3366cc;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Submit button styling */
+  .user-header-submit-button {
+    padding: 0.4rem 1rem;
+    margin-left: 2rem;
+    background-color: #4CAF50;
+    text-wrap: nowrap;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .user-header-submit-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Logout button alignment */
+  .user-header-wrapper > .LogoutButton {
+    margin-left: auto;
+  }
+  

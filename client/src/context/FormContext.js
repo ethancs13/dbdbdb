@@ -124,7 +124,7 @@ const FormProvider = ({ children }) => {
       cityTax: 0,
       taxPercent: 0,
       total: 0,
-      source: "",
+      retailer: "",
       shippedFrom: "",
       shippedTo: "",
       billable: "No",
