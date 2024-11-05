@@ -9,7 +9,7 @@ const TableRows = ({ row, index, handleChange, deleteTableRows }) => {
     cityTax,
     taxPercent,
     total,
-    source,
+    retailer,
     shippedFrom,
     shippedTo,
     billable,
@@ -67,8 +67,8 @@ const TableRows = ({ row, index, handleChange, deleteTableRows }) => {
 
       <input
         type="text"
-        name="source"
-        value={source}
+        name="retailer"
+        value={retailer}
         className="input"
         onChange={(e) => handleChange(index, e)}
       />

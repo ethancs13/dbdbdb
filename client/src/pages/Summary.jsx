@@ -83,9 +83,9 @@ const Summary = () => {
                   <div className="summary-header">City Tax</div>
                   <div className="summary-header">Tax Percent</div>
                   <div className="summary-header">Total</div>
-                  <div className="summary-header">Source</div>
-                  <div className="summary-header">Shipped From</div>
-                  <div className="summary-header">Shipped To</div>
+                  <div className="summary-header">Retailer</div>
+                  <div className="summary-header">City/State or Internet</div>
+                  <div className="summary-header">City/State Shipped to</div>
                   <div className="summary-header">Billable?</div>
                   <div className="summary-header">PoR CC used?</div>
                 </div>
@@ -98,7 +98,7 @@ const Summary = () => {
                       <div className="w10">{row.cityTax}</div>
                       <div className="w10">{row.taxPercent}</div>
                       <div className="w10">{row.total}</div>
-                      <div className="w10">{row.source}</div>
+                      <div className="w10">{row.retailer}</div>
                       <div className="w10">{row.shippedFrom}</div>
                       <div className="w10">{row.shippedTo}</div>
                       <div className="w10">{row.billable}</div>
