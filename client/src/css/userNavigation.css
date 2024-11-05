@@ -1,55 +1,35 @@
-/* Styles for navigation container */
+/* Wrapper styling */
+.expense_navigation_wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 2rem;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Navigation container styling */
 .expense_navigation_container {
   display: flex;
   align-items: center;
-  /* gap: 1.5rem; */
-  /* Adds spacing between each tab */
-  /* padding-bottom: 10px; */
   position: relative;
 }
 
-/* Active tab styling with darker blue underline */
-/* Styles for navigation container */
-.expense_navigation_container {
-  display: flex;
-  align-items: center;
-  /* gap: 1.5rem; */
-  /* Adds spacing between each tab */
-  /* padding-bottom: 10px; */
-  position: relative;
-}
-
-/* Active tab styling with darker blue underline */
-.expense_navigation_container a.active button {
-  color: #0056a3;
-  /* Darker blue color for the active tab */
-  font-weight: bold;
-  border: none;
-  border-bottom: 1px solid #333;
-  /* Dark gray underline to indicate active */
-  background-color: transparent;
-  white-space: nowrap;
-  border-radius: 0;
-  /* Prevent text from breaking or expanding */
-}
-
-/* Default tab styling */
-.expense_navigation_container a button {
+/* Default and active tab styling */
+.user-navigation-items button {
   background-color: transparent;
   color: #333;
-  /* Dark grey text for default state */
   border: none;
-  /* padding: 0.5rem 0; */
   font-size: 0.9rem;
-  /* Reduced font size */
   cursor: pointer;
   transition: color 0.2s;
   white-space: nowrap;
+  box-shadow: none;
 }
 .user-navigation-items {
   position: relative;
 }
-
 .user-navigation-items::after {
   content: "";
   position: absolute;
@@ -61,65 +41,59 @@
 }
 
 
-/* Remove border from the last tab */
+.user-navigation-items.active button {
+  color: #0056a3;
+  font-weight: bold;
+  border-bottom: 1px solid #333;
+  border-radius: 0;
+}
+
 .expense_navigation_container a:last-child button {
   border-right: none;
 }
 
-/* Hover effect for non-active tabs */
 .expense_navigation_container a button:hover {
   color: #0056a3;
-  /* Change text color on hover */
-  /* border-bottom: 1px solid #ddd; */
-  border-radius: 0;
-  /* Light underline on hover */
-}
-
-.user-navigation-items button {
-  /* Remove bottom border if you already have one */
-  box-shadow: none;
 }
 
 .user-navigation-items.active button {
-  box-shadow: inset 0 -2px 0 0 #1f4f82; /* Darker blue shadow under the button */
+  box-shadow: inset 0 -2px 0 0 #1f4f82;
 }
 
-
-/* Align BackButton to be at the end */
-.expense_navigation_wrapper>.BackButton {
+/* Styles for aligning BackButton */
+.expense_navigation_wrapper > .BackButton {
   align-self: flex-start;
 }
-/* Updated font size for rows to be smaller */
+
+/* Updated font size for rows */
 .expense-row,
 .food-row,
 .item-row,
 .mileage-row {
-  font-size: 0.875rem; /* Reduced to a smaller, readable size */
+  font-size: 0.875rem;
 }
 
-/* Additional styles to ensure text fits properly */
 .expense-row div,
 .food-row div,
 .item-row div,
 .mileage-row div {
-  padding: 5px 0; /* Reduced padding for a more compact view */
-  font-size: 0.875rem; /* Consistent smaller text across the board */
+  padding: 5px 0;
+  font-size: 0.875rem;
 }
 
-/* Adjust the input, select, and text container for a more consistent, smaller look */
+/* Consistent styles for form elements */
 .input,
 .select,
 .food-input,
 .food-select,
 .mileage-input,
 .mileage-select {
-  font-size: 0.875rem; /* Matches smaller text size for consistency */
+  font-size: 0.875rem;
 }
 
-/* Add row button styles updated to match */
 .add-row {
   margin-top: 10px;
   align-self: flex-start;
   padding: 5px 15px;
-  font-size: 0.875rem; /* Consistent font size with table rows */
+  font-size: 0.875rem;
 }

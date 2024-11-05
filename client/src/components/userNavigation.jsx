@@ -8,61 +8,31 @@ const userNavigation = () => {
   const currentPath = location.pathname;
 
   return (
-    <div
-      className="expense_navigation_wrapper"
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "flex-start",
-        justifyContent: "space-between",
-        width: "100%",
-        padding: "0 2rem"
-      }}
-    >
-      <div
-        className="expense_navigation_container"
-      >
+    <div className="expense_navigation_wrapper">
+      <div className="expense_navigation_container">
         <Link to="/" className={currentPath === "/" ? "user-navigation-items active" : "user-navigation-items"}>
           <button>Summary</button>
         </Link>
-        <Link
-          to="/general"
-          className={currentPath === "/general" ? "user-navigation-items active" : "user-navigation-items"}
-        >
+        <Link to="/general" className={currentPath === "/general" ? "user-navigation-items active" : "user-navigation-items"}>
           <button>General</button>
         </Link>
-        <Link
-          to="/food-beverage"
-          className={currentPath === "/food-beverage" ? "user-navigation-items active" : "user-navigation-items"}
-        >
+        <Link to="/food-beverage" className={currentPath === "/food-beverage" ? "user-navigation-items active" : "user-navigation-items"}>
           <button>Food & Beverage</button>
         </Link>
-        <Link
-          to="/mileage"
-          className={currentPath === "/mileage" ? "user-navigation-items active" : "user-navigation-items"}
-        >
+        <Link to="/mileage" className={currentPath === "/mileage" ? "user-navigation-items active" : "user-navigation-items"}>
           <button>Mileage</button>
         </Link>
-        <Link
-          to="/itemized-purchases"
-          className={currentPath === "/itemized-purchases" ? "user-navigation-items active" : "user-navigation-items"}
-        >
+        <Link to="/itemized-purchases" className={currentPath === "/itemized-purchases" ? "user-navigation-items active" : "user-navigation-items"}>
           <button>Itemized Purchases</button>
         </Link>
-        <Link
-          to="/upload-files"
-          className={currentPath === "/upload-files" ? "user-navigation-items active" : "user-navigation-items"}
-        >
+        <Link to="/upload-files" className={currentPath === "/upload-files" ? "user-navigation-items active" : "user-navigation-items"}>
           <button>Upload Files</button>
         </Link>
-        <Link
-          to="/history"
-          className={currentPath === "/history" ? "user-navigation-items active" : "user-navigation-items"}
-        >
+        <Link to="/history" className={currentPath === "/history" ? "user-navigation-items active" : "user-navigation-items"}>
           <button>History</button>
         </Link>
       </div>
-      <BackButton />
+      {/* <BackButton /> */}
     </div>
   );
 };
