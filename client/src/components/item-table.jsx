@@ -23,9 +23,9 @@ function AddDeleteTableRows({ data, addItemRow, deleteItemRow, updateItemRow }) 
           <span>City Tax</span>
           <span>Tax Percent</span>
           <span>Total</span>
-          <span>Source</span>
-          <span>Shipped From</span>
-          <span>Shipped To</span>
+          <span>Retailer</span>
+          <span>City/State or Internet</span>
+          <span>City/State Shipped to</span>
           <span>Billable</span>
           <span></span>
         </div>
