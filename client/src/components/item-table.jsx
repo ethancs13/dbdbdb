@@ -21,10 +21,10 @@ function AddDeleteTableRows({ data, addItemRow, deleteItemRow, updateItemRow }) 
           <span>Date</span>
           <span>Sub Total</span>
           <span>City Tax</span>
-          <span>Tax Percent</span>
+          <span>Tax %</span>
           <span>Total</span>
           <span>Retailer</span>
-          <span>City/State or Internet</span>
+          <span>City/State/Internet</span>
           <span>City/State Shipped to</span>
           <span>Billable</span>
           <span></span>

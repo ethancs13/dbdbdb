@@ -53,7 +53,7 @@
   background-color: transparent;
   border: none;
   color: red;
-  align-self: flex-end;
+  align-self: center;
   width: 3rem;
   padding: 2px;
 }

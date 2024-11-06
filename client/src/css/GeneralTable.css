@@ -62,11 +62,12 @@
 .itemized-table-header,
 .item-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr auto; /* Adjusted for item-specific data fields */
-  gap: 10px;
+  grid-template-columns: 1fr 1fr 0.5fr 0.5fr 0.5fr 0.5fr 1fr 1fr 1fr 0.5fr 1fr auto; /* Adjusted for item-specific data fields */
+  gap: 5px;
   align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
+  width: 95%;
 }
 
 /* Input and select styles for all tables */
@@ -106,7 +107,7 @@
 
 /* Itemized Table Page: Specific input spacing adjustments */
 .itemized-table-container .input-container {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 /* Header spacing for readability */
@@ -116,8 +117,8 @@
 
 /* Additional Specific Adjustments */
 .food-table-header span,
-.expense-table-header span,
-.itemized-table-header span {
+.expense-table-header span {
+  text-wrap: nowrap;
   margin-right: 10px;
   font-weight: bold;
 }
