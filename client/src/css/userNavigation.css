@@ -1,5 +1,5 @@
 /* Wrapper styling */
-.expense_navigation_wrapper {
+.user_navigation_wrapper {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -10,12 +10,16 @@
 }
 
 /* Navigation container styling */
-.expense_navigation_container {
+.user_navigation_container {
   display: flex;
   align-items: center;
   position: relative;
+  justify-content: space-between;
+  width:100%
 }
+.user-navigation-left {
 
+}
 /* Default and active tab styling */
 .user-navigation-items button {
   background-color: transparent;
@@ -26,6 +30,7 @@
   transition: color 0.2s;
   white-space: nowrap;
   box-shadow: none;
+  width: 12rem;
 }
 .user-navigation-items {
   position: relative;
@@ -42,7 +47,7 @@
 
 
 .user-navigation-items.active button {
-  color: #0056a3;
+  color: #023e74;
   font-weight: bold;
   border-bottom: 1px solid #333;
   border-radius: 0;
@@ -53,11 +58,7 @@
 }
 
 .expense_navigation_container a button:hover {
-  color: #0056a3;
-}
-
-.user-navigation-items.active button {
-  box-shadow: inset 0 -2px 0 0 #1f4f82;
+  background-color: #dcdce4;
 }
 
 /* Styles for aligning BackButton */
