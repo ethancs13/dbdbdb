@@ -1,48 +1,17 @@
 import React, { useState, useEffect } from "react";
 import LogoutButton from "./LogoutButton";
+import GoogleSignIn from "./GoogleSignIn";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import "../css/Header.css";
 
-const AdminHeader = () => {
+const adminHeader = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
-  const [profileImage, setProfileImage] = useState(
-    localStorage.getItem("customProfileImage") ||
-    localStorage.getItem("googleProfileImage") ||
-    ""
-  );
+  const [profileImage, setProfileImage] = useState("");
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchProfileImage = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_SERVER_END_POINT}/user-profile`,
-          { withCredentials: true }
-        );
-
-        if (response.data.profileImageUrl) {
-          setProfileImage(response.data.profileImageUrl);
-          localStorage.setItem("customProfileImage", response.data.profileImageUrl);
-        } else {
-          // If no custom profile image found, fallback to Google profile picture
-          const googleImage = localStorage.getItem("googleProfileImage");
-          if (googleImage) {
-            setProfileImage(googleImage);
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching profile image:", error);
-      }
-    };
-
-    if (!localStorage.getItem("customProfileImage")) {
-      fetchProfileImage();
-    }
-  }, []);
 
   useEffect(() => {
     axios.defaults.withCredentials = true;
@@ -53,14 +22,6 @@ const AdminHeader = () => {
         setIsAuthenticated(true);
         setUserEmail(res.data.email);
         setIsAdmin(res.data.status === "rootUser");
-
-        // Prioritize custom profile image if available, otherwise use Google profile image
-        const customImage = localStorage.getItem("customProfileImage");
-        if (customImage) {
-          setProfileImage(customImage);
-        } else {
-          setProfileImage(localStorage.getItem("googleProfileImage") || "/default-profile.png");
-        }
       } else {
         setIsAuthenticated(false);
         setIsAdmin(false);
@@ -69,23 +30,11 @@ const AdminHeader = () => {
     });
   }, [navigate]);
 
-  useEffect(() => {
-    // Listen for changes to local storage for profile image updates
-    const handleStorageChange = (event) => {
-      if (event.key === "customProfileImage" || event.key === "googleProfileImage") {
-        const customImage = localStorage.getItem("customProfileImage");
-        const googleImage = localStorage.getItem("googleProfileImage");
-
-        setProfileImage(customImage || googleImage || "/default-profile.png");
-      }
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
+  const handleGoogleSignIn = (data) => {
+    if (data.payload) {
+      setProfileImage(data.payload.picture);
+    }
+  };
 
   return (
     <div className="header-wrapper">
@@ -96,20 +45,13 @@ const AdminHeader = () => {
       </div>
       <div className="header-right">
         <LogoutButton />
-        {isAuthenticated && profileImage && (
-          <div className="user-profile-icon">
-            <Link to="/profile">
-              <img
-                src={profileImage}
-                alt="Profile"
-                style={{
-                  borderRadius: "50%",
-                  width: "40px",
-                  height: "40px",
-                  cursor: "pointer",
-                }}
-              />
-            </Link>
+        {isAdmin && (
+          <div className="admin-profile">
+            {profileImage ? (
+              <img src={profileImage} alt="Google Profile" className="profile-image" />
+            ) : (
+              <GoogleSignIn onSignIn={handleGoogleSignIn} />
+            )}
           </div>
         )}
       </div>
@@ -117,4 +59,4 @@ const AdminHeader = () => {
   );
 };
 
-export default AdminHeader;
+export default adminHeader;
