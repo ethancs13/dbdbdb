@@ -19,7 +19,7 @@ const HistoryProvider = ({ children }) => {
       // Destructure email and other data you don't want to group by month and year
       const { email, ...rest } = response.data;
 
-      console.log("Fetched History Data:", rest); // Debugging information without email
+      // console.log("Fetched History Data:", rest); // Debugging information without email
 
       setHistoryData(rest); // Only set the data you need
     } catch (error) {

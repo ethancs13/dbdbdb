@@ -42,7 +42,7 @@ function App() {
 
 function AuthConsumer() {
   const { isAuthenticated, userRole } = useAuth();
-  console.log(userRole);
+  // console.log(userRole);
 
   if (!isAuthenticated) {
     return (
