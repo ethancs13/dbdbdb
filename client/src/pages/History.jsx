@@ -52,7 +52,7 @@ const History = () => {
     e.preventDefault();
     const date = new Date(monthYear);
     const yyyymm = date.getFullYear() + "-";
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const month = (date.getMonth()).toString().padStart(2, "0");
     const yyyymmFormatted = yyyymm + month;
 
     console.log("Formatted Month-Year:", yyyymmFormatted);
