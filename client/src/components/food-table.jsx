@@ -1,6 +1,5 @@
 import React from "react";
 import FoodRow from "./food-row";
-import "../css/FoodTable.css";
 
 const FoodTable = ({ data, addFoodRow, deleteFoodRow, updateFoodRow }) => {
   const handleChange = (index, evnt) => {
@@ -25,6 +24,7 @@ const FoodTable = ({ data, addFoodRow, deleteFoodRow, updateFoodRow }) => {
           <span>Purpose</span>
           <span>Billable</span>
           <span>PorCC</span>
+          <span></span>
         </div>
         <div className="table-container">
           {data.length > 0 ? (

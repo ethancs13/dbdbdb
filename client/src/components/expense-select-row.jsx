@@ -15,71 +15,84 @@ const ExpenseSelectRow = ({ index, data, deleteRow, handleChange, expenseTypes }
 
   return (
     <div className="expense-row">
-      <select
-        className="expense-select"
-        name="type"
-        value={type}
-        onChange={(event) => handleChange(index, event)}
-      >
-        {expenseTypes.map((expenseType) => (
-          <option key={expenseType.ID} value={expenseType.TYPE}>
-            {expenseType.TYPE}
-          </option>
-        ))}
-      </select>
+      <div className="input-container">
+        <select
+          className="expense-select"
+          name="type"
+          value={type}
+          onChange={(event) => handleChange(index, event)}
+        >
+          {expenseTypes.map((expenseType) => (
+            <option key={expenseType.ID} value={expenseType.TYPE}>
+              {expenseType.TYPE}
+            </option>
+          ))}
+        </select>
+      </div>
 
-      <select
-        className="expense-select"
-        name="billable"
-        value={billable}
-        onChange={(event) => handleChange(index, event)}
-      >
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
-
-      <select
-        className="expense-select"
-        name="porCC"
-        value={porCC}
-        onChange={(event) => handleChange(index, event)}
-      >
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
-
-      <input
-        className="expense-input"
-        type="text"
-        name="amount"
-        value={amount}
-        onChange={(event) => handleChange(index, event)}
-      />
-
+      <div className="input-container">
+        <select
+          className="expense-select"
+          name="billable"
+          value={billable}
+          onChange={(event) => handleChange(index, event)}
+        >
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div className="input-container">
+        {" "}
+        <select
+          className="expense-select"
+          name="porCC"
+          value={porCC}
+          onChange={(event) => handleChange(index, event)}
+        >
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div className="input-container">
+        {" "}
+        <input
+          className="expense-input"
+          type="text"
+          name="amount"
+          value={amount}
+          onChange={(event) => handleChange(index, event)}
+        />
+      </div>
       {billable === "Yes" && (
-        <input
-          className="expense-input"
-          type="text"
-          name="customer"
-          value={customer}
-          maxLength="30"
-          onChange={(event) => handleChange(index, event)}
-        />
+        <div className="input-container">
+          {" "}
+          <input
+            className="expense-input"
+            type="text"
+            name="customer"
+            value={customer}
+            maxLength="30"
+            onChange={(event) => handleChange(index, event)}
+          />
+        </div>
       )}
-
       {type === "Other" && (
-        <input
-          className="expense-input"
-          type="text"
-          name="comment"
-          value={comment}
-          onChange={(event) => handleChange(index, event)}
-        />
+        <div className="input-container">
+          <input
+            className="expense-input"
+            type="text"
+            name="comment"
+            value={comment}
+            onChange={(event) => handleChange(index, event)}
+          />
+        </div>
       )}
-
-      <button className="btn expense-delete" onClick={() => deleteRow(index)}>
-        <i className="fas fa-trash"></i>
-      </button>
+      <div className="input-container">
+        {" "}
+        <button className="btn expense-delete" onClick={() => deleteRow(index)}>
+          <i className="fas fa-trash"></i>
+        </button>
+      </div>
     </div>
   );
 };

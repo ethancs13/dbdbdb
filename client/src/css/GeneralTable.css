@@ -1,21 +1,14 @@
-/* General table styles */
-
+/* Import common styles */
 @import "./Common.css";
 
 /* Container styles for all tables */
 .table-container,
+.expense-table-container,
 .general-table-container,
 .food-table-container,
 .itemized-table-container,
-.mielage-table-container {
+.mileage-table-container {
   width: 100%;
-  min-width: 800px; /* Ensures minimum width */
-  display: flex;
-  flex-direction: column;
-}
-.expense-select-container {
-  width: 100%;
-  margin: 20px 2rem;
   min-width: 800px; /* Ensures minimum width */
   display: flex;
   flex-direction: column;
@@ -33,41 +26,47 @@
   border-bottom: 2px solid #007bff;
   padding: 10px 0;
   font-weight: bold;
-  text-align: left;
+  text-align: center;
+  font-size: smaller;
+  text-wrap: nowrap;
 }
 
-/* Expense Select Page Specific Styles */
+/* Specific table styles */
 .expense-table-header,
 .expense-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr auto; /* Adjust columns for better spacing */
-  gap: 10px;
+  grid-template-columns: repeat(4, 1fr) 0.5fr auto;
   align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
 }
 
-/* Food Table Page Specific Styles */
 .food-table-header,
 .food-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr auto; /* Adjusted for food-specific data fields */
-  gap: 15px;
+  grid-template-columns: repeat(9, 1fr) auto;
   align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
 }
 
-/* Itemized Table Page Specific Styles */
 .itemized-table-header,
 .item-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 0.5fr 0.5fr 0.5fr 0.5fr 1fr 1fr 1fr 0.5fr 1fr auto; /* Adjusted for item-specific data fields */
-  gap: 5px;
+  grid-template-columns: repeat(2, 1fr) repeat(4, 0.5fr) repeat(3, 1fr) 0.5fr 0.5fr auto;
   align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
-  width: 95%;
+}
+
+/* Mileage table styles */
+.mileage-table-header,
+.mileage-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr auto;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
 }
 
 /* Input and select styles for all tables */
@@ -75,7 +74,9 @@
 .input,
 .select,
 .food-input,
-.food-select {
+.food-select,
+.mileage-input,
+.mileage-select {
   width: 100%;
 }
 
@@ -86,6 +87,18 @@
   padding: 5px 10px;
 }
 
+/* Header spacing for readability */
+.table-header h4,
+.itemized-table-header span,
+.food-table-header span,
+.expense-table-header span,
+.mileage-table-header span {
+  text-wrap: nowrap;
+  margin-right: 10px;
+  font-weight: bold;
+  border-right: solid 1px #ccc;
+}
+
 /* No data message styles */
 .no-data {
   padding: 20px;
@@ -93,55 +106,30 @@
   text-align: center;
 }
 
-/* Specific Spacing Adjustments */
-
-/* Expense Select Page: Ensure better alignment */
-.expense-select-container .input-container {
-  margin-right: 10px;
-}
-
-/* Food Table Page: Specific input spacing adjustments */
-.food-table-container .input-container {
-  margin-right: 15px; /* Slightly larger margin for more spacing */
-}
-
-/* Itemized Table Page: Specific input spacing adjustments */
-.itemized-table-container .input-container {
-  margin-right: 5px;
-}
-
-/* Header spacing for readability */
-.table-header h4 {
-  margin: 0;
-}
-
-/* Additional Specific Adjustments */
-.food-table-header span,
-.expense-table-header span {
-  text-wrap: nowrap;
-  margin-right: 10px;
-  font-weight: bold;
-}
-/* Mileage Table Specific Styles */
-.mileage-table-container {
+/* Food table container styles */
+.food-table-container,
+.expense-table-container,
+.general-table-container,
+.mileage-table-container,
+.itemized-table-container {
   width: 100%;
+  padding: 20px 2rem;
   min-width: 800px;
-  display: flex;
-  flex-direction: column;
-  margin: 20px 2rem;
 }
 
-.mileage-table-header,
-.mileage-row {
+/* Food row styles */
+.food-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr auto; /* Adjusted columns to align headers */
-  gap: 15px;
+  grid-template-columns: repeat(9, 1fr) auto;
+  gap: 9px;
   align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
 }
 
-.mileage-input,
-.mileage-select {
+/* Itemized table container styles */
+.itemized-table-container {
   width: 100%;
+  padding: 20px 2rem;
+  min-width: 800px; /* Ensures minimum width */
 }

@@ -38,7 +38,7 @@ const ExpenseSelect = () => {
   };
 
   return (
-    <div className="expense-select-container">
+    <div className="expense-table-container">
       <div className="table-header">
         <h4>Expenses</h4>
       </div>

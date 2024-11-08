@@ -1,5 +1,4 @@
 import React from "react";
-import "../css/MileageTable.css";
 
 const MileageRow = ({ row, index, handleChange, deleteTableRows }) => {
   const { date, purpose, miles, billable, amount } = row;
@@ -53,9 +52,11 @@ const MileageRow = ({ row, index, handleChange, deleteTableRows }) => {
           onChange={(e) => handleChange(index, e)}
         />
       </div>
-      <button className="btn expense-delete" onClick={(e) => deleteTableRows(e, index)}>
-        <i className="fas fa-trash"></i>
-      </button>
+      <div className="input-container">
+        <button className="btn expense-delete" onClick={(e) => deleteTableRows(e, index)}>
+          <i className="fas fa-trash"></i>
+        </button>
+      </div>
     </div>
   );
 };

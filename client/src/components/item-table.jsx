@@ -1,6 +1,5 @@
 import React from "react";
 import TableRows from "./item-row";
-import "../css/Itemized.css";
 
 function AddDeleteTableRows({ data, addItemRow, deleteItemRow, updateItemRow }) {
   const handleChange = (index, evnt) => {
@@ -17,15 +16,15 @@ function AddDeleteTableRows({ data, addItemRow, deleteItemRow, updateItemRow }) 
       </div>
       <div className="itemized-table">
         <div className="itemized-table-header">
-          <span>Item</span>
           <span>Date</span>
+          <span>Item</span>
           <span>Sub Total</span>
           <span>City Tax</span>
           <span>Tax %</span>
           <span>Total</span>
           <span>Retailer</span>
           <span>City/State/Internet</span>
-          <span>City/State Shipped to</span>
+          <span>City/State Shipped</span>
           <span>Billable</span>
           <span></span>
         </div>

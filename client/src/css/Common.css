@@ -7,6 +7,8 @@
   width: 100%; /* Ensures full width */
   box-sizing: border-box; /* Include padding and border in width calculation */
 }
+
+/* Main content styling */
 .main-content {
   display: flex;
   align-items: flex-start;
@@ -14,6 +16,7 @@
   width: 100%;
 }
 
+/* Table header and row styles */
 .table-header-row,
 .item-row,
 .expense-row,
@@ -26,6 +29,7 @@
   border-bottom: 1px solid #ccc;
 }
 
+/* Input and select styles for tables */
 .table-header-cell,
 .item-input,
 .item-select,
@@ -42,11 +46,14 @@
   width: auto;
 }
 
+/* No data message styles */
 .no-data {
   text-align: center;
   padding: 20px;
   color: #888;
 }
+
+/* Delete button styles */
 .expense-delete {
   cursor: pointer;
   font-size: 1.2em;
@@ -57,10 +64,12 @@
   width: 3rem;
   padding: 2px;
 }
+
 .btn-primary.expense-delete:hover {
   color: darkred;
 }
 
+/* Amount input container styling */
 .amount-input-container {
   width: 6rem;
 }
