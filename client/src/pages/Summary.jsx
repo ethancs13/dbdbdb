@@ -92,10 +92,10 @@ const Summary = () => {
                   {categories[category].expenses.map((expense, index) => (
                     <div className="summary-box-item" key={index}>
                       <div className="summary-box-item-row">
-                        <div className="w20">{expense.type}</div>
+                        <div className="w20">{expense.type || expense.item || expense.title || expense.purpose}</div>
                         <div className="w20">{expense.billable}</div>
                         <div className="w20">{expense.porCC}</div>
-                        <div className="w20">{expense.amount}</div>
+                        <div className="w20">{expense.amount || 0}</div>
                       </div>
                     </div>
                   ))}
