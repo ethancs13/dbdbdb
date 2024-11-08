@@ -35,7 +35,7 @@
 .expense-table-header,
 .expense-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) 0.5fr auto;
+  grid-template-columns: repeat(6, 1fr) 0.5fr auto;
   align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
@@ -88,7 +88,6 @@
 }
 
 /* Header spacing for readability */
-.table-header h4,
 .itemized-table-header span,
 .food-table-header span,
 .expense-table-header span,
@@ -97,6 +96,11 @@
   margin-right: 10px;
   font-weight: bold;
   border-right: solid 1px #ccc;
+}
+.table-header h4 {
+  text-wrap: nowrap;
+  margin-right: 10px;
+  font-weight: bold;
 }
 
 /* No data message styles */

@@ -570,26 +570,26 @@ app.get("/google-profile", async (req, res) => {
   }
 });
 
-app.get("/user-profile", async (req, res) => {
-  const userId = req.query.userId; // Assuming userId is sent in the query params
+// app.get("/user-profile", async (req, res) => {
+//   const userId = req.query.userId; // Assuming userId is sent in the query params
 
-  try {
-    const result = await queryAsync(
-      "SELECT PROFILE_IMG_URL FROM USERS WHERE ID = ?",
-      [userId]
-    );
+//   try {
+//     const result = await queryAsync(
+//       "SELECT PROFILE_IMG_URL FROM USERS WHERE ID = ?",
+//       [userId]
+//     );
 
-    if (result.length > 0) {
-      const profileImageUrl = result[0].profile_image_url;
-      res.json({ profileImageUrl });
-    } else {
-      res.status(404).json({ error: "User not found" });
-    }
-  } catch (error) {
-    console.error("Error fetching user profile:", error);
-    res.status(500).json({ error: "Failed to fetch user profile" });
-  }
-});
+//     if (result.length > 0) {
+//       const profileImageUrl = result[0].profile_image_url;
+//       res.json({ profileImageUrl });
+//     } else {
+//       res.status(404).json({ error: "User not found" });
+//     }
+//   } catch (error) {
+//     console.error("Error fetching user profile:", error);
+//     res.status(500).json({ error: "Failed to fetch user profile" });
+//   }
+// });
 
 app.get("/download-excel", async (req, res) => {
   const { startDate, endDate } = req.query;
@@ -1062,94 +1062,144 @@ const s3Client = new S3Client({
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-app.post(
-  "/upload",
-  upload.array("uploadedFiles"),
-  verifyUser,
-  async (req, res) => {
-    if (!req.body.email) {
-      return res.json({ status: "Please log in first." });
-    }
-
-    const user_ID = req.user_ID;
-    const checkUserQuery = "SELECT * FROM USERS WHERE ID = ?";
-
-    try {
-      const userResult = await queryAsync(checkUserQuery, [user_ID]);
-      if (!userResult.length) {
-        return res.status(404).json({ status: "User not found." });
-      }
-
-      // Parsing the JSON data from the request body
-      const rowsData = JSON.parse(req.body.rowsData);
-      const foodData = JSON.parse(req.body.foodRowsData);
-      const mileageData = JSON.parse(req.body.mileageRowsData);
-      const itemData = JSON.parse(req.body.itemRowsData);
-      const monthData = req.body.month;
-      const filesData = req.files || [];
-
-      // Process and insert rows data
-      for (const row of rowsData) {
-        const { type, billable, porCC, amount, comment } = row;
-        const sanitizedAmount = parseFloat(amount) || 0;
-
-        // Fetch the ID from EXPENSE_TYPES where TYPE matches
-        const expenseTypeResult = await queryAsync(
-          "SELECT ID FROM EXPENSE_TYPES WHERE TYPE = ?",
-          [type]
-        );
-
-        if (!expenseTypeResult.length) {
-          return res.status(400).json({ status: "Invalid expense type." });
-        }
-
-        const typeId = expenseTypeResult[0].ID;
-
-        await queryAsync(
-          "INSERT INTO EXPENSES (user_ID, type, billable, porCC, amount, comment, month) VALUES (?, ?, ?, ?, ?, ?, ?)",
-          [
-            user_ID,
-            typeId,
-            billable,
-            porCC,
-            sanitizedAmount,
-            comment,
-            monthData,
-          ]
-        );
-      }
-
-      // Handling file uploads to AWS S3 and saving file paths in the database
-      for (const file of filesData) {
-        const uniqueFileName = `${file.originalname}-${Date.now().toString()}`;
-        const uploadParams = {
-          Bucket: process.env.AWS_S3_BUCKET,
-          Key: `files/${uniqueFileName}`,
-          Body: file.buffer,
-          ACL: "public-read",
-        };
-
-        const parallelUploads3 = new Upload({
-          client: s3Client,
-          params: uploadParams,
-        });
-
-        try {
-          await parallelUploads3.done();
-          console.log(`Uploaded file: ${uniqueFileName}`);
-        } catch (error) {
-          console.error(`Error uploading file ${uniqueFileName}:`, error);
-        }
-      }
-
-      // Return success status
-      res.json({ status: "Success" });
-    } catch (error) {
-      console.error("Error during file upload:", error);
-      res.status(500).json({ status: "Error", error: "Database error" });
-    }
+app.post("/upload", upload.array("uploadedFiles"), verifyUser, async (req, res) => {
+  if (!req.body.email) {
+    return res.json({ status: "Please log in first." });
   }
-);
+
+  const user_ID = req.user_ID;
+  const checkUserQuery = "SELECT * FROM USERS WHERE ID = ?";
+
+  try {
+    const userResult = await queryAsync(checkUserQuery, [user_ID]);
+    if (!userResult.length) {
+      return res.status(404).json({ status: "User not found." });
+    }
+
+    // Parsing the JSON data from the request body
+    const rowsData = JSON.parse(req.body.rowsData);
+    const foodData = JSON.parse(req.body.foodRowsData);
+    const mileageData = JSON.parse(req.body.mileageRowsData);
+    const itemData = JSON.parse(req.body.itemRowsData);
+    const monthData = req.body.month;
+    const filesData = req.files || [];
+
+    // Process and insert general expenses data
+    for (const row of rowsData) {
+      const { type, billable, porCC, amount, comment } = row;
+      const sanitizedAmount = parseFloat(amount) || 0;
+
+      // Fetch the ID from EXPENSE_TYPES where TYPE matches
+      const expenseTypeResult = await queryAsync("SELECT ID FROM EXPENSE_TYPES WHERE TYPE = ?", [type]);
+
+      if (!expenseTypeResult.length) {
+        return res.status(400).json({ status: "Invalid expense type." });
+      }
+
+      const typeId = expenseTypeResult[0].ID;
+
+      await queryAsync(
+        "INSERT INTO EXPENSES (USER_ID, TYPE, BILLABLE, PORCC, AMOUNT, COMMENT, MONTH) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        [user_ID, typeId, billable, porCC || "N/A", sanitizedAmount, comment, monthData]
+      );
+    }
+
+    // Process and insert food expenses data
+    for (const food of foodData) {
+      const { date, amount, location, persons, type, purpose, billable, porCC } = food;
+      const sanitizedAmount = parseFloat(amount) || 0;
+
+      await queryAsync(
+        "INSERT INTO FOODEXPENSES (USER_ID, DATE, AMOUNT, LOCATION, PERSONS, TITLE, PURPOSE, BILLABLE, PORCC, MONTH) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        [user_ID, date, sanitizedAmount, location, persons, type, purpose, billable, porCC || "N/A", monthData]
+      );
+    }
+
+    // Process and insert mileage expenses data
+    for (const mileage of mileageData) {
+      const { date, purpose, miles, billable, amount } = mileage;
+      const sanitizedAmount = parseFloat(amount) || 0;
+
+      await queryAsync(
+        "INSERT INTO MILEAGEEXPENSES (USER_ID, DATE, PURPOSE, MILES, BILLABLE, AMOUNT, MONTH) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        [user_ID, date, purpose, miles, billable, sanitizedAmount, monthData]
+      );
+    }
+
+    // Process and insert itemized expenses data
+    for (const item of itemData) {
+      const {
+        date,
+        item: itemName,
+        subtotal,
+        cityTax,
+        taxPercent,
+        total,
+        retailer,
+        shippedFrom,
+        shippedTo,
+        billable,
+      } = item;
+
+      const sanitizedSubtotal = parseFloat(subtotal) || 0;
+      const sanitizedTotal = parseFloat(total) || 0;
+
+      await queryAsync(
+        "INSERT INTO ITEMEXPENSES (USER_ID, DATE, ITEM, SUBTOTAL, CITYTAX, TAXPERCENT, TOTAL, RETAILER, SHIPPEDFROM, SHIPPEDTO, BILLABLE, MONTH) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        [
+          user_ID,
+          date,
+          itemName,
+          sanitizedSubtotal,
+          cityTax,
+          taxPercent,
+          sanitizedTotal,
+          retailer,
+          shippedFrom,
+          shippedTo,
+          billable,
+          monthData,
+        ]
+      );
+    }
+
+    // Handling file uploads to AWS S3 and saving file paths in the database
+    for (const file of filesData) {
+      const uniqueFileName = `${file.originalname}-${Date.now().toString()}`;
+      const uploadParams = {
+        Bucket: process.env.AWS_S3_BUCKET,
+        Key: `files/${uniqueFileName}`,
+        Body: file.buffer,
+        ACL: "public-read",
+      };
+
+      const parallelUploads3 = new Upload({
+        client: s3Client,
+        params: uploadParams,
+      });
+
+      try {
+        await parallelUploads3.done();
+        console.log(`Uploaded file: ${uniqueFileName}`);
+
+        // Insert file details into FILES table
+        await queryAsync(
+          "INSERT INTO FILES (USER_ID, NAME, PATH, MONTH) VALUES (?, ?, ?, ?)",
+          [user_ID, file.originalname, `files/${uniqueFileName}`, monthData]
+        );
+      } catch (error) {
+        console.error(`Error uploading file ${uniqueFileName}:`, error);
+      }
+    }
+
+    // Return success status
+    res.json({ status: "Success" });
+  } catch (error) {
+    console.error("Error during file upload:", error);
+    res.status(500).json({ status: "Error", error: "Database error" });
+  }
+});
+
 
 app.post("/verify-token", async (req, res) => {
   const { idToken } = req.body;

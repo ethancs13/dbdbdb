@@ -42,7 +42,6 @@ const ExpenseSelectRow = ({ index, data, deleteRow, handleChange, expenseTypes }
         </select>
       </div>
       <div className="input-container">
-        {" "}
         <select
           className="expense-select"
           name="porCC"
@@ -54,7 +53,6 @@ const ExpenseSelectRow = ({ index, data, deleteRow, handleChange, expenseTypes }
         </select>
       </div>
       <div className="input-container">
-        {" "}
         <input
           className="expense-input"
           type="text"
@@ -65,7 +63,6 @@ const ExpenseSelectRow = ({ index, data, deleteRow, handleChange, expenseTypes }
       </div>
       {billable === "Yes" && (
         <div className="input-container">
-          {" "}
           <input
             className="expense-input"
             type="text"
@@ -88,7 +85,6 @@ const ExpenseSelectRow = ({ index, data, deleteRow, handleChange, expenseTypes }
         </div>
       )}
       <div className="input-container">
-        {" "}
         <button className="btn expense-delete" onClick={() => deleteRow(index)}>
           <i className="fas fa-trash"></i>
         </button>

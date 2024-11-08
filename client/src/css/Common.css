@@ -43,7 +43,7 @@
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: auto;
+  /* width: auto; */
 }
 
 /* No data message styles */

@@ -48,6 +48,8 @@ const ExpenseSelect = () => {
           <span>Billable</span>
           <span>PorCC</span>
           <span>Amount</span>
+          <span>Comment</span>
+          <span>Customer</span>
         </div>
         <div className="table-container">
           {rowsData.length > 0 ? (
