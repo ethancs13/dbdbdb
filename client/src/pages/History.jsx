@@ -14,6 +14,7 @@ const History = () => {
 
   console.log("History Data:", historyData);
 
+  // Function to render each category with items
   const renderCategory = (category, items) => {
     if (!Array.isArray(items) || items.length === 0) {
       return <div className="no-items">No items available</div>;
@@ -25,34 +26,41 @@ const History = () => {
           .filter(([key]) => key.toLowerCase() !== 'id' && key.toLowerCase() !== 'user_id')
           .map(([key, value]) => (
             <div key={key} className="item">
-              <strong>{key}:</strong> {value}
+              <strong>{formatLabel(key)}:</strong> {value || 'N/A'}
             </div>
           ))}
       </div>
     ));
   };
 
+  // Function to format labels properly
+  const formatLabel = (label) => {
+    return label
+      .replace(/_/g, " ") // Replace underscores with spaces
+      .toLowerCase()
+      .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize first letter of each word
+  };
+
+  // Function to calculate the total amount for all categories
   const calculateTotalAmount = (categories) => {
     let total = 0;
     Object.values(categories).forEach((items) => {
       if (Array.isArray(items)) {
         items.forEach((item) => {
-          if (item.amount) {
-            total += parseFloat(item.amount);
-          } else if (item.AMOUNT) {
-            total += parseFloat(item.AMOUNT);
-          }
+          const amount = parseFloat(item.amount || item.AMOUNT || 0);
+          total += isNaN(amount) ? 0 : amount;
         });
       }
     });
     return total.toFixed(2);
   };
 
+  // Handle deletion of a specific pay period
   const handleDeleteMonth = (monthYear, e) => {
     e.preventDefault();
     const date = new Date(monthYear);
     const yyyymm = date.getFullYear() + "-";
-    const month = (date.getMonth()).toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const yyyymmFormatted = yyyymm + month;
 
     console.log("Formatted Month-Year:", yyyymmFormatted);
@@ -100,7 +108,7 @@ const History = () => {
             </summary>
             {Object.entries(categories).map(([category, items]) => (
               <div key={category} className="category-container">
-                <h4 className="category-title">{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
+                <h4 className="category-title">{formatLabel(category)}</h4>
                 {renderCategory(category, items)}
               </div>
             ))}

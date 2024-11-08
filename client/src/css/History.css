@@ -1,78 +1,53 @@
-  .history-container {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .history-entry {
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-  }
-  
-  .history-summary {
-    font-size: 1.2em;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 10px;
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .category-container {
-    padding: 10px;
-    border-top: 1px solid #eee;
-  }
-  
-  .category-title {
-    font-size: 1.3em;
-    border-bottom: dotted rgb(22, 35, 148) 1px;
-    margin-bottom: 10px;
-    padding: 5px;
-  }
-  
-  .item-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px 10px;
-    border-bottom: solid #a9a9a9 1px;
-  }
-  
-  .item {
-    flex: 1 1 200px; /* Adjust the minimum width of the items */
-    background-color: #fafafa;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  .delete-button {
-    margin-top: 10px;
-    padding: 5px 10px;
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .delete-button:hover {
-    background-color: #cc0000;
-  }
-  
-  .history-empty-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-  }
-  
-  .history-box-item {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f7f7f7;
-  }
-  
+.history-container {
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.history-entry {
+  margin-bottom: 15px;
+}
+
+.history-summary {
+  font-weight: bold;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.category-container {
+  padding: 10px 0;
+}
+
+.category-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.item-container {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.item {
+  margin-bottom: 5px;
+}
+
+.delete-button {
+  background-color: #ff4c4c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.delete-button:hover {
+  background-color: #ff1c1c;
+}
