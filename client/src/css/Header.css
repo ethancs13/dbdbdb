@@ -1,81 +1,58 @@
 .header-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    align-items: flex-start;
-    padding: 1rem;
-  }
-  .expense_navigation_name {
-    display: flex;
-    align-items: center;
-    border: 1px solid rgb(118, 118, 118);
-    width: auto;
-    padding: 1px 0;
-    margin: 5px 0;
-    height: 44px;
-    background-color: white;
-    text-align: center;
-  }
-  
-  .header-wrapper .expense_navigation_wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .header-wrapper .expense_navigation_wrapper > div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  .header-wrapper .expense_navigation_wrapper form {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  .header-wrapper h3 {
-    margin: 0 1rem;
-  }
-  
-  .header-wrapper input[type="month"] {
-    margin-right: 1rem;
-    padding: 0.5rem;
-  }
-  
-  .header-wrapper select {
-    margin-right: 1rem;
-    padding: 0.5rem;
-  }
-  
-  .header-wrapper button {
-    padding: 0.5rem 1rem;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .header-wrapper button.btn.btn-primary {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .header-wrapper button.btn.btn-primary:hover {
-    background-color: #0056b3;
-  }
-  .header-right {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .user-profile-icon {
-    margin-left: 20px;
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center; /* Center align items vertically */
+  padding: 1rem;
+}
 
-  .header-left:hover {
-    cursor: pointer;
-  }
-  .header-left-link {
-    text-decoration: none;
-  }
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-left-link {
+  text-decoration: none;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.header-right .logout-button {
+  margin-left: 10px;
+}
+
+.profile-image {
+  width: 40px; /* Make the image smaller */
+  height: 40px; /* Ensure equal width and height for a perfect circle */
+  border-radius: 50%; /* Make the image circular */
+  margin-left: 10px; /* Space between the image and logout button */
+  border: 1px solid #ccc; /* Optional border for better appearance */
+  object-fit: cover; /* Ensures the image covers the container evenly */
+}
+
+.user-profile-icon {
+  margin-left: 20px;
+}
+
+.header-wrapper h3 {
+  margin: 0 1rem;
+}
+
+.header-wrapper button {
+  padding: 0.5rem 1rem;
+  border: none;
+}
+
+.header-wrapper button.btn.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.header-wrapper button.btn.btn-primary:hover {
+  background-color: #0056b3;
+}
