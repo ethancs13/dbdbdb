@@ -20,8 +20,14 @@ const UserHeader = () => {
   useEffect(() => {
     axios.defaults.withCredentials = true;
 
+    // Check user authentication and role
     axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/`).then((res) => {
       if (res.data.status === "Success") {
+        setIsAuthenticated(true);
+        setEmail(res.data.email);
+        setFn(res.data.fn);
+        setLn(res.data.ln);
+      } else if (res.data.status === "rootUser") {
         setIsAuthenticated(true);
         setEmail(res.data.email);
         setFn(res.data.fn);
@@ -34,7 +40,8 @@ const UserHeader = () => {
   }, [navigate]);
 
   useEffect(() => {
-    const year = new Date().getFullYear();
+    const date = new Date();
+    const year = date.getFullYear();
     const options = [];
     for (let i = year - 2; i <= year + 1; i++) {
       options.push(i);
@@ -45,10 +52,80 @@ const UserHeader = () => {
   const { rowsData, foodRowsData, itemRowsData, mileageRowsData, clearFormContext, uploadedFiles } =
     useContext(FormContext);
 
+  useEffect(() => {
+    const fetchUserEmail = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/user`, {
+          withCredentials: true,
+        });
+        setUserEmail(response.data.email);
+      } catch (error) {
+        console.error("Error fetching user email:", error);
+      }
+    };
+
+    fetchUserEmail();
+  }, []);
+
+  const [expenseMonth, setExpenseMonth] = useState(() => {
+    const savedRows = localStorage.getItem("expenseMonth");
+    return savedRows ? JSON.parse(savedRows) : "";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("expenseMonth", JSON.stringify(expenseMonth));
+    console.log(expenseMonth);
+  }, [expenseMonth]);
+
+  const uploadData = async (formData) => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_END_POINT}/upload`,
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
+      return response;
+    } catch (error) {
+      console.error("Error uploading data:", error);
+      throw error;
+    }
+  };
+
+  const handleSuccess = (response) => {
+    console.log(response);
+    localStorage.removeItem("rowsData");
+    clearFormContext();
+    navigate("/thank-you");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const formattedMonth = `${selectedYear}-${String(selectedMonth).padStart(2, "0")}`;
-    // Submission logic here
+    setExpenseMonth(formattedMonth);
+
+    const formData = new FormData();
+    formData.append("month", formattedMonth);
+    formData.append("email", userEmail);
+    formData.append("rowsData", JSON.stringify(rowsData));
+    formData.append("foodRowsData", JSON.stringify(foodRowsData));
+    formData.append("itemRowsData", JSON.stringify(itemRowsData));
+    formData.append("mileageRowsData", JSON.stringify(mileageRowsData));
+    // Append each file to the FormData
+    for (let i = 0; i < uploadedFiles.length; i++) {
+      formData.append("uploadedFiles", uploadedFiles[i]);
+    }
+
+    try {
+      const response = await uploadData(formData);
+      handleSuccess(response);
+      localStorage.removeItem("expenseMonth");
+      setExpenseMonth("");
+    } catch (error) {
+      console.error("Error submitting data:", error);
+    }
   };
 
   return (

@@ -94,9 +94,7 @@ const pool = mysql.createPool({
 });
 
 pool.on("connection", (connection) => {
-  logger.info(
-    `New database connection established with ID: ${connection.threadId}`
-  );
+  logger.info(`New database connection established with ID: ${connection.threadId}`);
 });
 
 pool.on("acquire", (connection) => {
@@ -183,9 +181,10 @@ const groupByMonthYear = (data) => {
     if (!items || !Array.isArray(items)) return; // Ensure data exists and is an array
     items.forEach((item) => {
       const date = new Date(item["MONTH"]);
-      const newDate = new Date(
-        date.setMonth(date.getMonth() + 1)
-      ).toLocaleDateString("default", { month: "long", year: "numeric" });
+      const newDate = new Date(date.setMonth(date.getMonth() + 1)).toLocaleDateString("default", {
+        month: "long",
+        year: "numeric",
+      });
       addToGroup(item, newDate, category);
     });
   };
@@ -340,10 +339,7 @@ app.get("/client-id", (req, res) => {
 app.get("/admin/refresh-token", async (req, res) => {
   const { id } = req.query;
   try {
-    const results = await queryAsync(
-      "SELECT REFRESH_TOKEN FROM USERS WHERE ID = ?",
-      [id]
-    );
+    const results = await queryAsync("SELECT REFRESH_TOKEN FROM USERS WHERE ID = ?", [id]);
     res.json(results[0]);
   } catch (error) {
     console.error("Error fetching refresh token:", error);
@@ -353,9 +349,7 @@ app.get("/admin/refresh-token", async (req, res) => {
 
 app.get("/admin/user-id", async (req, res) => {
   try {
-    const results = await queryAsync(
-      "SELECT ID FROM USERS WHERE EMAIL = 'djsroka@gmail.com'"
-    );
+    const results = await queryAsync("SELECT ID FROM USERS WHERE EMAIL = 'djsroka@gmail.com'");
     res.json(results[0]);
   } catch (error) {
     console.error("Error fetching user ID:", error);
@@ -384,9 +378,7 @@ app.get("/admin/users/:id", verifyUser, async (req, res) => {
 
   const userId = req.params.id;
   try {
-    const [user] = await queryAsync("SELECT * FROM USERS WHERE ID = ?", [
-      userId,
-    ]);
+    const [user] = await queryAsync("SELECT * FROM USERS WHERE ID = ?", [userId]);
     if (user) {
       res.json(user);
     } else {
@@ -406,16 +398,13 @@ app.get("/user", verifyUser, async (req, res) => {
       "SELECT ID, USER_ID, TYPE, BILLABLE, PORCC, AMOUNT, COMMENT, MONTH FROM EXPENSES WHERE USER_ID = ?",
     files: "SELECT ID, USER_ID, NAME, PATH, MONTH FROM FILES WHERE USER_ID = ?",
     food: "SELECT ID, USER_ID, DATE, AMOUNT, LOCATION, MONTH FROM FOODEXPENSES WHERE USER_ID = ?",
-    items:
-      "SELECT ID, USER_ID, ITEM, DATE, SUBTOTAL, MONTH FROM ITEMEXPENSES WHERE USER_ID = ?",
+    items: "SELECT ID, USER_ID, ITEM, DATE, SUBTOTAL, MONTH FROM ITEMEXPENSES WHERE USER_ID = ?",
     mileage:
       "SELECT ID, USER_ID, DATE, PURPOSE, MILES, MONTH FROM MILEAGEEXPENSES WHERE USER_ID = ?",
   };
 
   try {
-    const userQuery = await queryAsync("SELECT EMAIL FROM USERS WHERE ID = ?", [
-      userId,
-    ]);
+    const userQuery = await queryAsync("SELECT EMAIL FROM USERS WHERE ID = ?", [userId]);
     const email = userQuery[0]?.EMAIL;
 
     const [expenses, files, food, items, mileage] = await Promise.all([
@@ -443,9 +432,7 @@ app.get("/user", verifyUser, async (req, res) => {
 
 app.get("/admin/expense-types", verifyUser, async (req, res) => {
   try {
-    const results = await queryAsync(
-      "SELECT * FROM EXPENSE_TYPES ORDER BY ORDER_INDEX"
-    );
+    const results = await queryAsync("SELECT * FROM EXPENSE_TYPES ORDER BY ORDER_INDEX");
     res.json(results);
   } catch (error) {
     res.status(500).send("Error fetching expense types");
@@ -454,9 +441,7 @@ app.get("/admin/expense-types", verifyUser, async (req, res) => {
 
 app.get("/user/expense-types", verifyUser, async (req, res) => {
   try {
-    const results = await queryAsync(
-      "SELECT * FROM EXPENSE_TYPES ORDER BY ORDER_INDEX"
-    );
+    const results = await queryAsync("SELECT * FROM EXPENSE_TYPES ORDER BY ORDER_INDEX");
     res.json(results);
   } catch (error) {
     res.status(500).send("Error fetching expense types");
@@ -469,9 +454,7 @@ app.get("/admin/mileage-rates", verifyUser, async (req, res) => {
   }
 
   try {
-    const mileageRates = await queryAsync(
-      "SELECT * FROM MILEAGE_RATES ORDER BY START_DATE DESC"
-    );
+    const mileageRates = await queryAsync("SELECT * FROM MILEAGE_RATES ORDER BY START_DATE DESC");
     res.json(mileageRates);
   } catch (error) {
     console.error("Error fetching mileage rates:", error);
@@ -480,12 +463,9 @@ app.get("/admin/mileage-rates", verifyUser, async (req, res) => {
 });
 
 app.get("/user/mileage-rates", async (req, res) => {
-
   try {
-    const mileageRates = await queryAsync(
-      "SELECT * FROM MILEAGE_RATES ORDER BY START_DATE DESC"
-    );
-    console.log("Mileage Rates: ",mileageRates)
+    const mileageRates = await queryAsync("SELECT * FROM MILEAGE_RATES ORDER BY START_DATE DESC");
+    console.log("Mileage Rates: ", mileageRates);
     res.json(mileageRates);
   } catch (error) {
     console.error("Error fetching mileage rates:", error);
@@ -563,14 +543,11 @@ app.get("/google-profile", async (req, res) => {
   }
 
   try {
-    const response = await axios.get(
-      "https://www.googleapis.com/oauth2/v1/userinfo?alt=json",
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    const response = await axios.get("https://www.googleapis.com/oauth2/v1/userinfo?alt=json", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
     res.json(response.data); // Send the profile data to the frontend
   } catch (error) {
     console.error(
@@ -588,10 +565,7 @@ app.get("/user-profile", async (req, res) => {
   const userId = req.query.userId; // Assuming userId is sent in the query params
 
   try {
-    const result = await queryAsync(
-      "SELECT PROFILE_IMG_URL FROM USERS WHERE ID = ?",
-      [userId]
-    );
+    const result = await queryAsync("SELECT PROFILE_IMG_URL FROM USERS WHERE ID = ?", [userId]);
 
     if (result.length > 0) {
       const profileImageUrl = result[0].profile_image_url;
@@ -609,9 +583,7 @@ app.get("/download-excel", async (req, res) => {
   const { startDate, endDate } = req.query;
 
   if (!startDate || !endDate) {
-    return res
-      .status(400)
-      .json({ error: "Please provide both start and end dates." });
+    return res.status(400).json({ error: "Please provide both start and end dates." });
   }
 
   try {
@@ -659,10 +631,7 @@ app.get("/download-excel", async (req, res) => {
 
     // Retrieve data for each table and add it to a separate sheet
     for (const [sheetName, query] of Object.entries(tables)) {
-      const rows = await queryAsync(query, [
-        formattedStartDate,
-        formattedEndDate,
-      ]);
+      const rows = await queryAsync(query, [formattedStartDate, formattedEndDate]);
 
       // If there’s data, add a new sheet for this table
       if (rows && rows.length > 0) {
@@ -672,9 +641,7 @@ app.get("/download-excel", async (req, res) => {
 
         // Ensure there are no undefined or problematic values in the rows
         const cleanRows = rows.map((row) => {
-          return Object.fromEntries(
-            Object.entries(row).map(([key, value]) => [key, value ?? ""])
-          );
+          return Object.fromEntries(Object.entries(row).map(([key, value]) => [key, value ?? ""]));
         });
 
         // Filter out unwanted columns: 'ID', 'USER_ID', and 'TYPE'
@@ -686,9 +653,7 @@ app.get("/download-excel", async (req, res) => {
         const orderedKeys = [
           "USER_NAME",
           "EXPENSE_TYPE",
-          ...filteredKeys.filter(
-            (key) => key !== "USER_NAME" && key !== "EXPENSE_TYPE"
-          ),
+          ...filteredKeys.filter((key) => key !== "USER_NAME" && key !== "EXPENSE_TYPE"),
         ];
 
         // Define columns based on the ordered keys
@@ -736,26 +701,19 @@ app.get("/download-excel", async (req, res) => {
 // login route
 app.post("/login", async (req, res) => {
   try {
-    const [user] = await queryAsync("SELECT * FROM USERS WHERE EMAIL = ?", [
-      req.body.email,
-    ]);
+    const [user] = await queryAsync("SELECT * FROM USERS WHERE EMAIL = ?", [req.body.email]);
 
     if (!user) {
       return res.status(401).send({ Status: "Unauthorized" });
     }
 
-    const passwordMatch = await bcrypt.compare(
-      req.body.password,
-      user.PASSWORD
-    );
+    const passwordMatch = await bcrypt.compare(req.body.password, user.PASSWORD);
 
     if (passwordMatch) {
       const { FN, LN, EMAIL, ID: user_ID, ROLE, tempPassword } = user;
-      const token = jwt.sign(
-        { FN, LN, EMAIL, user_ID, ROLE },
-        process.env.JWT_SECRET,
-        { expiresIn: "1d" }
-      );
+      const token = jwt.sign({ FN, LN, EMAIL, user_ID, ROLE }, process.env.JWT_SECRET, {
+        expiresIn: "1d",
+      });
 
       res.cookie("token", token, { httpOnly: true });
       console.log(tempPassword, "temp pass");
@@ -781,10 +739,10 @@ app.post("/change-password", verifyUser, async (req, res) => {
 
   try {
     const hashedPassword = await bcrypt.hash(newPassword, 10);
-    await queryAsync(
-      "UPDATE USERS SET PASSWORD = ?, tempPassword = false WHERE ID = ?",
-      [hashedPassword, req.user_ID]
-    );
+    await queryAsync("UPDATE USERS SET PASSWORD = ?, tempPassword = false WHERE ID = ?", [
+      hashedPassword,
+      req.user_ID,
+    ]);
     return res.json({ Status: "Success" });
   } catch (error) {
     console.error("Error changing password:", error);
@@ -805,8 +763,7 @@ app.post("/signup", async (req, res) => {
       userRole = "admin";
     }
 
-    const sql =
-      "INSERT INTO USERS (fn, ln, email, password, role) VALUES (?,?,?,?,?)";
+    const sql = "INSERT INTO USERS (fn, ln, email, password, role) VALUES (?,?,?,?,?)";
     const values = [fn, ln, email, hashedPassword, userRole];
 
     pool.query(sql, values, (err, result) => {
@@ -866,9 +823,7 @@ app.post("/refresh-token", verifyUser, async (req, res) => {
         if (error.response) {
           // Server responded with a status other than 2xx
           console.error("Error response from provider:", error.response.data);
-          res
-            .status(500)
-            .json({ error: `Provider error: ${error.response.data}` });
+          res.status(500).json({ error: `Provider error: ${error.response.data}` });
         } else if (error.request) {
           // No response was received
           console.error("No response received from provider:", error.request);
@@ -889,16 +844,10 @@ app.post("/send-email", async (req, res) => {
   const refreshToken = token;
 
   if (!refreshToken) {
-    return res
-      .status(400)
-      .send("No refresh token available. Please re-authenticate.");
+    return res.status(400).send("No refresh token available. Please re-authenticate.");
   }
 
-  const oAuth2Client = new google.auth.OAuth2(
-    CLIENT_ID,
-    CLIENT_SECRET,
-    REDIRECT_URI
-  );
+  const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 
   try {
     const accessToken = await refreshAccessToken(oAuth2Client);
@@ -942,10 +891,7 @@ app.post("/send-email", async (req, res) => {
 app.post("/admin/refresh-token", verifyUser, async (req, res) => {
   const { id } = req.body;
   try {
-    await queryAsync(
-      `UPDATE USERS SET REFRESH_TOKEN = '${REFRESH_TOKEN}' WHERE ID = ?`,
-      [id]
-    );
+    await queryAsync(`UPDATE USERS SET REFRESH_TOKEN = '${REFRESH_TOKEN}' WHERE ID = ?`, [id]);
     res.json({ status: "Success" });
   } catch (error) {
     console.error("Error adding refresh token:", error);
@@ -957,9 +903,7 @@ app.post("/admin/users", async (req, res) => {
   const { firstName, lastName, email, role, password, idToken } = req.body;
 
   if (!idToken || !email) {
-    return res
-      .status(400)
-      .json({ Error: "Invalid token or missing user data" });
+    return res.status(400).json({ Error: "Invalid token or missing user data" });
   }
 
   try {
@@ -994,17 +938,15 @@ app.post("/admin/expense-types", verifyUser, async (req, res) => {
   const { type } = req.body;
   try {
     // Get the highest current order_index
-    const results = await queryAsync(
-      "SELECT MAX(order_index) AS maxIndex FROM EXPENSE_TYPES"
-    );
+    const results = await queryAsync("SELECT MAX(order_index) AS maxIndex FROM EXPENSE_TYPES");
     const maxIndex = results[0].maxIndex || 0;
     const newOrderIndex = maxIndex + 1;
 
     // Insert the new expense type with the new order_index
-    await queryAsync(
-      "INSERT INTO EXPENSE_TYPES (type, order_index) VALUES (?, ?)",
-      [type, newOrderIndex]
-    );
+    await queryAsync("INSERT INTO EXPENSE_TYPES (type, order_index) VALUES (?, ?)", [
+      type,
+      newOrderIndex,
+    ]);
     res.json({ status: "Success" });
   } catch (error) {
     res.status(500).send("Error adding expense type");
@@ -1022,10 +964,10 @@ app.post("/admin/update-expense-types-order", verifyUser, async (req, res) => {
 
     for (let i = 0; i < expenseTypes.length; i++) {
       const expenseType = expenseTypes[i];
-      await queryAsync(
-        "UPDATE EXPENSE_TYPES SET ORDER_INDEX = ? WHERE id = ?",
-        [i, expenseType.id]
-      );
+      await queryAsync("UPDATE EXPENSE_TYPES SET ORDER_INDEX = ? WHERE id = ?", [
+        i,
+        expenseType.id,
+      ]);
     }
 
     await queryAsync("COMMIT");
@@ -1044,14 +986,11 @@ app.post("/admin/mileage-rates", verifyUser, async (req, res) => {
   const { rate, startDate, endDate } = req.body;
 
   if (!rate || !startDate || !endDate) {
-    return res
-      .status(400)
-      .json({ Error: "Rate, start date, and end date are required" });
+    return res.status(400).json({ Error: "Rate, start date, and end date are required" });
   }
 
   try {
-    const sql =
-      "INSERT INTO MILEAGE_RATES (rate, start_date, end_date) VALUES (?, ?, ?)";
+    const sql = "INSERT INTO MILEAGE_RATES (rate, start_date, end_date) VALUES (?, ?, ?)";
     const values = [rate, startDate, endDate];
 
     await queryAsync(sql, values);
@@ -1109,7 +1048,6 @@ app.post("/user/mileage-expenses", verifyUser, async (req, res) => {
   }
 });
 
-
 // File Upload Routes
 // -------------------------------------------
 
@@ -1124,94 +1062,159 @@ const s3Client = new S3Client({
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-app.post(
-  "/upload",
-  upload.array("uploadedFiles"),
-  verifyUser,
-  async (req, res) => {
-    if (!req.body.email) {
-      return res.json({ status: "Please log in first." });
-    }
-
-    const user_ID = req.user_ID;
-    const checkUserQuery = "SELECT * FROM USERS WHERE ID = ?";
-
-    try {
-      const userResult = await queryAsync(checkUserQuery, [user_ID]);
-      if (!userResult.length) {
-        return res.status(404).json({ status: "User not found." });
-      }
-
-      // Parsing the JSON data from the request body
-      const rowsData = JSON.parse(req.body.rowsData);
-      const foodData = JSON.parse(req.body.foodRowsData);
-      const mileageData = JSON.parse(req.body.mileageRowsData);
-      const itemData = JSON.parse(req.body.itemRowsData);
-      const monthData = req.body.month;
-      const filesData = req.files || [];
-
-      // Process and insert rows data
-      for (const row of rowsData) {
-        const { type, billable, porCC, amount, comment } = row;
-        const sanitizedAmount = parseFloat(amount) || 0;
-
-        // Fetch the ID from EXPENSE_TYPES where TYPE matches
-        const expenseTypeResult = await queryAsync(
-          "SELECT ID FROM EXPENSE_TYPES WHERE TYPE = ?",
-          [type]
-        );
-
-        if (!expenseTypeResult.length) {
-          return res.status(400).json({ status: "Invalid expense type." });
-        }
-
-        const typeId = expenseTypeResult[0].ID;
-
-        await queryAsync(
-          "INSERT INTO EXPENSES (user_ID, type, billable, porCC, amount, comment, month) VALUES (?, ?, ?, ?, ?, ?, ?)",
-          [
-            user_ID,
-            typeId,
-            billable,
-            porCC,
-            sanitizedAmount,
-            comment,
-            monthData,
-          ]
-        );
-      }
-
-      // Handling file uploads to AWS S3 and saving file paths in the database
-      for (const file of filesData) {
-        const uniqueFileName = `${file.originalname}-${Date.now().toString()}`;
-        const uploadParams = {
-          Bucket: process.env.AWS_S3_BUCKET,
-          Key: `files/${uniqueFileName}`,
-          Body: file.buffer,
-          ACL: "public-read",
-        };
-
-        const parallelUploads3 = new Upload({
-          client: s3Client,
-          params: uploadParams,
-        });
-
-        try {
-          await parallelUploads3.done();
-          console.log(`Uploaded file: ${uniqueFileName}`);
-        } catch (error) {
-          console.error(`Error uploading file ${uniqueFileName}:`, error);
-        }
-      }
-
-      // Return success status
-      res.json({ status: "Success" });
-    } catch (error) {
-      console.error("Error during file upload:", error);
-      res.status(500).json({ status: "Error", error: "Database error" });
-    }
+app.post("/upload", upload.array("uploadedFiles"), verifyUser, async (req, res) => {
+  if (!req.body.email) {
+    return res.json({ status: "Please log in first." });
   }
-);
+
+  const user_ID = req.user_ID;
+  const checkUserQuery = "SELECT * FROM USERS WHERE ID = ?";
+
+  try {
+    const userResult = await queryAsync(checkUserQuery, [user_ID]);
+    if (!userResult.length) {
+      return res.status(404).json({ status: "User not found." });
+    }
+
+    // Parsing the JSON data from the request body
+    const rowsData = JSON.parse(req.body.rowsData);
+    const foodData = JSON.parse(req.body.foodRowsData);
+    const mileageData = JSON.parse(req.body.mileageRowsData);
+    const itemData = JSON.parse(req.body.itemRowsData);
+    const monthData = req.body.month;
+    const filesData = req.files || [];
+
+    // Process and insert rows data
+    for (const row of rowsData) {
+      const { type, billable, porCC, amount, comment } = row;
+      const sanitizedAmount = parseFloat(amount) || 0;
+
+      // Fetch the ID from EXPENSE_TYPES where TYPE matches
+      const expenseTypeResult = await queryAsync("SELECT ID FROM EXPENSE_TYPES WHERE TYPE = ?", [
+        type,
+      ]);
+
+      if (!expenseTypeResult.length) {
+        return res.status(400).json({ status: "Invalid expense type." });
+      }
+
+      const typeId = expenseTypeResult[0].ID;
+
+      await queryAsync(
+        "INSERT INTO EXPENSES (user_ID, type, billable, porCC, amount, comment, month) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        [user_ID, typeId, billable, porCC, sanitizedAmount, comment, monthData]
+      );
+    }
+
+    // Process and insert food data
+    for (const food of foodData) {
+      const { date, amount, location, persons, type, purpose, billable, porCC } = food;
+      const sanitizedAmount = parseFloat(amount) || 0;
+
+      await queryAsync(
+        "INSERT INTO FOODEXPENSES (user_ID, date, amount, location, persons, type, purpose, billable, porCC, month) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        [
+          user_ID,
+          date,
+          sanitizedAmount,
+          location,
+          persons,
+          type,
+          purpose,
+          billable,
+          porCC,
+          monthData,
+        ]
+      );
+    }
+
+    // Process and insert mileage data
+    for (const mileage of mileageData) {
+      const { date, purpose, miles, billable, amount } = mileage;
+      const sanitizedAmount = parseFloat(amount) || 0;
+
+      await queryAsync(
+        "INSERT INTO MILEAGEEXPENSES (user_ID, date, purpose, miles, billable, amount, month) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        [user_ID, date, purpose, miles, billable, sanitizedAmount, monthData]
+      );
+    }
+
+    // Process and insert item data
+    for (const item of itemData) {
+      const {
+        date,
+        item: itemName,
+        subTotal,
+        cityTax,
+        taxPercent,
+        total,
+        retailer,
+        shippedFrom,
+        shippedTo,
+        billable,
+      } = item;
+      const sanitizedSubTotal = parseFloat(subTotal) || 0;
+      const sanitizedCityTax = parseFloat(cityTax) || 0;
+      const sanitizedTaxPercent = parseFloat(taxPercent) || 0;
+      const sanitizedTotal = parseFloat(total) || 0;
+
+      await queryAsync(
+        "INSERT INTO ITEMEXPENSES (user_ID, date, item, subTotal, cityTax, taxPercent, total, retailer, shippedFrom, shippedTo, billable, month) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        [
+          user_ID,
+          date,
+          itemName,
+          sanitizedSubTotal,
+          sanitizedCityTax,
+          sanitizedTaxPercent,
+          sanitizedTotal,
+          retailer,
+          shippedFrom,
+          shippedTo,
+          billable,
+          monthData,
+        ]
+      );
+    }
+
+    // Handling file uploads to AWS S3 and saving file paths in the database
+    for (const file of filesData) {
+      const uniqueFileName = `${file.originalname}-${Date.now().toString()}`;
+      const uploadParams = {
+        Bucket: process.env.AWS_S3_BUCKET,
+        Key: `files/${uniqueFileName}`,
+        Body: file.buffer,
+        ACL: "public-read",
+      };
+
+      const parallelUploads3 = new Upload({
+        client: s3Client,
+        params: uploadParams,
+      });
+
+      try {
+        await parallelUploads3.done();
+        console.log(`Uploaded file: ${uniqueFileName}`);
+
+        // Save file information to the database
+        await queryAsync("INSERT INTO FILES (user_ID, name, path, month) VALUES (?, ?, ?, ?)", [
+          user_ID,
+          file.originalname,
+          `files/${uniqueFileName}`,
+          monthData,
+        ]);
+      } catch (error) {
+        console.error(`Error uploading file ${uniqueFileName}:`, error);
+      }
+    }
+
+    // Return success status
+    res.json({ status: "Success" });
+  } catch (error) {
+    console.error("Error during file upload:", error);
+    res.status(500).json({ status: "Error", error: "Database error" });
+  }
+});
 
 app.post("/verify-token", async (req, res) => {
   const { idToken } = req.body;
@@ -1232,47 +1235,40 @@ app.post("/verify-token", async (req, res) => {
 });
 
 // Route to handle profile image upload
-app.post(
-  "/upload-profile-image",
-  upload.single("profileImage"),
-  async (req, res) => {
-    const userId = req.body.userId; // Assuming userId is sent with the request
+app.post("/upload-profile-image", upload.single("profileImage"), async (req, res) => {
+  const userId = req.body.userId; // Assuming userId is sent with the request
 
-    if (!req.file) {
-      return res.status(400).json({ error: "No file uploaded" });
-    }
-
-    const file = req.file;
-    const uniqueFileName = `${file.originalname}-${Date.now().toString()}`;
-    const uploadParams = {
-      Bucket: process.env.AWS_S3_BUCKET,
-      Key: `profile-images/${uniqueFileName}`, // Store in a 'profile-images' folder in the bucket
-      Body: file.buffer,
-      ACL: "public-read", // You can adjust the permissions as needed
-    };
-
-    try {
-      const parallelUploads3 = new Upload({
-        client: s3Client,
-        params: uploadParams,
-      });
-
-      await parallelUploads3.done();
-      const imageUrl = `https://${process.env.AWS_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/profile-images/${uniqueFileName}`;
-
-      // Store imageUrl in the database
-      await queryAsync("UPDATE USERS SET PROFILE_IMG_URL = ? WHERE id = ?", [
-        imageUrl,
-        userId,
-      ]);
-
-      res.json({ imageUrl });
-    } catch (error) {
-      console.error(`Error uploading file ${uniqueFileName}:`, error);
-      res.status(500).json({ error: "Failed to upload image" });
-    }
+  if (!req.file) {
+    return res.status(400).json({ error: "No file uploaded" });
   }
-);
+
+  const file = req.file;
+  const uniqueFileName = `${file.originalname}-${Date.now().toString()}`;
+  const uploadParams = {
+    Bucket: process.env.AWS_S3_BUCKET,
+    Key: `profile-images/${uniqueFileName}`, // Store in a 'profile-images' folder in the bucket
+    Body: file.buffer,
+    ACL: "public-read", // You can adjust the permissions as needed
+  };
+
+  try {
+    const parallelUploads3 = new Upload({
+      client: s3Client,
+      params: uploadParams,
+    });
+
+    await parallelUploads3.done();
+    const imageUrl = `https://${process.env.AWS_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/profile-images/${uniqueFileName}`;
+
+    // Store imageUrl in the database
+    await queryAsync("UPDATE USERS SET PROFILE_IMG_URL = ? WHERE id = ?", [imageUrl, userId]);
+
+    res.json({ imageUrl });
+  } catch (error) {
+    console.error(`Error uploading file ${uniqueFileName}:`, error);
+    res.status(500).json({ error: "Failed to upload image" });
+  }
+});
 
 app.post("/update-profile", (req, res) => {
   const { firstName, lastName, email } = req.body;
@@ -1365,6 +1361,22 @@ app.delete("/delete-month/:month/:userId", (req, res) => {
     .catch((err) => {
       res.status(500).send({ message: "Error deleting data" });
     });
+});
+
+app.delete("/admin/mileage-rates/:id", verifyUser, async (req, res) => {
+  if (req.role !== "admin") {
+    return res.status(403).json({ Error: "Access denied" });
+  }
+
+  const item_id = req.params.id;
+
+  try {
+    const mileageRates = await queryAsync("DELETE FROM MILEAGE_RATES WHERE ID = ?", [item_id]);
+    res.json(mileageRates);
+  } catch (error) {
+    console.error("Error fetching mileage rates:", error);
+    res.status(500).send("Error fetching mileage rates");
+  }
 });
 
 // Listen on PORT

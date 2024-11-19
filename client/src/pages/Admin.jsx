@@ -68,16 +68,13 @@ const Admin = () => {
     }
 
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_SERVER_END_POINT}/download-excel`,
-        {
-          params: {
-            startDate: startDate.toISOString(),
-            endDate: endDate.toISOString(),
-          },
-          responseType: "blob", // Important for file download
-        }
-      );
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/download-excel`, {
+        params: {
+          startDate: startDate.toISOString(),
+          endDate: endDate.toISOString(),
+        },
+        responseType: "blob", // Important for file download
+      });
 
       // Trigger file download
       const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -95,10 +92,9 @@ const Admin = () => {
   // Data fetching functions
   const fetchUsers = async () => {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_SERVER_END_POINT}/admin/users`,
-        { withCredentials: true }
-      );
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_END_POINT}/admin/users`, {
+        withCredentials: true,
+      });
       setUsers(response.data.users);
     } catch (err) {
       console.error("Error fetching users:", err);
@@ -147,11 +143,24 @@ const Admin = () => {
     }
   };
 
+  const handleDeleteMileageRates = async (id) => {
+    try {
+      // Use DELETE method and pass the ID in the URL
+      await axios.delete(`${process.env.REACT_APP_SERVER_END_POINT}/admin/mileage-rates/${id}`, {
+        withCredentials: true,
+      });
+
+      // Re-fetch the mileage rates to update the UI
+      fetchMileageRates();
+    } catch (err) {
+      console.error("Error deleting mileage rate:", err);
+    }
+  };
+
   // Utility functions
   const generateRandomPassword = () => Math.random().toString(36).slice(-8);
 
-  const capitalizeFirstLetter = (string) =>
-    string.charAt(0).toUpperCase() + string.slice(1);
+  const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
   const calculateTotalAmount = (categories) => {
     let total = 0;
@@ -191,12 +200,9 @@ const Admin = () => {
       );
 
       const userId = userIdResponse.data.ID;
-      await axios.post(
-        `${process.env.REACT_APP_SERVER_END_POINT}/admin/refresh-token`,
-        {
-          id: userId,
-        }
-      );
+      await axios.post(`${process.env.REACT_APP_SERVER_END_POINT}/admin/refresh-token`, {
+        id: userId,
+      });
 
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_END_POINT}/admin/users`,
@@ -261,10 +267,9 @@ const Admin = () => {
   const handleDeleteUser = async (userId) => {
     setDeletingUsers((prevState) => ({ ...prevState, [userId]: true }));
     try {
-      await axios.delete(
-        `${process.env.REACT_APP_SERVER_END_POINT}/admin/users/${userId}`,
-        { withCredentials: true }
-      );
+      await axios.delete(`${process.env.REACT_APP_SERVER_END_POINT}/admin/users/${userId}`, {
+        withCredentials: true,
+      });
       fetchUsers();
     } catch (err) {
       console.error("Error deleting user:", err);
@@ -275,6 +280,40 @@ const Admin = () => {
 
   // Handlers for mileage rates
   const handleAddMileageRate = async () => {
+    const { startDate, endDate, rate } = newMileageRate;
+
+    // Validate input
+    if (!startDate || !rate) {
+      alert("Start date and rate are required.");
+      return;
+    }
+
+    // Convert to Date objects for comparison
+    const newStart = new Date(startDate);
+    const newEnd = endDate ? new Date(endDate) : null;
+
+    // Check for overlap with existing mileage rates
+    const isOverlapping = mileageRates.some((existingRate) => {
+      const existingStart = new Date(existingRate.START_DATE);
+      const existingEnd = existingRate.END_DATE ? new Date(existingRate.END_DATE) : null;
+
+      // Overlap condition:
+      // (newStart falls within existing range) OR
+      // (newEnd falls within existing range) OR
+      // (existing range falls within the new range)
+      return (
+        (newStart >= existingStart && (!existingEnd || newStart <= existingEnd)) ||
+        (newEnd && newEnd >= existingStart && (!existingEnd || newEnd <= existingEnd)) ||
+        (newStart <= existingStart && (!newEnd || newEnd >= existingEnd))
+      );
+    });
+
+    if (isOverlapping) {
+      alert("The new mileage rate overlaps with an existing rate. Please adjust the dates.");
+      return;
+    }
+
+    // Proceed to add the mileage rate if no overlap
     try {
       await axios.post(
         `${process.env.REACT_APP_SERVER_END_POINT}/admin/mileage-rates`,
@@ -311,11 +350,9 @@ const Admin = () => {
     setExpenseTypes(items);
 
     axios
-      .post(
-        `${process.env.REACT_APP_SERVER_END_POINT}/admin/update-expense-types-order`,
-        items,
-        { withCredentials: true }
-      )
+      .post(`${process.env.REACT_APP_SERVER_END_POINT}/admin/update-expense-types-order`, items, {
+        withCredentials: true,
+      })
       .then(() => {
         console.log("Order updated successfully");
       })
@@ -340,10 +377,9 @@ const Admin = () => {
 
   const handleDeleteExpenseType = async (id) => {
     try {
-      await axios.delete(
-        `${process.env.REACT_APP_SERVER_END_POINT}/admin/expense-types/${id}`,
-        { withCredentials: true }
-      );
+      await axios.delete(`${process.env.REACT_APP_SERVER_END_POINT}/admin/expense-types/${id}`, {
+        withCredentials: true,
+      });
       fetchExpenseTypes();
     } catch (err) {
       console.error("Error deleting expense type:", err);
@@ -362,10 +398,7 @@ const Admin = () => {
     return items.map((item, index) => (
       <div key={index} className="item-container">
         {Object.entries(item)
-          .filter(
-            ([key]) =>
-              key.toLowerCase() !== "id" && key.toLowerCase() !== "user_id"
-          )
+          .filter(([key]) => key.toLowerCase() !== "id" && key.toLowerCase() !== "user_id")
           .map(([key, value]) => (
             <div key={key} className="item">
               <strong>{key}:</strong> {value}
@@ -376,10 +409,7 @@ const Admin = () => {
   };
 
   return (
-    <div
-      className="admin-dashboard"
-      style={{ display: "flex", flexWrap: "wrap" }}
-    >
+    <div className="admin-dashboard" style={{ display: "flex", flexWrap: "wrap" }}>
       {/* Export Data Section */}
       <section className="export-data-section">
         <h3>Export Data</h3>
@@ -417,28 +447,19 @@ const Admin = () => {
             type="text"
             placeholder="$/Mile"
             value={newMileageRate.rate}
-            onChange={(e) =>
-              setNewMileageRate({ ...newMileageRate, rate: e.target.value })
-            }
+            onChange={(e) => setNewMileageRate({ ...newMileageRate, rate: e.target.value })}
           />
           <div style={{ display: "flex" }}>
             <CalendarWidget
               selectedDate={newMileageRate.startDate}
-              onDateChange={(date) =>
-                setNewMileageRate({ ...newMileageRate, startDate: date })
-              }
+              onDateChange={(date) => setNewMileageRate({ ...newMileageRate, startDate: date })}
             />
             <CalendarWidget
               selectedDate={newMileageRate.endDate}
-              onDateChange={(date) =>
-                setNewMileageRate({ ...newMileageRate, endDate: date })
-              }
+              onDateChange={(date) => setNewMileageRate({ ...newMileageRate, endDate: date })}
             />
           </div>
-          <button
-            className="admin-expense-types-btn-add"
-            onClick={handleAddMileageRate}
-          >
+          <button className="admin-expense-types-btn-add" onClick={handleAddMileageRate}>
             Add Mileage Rate
           </button>
         </div>
@@ -450,16 +471,31 @@ const Admin = () => {
           ) : (
             <ul>
               {mileageRates.map((rate) => (
-                <li key={rate.ID}>
-                  <strong>Rate:</strong> ${rate.RATE} /mile
-                  <br />
-                  <strong>Start Date:</strong>{" "}
-                  {new Date(rate.START_DATE).toLocaleDateString()}
-                  <br />
-                  <strong>End Date:</strong>{" "}
-                  {rate.END_DATE
-                    ? new Date(rate.END_DATE).toLocaleDateString()
-                    : "N/A"}
+                <li
+                  key={rate.ID}
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <div>
+                    <strong>Rate:</strong> ${rate.RATE} /mile
+                    <br />
+                    <strong>Start Date:</strong> {new Date(rate.START_DATE).toLocaleDateString()}
+                    <br />
+                    <strong>End Date:</strong>{" "}
+                    {rate.END_DATE ? new Date(rate.END_DATE).toLocaleDateString() : "N/A"}
+                  </div>
+                  <div>
+                    <button
+                      className="btn admin-expense-types-btn-del"
+                      onClick={() => handleDeleteMileageRates(rate.ID)} // Pass the correct ID here
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -476,10 +512,7 @@ const Admin = () => {
             value={newExpenseType}
             onChange={(e) => setNewExpenseType(e.target.value)}
           />
-          <button
-            className="admin-expense-types-btn-add"
-            onClick={handleAddExpenseType}
-          >
+          <button className="admin-expense-types-btn-add" onClick={handleAddExpenseType}>
             Add Expense Type
           </button>
         </div>
@@ -530,17 +563,13 @@ const Admin = () => {
             type="text"
             placeholder="First Name"
             value={newUser.firstName}
-            onChange={(e) =>
-              setNewUser({ ...newUser, firstName: e.target.value })
-            }
+            onChange={(e) => setNewUser({ ...newUser, firstName: e.target.value })}
           />
           <input
             type="text"
             placeholder="Last Name"
             value={newUser.lastName}
-            onChange={(e) =>
-              setNewUser({ ...newUser, lastName: e.target.value })
-            }
+            onChange={(e) => setNewUser({ ...newUser, lastName: e.target.value })}
           />
           <input
             type="email"
@@ -570,8 +599,7 @@ const Admin = () => {
             <li className="user-item" key={user.ID}>
               <div className="user-info">
                 <span onClick={() => handleUserClick(user)}>
-                  {capitalizeFirstLetter(user.FN)}{" "}
-                  {capitalizeFirstLetter(user.LN)} ({user.EMAIL})
+                  {capitalizeFirstLetter(user.FN)} {capitalizeFirstLetter(user.LN)} ({user.EMAIL})
                 </span>
               </div>
               <button
@@ -597,27 +625,24 @@ const Admin = () => {
 
             <div>
               {selectedUser && allSubmissions[selectedUser.ID] ? (
-                Object.entries(allSubmissions[selectedUser.ID]).map(
-                  ([yyyymm, categories]) => {
-                    const totalAmount = calculateTotalAmount(categories);
-                    return (
-                      <details key={yyyymm} className="history-entry">
-                        <summary className="history-summary">
-                          {yyyymm} - Total Amount: ${totalAmount}
-                        </summary>
-                        {Object.entries(categories).map(([category, items]) => (
-                          <div key={category} className="category-container">
-                            <h4 className="category-title">
-                              {category.charAt(0).toUpperCase() +
-                                category.slice(1)}
-                            </h4>
-                            {renderCategory(category, items)}
-                          </div>
-                        ))}
-                      </details>
-                    );
-                  }
-                )
+                Object.entries(allSubmissions[selectedUser.ID]).map(([yyyymm, categories]) => {
+                  const totalAmount = calculateTotalAmount(categories);
+                  return (
+                    <details key={yyyymm} className="history-entry">
+                      <summary className="history-summary">
+                        {yyyymm} - Total Amount: ${totalAmount}
+                      </summary>
+                      {Object.entries(categories).map(([category, items]) => (
+                        <div key={category} className="category-container">
+                          <h4 className="category-title">
+                            {category.charAt(0).toUpperCase() + category.slice(1)}
+                          </h4>
+                          {renderCategory(category, items)}
+                        </div>
+                      ))}
+                    </details>
+                  );
+                })
               ) : (
                 <p>No submissions found.</p>
               )}
@@ -628,12 +653,8 @@ const Admin = () => {
             {Object.entries(allSubmissions).map(([userId, userSubmissions]) => (
               <details key={userId} className="user-submissions">
                 <summary className="user-summary">
-                  {capitalizeFirstLetter(
-                    users.find((user) => user.ID === parseInt(userId)).FN
-                  )}{" "}
-                  {capitalizeFirstLetter(
-                    users.find((user) => user.ID === parseInt(userId)).LN
-                  )}
+                  {capitalizeFirstLetter(users.find((user) => user.ID === parseInt(userId)).FN)}{" "}
+                  {capitalizeFirstLetter(users.find((user) => user.ID === parseInt(userId)).LN)}
                 </summary>
                 {Object.entries(userSubmissions).map(([yyyymm, categories]) => {
                   const totalAmount = calculateTotalAmount(categories);
@@ -645,8 +666,7 @@ const Admin = () => {
                       {Object.entries(categories).map(([category, items]) => (
                         <div key={category} className="category-container">
                           <h4 className="category-title">
-                            {category.charAt(0).toUpperCase() +
-                              category.slice(1)}
+                            {category.charAt(0).toUpperCase() + category.slice(1)}
                           </h4>
                           {renderCategory(category, items)}
                         </div>
@@ -673,17 +693,10 @@ const Admin = () => {
             />
             <CalendarWidget
               selectedDate={selectedSubmission.date}
-              onDateChange={(date) =>
-                setSelectedSubmission({ ...selectedSubmission, date })
-              }
+              onDateChange={(date) => setSelectedSubmission({ ...selectedSubmission, date })}
             />
             <button
-              onClick={() =>
-                handleUpdateSubmission(
-                  selectedSubmission.id,
-                  selectedSubmission
-                )
-              }
+              onClick={() => handleUpdateSubmission(selectedSubmission.id, selectedSubmission)}
             >
               Update Submission
             </button>
