@@ -479,6 +479,20 @@ app.get("/admin/mileage-rates", verifyUser, async (req, res) => {
   }
 });
 
+app.get("/user/mileage-rates", async (req, res) => {
+
+  try {
+    const mileageRates = await queryAsync(
+      "SELECT * FROM MILEAGE_RATES ORDER BY START_DATE DESC"
+    );
+    console.log("Mileage Rates: ",mileageRates)
+    res.json(mileageRates);
+  } catch (error) {
+    console.error("Error fetching mileage rates:", error);
+    res.status(500).send("Error fetching mileage rates");
+  }
+});
+
 app.get("/admin/all-submissions", verifyUser, async (req, res) => {
   if (req.role !== "admin") {
     return res.status(403).json({ Error: "Access denied" });
@@ -1047,6 +1061,54 @@ app.post("/admin/mileage-rates", verifyUser, async (req, res) => {
     res.status(500).send("Error adding mileage rate");
   }
 });
+
+// Route to add mileage expense with auto calculation of amount
+app.post("/user/mileage-expenses", verifyUser, async (req, res) => {
+  const { user_ID, date, purpose, miles, billable } = req.body;
+
+  if (!date || !miles || !purpose) {
+    return res.status(400).json({ Error: "Date, miles, and purpose are required" });
+  }
+
+  try {
+    // Fetch the applicable mileage rate for the given date
+    const mileageRateQuery = `
+      SELECT RATE 
+      FROM MILEAGE_RATES 
+      WHERE START_DATE <= ? AND (END_DATE IS NULL OR END_DATE >= ?) 
+      ORDER BY START_DATE DESC 
+      LIMIT 1
+    `;
+    const [mileageRate] = await queryAsync(mileageRateQuery, [date, date]);
+
+    if (!mileageRate) {
+      return res.status(404).json({ Error: "No applicable mileage rate found for the given date" });
+    }
+
+    const rate = parseFloat(mileageRate.RATE);
+    const calculatedAmount = rate * parseFloat(miles);
+
+    // Insert the mileage expense
+    const insertMileageExpenseQuery = `
+      INSERT INTO MILEAGEEXPENSES (USER_ID, DATE, PURPOSE, MILES, BILLABLE, AMOUNT)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `;
+    await queryAsync(insertMileageExpenseQuery, [
+      user_ID,
+      date,
+      purpose,
+      miles,
+      billable,
+      calculatedAmount,
+    ]);
+
+    res.json({ status: "Success", message: "Mileage expense added successfully" });
+  } catch (error) {
+    console.error("Error adding mileage expense:", error);
+    res.status(500).send("Error adding mileage expense");
+  }
+});
+
 
 // File Upload Routes
 // -------------------------------------------
