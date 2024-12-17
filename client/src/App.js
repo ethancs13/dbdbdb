@@ -6,6 +6,7 @@ import AdminHeader from "./components/adminHeader";
 import UserHeader from "./components/userHeader";
 import ChangePassword from "./components/changePassword";
 import UserNavigation from "./components/userNavigation";
+import GoogleSignInPage from "./pages/GoogleSignInPage";
 import UserDetail from "./components/userDetail";
 import Admin from "./pages/Admin";
 import Itemized from "./pages/Itemized";
@@ -64,6 +65,7 @@ function AuthConsumer() {
             <Route path="/login" element={<Login />} />
             <Route path="/user/:id" element={<UserDetail />} />
             <Route path="/profile" element={<UserProfile />} />
+            <Route path="/google-signin" element={<GoogleSignInPage />} />
             <Route path="*" element={<Admin />} />
           </Routes>
         </div>
